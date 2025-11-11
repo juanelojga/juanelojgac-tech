@@ -1,0 +1,111 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schema/config.json",
+  "mcpServers": {
+    "playwright-test-orchestrator": {
+      "command": "node",
+      "args": ["./tests/mcp/orchestrator.js"],
+      "env": {
+        "NODE_ENV": "test",
+        "PLAYWRIGHT_BASE_URL": "http://localhost:4321"
+      },
+      "description": "MCP server for orchestrating Playwright tests on file changes",
+      "capabilities": {
+        "tools": {
+          "run_tests": {
+            "description": "Run Playwright tests based on changed files",
+            "parameters": {
+              "files": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "List of changed files"
+              },
+              "testType": {
+                "type": "string",
+                "enum": ["all", "pages", "ui", "accessibility"],
+                "description": "Type of tests to run"
+              }
+            }
+          },
+          "watch_files": {
+            "description": "Start watching files for changes",
+            "parameters": {
+              "patterns": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "File patterns to watch"
+              }
+            }
+          },
+          "run_accessibility_scan": {
+            "description": "Run accessibility scan on specific page",
+            "parameters": {
+              "url": {
+                "type": "string",
+                "description": "URL to scan"
+              }
+            }
+          }
+        }
+      }
+    },
+    "test-reporter": {
+      "command": "node",
+      "args": ["./tests/mcp/reporter.js"],
+      "env": {
+        "NODE_ENV": "test"
+      },
+      "description": "MCP server for generating and serving test reports",
+      "capabilities": {
+        "resources": {
+          "latest_report": {
+            "description": "Get the latest test report",
+            "mimeType": "application/json"
+          },
+          "html_report": {
+            "description": "Get HTML test report",
+            "mimeType": "text/html"
+          }
+        }
+      }
+    }
+  },
+  "watchers": {
+    "components": {
+      "patterns": ["src/components/**/*.{astro,tsx,jsx}"],
+      "action": "run_tests",
+      "parameters": {
+        "testType": "ui"
+      }
+    },
+    "pages": {
+      "patterns": ["src/pages/**/*.astro"],
+      "action": "run_tests",
+      "parameters": {
+        "testType": "pages"
+      }
+    },
+    "layouts": {
+      "patterns": ["src/layouts/**/*.astro"],
+      "action": "run_tests",
+      "parameters": {
+        "testType": "all"
+      }
+    }
+  },
+  "triggers": {
+    "pre-commit": {
+      "action": "run_tests",
+      "parameters": {
+        "testType": "all"
+      },
+      "failOnError": true
+    },
+    "pre-build": {
+      "action": "run_tests",
+      "parameters": {
+        "testType": "all"
+      },
+      "failOnError": true
+    }
+  }
+}
