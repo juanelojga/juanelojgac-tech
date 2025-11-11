@@ -78,13 +78,11 @@ test.describe('Bilingual Content', () => {
     await page.goto('/en/');
 
     // Check for hreflang alternate tags
-    const hreflangTags = await page.$$eval(
-      'link[rel="alternate"][hreflang]',
-      (links) =>
-        links.map((link) => ({
-          hreflang: link.getAttribute('hreflang'),
-          href: link.getAttribute('href'),
-        }))
+    const hreflangTags = await page.$$eval('link[rel="alternate"][hreflang]', (links) =>
+      links.map((link) => ({
+        hreflang: link.getAttribute('hreflang'),
+        href: link.getAttribute('href'),
+      }))
     );
 
     // Should have hreflang tags for multiple languages
@@ -205,5 +203,39 @@ test.describe('Bilingual Content', () => {
 
     // Both should have similar number of nav items
     expect(enNavItems).toBe(esNavItems);
+  });
+
+  test('should capture English page visual baseline @visual', async ({ page }) => {
+    await page.goto('/en/');
+
+    // Take full page screenshot for visual regression
+    await expect(page).toHaveScreenshot('bilingual-en.png', {
+      fullPage: true,
+      maxDiffPixels: 100,
+    });
+  });
+
+  test('should capture Spanish page visual baseline @visual', async ({ page }) => {
+    await page.goto('/es/');
+
+    // Take full page screenshot for visual regression
+    await expect(page).toHaveScreenshot('bilingual-es.png', {
+      fullPage: true,
+      maxDiffPixels: 100,
+    });
+  });
+
+  test('should capture language switcher visual state @visual', async ({ page }) => {
+    await page.goto('/en/');
+
+    // Focus on the language switcher area
+    const langSwitcher = page.locator('a[href*="/en/"], a[href*="/es/"]').first();
+
+    if (await langSwitcher.isVisible()) {
+      // Take screenshot of just the language switcher
+      await expect(langSwitcher).toHaveScreenshot('language-switcher.png', {
+        maxDiffPixels: 50,
+      });
+    }
   });
 });
