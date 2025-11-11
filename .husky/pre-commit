@@ -1,1 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Run lint-staged (linting and formatting)
 npx lint-staged
+
+# Optional: Run Playwright tests before commit
+# Uncomment the following lines to enable pre-commit testing
+# This will run a quick smoke test on chromium only
+# For full test suite, use CI/CD pipeline
+
+# echo "Running Playwright smoke tests..."
+# npm run test:e2e:chromium -- --grep "@smoke"
+
+# If you want to run all tests before commit (slower):
+# npm run test:e2e

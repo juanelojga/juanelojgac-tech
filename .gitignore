@@ -22,3 +22,16 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# test results and artifacts
+reports/
+test-results/
+playwright-report/
+.playwright/
+
+# test coverage
+coverage/
+
+# Playwright screenshots (baseline snapshots should be committed)
+tests/snapshots/**/*-actual.png
+tests/snapshots/**/*-diff.png
