@@ -27,10 +27,7 @@ test.describe('Homepage', () => {
 
     // Check for viewport meta tag
     const metaViewport = page.locator('meta[name="viewport"]');
-    await expect(metaViewport).toHaveAttribute(
-      'content',
-      /width=device-width/i,
-    );
+    await expect(metaViewport).toHaveAttribute('content', /width=device-width/i);
   });
 
   test('should pass accessibility scan', async ({ page, makeAxeBuilder }) => {
@@ -49,7 +46,7 @@ test.describe('Homepage', () => {
       elements.map((el) => ({
         level: parseInt(el.tagName.substring(1)),
         text: el.textContent?.trim(),
-      })),
+      }))
     );
 
     // Should start with h1
@@ -76,14 +73,12 @@ test.describe('Homepage', () => {
   });
 
   test('should have good color contrast', async ({ page, makeAxeBuilder }) => {
-    const accessibilityScanResults = await makeAxeBuilder()
-      .withRules(['color-contrast'])
-      .analyze();
+    const accessibilityScanResults = await makeAxeBuilder().withRules(['color-contrast']).analyze();
 
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 
-  test('should capture visual baseline', async ({ page }) => {
+  test('should capture visual baseline @visual', async ({ page }) => {
     // Take screenshot for visual regression
     await expect(page).toHaveScreenshot('homepage.png', {
       fullPage: true,
