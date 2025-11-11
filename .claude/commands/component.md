@@ -22,6 +22,7 @@ Ask the user: "Should this be an `.astro` component (static) or `.tsx` (interact
 ## Template
 
 ### Astro Component:
+
 ```astro
 ---
 /**
@@ -43,15 +44,12 @@ const { title, subtitle, className = '' } = Astro.props;
   <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
     {title}
   </h2>
-  {subtitle && (
-    <p class="mt-2 text-gray-600 dark:text-gray-400">
-      {subtitle}
-    </p>
-  )}
+  {subtitle && <p class="mt-2 text-gray-600 dark:text-gray-400">{subtitle}</p>}
 </div>
 ```
 
 ### React Component:
+
 ```tsx
 import { useState } from 'react';
 
@@ -60,23 +58,17 @@ interface ComponentNameProps {
   onSubmit?: (value: string) => void;
 }
 
-export default function ComponentName({
-  initialValue = '',
-  onSubmit
-}: ComponentNameProps) {
+export default function ComponentName({ initialValue = '', onSubmit }: ComponentNameProps) {
   const [value, setValue] = useState(initialValue);
 
-  return (
-    <div className="component-wrapper">
-      {/* Component JSX */}
-    </div>
-  );
+  return <div className="component-wrapper">{/* Component JSX */}</div>;
 }
 ```
 
 ## Checklist
 
 After creating the component:
+
 - [ ] Props are fully typed
 - [ ] Mobile-first Tailwind classes used
 - [ ] Semantic HTML elements used

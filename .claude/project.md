@@ -5,6 +5,7 @@
 A fast, SEO-optimized, bilingual personal website built with modern web technologies.
 
 **Tech Stack:**
+
 - **Framework:** Astro v5+ (Static Site Generation)
 - **Language:** TypeScript (strict mode)
 - **Styling:** TailwindCSS (utility-first CSS)

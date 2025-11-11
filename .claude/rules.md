@@ -10,6 +10,7 @@ Your goal is to help build a fast, SEO-optimized, bilingual website following mo
 ## ✅ Core Principles
 
 ### 1. Component Hierarchy
+
 - **Prefer `.astro` components** for all UI elements (they're faster, lighter)
 - **Use React (`.tsx`)** only when you need:
   - Client-side interactivity (forms, modals, carousels)
@@ -18,23 +19,27 @@ Your goal is to help build a fast, SEO-optimized, bilingual website following mo
 - **Always use Astro Islands** pattern when adding React components
 
 ### 2. TypeScript Strictness
+
 - All code must be **fully typed** (no `any` unless absolutely necessary)
 - Define interfaces for props, API responses, and data structures
 - Use Astro's built-in `Astro.props` typing
 
 ### 3. Styling Standards
+
 - **TailwindCSS utility classes** are the primary styling method
 - Create custom Tailwind config for brand colors, fonts, spacing
 - Avoid inline styles or CSS modules unless required
 - Follow **mobile-first** approach (default styles = mobile, use `md:`, `lg:` for larger screens)
 
 ### 4. File Naming Conventions
+
 - **Components:** `PascalCase.astro` or `PascalCase.tsx` (e.g., `Hero.astro`, `ContactForm.tsx`)
 - **Pages:** `kebab-case.astro` (e.g., `about-me.astro`, `index.astro`)
 - **Utilities:** `camelCase.ts` (e.g., `formatDate.ts`, `fetchApi.ts`)
 - **Styles:** `kebab-case.css` (e.g., `global-styles.css`)
 
 ### 5. Internationalization (i18n)
+
 - Support **English (en)** and **Spanish (es)** from day one
 - Store translations in `/src/i18n/en.json` and `/src/i18n/es.json`
 - Use language prefixes in URLs (e.g., `/en/about`, `/es/acerca-de`)
@@ -45,6 +50,7 @@ Your goal is to help build a fast, SEO-optimized, bilingual website following mo
 ## 🚫 Restrictions
 
 ### Never Do These:
+
 1. **Do NOT run unit tests or linting commands automatically**
    - End every response with: _"No unit test cases or linter commands should be executed."_
 2. **Do NOT create test files** unless explicitly requested
@@ -57,24 +63,28 @@ Your goal is to help build a fast, SEO-optimized, bilingual website following mo
 ## 📐 Code Quality Standards
 
 ### Accessibility (A11y)
+
 - Use semantic HTML (`<nav>`, `<main>`, `<article>`, `<section>`)
 - Include ARIA labels for interactive elements
 - Ensure keyboard navigation works (focus states, tab order)
 - Maintain color contrast ratios (WCAG AA minimum)
 
 ### SEO Optimization
+
 - Add `<title>`, `<meta name="description">`, Open Graph tags to all pages
 - Use proper heading hierarchy (`<h1>` → `<h6>`)
 - Include alt text for images
 - Generate sitemap and robots.txt
 
 ### Performance
+
 - Optimize images (use Astro's `<Image>` component)
 - Minimize JavaScript (prefer static HTML)
 - Lazy load non-critical content
 - Use proper caching headers
 
 ### Responsive Design
+
 - Test layouts at: 320px (mobile), 768px (tablet), 1024px (desktop), 1440px+ (large)
 - Use responsive Tailwind classes (`sm:`, `md:`, `lg:`, `xl:`, `2xl:`)
 - Avoid horizontal scrolling on small screens
@@ -84,6 +94,7 @@ Your goal is to help build a fast, SEO-optimized, bilingual website following mo
 ## 🔧 Workflow Guidelines
 
 ### When Creating New Features:
+
 1. **Check existing files first** - Don't duplicate components
 2. **Ask for clarification** if requirements are ambiguous
 3. **Provide complete code snippets** - Not just fragments
@@ -91,6 +102,7 @@ Your goal is to help build a fast, SEO-optimized, bilingual website following mo
 5. **List affected files** - Show full relative paths
 
 ### Response Format:
+
 ```
 I'll [action description]. Here's what I'm changing:
 
@@ -114,6 +126,7 @@ I'll [action description]. Here's what I'm changing:
 ## 🎨 Design Tokens (To Be Configured)
 
 ### Colors (Define in `tailwind.config.mjs`)
+
 ```js
 colors: {
   primary: '#...',
@@ -124,10 +137,12 @@ colors: {
 ```
 
 ### Typography
+
 - Prefer system fonts or Google Fonts
 - Define font families in Tailwind config
 
 ### Spacing
+
 - Use Tailwind default spacing scale (4px, 8px, 16px, etc.)
 
 ---
@@ -135,6 +150,7 @@ colors: {
 ## 🌍 Internationalization Pattern
 
 ### Folder Structure:
+
 ```
 src/
 ├── i18n/
@@ -149,6 +165,7 @@ src/
 ```
 
 ### Translation Format:
+
 ```json
 {
   "nav": {
@@ -168,6 +185,7 @@ src/
 ## 📚 Common Patterns
 
 ### Astro Component with Props:
+
 ```astro
 ---
 interface Props {
@@ -185,6 +203,7 @@ const { title, subtitle } = Astro.props;
 ```
 
 ### React Island for Interactivity:
+
 ```astro
 ---
 import ContactForm from '@/components/ContactForm';

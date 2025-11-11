@@ -25,6 +25,7 @@ src/pages/
 ## Template
 
 ### English Version (`/src/pages/en/[page-name].astro`):
+
 ```astro
 ---
 import Layout from '@/layouts/Layout.astro';
@@ -38,9 +39,7 @@ const meta = {
 
 <Layout {...meta}>
   <main class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-6">
-      Page Heading
-    </h1>
+    <h1 class="text-4xl font-bold mb-6">Page Heading</h1>
 
     <section class="prose lg:prose-xl">
       <!-- Page content -->
@@ -50,6 +49,7 @@ const meta = {
 ```
 
 ### Spanish Version (`/src/pages/es/[page-name].astro`):
+
 ```astro
 ---
 import Layout from '@/layouts/Layout.astro';
@@ -63,9 +63,7 @@ const meta = {
 
 <Layout {...meta}>
   <main class="container mx-auto px-4 py-12">
-    <h1 class="text-4xl font-bold mb-6">
-      Encabezado de Página
-    </h1>
+    <h1 class="text-4xl font-bold mb-6">Encabezado de Página</h1>
 
     <section class="prose lg:prose-xl">
       <!-- Contenido de página -->
@@ -77,6 +75,7 @@ const meta = {
 ## SEO Checklist
 
 After creating the page:
+
 - [ ] Both EN and ES versions created
 - [ ] Unique title and description per language
 - [ ] Proper heading hierarchy (h1 → h6)
@@ -87,6 +86,7 @@ After creating the page:
 ## Routing
 
 Pages will be accessible at:
+
 - English: `https://yoursite.com/en/[page-name]`
 - Spanish: `https://yoursite.com/es/[page-name]`
 
