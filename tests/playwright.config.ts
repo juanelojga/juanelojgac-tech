@@ -147,7 +147,7 @@ export default defineConfig({
   outputDir: './reports/test-artifacts',
 
   // Folder for baseline screenshots
-  snapshotDir: './tests/snapshots',
+  snapshotDir: './snapshots',
 
   // Global setup/teardown (using relative paths for ES modules)
   globalSetup: './fixtures/global-setup.ts',
