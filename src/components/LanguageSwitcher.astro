@@ -1,0 +1,60 @@
+---
+import type { SupportedLanguage } from '../i18n/utils';
+import { languages } from '../i18n/utils';
+
+interface Props {
+  currentLang: SupportedLanguage;
+  currentPath?: string;
+}
+
+const { currentLang, currentPath = '' } = Astro.props;
+
+// Get the path without the language prefix
+const pathWithoutLang = currentPath.replace(/^\/(en|es)/, '') || '/';
+---
+
+<div class="language-switcher">
+  {
+    Object.entries(languages).map(([code, name]) => (
+      <a
+        href={`/${code}${pathWithoutLang}`}
+        class:list={['lang-link', { active: code === currentLang }]}
+        aria-label={`Switch to ${name}`}
+      >
+        {code.toUpperCase()}
+      </a>
+    ))
+  }
+</div>
+
+<style>
+  .language-switcher {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  .lang-link {
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    color: #646cff;
+    border: 1px solid #646cff;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-weight: 500;
+  }
+
+  .lang-link:hover {
+    background-color: #646cff;
+    color: white;
+  }
+
+  .lang-link.active {
+    background-color: #646cff;
+    color: white;
+    pointer-events: none;
+  }
+</style>

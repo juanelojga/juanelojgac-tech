@@ -1,0 +1,17 @@
+{
+  "site": {
+    "title": "Astro Basics",
+    "description": "Welcome to Astro"
+  },
+  "nav": {
+    "home": "Home"
+  },
+  "welcome": {
+    "getStarted": "To get started, open the <code><pre>src/pages</pre></code> directory in your project.",
+    "readDocs": "Read our docs",
+    "joinDiscord": "Join our Discord",
+    "newsTitle": "What's New in Astro 5.0?",
+    "newsDescription": "From content layers to server islands, click to learn more about the new features and improvements in Astro 5.0",
+    "astroHomepage": "Astro Homepage"
+  }
+}
