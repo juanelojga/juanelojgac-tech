@@ -128,7 +128,7 @@ export default defineConfig({
   // Folder for baseline screenshots
   snapshotDir: './tests/snapshots',
 
-  // Global setup/teardown
-  globalSetup: require.resolve('./fixtures/global-setup.ts'),
-  globalTeardown: require.resolve('./fixtures/global-teardown.ts'),
+  // Global setup/teardown (using relative paths for ES modules)
+  globalSetup: './fixtures/global-setup.ts',
+  globalTeardown: './fixtures/global-teardown.ts',
 });
