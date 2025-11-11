@@ -28,7 +28,10 @@
     "test:components": "playwright test tests/ui/ --config=tests/playwright.config.ts",
     "test:watch": "node tests/mcp/watcher.js",
     "test:report": "playwright show-report reports/playwright-html",
-    "test:all": "npm run test && npm run test:e2e"
+    "test:all": "npm run test && npm run test:e2e",
+    "test:deployment-gate": "node tests/mcp/deployment-gate.js",
+    "pre-deploy": "./tests/mcp/pre-deploy-hook.sh",
+    "pre-commit-tests": "node tests/mcp/pre-commit-hook.js"
   },
   "dependencies": {
     "astro": "^5.15.5"

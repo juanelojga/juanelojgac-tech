@@ -1,390 +1,690 @@
-# Playwright Testing Suite
+# Complete Testing Structure Documentation
 
-Comprehensive end-to-end, visual regression, and accessibility testing for JuaneloJGAC Tech.
+Comprehensive testing infrastructure for the Astro project with MCP + Playwright + shadcn/ui integration.
 
-## Overview
+## 📁 Directory Structure
 
-This testing suite includes:
+```
+tests/
+├── accessibility/          # Accessibility compliance tests (WCAG 2.1 AA)
+│   ├── aria.spec.ts       # ARIA attributes and roles validation
+│   ├── comprehensive.spec.ts  # Full accessibility audit
+│   ├── contrast.spec.ts   # Color contrast compliance
+│   ├── images.spec.ts     # Image accessibility (alt text, etc.)
+│   └── keyboard.spec.ts   # Keyboard navigation tests
+├── config/                # Shared configuration and utilities
+│   ├── helpers.ts         # Common test helper functions
+│   ├── thresholds.ts      # Test thresholds and tolerances
+│   ├── viewports.ts       # Viewport configurations
+│   └── index.ts           # Central export
+├── fixtures/              # Playwright fixtures and setup
+│   ├── accessibility.ts   # Accessibility testing fixtures
+│   ├── global-setup.ts    # Global test setup
+│   ├── global-teardown.ts # Global test teardown
+│   └── visual.ts          # Visual regression helpers
+├── mcp/                   # MCP orchestration and automation
+│   ├── deployment-gate.js # Pre-deployment validation
+│   ├── orchestrator.js    # Test orchestration
+│   ├── pre-commit-hook.js # Pre-commit test runner
+│   ├── pre-deploy-hook.sh # Pre-deployment script
+│   ├── reporter.js        # Custom test reporter
+│   └── watcher.js         # File watcher for continuous testing
+├── pages/                 # Page-level E2E tests
+│   ├── bilingual.spec.ts  # Bilingual content tests
+│   ├── homepage.spec.ts   # Homepage tests
+│   ├── i18n.spec.ts       # Internationalization tests
+│   └── navigation.spec.ts # Navigation and routing tests
+├── ui/                    # Component tests
+│   ├── button.spec.ts     # Button component tests
+│   ├── card.spec.ts       # Card component tests
+│   ├── input.spec.ts      # Input component tests
+│   └── modal.spec.ts      # Modal component tests
+├── playwright.config.ts   # Playwright configuration
+└── README.md             # This file
+```
 
-- **End-to-End Tests**: Full page testing with Playwright
-- **Visual Regression**: Screenshot comparison for UI consistency
-- **Accessibility Testing**: WCAG 2.1 Level AA compliance with axe-core
-- **Component Tests**: shadcn/ui component validation
-- **MCP Orchestration**: Automated test execution on file changes
-- **CI/CD Integration**: GitHub Actions workflows
+## 🚀 Quick Start
 
-## Quick Start
-
-### Install Dependencies
+### Installation
 
 ```bash
 npm install
 npx playwright install
 ```
 
-### Run Tests
+### Running Tests
 
 ```bash
 # Run all tests
+npm run test:all
+
+# Run E2E tests
 npm run test:e2e
 
-# Run in specific browser
+# Run accessibility tests
+npm run test:accessibility
+
+# Run visual regression tests
+npm run test:visual
+
+# Run specific test suites
+npm run test:pages        # Page tests only
+npm run test:components   # Component tests only
+
+# Run tests in specific browsers
 npm run test:e2e:chromium
 npm run test:e2e:firefox
 npm run test:e2e:webkit
 
-# Run with UI (interactive mode)
-npm run test:e2e:ui
-
-# Run in headed mode (see browser)
+# Run tests in headed mode (see browser)
 npm run test:e2e:headed
 
-# Run specific test suites
-npm run test:pages          # Page tests only
-npm run test:components     # UI component tests only
-npm run test:accessibility  # Accessibility tests only
-npm run test:visual         # Visual regression tests only
+# Run tests in debug mode
+npm run test:e2e:debug
+
+# Run tests in UI mode
+npm run test:e2e:ui
+
+# Watch mode (continuous testing)
+npm run test:watch
+
+# View test reports
+npm run test:report
 ```
 
-### Watch Mode
+### Pre-deployment Checks
 
-Start the file watcher to automatically run tests on changes:
+```bash
+# Run deployment gate (validates all tests)
+npm run test:deployment-gate
+
+# Run full pre-deployment script
+npm run pre-deploy
+
+# Run pre-commit tests
+npm run pre-commit-tests
+```
+
+## 📋 Test Categories
+
+### 1. UI Component Tests (`/tests/ui/`)
+
+Tests for shadcn/ui components including Button, Card, Input, and Modal:
+
+**What's Tested:**
+- ✅ Rendering without errors
+- ✅ Hover, focus, and click states
+- ✅ Visual consistency with baseline screenshots
+- ✅ Keyboard accessibility
+- ✅ Touch target sizes (minimum 32x32px)
+- ✅ ARIA attributes and roles
+- ✅ Responsive behavior across viewports
+
+**Example:**
+```typescript
+test('should render button with correct styles', async ({ page }) => {
+  await page.goto('/');
+  const button = page.locator('button').first();
+  await expect(button).toBeVisible();
+});
+```
+
+### 2. Page Tests (`/tests/pages/`)
+
+End-to-end tests for all pages with bilingual support:
+
+**What's Tested:**
+- ✅ Navigation and routing
+- ✅ Page load performance (<2 seconds)
+- ✅ SEO metadata (titles, descriptions)
+- ✅ Bilingual language switching (EN/ES)
+- ✅ Header and footer consistency
+- ✅ Browser back/forward navigation
+- ✅ Console errors detection
+
+**Example:**
+```typescript
+test('should load homepage in under 2 seconds', async ({ page }) => {
+  const start = Date.now();
+  await page.goto('/');
+  const loadTime = Date.now() - start;
+  expect(loadTime).toBeLessThan(2000);
+});
+```
+
+### 3. Accessibility Tests (`/tests/accessibility/`)
+
+WCAG 2.1 Level AA compliance with **zero tolerance for violations**:
+
+**What's Tested:**
+- ♿ Color contrast (minimum 4.5:1 ratio)
+- ♿ ARIA attributes and roles
+- ♿ Keyboard navigation
+- ♿ Image alt text
+- ♿ Form labels
+- ♿ Touch target sizes
+- ♿ Heading hierarchy
+- ♿ Landmark regions
+- ♿ Focus indicators
+
+**Test Files:**
+- `contrast.spec.ts` - Color contrast on all pages and components
+- `aria.spec.ts` - ARIA attributes, roles, and labels
+- `keyboard.spec.ts` - Keyboard navigation and focus management
+- `images.spec.ts` - Image accessibility and alt text
+- `comprehensive.spec.ts` - Full WCAG 2.1 Level AA audit
+
+**Example:**
+```typescript
+test('should have adequate color contrast', async ({ page, makeAxeBuilder }) => {
+  await page.goto('/');
+  const results = await makeAxeBuilder()
+    .withRules(['color-contrast'])
+    .analyze();
+  expect(results.violations).toEqual([]);
+});
+```
+
+### 4. Visual Regression Tests
+
+Screenshot comparison testing with configurable thresholds:
+
+**What's Tested:**
+- 👁️ Baseline screenshot comparisons
+- 👁️ Full page visual consistency
+- 👁️ Component-level screenshots
+- 👁️ Responsive layout verification
+
+**Example:**
+```typescript
+test('should match homepage baseline', async ({ page }) => {
+  await page.goto('/');
+  await expect(page).toHaveScreenshot('homepage.png', {
+    fullPage: true,
+    maxDiffPixels: 100,
+    threshold: 0.2,
+  });
+});
+```
+
+## 🔧 Configuration
+
+### Viewports (`/tests/config/viewports.ts`)
+
+Pre-configured viewports for responsive testing:
+
+| Category | Size | Name |
+|----------|------|------|
+| Desktop | 1920x1080 | desktop |
+| Desktop | 1280x720 | desktopSmall |
+| Tablet | 1024x768 | tabletLandscape |
+| Tablet | 768x1024 | tabletPortrait |
+| Mobile | 414x896 | mobileLarge |
+| Mobile | 375x667 | mobile |
+| Mobile | 320x568 | mobileSmall |
+
+### Thresholds (`/tests/config/thresholds.ts`)
+
+#### Visual Regression
+- `maxDiffPixels`: 100 pixels
+- `threshold`: 0.2 (20% tolerance)
+- `strict`: 10px / 5% for critical UI
+- `lenient`: 500px / 40% for dynamic content
+
+#### Performance
+- `pageLoadTime`: 2000ms (2 seconds)
+- `timeToInteractive`: 3000ms
+- `firstContentfulPaint`: 1500ms
+
+#### Accessibility
+- `maxViolations`: 0 (zero tolerance)
+- `colorContrastRatio`: 4.5:1 (WCAG AA)
+- `minTouchTargetSize`: 44x44px (AAA)
+- `minTouchTargetSizeAA`: 32x32px (AA)
+
+#### Timeouts
+- `default`: 30000ms
+- `expect`: 5000ms
+- `navigation`: 10000ms
+- `animation`: 2000ms
+
+### Browsers
+
+Tests run across:
+- ✅ Chromium (Desktop Chrome)
+- ✅ Firefox
+- ✅ WebKit (Safari)
+- ✅ Mobile Chrome (Pixel 5)
+- ✅ Mobile Safari (iPhone 13)
+- ✅ Tablet (iPad Pro)
+
+## 🔄 MCP Integration
+
+### File Watcher
+
+Automatically triggers tests when files change:
 
 ```bash
 npm run test:watch
 ```
 
-This will:
-- Watch `/src/components` and run UI tests
-- Watch `/src/pages` and run page tests
-- Watch `/src/layouts` and run all tests
-- Debounce test runs (2 seconds after last change)
+**Automatic Triggers:**
 
-### View Reports
+| File Pattern | Tests Triggered |
+|--------------|----------------|
+| `src/components/**` | UI tests |
+| `src/pages/**` | Page tests |
+| `src/layouts/**` | All tests |
+| `src/styles/**` | Visual regression |
+| `src/i18n/**` | i18n tests |
 
+**Features:**
+- 🔄 Debounced execution (2 seconds)
+- 🎯 Intelligent test selection
+- 📊 Real-time console output
+- ⚡ Fast incremental testing
+
+### Deployment Gate
+
+Pre-deployment validation with strict requirements:
+
+```bash
+npm run test:deployment-gate
+# or
+npm run pre-deploy
+```
+
+**Validation Steps:**
+1. ✅ Build succeeds
+2. ✅ All unit tests pass
+3. ✅ All E2E tests pass
+4. ✅ Accessibility tests pass (zero violations)
+5. ✅ Visual regression tests pass
+6. ✅ Linting passes
+7. ⚠️ Security audit (non-blocking)
+
+**Exit Codes:**
+- `0` - All checks passed, deploy approved ✅
+- `1` - Tests failed, deployment blocked ❌
+- `2` - Accessibility violations, deployment blocked ❌
+- `3` - Missing test reports ⚠️
+
+## 📊 Reporting
+
+### HTML Reports
+
+Generated at `/reports/playwright-html/`
+
+View with:
 ```bash
 npm run test:report
 ```
 
-Opens the HTML report in your browser showing:
-- Test results by browser
-- Screenshots and videos of failures
-- Trace viewer for debugging
-- Performance metrics
+**Features:**
+- 📸 Screenshots on failure
+- 🎥 Video recordings
+- 📈 Test statistics
+- 🔍 Detailed error messages
+- 📊 Performance metrics
 
-## Test Structure
+### JSON Reports
 
-```
-tests/
-├── playwright.config.ts      # Main Playwright configuration
-├── fixtures/                 # Reusable test utilities
-│   ├── accessibility.ts      # Accessibility testing helpers
-│   ├── visual.ts            # Visual regression utilities
-│   ├── global-setup.ts      # Global test setup
-│   └── global-teardown.ts   # Global test cleanup
-├── pages/                    # Page-level E2E tests
-│   ├── homepage.spec.ts     # Homepage tests
-│   └── i18n.spec.ts         # Internationalization tests
-├── ui/                       # Component tests
-│   ├── button.spec.ts       # Button component tests
-│   ├── input.spec.ts        # Input component tests
-│   └── modal.spec.ts        # Modal component tests
-├── mcp/                      # MCP orchestration
-│   ├── orchestrator.js      # Test orchestrator
-│   ├── reporter.js          # Test reporter
-│   └── watcher.js           # File watcher
-└── snapshots/               # Visual regression baselines
+Located at `/reports/test-results.json`
 
-reports/
-├── playwright-html/         # HTML test reports
-├── test-results.json        # JSON test results
-├── junit.xml               # JUnit XML for CI/CD
-└── test-artifacts/         # Screenshots, videos, traces
-```
+Used by:
+- CI/CD pipelines
+- Deployment gates
+- Custom reporting tools
 
-## Writing Tests
+### Console Output
 
-### Basic Test
+Real-time test results in terminal with:
+- ✅ Pass/fail indicators
+- ⏱️ Execution time
+- 📍 File locations
+- 🔍 Error details
 
-```typescript
-import { test, expect } from '../fixtures/accessibility';
+### CI/CD Reports
 
-test.describe('My Feature', () => {
-  test('should work correctly', async ({ page }) => {
-    await page.goto('/my-page');
-    await expect(page.locator('h1')).toBeVisible();
-  });
-});
-```
-
-### Accessibility Test
-
-```typescript
-import { test, expect } from '../fixtures/accessibility';
-
-test('should pass accessibility scan', async ({ page, makeAxeBuilder }) => {
-  await page.goto('/my-page');
-
-  const accessibilityScanResults = await makeAxeBuilder().analyze();
-  expect(accessibilityScanResults.violations).toEqual([]);
-});
-```
-
-### Visual Regression Test
-
-```typescript
-import { test, expect } from '@playwright/test';
-
-test('should match visual baseline', async ({ page }) => {
-  await page.goto('/my-page');
-
-  await expect(page).toHaveScreenshot('my-page.png', {
-    fullPage: true,
-    maxDiffPixels: 100,
-  });
-});
-```
-
-### Component Test
-
-```typescript
-import { test, expect } from '../fixtures/accessibility';
-
-test('should render button correctly', async ({ page }) => {
-  await page.goto('/components/button');
-
-  const button = page.locator('button').first();
-
-  // Visual
-  await expect(button).toBeVisible();
-
-  // Functionality
-  await button.click();
-
-  // Accessibility
-  await expect(button).toHaveAccessibleName();
-});
-```
-
-## Accessibility Testing
-
-All tests automatically scan for WCAG 2.1 Level AA compliance:
-
-- **Color Contrast**: Text must have 4.5:1 ratio (3:1 for large text)
-- **Keyboard Navigation**: All interactive elements must be keyboard accessible
-- **ARIA Attributes**: Proper roles, labels, and states
-- **Form Labels**: All inputs must have labels
-- **Focus Indicators**: Visible focus states required
-- **Touch Targets**: Minimum 44x44px (32x32px acceptable)
-
-### Specific Accessibility Checks
-
-```typescript
-import {
-  checkColorContrast,
-  checkAriaAttributes
-} from '../fixtures/accessibility';
-
-// Check color contrast only
-const contrastResults = await checkColorContrast(page);
-
-// Check ARIA attributes only
-const ariaResults = await checkAriaAttributes(page);
-```
-
-## Visual Regression Testing
-
-### Creating Baselines
-
-```bash
-# Update all snapshots
-npm run test:visual -- --update-snapshots
-
-# Update specific test snapshots
-npm run test:e2e -- tests/pages/homepage.spec.ts --update-snapshots
-```
-
-### Configuration
-
-Visual tests use the following defaults:
-- **maxDiffPixels**: 100 (allows minor rendering differences)
-- **threshold**: 0.2 (20% pixel difference tolerance)
-
-Override in individual tests:
-
-```typescript
-await expect(page).toHaveScreenshot('name.png', {
-  maxDiffPixels: 50,
-  threshold: 0.1,
-  mask: [page.locator('.dynamic-content')],
-});
-```
-
-## MCP Integration
-
-### Test Orchestration
-
-The MCP orchestrator automatically runs tests based on file changes:
-
-```json
-{
-  "watchers": {
-    "components": {
-      "patterns": ["src/components/**/*.{astro,tsx,jsx}"],
-      "action": "run_tests",
-      "parameters": { "testType": "ui" }
-    }
-  }
-}
-```
-
-### Triggers
-
-- **pre-commit**: Optional (commented out by default)
-- **pre-push**: Runs chromium tests before push
-- **GitHub Actions**: Full test suite on PR/push
-
-### MCP Commands
-
-```bash
-# Start orchestrator
-node tests/mcp/orchestrator.js
-
-# Start reporter
-node tests/mcp/reporter.js
-
-# Start file watcher
-npm run test:watch
-```
-
-## CI/CD Integration
-
-### GitHub Actions
-
-Three parallel jobs run on every push/PR:
-
-1. **Browser Tests**: Chromium, Firefox, WebKit matrix
-2. **Accessibility Tests**: WCAG 2.1 compliance
-3. **Visual Regression**: Screenshot comparison
-
-### Artifacts
-
-All test runs upload:
+Artifacts uploaded to GitHub Actions:
 - HTML reports (30-day retention)
-- Screenshots and videos of failures
-- JSON/XML test results
+- Screenshots and videos
+- Accessibility scan results
 - Visual regression diffs
+- JSON/JUnit test results
 
-### Viewing Results
+## 🎯 GitHub Actions Integration
 
-1. Go to Actions tab in GitHub
-2. Select workflow run
-3. Download artifacts or view summary
+### Workflow Jobs
 
-## Configuration
+The CI/CD pipeline includes:
 
-### Playwright Config
+1. **Browser Tests** (`test`)
+   - Runs on Chromium, Firefox, WebKit (matrix)
+   - Parallel execution
+   - Uploads results per browser
 
-`tests/playwright.config.ts` contains:
-- Browser configurations
-- Viewport sizes
-- Timeout settings
-- Reporter configurations
-- Screenshot/video settings
+2. **Accessibility Tests** (`accessibility`)
+   - WCAG 2.1 Level AA compliance
+   - Zero violations tolerance
+   - Detailed violation reporting
+   - PR comments with results
 
-### Environment Variables
+3. **Visual Regression** (`visual-regression`)
+   - Screenshot comparisons
+   - Diff artifacts on failure
+   - Baseline update support
 
-```bash
-# Base URL for tests (default: http://localhost:4321)
-BASE_URL=http://localhost:4321
+4. **Deployment Gate** (`deployment-gate`)
+   - Validates all test results
+   - Blocks deployment on failure
+   - Posts approval status to PR
+   - Only runs on `main`/`develop` branches
 
-# Run in headed mode
-HEADED=true
+5. **Test Summary** (`test-summary`)
+   - Aggregates all results
+   - Creates GitHub summary
+   - Fails if any tests failed
 
-# CI mode (affects retries and workers)
-CI=true
+### Deployment Blocking
+
+**Tests MUST pass before deployment:**
+- ❌ Any test failure → Deployment blocked
+- ❌ Accessibility violations → Deployment blocked
+- ❌ Visual regression failures → Deployment blocked
+- ✅ All green → Deployment approved 🚀
+
+### PR Comments
+
+Automatic comments on pull requests:
+- ♿ Accessibility test results
+- 🚀 Deployment gate status
+- 📊 Test summary with checklist
+
+## 🛠️ Helper Functions
+
+### Common Helpers (`/tests/config/helpers.ts`)
+
+```typescript
+// Wait for page load
+await waitForPageLoad(page);
+
+// Wait for all images to load
+await waitForImages(page);
+
+// Check metadata tags
+await checkMetadata(page, /Title/);
+
+// Measure performance metrics
+const metrics = await measurePerformance(page);
+
+// Take full page screenshot
+await takeFullPageScreenshot(page, 'page-name.png');
+
+// Scroll to element
+await scrollToElement(page, '#element');
+
+// Check if element is in viewport
+const isVisible = await isInViewport(page, '#element');
+
+// Get console errors
+const errors = await getConsoleErrors(page);
+
+// Test bilingual links
+const hasBilingualLinks = await testBilingualLinks(page);
+
+// Check for broken links
+const brokenLinks = await checkForBrokenLinks(page);
 ```
 
-## Debugging
+### Accessibility Helpers
 
-### Debug Mode
+```typescript
+import { test } from '../fixtures/accessibility';
+
+// Full accessibility scan
+test('should be accessible', async ({ page, makeAxeBuilder }) => {
+  const results = await makeAxeBuilder().analyze();
+  expect(results.violations).toEqual([]);
+});
+
+// Check specific rules
+const results = await makeAxeBuilder()
+  .withRules(['color-contrast', 'aria-roles'])
+  .analyze();
+
+// Exclude elements
+const results = await makeAxeBuilder()
+  .exclude('.third-party-widget')
+  .analyze();
+
+// Include specific elements
+const results = await makeAxeBuilder()
+  .include('button')
+  .analyze();
+```
+
+### Visual Helpers
+
+```typescript
+import { captureComponentScreenshot } from '../fixtures/visual';
+import { waitForAnimations, waitForImagesToLoad } from '../fixtures/visual';
+
+// Wait for page stability
+await waitForAnimations(page);
+await waitForImagesToLoad(page);
+
+// Capture component screenshot
+await captureComponentScreenshot(
+  page.locator('[data-testid="my-component"]'),
+  'component-name'
+);
+```
+
+## 📝 Writing New Tests
+
+### Component Test Template
+
+```typescript
+import { test, expect } from '../fixtures/accessibility';
+import { captureComponentScreenshot } from '../fixtures/visual';
+import { viewports } from '../config/viewports';
+
+test.describe('MyComponent', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto('/');
+  });
+
+  test('should render correctly', async ({ page }) => {
+    const component = page.locator('[data-testid="my-component"]');
+    await expect(component).toBeVisible();
+  });
+
+  test('should be accessible', async ({ page, makeAxeBuilder }) => {
+    const results = await makeAxeBuilder()
+      .include('[data-testid="my-component"]')
+      .analyze();
+    expect(results.violations).toEqual([]);
+  });
+
+  test('should be responsive', async ({ page }) => {
+    await page.setViewportSize(viewports.mobile);
+    const component = page.locator('[data-testid="my-component"]');
+    await expect(component).toBeVisible();
+  });
+
+  test('should match visual baseline', async ({ page }) => {
+    const component = page.locator('[data-testid="my-component"]');
+    await captureComponentScreenshot(component, 'my-component');
+  });
+});
+```
+
+### Page Test Template
+
+```typescript
+import { test, expect } from '../fixtures/accessibility';
+import { checkMetadata, waitForPageLoad } from '../config/helpers';
+import { performanceThresholds } from '../config/thresholds';
+
+test.describe('My Page', () => {
+  test('should load successfully', async ({ page }) => {
+    const start = Date.now();
+    await page.goto('/my-page');
+    await waitForPageLoad(page);
+
+    const loadTime = Date.now() - start;
+    expect(loadTime).toBeLessThan(performanceThresholds.pageLoadTime);
+  });
+
+  test('should have correct metadata', async ({ page }) => {
+    await page.goto('/my-page');
+    await checkMetadata(page, /My Page Title/);
+  });
+
+  test('should pass accessibility scan', async ({ page, makeAxeBuilder }) => {
+    await page.goto('/my-page');
+    const results = await makeAxeBuilder().analyze();
+    expect(results.violations).toEqual([]);
+  });
+
+  test('should load without errors', async ({ page }) => {
+    const errors: string[] = [];
+    page.on('console', msg => {
+      if (msg.type() === 'error') errors.push(msg.text());
+    });
+    await page.goto('/my-page');
+    expect(errors).toEqual([]);
+  });
+});
+```
+
+## 🔍 Debugging Tests
+
+### Interactive Debugging
 
 ```bash
+# Debug mode with browser paused
 npm run test:e2e:debug
-```
 
-Opens Playwright Inspector for step-by-step debugging.
-
-### UI Mode
-
-```bash
+# UI mode with visual test runner
 npm run test:e2e:ui
+
+# Headed mode to see browser
+npm run test:e2e:headed
 ```
 
-Interactive UI for running and debugging tests.
+### Screenshots and Videos
 
-### Trace Viewer
+Automatically captured on failure:
+- **Screenshots**: Every failed test
+- **Videos**: Full test execution
+- **Location**: `/reports/test-artifacts/`
+
+### Traces
+
+- Enabled on first retry
+- Full DOM snapshots
+- Network requests
+- Console logs
+- View at: [trace.playwright.dev](https://trace.playwright.dev)
 
 ```bash
 npx playwright show-trace reports/test-artifacts/trace.zip
 ```
 
-View detailed trace of test execution with:
-- DOM snapshots
-- Network activity
-- Console logs
-- Screenshots at each step
+## 🚨 Troubleshooting
 
-## Best Practices
+### Tests Failing Locally
 
-1. **Test Isolation**: Each test should be independent
-2. **Wait Strategies**: Use Playwright's auto-waiting
-3. **Selectors**: Prefer data-testid, accessible names, or semantic HTML
-4. **Accessibility First**: Run accessibility scans on all pages
-5. **Visual Baselines**: Update snapshots intentionally, review diffs
-6. **Fast Tests**: Use single browser locally, full matrix in CI
-7. **Meaningful Names**: Describe what the test validates, not how
+```bash
+# Clear test artifacts
+rm -rf reports/ test-results/
 
-## Troubleshooting
+# Clear Playwright cache
+npx playwright install --force
 
-### Tests Timing Out
+# Rebuild project
+npm run build
 
-- Increase timeout in `playwright.config.ts`
-- Check for network issues or slow API responses
-- Use `page.waitForLoadState('networkidle')`
+# Run specific failing test
+npx playwright test tests/ui/button.spec.ts --debug
+```
+
+### Visual Regression Failures
+
+```bash
+# Update all snapshots
+npx playwright test --update-snapshots
+
+# Update specific test snapshots
+npx playwright test tests/pages/homepage.spec.ts --update-snapshots
+
+# View diffs
+npm run test:report
+```
+
+### Accessibility Violations
+
+1. Run tests to get detailed report
+2. Open HTML report: `npm run test:report`
+3. Check violations with impact level
+4. Review help URLs for fixing guidance
+5. Fix issues and re-run tests
 
 ### Flaky Tests
 
 - Add proper waits instead of `setTimeout`
-- Disable animations: `{ animations: 'disabled' }`
-- Use stricter selectors
+- Use `waitForLoadState('networkidle')`
+- Disable animations in config
+- Use stricter, more stable selectors
 - Check for race conditions
 
-### Visual Regression Failures
-
-- Review diff images in `reports/test-artifacts/`
-- Update baselines if changes are intentional
-- Check for dynamic content (dates, random IDs)
-- Use `mask` option for dynamic elements
-
-### Accessibility Failures
-
-- Review violations in HTML report
-- Check contrast ratios with dev tools
-- Verify ARIA attributes
-- Test keyboard navigation manually
-
-## Resources
+## 📚 Resources
 
 - [Playwright Documentation](https://playwright.dev)
-- [axe-core Rules](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md)
+- [Axe Accessibility Rules](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md)
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
-- [MCP Specification](https://modelcontextprotocol.io)
+- [shadcn/ui Documentation](https://ui.shadcn.com)
+- [Astro Documentation](https://docs.astro.build)
 
-## Support
+## 🎓 Best Practices
+
+1. **Write descriptive test names** - Tests should be self-documenting
+2. **Use data-testid attributes** - For stable selectors
+3. **Keep tests isolated** - Each test should be independent
+4. **Use fixtures** - Reuse common setup logic
+5. **Test accessibility first** - Build inclusive experiences
+6. **Monitor performance** - Keep load times under 2 seconds
+7. **Update snapshots carefully** - Review visual changes
+8. **Run tests before commits** - Catch issues early
+9. **Use helper functions** - DRY principle
+10. **Document test intent** - Add comments for complex tests
+
+## 📊 Test Coverage
+
+Our testing structure covers:
+
+✅ **100% of pages** - All routes tested for accessibility, performance, and functionality
+✅ **Core UI components** - Button, Card, Input, Modal with full coverage
+✅ **Bilingual support** - EN/ES language switching and content
+✅ **Responsive design** - Desktop, tablet, mobile viewports
+✅ **Accessibility compliance** - WCAG 2.1 Level AA with zero tolerance
+✅ **Visual consistency** - Baseline screenshot comparisons
+✅ **Performance** - Sub-2-second page loads
+
+## 📞 Support
 
 For issues or questions:
-1. Check existing test examples in `tests/`
-2. Review Playwright documentation
-3. Run with `--debug` flag
-4. Open an issue with reproduction steps
+- Check test reports: `npm run test:report`
+- Review this documentation
+- Check GitHub Actions logs
+- Consult Playwright documentation
+- Run tests in debug mode: `npm run test:e2e:debug`
+
+---
+
+**Last Updated**: 2025-11-11
+**Testing Framework**: Playwright 1.56.1
+**Accessibility Engine**: axe-core 4.11.0
+**WCAG Compliance**: Level AA (Zero Tolerance)
