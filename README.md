@@ -105,6 +105,7 @@ npm run preview
 Our comprehensive testing strategy includes:
 
 #### E2E Testing (Playwright)
+
 ```bash
 # Run all E2E tests
 npm run test:e2e
@@ -119,6 +120,7 @@ npm run test:e2e:webkit
 ```
 
 #### Component Testing
+
 ```bash
 # Run UI component tests
 npm run test:components
@@ -128,24 +130,28 @@ npm run test:watch
 ```
 
 #### Page Testing
+
 ```bash
 # Run page navigation tests
 npm run test:pages
 ```
 
 #### Accessibility Testing
+
 ```bash
 # Run accessibility scans (WCAG 2.1 AA)
 npm run test:accessibility
 ```
 
 #### Visual Regression Testing
+
 ```bash
 # Run visual regression tests
 npm run test:visual
 ```
 
 #### Unit Testing (Vitest)
+
 ```bash
 # Run unit tests
 npm run test
@@ -173,6 +179,7 @@ npm run pre-deploy
 ```
 
 The MCP watcher automatically detects file changes and triggers relevant tests:
+
 - **Component changes** → UI tests
 - **Page changes** → Page navigation tests
 - **Style changes** → Visual regression tests
@@ -237,6 +244,7 @@ NETLIFY_SITE_ID     # Your Netlify site ID
 ```
 
 Optional secrets (add as needed):
+
 - Analytics IDs (Google Analytics, Plausible, etc.)
 - API keys for third-party services
 - Environment-specific configurations
@@ -267,6 +275,7 @@ All pages are continuously tested for accessibility violations with zero toleran
 ### Netlify (Automatic)
 
 Deployment happens automatically when:
+
 - Code is pushed to `main` (production) or `develop` (staging)
 - All CI/CD checks pass
 - Deployment gate approves the release
@@ -284,6 +293,7 @@ netlify deploy --prod
 ### Environment Configuration
 
 Configure environments in `netlify.toml`:
+
 - **Production**: `main` branch → production deployment
 - **Staging**: `develop` branch → staging deployment
 - **Preview**: Pull requests → deploy previews
@@ -309,6 +319,7 @@ npm run format:check
 ### Pre-commit Hooks
 
 Husky is configured to run checks before commits:
+
 - ESLint for code quality
 - Prettier for formatting
 - MCP pre-commit validation
@@ -353,22 +364,22 @@ All PRs must pass CI/CD checks before merging.
 
 ## 📝 Commands Reference
 
-| Command | Description |
-|---------|-------------|
-| `npm run dev` | Start development server at `localhost:4321` |
-| `npm run build` | Build production site to `./dist/` |
-| `npm run preview` | Preview production build locally |
-| `npm test` | Run unit tests with Vitest |
-| `npm run test:e2e` | Run all Playwright E2E tests |
-| `npm run test:components` | Run UI component tests |
-| `npm run test:pages` | Run page navigation tests |
-| `npm run test:accessibility` | Run accessibility tests |
-| `npm run test:visual` | Run visual regression tests |
-| `npm run test:watch` | Start MCP file watcher |
-| `npm run test:all` | Run all tests (unit + E2E) |
-| `npm run test:deployment-gate` | Run deployment gate checks |
-| `npm run lint` | Lint code with ESLint |
-| `npm run format` | Format code with Prettier |
+| Command                        | Description                                  |
+| ------------------------------ | -------------------------------------------- |
+| `npm run dev`                  | Start development server at `localhost:4321` |
+| `npm run build`                | Build production site to `./dist/`           |
+| `npm run preview`              | Preview production build locally             |
+| `npm test`                     | Run unit tests with Vitest                   |
+| `npm run test:e2e`             | Run all Playwright E2E tests                 |
+| `npm run test:components`      | Run UI component tests                       |
+| `npm run test:pages`           | Run page navigation tests                    |
+| `npm run test:accessibility`   | Run accessibility tests                      |
+| `npm run test:visual`          | Run visual regression tests                  |
+| `npm run test:watch`           | Start MCP file watcher                       |
+| `npm run test:all`             | Run all tests (unit + E2E)                   |
+| `npm run test:deployment-gate` | Run deployment gate checks                   |
+| `npm run lint`                 | Lint code with ESLint                        |
+| `npm run format`               | Format code with Prettier                    |
 
 ## 🔗 Links
 
@@ -384,9 +395,9 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ## 👤 Author
 
-**Juan Eloy**
+**Juan Almeida**
 
-- Website: [juanelojgac.tech](https://juanelojgac.tech)
+- Website: [juanelojgac.tech](https://juanelojgac-tech.com)
 - GitHub: [@juanelojga](https://github.com/juanelojga)
 
 ---
