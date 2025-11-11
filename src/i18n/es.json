@@ -1,0 +1,17 @@
+{
+  "site": {
+    "title": "Fundamentos de Astro",
+    "description": "Bienvenido a Astro"
+  },
+  "nav": {
+    "home": "Inicio"
+  },
+  "welcome": {
+    "getStarted": "Para comenzar, abre el directorio <code><pre>src/pages</pre></code> en tu proyecto.",
+    "readDocs": "Lee nuestra documentación",
+    "joinDiscord": "Únete a nuestro Discord",
+    "newsTitle": "¿Qué hay de nuevo en Astro 5.0?",
+    "newsDescription": "Desde capas de contenido hasta islas de servidor, haz clic para obtener más información sobre las nuevas funciones y mejoras en Astro 5.0",
+    "astroHomepage": "Página de inicio de Astro"
+  }
+}
