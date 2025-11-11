@@ -8,7 +8,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   // Test directory structure
-  testDir: './tests',
+  testDir: '.',
   testMatch: ['**/*.spec.ts', '**/*.test.ts'],
 
   // Timeout configuration
@@ -34,16 +34,25 @@ export default defineConfig({
   // Reporter configuration - line for console, html for detailed reports
   reporter: [
     ['line'],
-    ['html', {
-      outputFolder: './reports/playwright-html',
-      open: process.env.CI ? 'never' : 'on-failure'
-    }],
-    ['json', {
-      outputFile: './reports/test-results.json'
-    }],
-    ['junit', {
-      outputFile: './reports/junit.xml'
-    }],
+    [
+      'html',
+      {
+        outputFolder: './reports/playwright-html',
+        open: process.env.CI ? 'never' : 'on-failure',
+      },
+    ],
+    [
+      'json',
+      {
+        outputFile: './reports/test-results.json',
+      },
+    ],
+    [
+      'junit',
+      {
+        outputFile: './reports/junit.xml',
+      },
+    ],
   ],
 
   // Shared settings for all projects
@@ -81,6 +90,18 @@ export default defineConfig({
         // Enable Chrome DevTools features
         contextOptions: {
           permissions: ['clipboard-read', 'clipboard-write'],
+        },
+        // Launch options for Docker/CI environments
+        launchOptions: {
+          args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-accelerated-2d-canvas',
+            '--no-first-run',
+            '--no-zygote',
+            '--disable-gpu',
+          ],
         },
       },
     },
