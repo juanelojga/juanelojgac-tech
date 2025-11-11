@@ -1,0 +1,276 @@
+/* Import Google Fonts - JuaneloJGAC Tech Brand Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+/* Tailwind Base, Components, and Utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Base Styles */
+@layer base {
+  /* Ensure smooth scrolling across the site */
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Set default body styles */
+  body {
+    @apply font-body;
+    color: #2d2d2d; /* Charcoal */
+    background-color: #f8f8f8; /* Off-White */
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    line-height: 1.6;
+  }
+
+  /* Heading styles with Poppins font */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-heading font-semibold;
+    color: #0066cc; /* Deep Tech Blue */
+    line-height: 1.2;
+  }
+
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  h4 {
+    @apply text-xl md:text-2xl lg:text-3xl;
+  }
+
+  h5 {
+    @apply text-lg md:text-xl;
+  }
+
+  h6 {
+    @apply text-base md:text-lg;
+  }
+
+  /* Link styles with proper contrast */
+  a {
+    @apply underline transition-colors duration-200;
+    color: #0066cc; /* Deep Tech Blue */
+  }
+
+  a:hover {
+    color: #003d7a; /* Deep Tech Blue 700 */
+  }
+
+  /* Improve focus visibility for accessibility (WCAG 2.1 AA) */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2;
+    outline-color: #0066cc; /* Deep Tech Blue */
+    outline-style: solid;
+  }
+
+  /* Remove default button styles */
+  button {
+    @apply font-body;
+  }
+
+  /* Ensure images are responsive by default */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* Custom Component Styles */
+@layer components {
+  /* Brand Card Component */
+  .brand-card {
+    @apply bg-white rounded-lg p-3 shadow-md border border-secondary-200 transition-shadow duration-200;
+  }
+
+  .brand-card:hover {
+    @apply shadow-lg;
+  }
+
+  /* Brand Button Components */
+  .brand-button {
+    @apply text-white px-3 py-1.5 rounded font-medium transition-all duration-200 cursor-pointer border-0;
+    background-color: #0066cc; /* Deep Tech Blue */
+  }
+
+  .brand-button:hover {
+    @apply -translate-y-0.5 shadow-lg;
+    background-color: #003d7a; /* Deep Tech Blue 700 */
+    box-shadow: 0 4px 8px rgba(0, 102, 204, 0.2);
+  }
+
+  .brand-button:focus {
+    @apply outline-2 outline-offset-2;
+    outline-color: #0066cc; /* Deep Tech Blue */
+  }
+
+  .brand-button:active {
+    @apply translate-y-0;
+  }
+
+  .brand-button-secondary {
+    @apply text-white px-3 py-1.5 rounded font-medium transition-all duration-200 cursor-pointer border-0;
+    background-color: #8a8a8a; /* Silver Gray */
+  }
+
+  .brand-button-secondary:hover {
+    background-color: #525252; /* Silver Gray 700 */
+  }
+
+  .brand-button-outline {
+    @apply bg-transparent px-3 py-1.5 rounded font-medium transition-all duration-200 cursor-pointer;
+    color: #0066cc; /* Deep Tech Blue */
+    border: 2px solid #0066cc;
+  }
+
+  .brand-button-outline:hover {
+    @apply text-white;
+    background-color: #0066cc; /* Deep Tech Blue */
+  }
+
+  .brand-button-accent {
+    @apply px-3 py-1.5 rounded font-medium transition-all duration-200 cursor-pointer border-0;
+    background-color: #00d9cc; /* Teal Cyan */
+    color: #2d2d2d; /* Charcoal */
+  }
+
+  .brand-button-accent:hover {
+    background-color: #00ada3; /* Teal Cyan 600 */
+  }
+
+  /* Responsive Container with 60-30-10 color balance consideration */
+  .brand-container {
+    @apply w-full max-w-7xl mx-auto px-2 md:px-3 lg:px-4;
+  }
+
+  /* Brand Section - proper spacing using 8px grid */
+  .brand-section {
+    @apply py-8 md:py-12 lg:py-16;
+  }
+
+  /* Brand Grid - 12 column responsive layout */
+  .brand-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4;
+  }
+
+  .brand-grid-12 {
+    @apply grid grid-cols-12 gap-3 md:gap-4;
+  }
+
+  /* Typography Utilities */
+  .text-accent-font {
+    @apply font-accent;
+  }
+
+  /* High contrast text for accessibility */
+  .text-high-contrast {
+    @apply text-dark;
+    /* Ensures 4.5:1 contrast ratio against light backgrounds */
+  }
+}
+
+/* Custom Utility Classes */
+@layer utilities {
+  /* Animation utilities */
+  .animate-on-scroll {
+    @apply opacity-0 transition-all duration-300;
+  }
+
+  .animate-on-scroll.visible {
+    @apply opacity-100 animate-fade-in;
+  }
+
+  /* Accessibility utilities */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  /* Skip to main content link for keyboard navigation */
+  .skip-to-main {
+    @apply absolute -top-full left-0 text-white px-2 py-1 z-50 transition-all;
+    background-color: #0066cc; /* Deep Tech Blue */
+  }
+
+  .skip-to-main:focus {
+    @apply top-0;
+  }
+
+  /* Mobile-first responsive text sizes */
+  .text-responsive {
+    @apply text-base md:text-lg lg:text-xl;
+  }
+
+  /* Ensure proper spacing for mobile touch targets (minimum 44x44px) */
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+}
+
+/* Print styles for better document output */
+@media print {
+  body {
+    @apply bg-white;
+    color: #2d2d2d; /* Charcoal */
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  /* Ensure proper page breaks */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    page-break-after: avoid;
+  }
+}
+
+/* Reduced motion for users who prefer it (accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Dark mode support (optional, can be enabled later) */
+@media (prefers-color-scheme: dark) {
+  /* Dark mode styles can be added here in the future */
+  /* For now, keeping light mode for brand consistency */
+}
