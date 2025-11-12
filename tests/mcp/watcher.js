@@ -84,6 +84,11 @@ class TestWatcher {
    * Determine which tests to run based on file path
    */
   determineTestType(filePath) {
+    // Special handling for Button component - run both unit and E2E tests
+    if (filePath.includes('/components/ui/button')) {
+      return 'button-component';
+    }
+
     if (filePath.includes('/components/')) {
       return 'ui';
     }
@@ -141,30 +146,92 @@ class TestWatcher {
   }
 
   /**
-   * Run Playwright tests
+   * Run tests (Vitest unit tests and/or Playwright E2E tests)
    */
-  runTests(testType) {
+  async runTests(testType) {
+    // Special handling for Button component - run both unit and E2E tests
+    if (testType === 'button-component') {
+      console.log('🧪 Running Button component tests (unit + E2E)...\n');
+
+      try {
+        // Run Vitest unit tests for Button
+        await this.runVitestTests('src/components/ui/button.test.tsx');
+        console.log('✅ Unit tests passed!\n');
+
+        // Run Playwright E2E tests for Button
+        await this.runPlaywrightTests('tests/ui/button.spec.ts');
+        console.log('✅ E2E tests passed!\n');
+      } catch (error) {
+        throw error;
+      }
+      return;
+    }
+
+    // Run Playwright tests for other test types
+    return this.runPlaywrightTests(null, testType);
+  }
+
+  /**
+   * Run Vitest unit tests
+   */
+  runVitestTests(testPath) {
+    return new Promise((resolve, reject) => {
+      const args = ['vitest', 'run'];
+
+      if (testPath) {
+        args.push(testPath);
+      }
+
+      const proc = spawn('npx', args, {
+        cwd: this.projectRoot,
+        stdio: 'inherit',
+        shell: true,
+      });
+
+      proc.on('close', (code) => {
+        if (code === 0) {
+          resolve();
+        } else {
+          reject(new Error(`Vitest tests failed with code ${code}`));
+        }
+      });
+
+      proc.on('error', (error) => {
+        reject(error);
+      });
+    });
+  }
+
+  /**
+   * Run Playwright E2E tests
+   */
+  runPlaywrightTests(testPath, testType) {
     return new Promise((resolve, reject) => {
       const args = ['playwright', 'test'];
 
-      // Add test path based on type
-      switch (testType) {
-        case 'ui':
-          args.push('tests/ui/');
-          break;
-        case 'pages':
-          args.push('tests/pages/');
-          break;
-        case 'visual':
-          args.push('--grep', '@visual');
-          break;
-        case 'i18n':
-          args.push('tests/pages/i18n.spec.ts');
-          break;
-        case 'all':
-        default:
-          // Run all tests
-          break;
+      // Add specific test path if provided
+      if (testPath) {
+        args.push(testPath);
+      } else if (testType) {
+        // Add test path based on type
+        switch (testType) {
+          case 'ui':
+            args.push('tests/ui/');
+            break;
+          case 'pages':
+            args.push('tests/pages/');
+            break;
+          case 'visual':
+            args.push('--grep', '@visual');
+            break;
+          case 'i18n':
+            args.push('tests/pages/i18n.spec.ts');
+            break;
+          case 'all':
+          default:
+            // Run all tests
+            break;
+        }
       }
 
       // Add config
@@ -181,7 +248,7 @@ class TestWatcher {
         if (code === 0) {
           resolve();
         } else {
-          reject(new Error(`Tests failed with code ${code}`));
+          reject(new Error(`Playwright tests failed with code ${code}`));
         }
       });
 
