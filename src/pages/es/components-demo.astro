@@ -6,6 +6,11 @@ import { CardExamples } from '@/components/examples/CardExamples';
 import { DialogExamples } from '@/components/examples/DialogExamples';
 import { NavbarExamples } from '@/components/examples/NavbarExamples';
 
+// Only allow access in development environment
+if (!import.meta.env.DEV) {
+  return Astro.redirect('/es', 404);
+}
+
 const lang = 'es';
 const t = uiComponentTranslations[lang];
 ---

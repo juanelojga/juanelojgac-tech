@@ -75,11 +75,13 @@ import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuIte
 </DropdownMenu>
 ```
 
-## 🌐 Demo Pages
+## 🌐 Demo Pages (Development Only)
 
-View the live examples:
+View the live examples in development mode:
 - **English**: `/en/components-demo`
 - **Spanish**: `/es/components-demo`
+
+**Note**: These pages are only accessible in development environment (`npm run dev`). In production builds, they return a 404 to prevent exposing internal component documentation.
 
 ## 🧪 Testing
 

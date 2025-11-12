@@ -402,11 +402,13 @@ import { cn } from '@/lib/utils';
 - [WCAG 2.1 Guidelines](https://www.w3.org/WAI/WCAG21/quickref/)
 - [Astro React Integration](https://docs.astro.build/en/guides/integrations-guide/react/)
 
-## Demo
+## Demo (Development Only)
 
-Visit the live demo:
+Visit the live demo in development mode:
 - English: `/en/components-demo`
 - Spanish: `/es/components-demo`
+
+**Important**: These demo pages are only accessible when running `npm run dev`. They are automatically excluded from production builds to prevent exposing internal component documentation. Attempting to access these routes in production will return a 404 error.
 
 ## Support
 
