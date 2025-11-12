@@ -1,0 +1,122 @@
+---
+import '@/styles/global.css';
+import { uiComponentTranslations } from '@/i18n/ui-components';
+import { ButtonExamples } from '@/components/examples/ButtonExamples';
+import { CardExamples } from '@/components/examples/CardExamples';
+import { DialogExamples } from '@/components/examples/DialogExamples';
+import { NavbarExamples } from '@/components/examples/NavbarExamples';
+
+// Only allow access in development environment
+if (!import.meta.env.DEV) {
+  return Astro.redirect('/en', 404);
+}
+
+const lang = 'en';
+const t = uiComponentTranslations[lang];
+---
+
+<!doctype html>
+<html lang={lang} class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{t.demo.title} | JuaneloJGAC Tech</title>
+    <meta name="description" content={t.demo.description} />
+  </head>
+  <body class="min-h-screen bg-background text-foreground antialiased">
+    <!-- Header -->
+    <header class="sticky top-0 z-40 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+      <div class="container flex h-16 items-center justify-between">
+        <div class="flex items-center gap-2">
+          <h1 class="font-heading text-2xl font-bold text-primary">
+            JuaneloJGAC Tech
+          </h1>
+        </div>
+        <nav class="flex items-center gap-4">
+          <a href="/en" class="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
+            Home
+          </a>
+          <a href="/es/components-demo" class="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
+            Español
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container py-8">
+      <!-- Hero Section -->
+      <section class="mb-12 text-center">
+        <h1 class="font-heading text-4xl font-bold text-primary mb-4">
+          {t.demo.title}
+        </h1>
+        <p class="font-body text-lg text-muted-foreground max-w-3xl mx-auto mb-6">
+          {t.demo.subtitle}
+        </p>
+        <p class="font-body text-base text-muted-foreground max-w-2xl mx-auto">
+          {t.demo.description}
+        </p>
+      </section>
+
+      <!-- Features Grid -->
+      <section class="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
+        <div class="rounded-lg border bg-card p-6 shadow-brand text-center">
+          <div class="mb-2 text-accent text-3xl">📱</div>
+          <h3 class="font-heading font-semibold text-primary mb-2">
+            {t.demo.responsive}
+          </h3>
+        </div>
+        <div class="rounded-lg border bg-card p-6 shadow-brand text-center">
+          <div class="mb-2 text-accent text-3xl">♿</div>
+          <h3 class="font-heading font-semibold text-primary mb-2">
+            {t.demo.accessible}
+          </h3>
+        </div>
+        <div class="rounded-lg border bg-card p-6 shadow-brand text-center">
+          <div class="mb-2 text-accent text-3xl">🌐</div>
+          <h3 class="font-heading font-semibold text-primary mb-2">
+            {t.demo.bilingual}
+          </h3>
+        </div>
+        <div class="rounded-lg border bg-card p-6 shadow-brand text-center">
+          <div class="mb-2 text-accent text-3xl">🎨</div>
+          <h3 class="font-heading font-semibold text-primary mb-2">
+            {t.demo.brandColors}
+          </h3>
+        </div>
+      </section>
+
+      <!-- Component Examples -->
+      <div class="space-y-12">
+        <!-- Buttons -->
+        <section class="rounded-lg border bg-card shadow-brand">
+          <ButtonExamples client:load translations={t.buttons} />
+        </section>
+
+        <!-- Cards -->
+        <section class="rounded-lg border bg-card shadow-brand">
+          <CardExamples client:load translations={t.cards} />
+        </section>
+
+        <!-- Dialogs -->
+        <section class="rounded-lg border bg-card shadow-brand">
+          <DialogExamples client:load translations={t.dialogs} />
+        </section>
+
+        <!-- Navigation Menus -->
+        <section class="rounded-lg border bg-card shadow-brand">
+          <NavbarExamples client:load translations={t.navbar} />
+        </section>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t mt-16">
+      <div class="container py-8 text-center">
+        <p class="font-body text-sm text-muted-foreground">
+          © 2024 JuaneloJGAC Tech. Built with Astro, Tailwind CSS & shadcn/ui
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
