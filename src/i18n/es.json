@@ -6,6 +6,14 @@
   "nav": {
     "home": "Inicio"
   },
+  "hero": {
+    "headline": "Potenciando la Transformación IA para Empresas Modernas",
+    "subheadline": "La innovación debe simplificar la vida, no complicarla.",
+    "cta": "SABER MÁS",
+    "backgroundAlt": "Fondo degradado en rosa pálido a morado",
+    "circlesAlt": "Gráfico de círculos concéntricos",
+    "logoAlt": "Logo de la empresa y gráfico de marca"
+  },
   "welcome": {
     "getStarted": "Para comenzar, abre el directorio <code><pre>src/pages</pre></code> en tu proyecto.",
     "readDocs": "Lee nuestra documentación",

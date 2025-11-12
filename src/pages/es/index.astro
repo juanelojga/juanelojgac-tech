@@ -1,10 +1,10 @@
 ---
-import Welcome from '../../components/Welcome.astro';
+import Hero from '../../components/sections/Hero.astro';
 import Layout from '../../layouts/Layout.astro';
 import LanguageSwitcher from '../../components/LanguageSwitcher.astro';
 ---
 
 <Layout lang="es">
   <LanguageSwitcher currentLang="es" currentPath={Astro.url.pathname} />
-  <Welcome lang="es" />
+  <Hero lang="es" />
 </Layout>

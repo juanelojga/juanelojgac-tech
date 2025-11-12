@@ -1,0 +1,378 @@
+---
+/**
+ * Hero Section Component
+ *
+ * Full-width hero section featuring:
+ * - Bilingual support (EN/ES) via i18n
+ * - Dusty pink → purple gradient background
+ * - Concentric circles graphic (decorative)
+ * - Logo/brand graphic on right
+ * - Responsive layout (mobile: stacked, desktop: side-by-side)
+ * - WCAG 2.1 AA compliant (4.5:1 contrast ratio)
+ * - Keyboard accessible with visible focus states
+ *
+ * Design Images (place in /public/images/hero/):
+ * - 5d1debaf8ff7220711ed40b9cdce6f19.png: Full-width gradient background
+ * - ac63c33783ef1f1c4af1d0f1eca78e23.png: Concentric circles graphic
+ * - 1f41f103a7320a047cbd28e601e0fb1e.png: Logo/brand graphic
+ */
+
+import type { SupportedLanguage } from '../../i18n/utils';
+import { useTranslations } from '../../i18n/utils';
+import { Button } from '../ui/button';
+
+interface Props {
+  lang: SupportedLanguage;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+// Image paths (with fallbacks to CSS gradients if images not available)
+const backgroundImage = '/images/hero/5d1debaf8ff7220711ed40b9cdce6f19.png';
+const circlesGraphic = '/images/hero/ac63c33783ef1f1c4af1d0f1eca78e23.png';
+const logoGraphic = '/images/hero/1f41f103a7320a047cbd28e601e0fb1e.png';
+---
+
+<section
+  id="hero"
+  class="hero-section"
+  role="banner"
+  aria-label={lang === 'en' ? 'Hero section' : 'Sección principal'}
+>
+  <!-- Background gradient layer -->
+  <div class="hero-background" role="presentation" aria-hidden="true">
+    <div class="gradient-overlay"></div>
+  </div>
+
+  <!-- Concentric circles graphic (decorative, behind logo) -->
+  <div class="circles-graphic" role="presentation" aria-hidden="true">
+    <img
+      src={circlesGraphic}
+      alt=""
+      loading="eager"
+      fetchpriority="high"
+      onError="this.style.display='none'"
+    />
+  </div>
+
+  <!-- Content container -->
+  <div class="hero-container">
+    <!-- Text content (left side on desktop) -->
+    <div class="hero-content">
+      <h1 class="hero-headline">
+        {t('hero.headline')}
+      </h1>
+
+      <p class="hero-subheadline">
+        {t('hero.subheadline')}
+      </p>
+
+      <div class="hero-cta">
+        <Button
+          variant="primary"
+          size="lg"
+          client:load
+          aria-label={t('hero.cta')}
+        >
+          {t('hero.cta')}
+        </Button>
+      </div>
+    </div>
+
+    <!-- Logo/brand graphic (right side on desktop) -->
+    <div class="hero-visual">
+      <img
+        src={logoGraphic}
+        alt={t('hero.logoAlt')}
+        class="hero-logo"
+        loading="eager"
+        fetchpriority="high"
+        onError="this.style.display='none'"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Hero Section Container */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(135deg, #e34d88 0%, #8b5cf6 100%);
+    padding: 80px 16px 64px;
+  }
+
+  /* Background gradient layer with image fallback */
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    background-image: url('/images/hero/5d1debaf8ff7220711ed40b9cdce6f19.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  /* Gradient overlay (used if background image fails to load) */
+  .gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #e34d88 0%, #8b5cf6 100%);
+    opacity: 0.95;
+  }
+
+  /* Concentric circles graphic (decorative) */
+  .circles-graphic {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    width: 600px;
+    height: 600px;
+    z-index: 1;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .circles-graphic img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  /* Content container - responsive grid */
+  .hero-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    align-items: center;
+  }
+
+  /* Text content */
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    animation: slide-in-left 0.6s ease-out;
+  }
+
+  .hero-headline {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #ffffff;
+    margin: 0;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .hero-subheadline {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    line-height: 1.6;
+    color: #ffffff;
+    margin: 0;
+    opacity: 0.95;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  .hero-cta {
+    margin-top: 16px;
+  }
+
+  /* Logo/brand visual */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: slide-in-right 0.6s ease-out;
+  }
+
+  .hero-logo {
+    max-width: 100%;
+    height: auto;
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+  }
+
+  /* Tablet (768px and up) */
+  @media screen and (min-width: 768px) {
+    .hero-section {
+      padding: 96px 32px 80px;
+    }
+
+    .hero-container {
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+    }
+
+    .hero-headline {
+      font-size: 3rem;
+    }
+
+    .hero-subheadline {
+      font-size: 1.5rem;
+    }
+
+    .circles-graphic {
+      width: 700px;
+      height: 700px;
+    }
+  }
+
+  /* Desktop (1024px and up) */
+  @media screen and (min-width: 1024px) {
+    .hero-section {
+      padding: 112px 48px 96px;
+      min-height: 90vh;
+    }
+
+    .hero-container {
+      gap: 80px;
+    }
+
+    .hero-headline {
+      font-size: 3.5rem;
+    }
+
+    .hero-subheadline {
+      font-size: 1.5rem;
+    }
+
+    .hero-cta {
+      margin-top: 32px;
+    }
+
+    .circles-graphic {
+      width: 800px;
+      height: 800px;
+    }
+  }
+
+  /* Large Desktop (1440px and up) */
+  @media screen and (min-width: 1440px) {
+    .hero-headline {
+      font-size: 4rem;
+    }
+
+    .hero-subheadline {
+      font-size: 1.75rem;
+    }
+  }
+
+  /* Mobile first - stacked layout (default) */
+  @media screen and (max-width: 767px) {
+    .hero-section {
+      min-height: auto;
+      padding: 64px 16px 48px;
+    }
+
+    .hero-container {
+      gap: 32px;
+    }
+
+    .hero-headline {
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .hero-subheadline {
+      font-size: 1.125rem;
+      text-align: center;
+    }
+
+    .hero-cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 24px;
+    }
+
+    .hero-visual {
+      order: 2;
+    }
+
+    .hero-content {
+      order: 1;
+    }
+
+    .circles-graphic {
+      width: 400px;
+      height: 400px;
+      right: -100px;
+      opacity: 0.2;
+    }
+  }
+
+  /* Reduced motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-content,
+    .hero-visual {
+      animation: none;
+    }
+
+    .hero-section,
+    .hero-cta * {
+      transition: none;
+    }
+  }
+
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .hero-headline,
+    .hero-subheadline {
+      text-shadow: none;
+      font-weight: 700;
+    }
+
+    .gradient-overlay {
+      opacity: 1;
+    }
+  }
+
+  /* Focus visible styles for accessibility */
+  .hero-section :global(button:focus-visible) {
+    outline: 3px solid #ffffff;
+    outline-offset: 4px;
+    box-shadow: 0 0 0 6px rgba(255, 255, 255, 0.3);
+  }
+
+  /* Animation keyframes (imported from Tailwind config) */
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-32px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      transform: translateX(32px);
+      opacity: 0;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+</style>

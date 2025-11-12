@@ -6,6 +6,14 @@
   "nav": {
     "home": "Home"
   },
+  "hero": {
+    "headline": "Empowering AI Transformation for Modern Businesses",
+    "subheadline": "Innovation should make life simpler, not more complicated.",
+    "cta": "LEARN MORE",
+    "backgroundAlt": "Gradient background in dusty pink to purple",
+    "circlesAlt": "Concentric circles graphic",
+    "logoAlt": "Company logo and brand graphic"
+  },
   "welcome": {
     "getStarted": "To get started, open the <code><pre>src/pages</pre></code> directory in your project.",
     "readDocs": "Read our docs",

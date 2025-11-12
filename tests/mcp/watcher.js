@@ -89,6 +89,15 @@ class TestWatcher {
       return 'button-component';
     }
 
+    // Special handling for Hero section component - run E2E tests
+    if (filePath.includes('/components/sections/Hero')) {
+      return 'hero-section';
+    }
+
+    if (filePath.includes('/components/sections/')) {
+      return 'sections';
+    }
+
     if (filePath.includes('/components/')) {
       return 'ui';
     }
@@ -167,6 +176,19 @@ class TestWatcher {
       return;
     }
 
+    // Special handling for Hero section - run E2E tests
+    if (testType === 'hero-section') {
+      console.log('🧪 Running Hero section E2E tests...\n');
+
+      try {
+        await this.runPlaywrightTests('tests/sections/Hero.spec.ts');
+        console.log('✅ Hero section E2E tests passed!\n');
+      } catch (error) {
+        throw error;
+      }
+      return;
+    }
+
     // Run Playwright tests for other test types
     return this.runPlaywrightTests(null, testType);
   }
@@ -217,6 +239,9 @@ class TestWatcher {
         switch (testType) {
           case 'ui':
             args.push('tests/ui/');
+            break;
+          case 'sections':
+            args.push('tests/sections/');
             break;
           case 'pages':
             args.push('tests/pages/');
