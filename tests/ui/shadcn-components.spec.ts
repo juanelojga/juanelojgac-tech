@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { injectAxe, checkA11y } from 'axe-playwright';
+import { test, expect } from '../fixtures/accessibility';
 
 /**
  * shadcn/ui Component Tests
@@ -10,7 +9,6 @@ import { injectAxe, checkA11y } from 'axe-playwright';
 test.describe('shadcn/ui Components - English', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/en/components-demo');
-    await injectAxe(page);
   });
 
   test('should load components demo page @visual @accessibility', async ({ page }) => {
@@ -18,16 +16,12 @@ test.describe('shadcn/ui Components - English', () => {
     await expect(page.locator('h1').first()).toContainText('shadcn/ui Components Demo');
   });
 
-  test('should pass accessibility checks for full page @accessibility', async ({ page }) => {
-    await checkA11y(page, null, {
-      detailedReport: true,
-      detailedReportOptions: {
-        html: true,
-      },
-    });
+  test('should pass accessibility checks for full page @accessibility', async ({ page, makeAxeBuilder }) => {
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
   });
 
-  test('Button components should meet WCAG 2.1 AA @accessibility', async ({ page }) => {
+  test('Button components should meet WCAG 2.1 AA @accessibility', async ({ page, makeAxeBuilder }) => {
     const buttonSection = page.locator('section').filter({ hasText: 'Button Components' });
     await expect(buttonSection).toBeVisible();
 
@@ -37,9 +31,10 @@ test.describe('shadcn/ui Components - English', () => {
     await expect(buttonSection.getByRole('button', { name: 'Accent Button' })).toBeVisible();
 
     // Check accessibility for button section
-    await checkA11y(page, buttonSection, {
-      detailedReport: true,
-    });
+    const accessibilityScanResults = await makeAxeBuilder()
+      .include('section')
+      .analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
   });
 
   test('Button focus states should be visible @accessibility', async ({ page }) => {
@@ -66,7 +61,7 @@ test.describe('shadcn/ui Components - English', () => {
     });
   });
 
-  test('Card components should meet accessibility standards @accessibility', async ({ page }) => {
+  test('Card components should meet accessibility standards @accessibility', async ({ page, makeAxeBuilder }) => {
     const cardSection = page.locator('section').filter({ hasText: 'Card Components' });
     await expect(cardSection).toBeVisible();
 
@@ -75,9 +70,10 @@ test.describe('shadcn/ui Components - English', () => {
     await expect(cardTitles.first()).toBeVisible();
 
     // Check accessibility
-    await checkA11y(page, cardSection, {
-      detailedReport: true,
-    });
+    const accessibilityScanResults = await makeAxeBuilder()
+      .include('section')
+      .analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
   });
 
   test('Card visual regression @visual', async ({ page }) => {
@@ -168,20 +164,15 @@ test.describe('shadcn/ui Components - English', () => {
 test.describe('shadcn/ui Components - Spanish', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/es/components-demo');
-    await injectAxe(page);
   });
 
   test('should load Spanish components demo page @visual @accessibility', async ({ page }) => {
     await expect(page).toHaveTitle(/Demostración de Componentes shadcn\/ui/);
   });
 
-  test('should pass accessibility checks for Spanish page @accessibility', async ({ page }) => {
-    await checkA11y(page, null, {
-      detailedReport: true,
-      detailedReportOptions: {
-        html: true,
-      },
-    });
+  test('should pass accessibility checks for Spanish page @accessibility', async ({ page, makeAxeBuilder }) => {
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
   });
 
   test('Spanish translations should be applied @visual', async ({ page }) => {
@@ -220,17 +211,15 @@ test.describe('Dark Mode Support', () => {
     });
   });
 
-  test('dark mode should maintain accessibility @accessibility', async ({ page, context }) => {
+  test('dark mode should maintain accessibility @accessibility', async ({ page, context, makeAxeBuilder }) => {
     await context.addInitScript(() => {
       document.documentElement.classList.add('dark');
     });
 
     await page.goto('/en/components-demo');
-    await injectAxe(page);
 
-    await checkA11y(page, null, {
-      detailedReport: true,
-    });
+    const accessibilityScanResults = await makeAxeBuilder().analyze();
+    expect(accessibilityScanResults.violations).toEqual([]);
   });
 });
 
