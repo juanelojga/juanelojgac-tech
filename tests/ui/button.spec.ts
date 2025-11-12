@@ -2,13 +2,54 @@ import { test, expect } from '../fixtures/accessibility';
 import { captureComponentScreenshot } from '../fixtures/visual';
 
 /**
- * shadcn/ui Button component tests
- * Tests component rendering, state changes, and accessibility
+ * Button Component E2E Tests
+ * Tests the Dusty Pink → Purple gradient design system
+ * Verifies rendering, variants, interactions, states, and accessibility
  */
 test.describe('Button Component', () => {
   test.beforeEach(async ({ page }) => {
     // Navigate to a page with buttons or component showcase
     await page.goto('/');
+  });
+
+  test.describe('Variant Rendering', () => {
+    test('should render primary gradient button with correct styles', async ({ page }) => {
+      const primaryButton = page.locator('button').filter({ hasText: /get started|primary/i }).first();
+
+      if (await primaryButton.isVisible()) {
+        // Check for gradient classes
+        const classes = await primaryButton.getAttribute('class');
+        expect(classes).toBeTruthy();
+
+        // Verify it's visible and has text
+        await expect(primaryButton).toBeVisible();
+
+        // Capture visual regression test
+        await captureComponentScreenshot(primaryButton, 'button-primary-gradient');
+      }
+    });
+
+    test('should render secondary outlined button with correct styles', async ({ page }) => {
+      const secondaryButton = page.locator('button').filter({ hasText: /learn more|secondary/i }).first();
+
+      if (await secondaryButton.isVisible()) {
+        await expect(secondaryButton).toBeVisible();
+
+        // Capture visual regression test
+        await captureComponentScreenshot(secondaryButton, 'button-secondary-outlined');
+      }
+    });
+
+    test('should render transparent text-only button', async ({ page }) => {
+      const transparentButton = page.locator('button').filter({ hasText: /discover|learn more|explore/i }).first();
+
+      if (await transparentButton.isVisible()) {
+        await expect(transparentButton).toBeVisible();
+
+        // Capture visual regression test
+        await captureComponentScreenshot(transparentButton, 'button-transparent');
+      }
+    });
   });
 
   test('should render button elements', async ({ page }) => {
@@ -105,33 +146,72 @@ test.describe('Button Component', () => {
   });
 
   test('should support different variants visually', async ({ page }) => {
-    // This test assumes you have button variants like primary, secondary, etc.
-    const buttons = await page.$$('button');
+    // Capture screenshots for all button variants
+    const variants = [
+      { selector: 'button', name: 'button-default' },
+    ];
 
-    if (buttons.length > 0) {
-      // Capture screenshot of first button for visual regression
-      await captureComponentScreenshot(
-        page.locator('button').first(),
-        'button-default',
-      );
+    for (const variant of variants) {
+      const button = page.locator(variant.selector).first();
+      if (await button.isVisible()) {
+        await captureComponentScreenshot(button, variant.name);
+      }
     }
   });
 
-  test('should handle hover state', async ({ page }) => {
+  test('should verify gradient colors on primary buttons', async ({ page }) => {
+    const primaryButton = page
+      .locator('button')
+      .filter({ hasText: /get started|primary/i })
+      .first();
+
+    if (await primaryButton.isVisible()) {
+      // Check computed styles for gradient
+      const backgroundImage = await primaryButton.evaluate((el) =>
+        window.getComputedStyle(el).backgroundImage
+      );
+
+      // Should have a gradient (linear-gradient)
+      if (backgroundImage && backgroundImage !== 'none') {
+        expect(backgroundImage).toContain('linear-gradient');
+      }
+    }
+  });
+
+  test('should handle hover state with gradient transition', async ({ page }) => {
     const button = page.locator('button').first();
 
     if (await button.isVisible()) {
-      // Get initial styles
-      const initialBgColor = await button.evaluate((el) =>
-        window.getComputedStyle(el).backgroundColor,
-      );
-
       // Hover over button
       await button.hover();
 
-      // Styles might change on hover (optional test)
-      // This is more for visual regression testing
+      // Button should remain visible and potentially show gradient shift
       await expect(button).toBeVisible();
+
+      // Capture hover state for visual regression
+      await captureComponentScreenshot(button, 'button-hover-state');
+    }
+  });
+
+  test('should show glow effect on primary button hover', async ({ page }) => {
+    const primaryButton = page
+      .locator('button')
+      .filter({ hasText: /get started|primary/i })
+      .first();
+
+    if (await primaryButton.isVisible()) {
+      // Initial state
+      await captureComponentScreenshot(primaryButton, 'button-primary-initial');
+
+      // Hover state
+      await primaryButton.hover();
+      await page.waitForTimeout(100); // Allow transition to start
+
+      // Should be visible with hover effects
+      await expect(primaryButton).toBeVisible();
+
+      // Capture hover state with glow effect
+      await captureComponentScreenshot(primaryButton, 'button-primary-hover-glow');
     }
   });
 

@@ -13,33 +13,33 @@ export default {
     extend: {
       // Brand Color Palette
       colors: {
-        // Primary - Deep Tech Blue
+        // Primary - Dusty Pink to Purple Gradient
         primary: {
-          50: '#e6f0ff',
-          100: '#cce1ff',
-          200: '#99c3ff',
-          300: '#66a5ff',
-          400: '#3387ff',
-          500: '#0066cc', // Main Deep Tech Blue
-          600: '#0052a3',
-          700: '#003d7a',
-          800: '#002952',
-          900: '#001429',
-          950: '#000a14',
+          50: '#fdf4f7',
+          100: '#fbe8ef',
+          200: '#f7d1df',
+          300: '#f3a9c7',
+          400: '#ed76a6',
+          500: '#e34d88', // Main Dusty Pink
+          600: '#d1346f',
+          700: '#b52558',
+          800: '#97214a',
+          900: '#7e1f40',
+          950: '#4d0d22',
         },
-        // Accent - Teal Cyan
+        // Accent - Deep Purple
         accent: {
-          50: '#e6fffe',
-          100: '#ccfffd',
-          200: '#99fffb',
-          300: '#66fff9',
-          400: '#33fff7',
-          500: '#00d9cc', // Main Teal Cyan
-          600: '#00ada3',
-          700: '#00827a',
-          800: '#005652',
-          900: '#002b29',
-          950: '#001514',
+          50: '#f5f3ff',
+          100: '#ede9fe',
+          200: '#ddd6fe',
+          300: '#c4b5fd',
+          400: '#a78bfa',
+          500: '#8b5cf6', // Main Purple
+          600: '#7c3aed',
+          700: '#6d28d9',
+          800: '#5b21b6',
+          900: '#4c1d95',
+          950: '#2e1065',
         },
         // Secondary - Silver Gray
         secondary: {
@@ -292,25 +292,41 @@ export default {
         },
       });
 
-      // Add custom utilities for brand color balance (60-30-10 rule)
+      // Add custom utilities for brand color balance and gradients
       addUtilities({
         '.brand-primary-bg': {
-          backgroundColor: '#0066cc', // 60% - Primary
+          backgroundColor: '#e34d88', // 60% - Dusty Pink
         },
         '.brand-neutral-bg': {
           backgroundColor: '#8a8a8a', // 30% - Neutral
         },
         '.brand-accent-bg': {
-          backgroundColor: '#00d9cc', // 10% - Accent
+          backgroundColor: '#8b5cf6', // 10% - Purple
         },
         '.brand-text-primary': {
-          color: '#0066cc',
+          color: '#e34d88',
         },
         '.brand-text-accent': {
-          color: '#00d9cc',
+          color: '#8b5cf6',
         },
         '.brand-text-dark': {
           color: '#2d2d2d',
+        },
+        // Gradient utilities for dusty pink to purple
+        '.bg-gradient-primary': {
+          backgroundImage: 'linear-gradient(135deg, #e34d88 0%, #8b5cf6 100%)',
+        },
+        '.bg-gradient-primary-hover': {
+          backgroundImage: 'linear-gradient(135deg, #d1346f 0%, #7c3aed 100%)',
+        },
+        '.bg-gradient-primary-active': {
+          backgroundImage: 'linear-gradient(135deg, #b52558 0%, #6d28d9 100%)',
+        },
+        '.shadow-glow-primary': {
+          boxShadow: '0 0 20px rgba(227, 77, 136, 0.4), 0 0 40px rgba(139, 92, 246, 0.2)',
+        },
+        '.shadow-glow-primary-hover': {
+          boxShadow: '0 0 25px rgba(227, 77, 136, 0.5), 0 0 50px rgba(139, 92, 246, 0.3)',
         },
         // Card styles with proper spacing and contrast
         '.brand-card': {
@@ -320,38 +336,44 @@ export default {
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
           border: '1px solid #e5e5e5',
         },
-        // Button styles with proper contrast
+        // Button styles with proper contrast and gradients
         '.brand-button': {
-          backgroundColor: '#0066cc',
+          backgroundImage: 'linear-gradient(135deg, #e34d88 0%, #8b5cf6 100%)',
           color: '#ffffff',
           padding: '12px 24px',
           borderRadius: '6px',
           fontWeight: '500',
-          transition: 'all 0.2s ease-in-out',
+          transition: 'all 0.3s ease-in-out',
           border: 'none',
           cursor: 'pointer',
         },
         '.brand-button:hover': {
-          backgroundColor: '#003d7a',
-          transform: 'translateY(-1px)',
-          boxShadow: '0 4px 8px rgba(0, 102, 204, 0.2)',
+          backgroundImage: 'linear-gradient(135deg, #d1346f 0%, #7c3aed 100%)',
+          transform: 'translateY(-2px)',
+          boxShadow: '0 0 20px rgba(227, 77, 136, 0.4), 0 4px 12px rgba(139, 92, 246, 0.3)',
         },
         '.brand-button:focus': {
-          outline: '2px solid #0066cc',
+          outline: '2px solid #e34d88',
           outlineOffset: '2px',
         },
+        '.brand-button:active': {
+          backgroundImage: 'linear-gradient(135deg, #b52558 0%, #6d28d9 100%)',
+          transform: 'translateY(0)',
+        },
         '.brand-button-secondary': {
-          backgroundColor: '#8a8a8a',
-          color: '#ffffff',
+          backgroundColor: 'transparent',
+          color: '#e34d88',
           padding: '12px 24px',
           borderRadius: '6px',
           fontWeight: '500',
-          transition: 'all 0.2s ease-in-out',
-          border: 'none',
+          transition: 'all 0.3s ease-in-out',
+          border: '2px solid #e34d88',
           cursor: 'pointer',
         },
         '.brand-button-secondary:hover': {
-          backgroundColor: '#525252',
+          backgroundColor: '#fdf4f7',
+          borderColor: '#8b5cf6',
+          color: '#8b5cf6',
         },
       });
     },
