@@ -1,74 +1,81 @@
 ---
 interface Props {
-  headline: string;
-  description: string;
-  primaryButtonText: string;
-  primaryButtonHref: string;
-  secondaryButtonText: string;
-  secondaryButtonHref: string;
-  videoSrc: string;
+  lang: "en" | "es";
+  primaryCtaLink?: string;
+  secondaryCtaLink?: string;
+  videoSrc?: string;
 }
 
 const {
-  headline,
-  description,
-  primaryButtonText,
-  primaryButtonHref,
-  secondaryButtonText,
-  secondaryButtonHref,
-  videoSrc,
+  lang,
+  primaryCtaLink = "#contact",
+  secondaryCtaLink = "#about",
+  videoSrc = "/hero-video.mp4",
 } = Astro.props;
+
+// Import translations
+const translations = await import(`../i18n/${lang}.json`);
+const t = translations.default.header;
 ---
 
-<header class="relative flex h-[900px] w-full flex-col items-center gap-20 bg-brand-darkest">
-  <div class="relative flex h-full w-full items-start">
-    <!-- Left Column: Video Background -->
-    <div
-      class="relative flex h-full min-h-0 min-w-0 flex-1 flex-col items-start justify-center gap-8 px-20 opacity-50"
-    >
+<section
+  class="bg-brand-darkest flex min-h-[740px] flex-col lg:flex-row lg:gap-20"
+  aria-labelledby="header-headline"
+>
+  <!-- Left Column: Video with 50% opacity overlay -->
+  <div class="relative h-[400px] w-full opacity-50 lg:h-auto lg:flex-1">
+    <div class="absolute top-0 -left-[310px] h-[900px] w-[1600px]">
       <video
         autoplay
         loop
         muted
         playsinline
-        class="absolute left-[-310px] top-0 h-[900px] w-[1600px] object-cover"
+        class="h-full w-full max-w-none object-cover"
         aria-hidden="true"
       >
         <source src={videoSrc} type="video/mp4" />
       </video>
     </div>
+  </div>
 
-    <!-- Right Column: Content -->
-    <div
-      class="relative flex h-full min-h-0 min-w-0 flex-1 flex-col items-start justify-center gap-8 bg-neutral-darker px-20"
-    >
-      <div class="flex w-full max-w-[560px] flex-col items-start gap-8">
-        <!-- Text Content -->
-        <div class="flex w-full flex-col items-start gap-6 text-white">
-          <h1 class="w-full font-sora text-6xl font-semibold leading-[1.1] tracking-tight">
-            {headline}
-          </h1>
-          <p class="w-full font-inter text-xl leading-relaxed">
-            {description}
-          </p>
-        </div>
+  <!-- Right Column: Content -->
+  <div
+    class="bg-neutral-darker flex w-full flex-col items-start justify-center px-8 py-16 lg:flex-1 lg:px-20"
+  >
+    <div class="flex w-full max-w-[560px] flex-col gap-8">
+      <!-- Text Content -->
+      <div class="flex flex-col gap-6 text-white">
+        <h1
+          id="header-headline"
+          class="font-sora w-full text-6xl leading-[1.1] font-semibold tracking-[-0.64px]"
+        >
+          {t.headline}
+        </h1>
+        <p class="w-full text-xl leading-[1.5] font-normal">
+          {t.description}
+        </p>
+      </div>
 
-        <!-- Action Buttons -->
-        <div class="flex items-start gap-4">
-          <a
-            href={primaryButtonHref}
-            class="inline-flex items-center justify-center gap-2 rounded-full border border-white bg-white px-6 py-1.5 font-inter text-lg font-medium leading-relaxed text-neutral-darkest transition-colors hover:bg-neutral-lightest focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-          >
-            {primaryButtonText}
-          </a>
-          <a
-            href={secondaryButtonHref}
-            class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-1.5 font-inter text-lg font-medium leading-relaxed text-white transition-colors hover:border-white/40 hover:bg-white/5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-          >
-            {secondaryButtonText}
-          </a>
-        </div>
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-start gap-4">
+        <!-- Primary Button -->
+        <a
+          href={primaryCtaLink}
+          class="text-neutral-darkest inline-flex items-center justify-center gap-2 rounded-full border border-white bg-white px-6 py-1.5 text-lg font-medium transition-colors hover:bg-white/90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          aria-label={t.primaryButton}
+        >
+          {t.primaryButton}
+        </a>
+
+        <!-- Secondary Button -->
+        <a
+          href={secondaryCtaLink}
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-transparent px-6 py-1.5 text-lg font-medium text-white transition-colors hover:border-white/40 hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+          aria-label={t.secondaryButton}
+        >
+          {t.secondaryButton}
+        </a>
       </div>
     </div>
   </div>
-</header>
+</section>
