@@ -1,0 +1,32 @@
+{
+  "enabledPlugins": {
+    "astro-docs@mcp.docs.astro.build": true,
+    "shadcn@npx-shadcn-latest-mcp": true,
+    "figma-desktop@localhost-3845": true,
+    "prettier@builtin": true,
+    "typescript@builtin": true
+  },
+  "_comment_enabledPlugins": "Mapped to your installed MCP servers: astro-docs, shadcn, figma-desktop",
+  "hooks": [
+    {
+      "event": "PreToolUse",
+      "matcher": "Write|Edit",
+      "command": "npm run format && npm run lint"
+    }
+  ],
+  "_comment_hooks": [
+    "• Runs only format + lint before edits are executed.",
+    "• Does NOT run tests.",
+    "• Does NOT generate tests."
+  ],
+  "allowedTools": ["Bash", "TypeScript", "Prettier", "Astro"],
+  "_comment_allowedTools": "Disables dangerous or unnecessary tools; only safe tools allowed.",
+  "blockedCapabilities": {
+    "generateTests": true,
+    "runTests": true
+  },
+  "_comment_blockedCapabilities": "Explicitly blocks Claude from generating or running unit/E2E tests.",
+  "notifications": {
+    "onBuildSuccess": "none"
+  }
+}

@@ -9,8 +9,9 @@ and project-aligned code. It must always remain up to date as workflows evolve.
 
 ## 1. Tech Stack
 
-- **Astro** v4+
+- **Astro** v5+
 - **TypeScript** v5+
+- **React** v18+ (for interactive islands)
 - **Tailwind CSS** v3+
 - **Node.js** ≥ 20
 - **npm** (primary package manager)
@@ -42,7 +43,40 @@ and project-aligned code. It must always remain up to date as workflows evolve.
 
 ---
 
-## 3. Internationalization (i18n)
+## 3. React Integration
+
+### When to Use React vs Astro
+
+- **Use Astro** for:
+  - Static content and layouts
+  - Server-side rendering
+  - SEO-optimized pages
+  - Simple interactive components
+
+- **Use React** for:
+  - Complex interactive UI
+  - Stateful components
+  - Components requiring client-side logic
+  - Third-party React libraries integration
+
+### React Component Guidelines
+
+- Store React components in `src/components/react/`
+- All React components must be fully typed with TypeScript
+- Use explicit interfaces for props
+- Accept i18n strings as props from Astro (never hard-code text)
+- Use Tailwind for styling
+
+### Client Directives
+
+- **Primary**: `client:load` - Hydrates immediately on page load
+- **Performance**: `client:visible` - Hydrates when component enters viewport
+- **Conditional**: `client:media` - Hydrates based on media query
+- **Avoid**: `client:only` unless absolutely necessary
+
+---
+
+## 4. Internationalization (i18n)
 
 The project supports **English (EN)** and **Spanish (ES)**.
 
@@ -68,7 +102,7 @@ The project supports **English (EN)** and **Spanish (ES)**.
 }
 ```
 
-## 4. Key Commands (npm)
+## 5. Key Commands (npm)
 
 - Dev: npm run dev
 - Build: npm run build
@@ -77,11 +111,10 @@ The project supports **English (EN)** and **Spanish (ES)**.
 - Lint: npm run lint
 - Lint (fix): npm run lint:fix
 - Unit tests: npm test
-- E2E tests: npm run test:e2e
 
 ⸻
 
-## 5. Code Style & Conventions
+## 6. Code Style & Conventions
 
 ### Formatting & Linting
 
@@ -108,9 +141,16 @@ The project supports **English (EN)** and **Spanish (ES)**.
 - Use theme tokens defined in tailwind.config.js.
 - Avoid inline CSS unless required.
 
+### React Conventions
+
+- Use functional components with hooks.
+- Prefer composition over inheritance.
+- Keep components pure when possible.
+- Use TypeScript interfaces for all props.
+
 ⸻
 
-## 6. Testing Instructions
+## 7. Testing Instructions
 
 ### Unit Testing (Vitest)
 
@@ -119,7 +159,7 @@ The project supports **English (EN)** and **Spanish (ES)**.
 
 ⸻
 
-## 7. Environment Setup
+## 8. Environment Setup
 
 ### Requirements:
 
@@ -129,6 +169,7 @@ The project supports **English (EN)** and **Spanish (ES)**.
 ### Recommended VS Code Extensions:
 
 - Astro
+- ES7+ React/Redux/React-Native snippets
 - Tailwind CSS IntelliSense
 - ESLint
 - Prettier
@@ -141,17 +182,19 @@ The project supports **English (EN)** and **Spanish (ES)**.
 
 ⸻
 
-## 8. Known Constraints & Notes
+## 9. Known Constraints & Notes
 
 - Astro SSR requires Node 20+
 - Avoid deprecated Astro APIs
 - Do not hard-code colors or strings
 - i18n is mandatory for all UI changes
 - Prettier is the single source of truth for formatting
+- React components should be island-based, not full SPA
+- Prefer Astro for static content, React for interactivity
 
 ⸻
 
-## 9. AI Collaboration Rules (Important)
+## 10. AI Collaboration Rules (Important)
 
 When Claude or any AI assistant generates code:
 
@@ -161,10 +204,12 @@ When Claude or any AI assistant generates code:
 4. Do not add dependencies unless explicitly instructed.
 5. Request missing files if context is unclear.
 6. When generating code, output code blocks only unless documentation is requested.
+7. React-specific: Always create typed interfaces for props, never hard-code text in React components.
+8. Integration: Use appropriate client directives when embedding React in Astro.
 
 ⸻
 
-## 10. Maintenance of This Document
+## 11. Maintenance of This Document
 
 This file must be updated when:
 
@@ -173,3 +218,4 @@ This file must be updated when:
 - New workflows or tools are added
 - i18n behavior evolves
 - Testing standards change
+- React integration patterns evolve
