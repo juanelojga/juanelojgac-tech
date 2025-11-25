@@ -1,6 +1,5 @@
 ---
 import { getTranslations, type Language } from "../lib/i18n";
-import NavDropdown from "./react/NavDropdown";
 
 interface Props {
   lang?: Language;
@@ -8,12 +7,6 @@ interface Props {
 
 const { lang = "en" } = Astro.props;
 const t = getTranslations(lang);
-
-const dropdownItems = [
-  { label: t.navbar.dropdown.more, href: "#more" },
-  { label: t.navbar.dropdown.automations, href: "#automations" },
-  { label: t.navbar.dropdown.marketing, href: "#marketing" },
-];
 ---
 
 <nav class="flex flex-col items-center justify-center bg-white px-16 py-0">
@@ -35,7 +28,13 @@ const dropdownItems = [
             {t.navbar.links.about}
           </span>
         </a>
-        <NavDropdown label={t.navbar.links.work} items={dropdownItems} client:load />
+        <a href="#work" class="flex shrink-0 items-center justify-center gap-1">
+          <span
+            class="font-inter text-regular text-scheme-text-primary leading-[1.5] font-normal text-nowrap whitespace-pre"
+          >
+            {t.navbar.links.work}
+          </span>
+        </a>
       </div>
     </div>
 
@@ -45,8 +44,10 @@ const dropdownItems = [
         <img src="/assets/logo/logo.png" alt={t.navbar.logo.alt} />
       </div>
       <!-- Logo Text -->
-      <div class="font-poppins text-logo flex flex-col items-center font-extrabold text-black">
-        <p class="mb-0">JUANELOJGAC</p>
+      <div
+        class="font-poppins text-logo -ml-2 flex flex-col items-center leading-none font-extrabold text-black"
+      >
+        <p>JUANELOJGAC</p>
         <p>Tech</p>
       </div>
     </div>
