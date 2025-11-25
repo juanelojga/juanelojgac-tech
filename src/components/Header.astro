@@ -19,21 +19,15 @@ const t = translations.default.header;
 ---
 
 <section
-  class="bg-brand-darkest relative flex h-[900px] w-full overflow-hidden"
+  class="relative flex w-full overflow-hidden"
+  style="height: calc(100vh - 84px);"
   aria-labelledby="header-headline"
 >
   <!-- Left Column: Video with Opacity -->
-  <div class="relative flex h-full w-1/2 items-center justify-center pr-16 pl-20 opacity-50">
+  <div class="relative flex h-full w-1/2 items-center justify-center opacity-50">
     <!-- Video Background -->
-    <div class="absolute top-0 left-[-310px] h-[900px] w-[1600px]">
-      <video
-        autoplay
-        loop
-        muted
-        playsinline
-        class="h-full max-w-none object-cover"
-        aria-hidden="true"
-      >
+    <div class="absolute inset-0">
+      <video autoplay loop muted playsinline class="size-full object-cover" aria-hidden="true">
         <source src={videoSrc} type="video/mp4" />
       </video>
     </div>
@@ -44,7 +38,7 @@ const t = translations.default.header;
     <div class="flex w-full max-w-[560px] flex-col gap-8">
       <!-- Text Content -->
       <div class="flex w-full flex-col gap-6 text-white">
-        <h1 id="header-headline" class="font-sora w-full text-6xl font-semibold">
+        <h1 id="header-headline" class="font-sora w-full text-5xl font-semibold">
           {t.headline}
         </h1>
         <p class="w-full text-xl font-normal">
