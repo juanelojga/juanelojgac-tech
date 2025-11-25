@@ -1,4 +1,22 @@
 {
+  "navbar": {
+    "links": {
+      "services": "Services",
+      "about": "About",
+      "work": "Work"
+    },
+    "dropdown": {
+      "more": "More",
+      "automations": "Automations",
+      "marketing": "Marketing"
+    },
+    "button": {
+      "consult": "Consult"
+    },
+    "logo": {
+      "alt": "JUANELOJGAC Tech Logo"
+    }
+  },
   "header": {
     "headline": "Empowering startups and SMEs with practical, intelligent solutions",
     "description": "We build what matters. From web platforms that move fast to automations that save time, we deliver clarity and speed without the noise.",
