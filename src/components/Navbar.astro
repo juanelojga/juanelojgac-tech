@@ -40,31 +40,14 @@ const dropdownItems = [
     </div>
 
     <!-- Center: Logo -->
-    <div class="flex shrink-0 items-start">
-      <div
-        class="relative inline-grid shrink-0 grid-cols-[max-content] grid-rows-[max-content] place-items-start leading-[0]"
-      >
-        <!-- Logo Text -->
-        <div
-          class="font-poppins text-logo mt-[42px] ml-[114px] flex h-6 w-[100px] translate-x-[-50%] translate-y-[-50%] flex-col justify-center text-center leading-none font-extrabold text-black [grid-area:1_/_1]"
-        >
-          <p class="mb-0">JUANELOJGAC</p>
-          <p>Tech</p>
-        </div>
-        <!-- Logo Images -->
-        <div class="relative mt-0 ml-0 size-[84px] overflow-clip [grid-area:1_/_1]">
-          <div class="absolute top-[-3.39%] right-0 bottom-[3.39%] left-0">
-            <div class="absolute top-[-3.39%] right-0 bottom-[3.39%] left-0">
-              <div class="pointer-events-none absolute inset-0 overflow-hidden">
-                <img
-                  src="/assets/logo/logo.png"
-                  alt={t.navbar.logo.alt}
-                  class="absolute top-0 left-0 size-full max-w-none"
-                />
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="flex items-center">
+      <div class="relative mt-0 ml-0 size-[84px] overflow-clip">
+        <img src="/assets/logo/logo.png" alt={t.navbar.logo.alt} />
+      </div>
+      <!-- Logo Text -->
+      <div class="font-poppins text-logo flex flex-col items-center font-extrabold text-black">
+        <p class="mb-0">JUANELOJGAC</p>
+        <p>Tech</p>
       </div>
     </div>
 
