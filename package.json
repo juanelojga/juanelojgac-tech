@@ -18,7 +18,9 @@
     "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
-    "astro": "^5.15.5"
+    "@tailwindcss/vite": "^4.1.17",
+    "astro": "^5.15.5",
+    "tailwindcss": "^4.1.17"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.5",

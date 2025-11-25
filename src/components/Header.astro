@@ -1,0 +1,77 @@
+---
+interface Props {
+  lang: "en" | "es";
+  primaryCtaLink?: string;
+  secondaryCtaLink?: string;
+  videoSrc?: string;
+}
+
+const {
+  lang,
+  primaryCtaLink = "#contact",
+  secondaryCtaLink = "#about",
+  videoSrc = "/hero-video.mp4",
+} = Astro.props;
+
+// Import translations
+const translations = await import(`../i18n/${lang}.json`);
+const t = translations.default.header;
+---
+
+<section
+  class="bg-brand-darkest relative flex h-[900px] w-full overflow-hidden"
+  aria-labelledby="header-headline"
+>
+  <!-- Left Column: Video with Opacity -->
+  <div class="relative flex h-full w-1/2 items-center justify-center pr-16 pl-20 opacity-50">
+    <!-- Video Background -->
+    <div class="absolute top-0 left-[-310px] h-[900px] w-[1600px]">
+      <video
+        autoplay
+        loop
+        muted
+        playsinline
+        class="h-full max-w-none object-cover"
+        aria-hidden="true"
+      >
+        <source src={videoSrc} type="video/mp4" />
+      </video>
+    </div>
+  </div>
+
+  <!-- Right Column: Content -->
+  <div class="bg-neutral-darker relative flex h-full w-1/2 items-center justify-start pr-16 pl-20">
+    <div class="flex w-full max-w-[560px] flex-col gap-8">
+      <!-- Text Content -->
+      <div class="flex w-full flex-col gap-6 text-white">
+        <h1 id="header-headline" class="font-sora w-full text-6xl font-semibold">
+          {t.headline}
+        </h1>
+        <p class="w-full text-xl font-normal">
+          {t.description}
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-start gap-4">
+        <!-- Primary Button -->
+        <a
+          href={primaryCtaLink}
+          class="text-neutral-darkest inline-flex items-center justify-center gap-2 rounded-full border border-white bg-white px-6 py-1.5 text-lg font-medium transition-colors hover:bg-white/90"
+          aria-label={t.primaryButton}
+        >
+          {t.primaryButton}
+        </a>
+
+        <!-- Secondary Button -->
+        <a
+          href={secondaryCtaLink}
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-transparent px-6 py-1.5 text-lg font-medium text-white transition-colors hover:border-white/40 hover:bg-white/5"
+          aria-label={t.secondaryButton}
+        >
+          {t.secondaryButton}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
