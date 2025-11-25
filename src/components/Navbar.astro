@@ -1,5 +1,7 @@
 ---
 import { getTranslations, type Language } from "../lib/i18n";
+import MobileMenu from "./react/MobileMenu";
+import NavDropdown from "./react/NavDropdown";
 
 interface Props {
   lang?: Language;
@@ -7,12 +9,44 @@ interface Props {
 
 const { lang = "en" } = Astro.props;
 const t = getTranslations(lang);
+
+// Prepare dropdown items for Work menu
+const workDropdownItems = [
+  { label: t.navbar.dropdown.more, href: "#more" },
+  { label: t.navbar.dropdown.automations, href: "#automations" },
+  { label: t.navbar.dropdown.marketing, href: "#marketing" },
+];
+
+// Prepare links for mobile menu
+const mobileLinks = {
+  services: { label: t.navbar.links.services, href: "#services" },
+  about: { label: t.navbar.links.about, href: "#about" },
+  work: { label: t.navbar.links.work, href: "#work" },
+};
+
+const consultButton = {
+  label: t.navbar.button.consult,
+  href: "#consult",
+};
 ---
 
-<nav class="flex flex-col items-center justify-center bg-white px-16 py-0">
-  <div class="flex w-full shrink-0 items-center justify-center gap-8">
-    <!-- Left Column: Navigation Links -->
-    <div class="flex min-h-px min-w-px shrink-0 grow basis-0 flex-col items-start">
+<nav class="flex flex-col items-center justify-center bg-white px-6 py-0 lg:px-16">
+  <div class="flex w-full shrink-0 items-center justify-between gap-8 lg:justify-center">
+    <!-- Mobile: Logo (Left) -->
+    <div class="flex items-center lg:hidden">
+      <div class="relative mt-0 ml-0 size-[60px] overflow-clip">
+        <img src="/assets/logo/logo.png" alt={t.navbar.logo.alt} />
+      </div>
+      <div
+        class="font-poppins -ml-1 flex flex-col items-center text-[10px] leading-none font-extrabold text-black"
+      >
+        <p>JUANELOJGAC</p>
+        <p>Tech</p>
+      </div>
+    </div>
+
+    <!-- Desktop: Left Column - Navigation Links -->
+    <div class="hidden min-h-px min-w-px shrink-0 grow basis-0 flex-col items-start lg:flex">
       <div class="flex shrink-0 items-center gap-8">
         <a href="#services" class="flex shrink-0 items-center justify-center gap-1">
           <span
@@ -28,22 +62,15 @@ const t = getTranslations(lang);
             {t.navbar.links.about}
           </span>
         </a>
-        <a href="#work" class="flex shrink-0 items-center justify-center gap-1">
-          <span
-            class="font-inter text-regular text-scheme-text-primary leading-[1.5] font-normal text-nowrap whitespace-pre"
-          >
-            {t.navbar.links.work}
-          </span>
-        </a>
+        <NavDropdown client:load label={t.navbar.links.work} items={workDropdownItems} />
       </div>
     </div>
 
-    <!-- Center: Logo -->
-    <div class="flex items-center">
+    <!-- Desktop: Center - Logo -->
+    <div class="hidden items-center lg:flex">
       <div class="relative mt-0 ml-0 size-[84px] overflow-clip">
         <img src="/assets/logo/logo.png" alt={t.navbar.logo.alt} />
       </div>
-      <!-- Logo Text -->
       <div
         class="font-poppins text-logo -ml-2 flex flex-col items-center leading-none font-extrabold text-black"
       >
@@ -52,8 +79,10 @@ const t = getTranslations(lang);
       </div>
     </div>
 
-    <!-- Right Column: CTA Button -->
-    <div class="flex min-h-px min-w-px shrink-0 grow basis-0 flex-col items-end justify-center">
+    <!-- Desktop: Right Column - CTA Button -->
+    <div
+      class="hidden min-h-px min-w-px shrink-0 grow basis-0 flex-col items-end justify-center lg:flex"
+    >
       <a
         href="#consult"
         class="border-tarawera bg-tarawera flex shrink-0 items-center justify-center gap-2 rounded-full border border-solid px-5 py-1"
@@ -65,5 +94,13 @@ const t = getTranslations(lang);
         </span>
       </a>
     </div>
+
+    <!-- Mobile: Hamburger Menu -->
+    <MobileMenu
+      client:load
+      links={mobileLinks}
+      dropdownItems={workDropdownItems}
+      consultButton={consultButton}
+    />
   </div>
 </nav>
