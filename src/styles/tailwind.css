@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@theme {
+  /* Fonts */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sora: "Sora", ui-sans-serif, system-ui, sans-serif;
+
+  /* Colors - Brand */
+  --color-brand-darkest: #06020a;
+
+  /* Colors - Neutral */
+  --color-neutral-lightest: #f2f2f2ff;
+  --color-neutral-lighter: #d9d9daff;
+  --color-neutral-light: #b4b3b5ff;
+  --color-neutral: #828084ff;
+  --color-neutral-dark: #504d53ff;
+  --color-neutral-darker: #1e1b22ff;
+  --color-neutral-darkest: #06020aff;
+
+  /* Opacity Values - White */
+  --color-transparent: #ffffff00;
+  --color-white-5: #ffffff0d;
+  --color-white-10: #ffffff1a;
+  --color-white-15: #ffffff26;
+  --color-white-20: #ffffff33;
+  --color-white-30: #ffffff4d;
+  --color-white-40: #ffffff66;
+  --color-white-50: #ffffff80;
+  --color-white-60: #ffffff99;
+
+  /* Opacity Values - Neutral Darkest */
+  --color-neutral-darkest-5: #06020a0d;
+  --color-neutral-darkest-10: #06020a1a;
+  --color-neutral-darkest-15: #06020a26;
+  --color-neutral-darkest-20: #06020a33;
+  --color-neutral-darkest-30: #06020a4d;
+  --color-neutral-darkest-40: #06020a66;
+  --color-neutral-darkest-50: #06020a80;
+  --color-neutral-darkest-60: #06020a99;
+
+  /* Tarawera */
+  --color-tarawera-lightest: #e6ebefff;
+  --color-tarawera-lighter: #ced8e0ff;
+  --color-tarawera-light: #537893ff;
+  --color-tarawera: #0a3f66ff;
+  --color-tarawera-dark: #083251ff;
+  --color-tarawera-darker: #041928ff;
+  --color-tarawera-darkest: #03121eff;
+
+  /* Persian Green */
+  --color-persian-green-lightest: #e5f6f5ff;
+  --color-persian-green-lighter: #ccedebff;
+  --color-persian-green-light: #4cc1baff;
+  --color-persian-green: #00a79dff;
+  --color-persian-green-dark: #00857dff;
+  --color-persian-green-darker: #00423eff;
+  --color-persian-green-darkest: #00322fff;
+
+  /* Coral */
+  --color-coral-lightest: #fff1eeff;
+  --color-coral-lighter: #ffe4ddff;
+  --color-coral-light: #ffa18aff;
+  --color-coral: #ff7a59ff;
+  --color-coral-dark: #cc6147ff;
+  --color-coral-darker: #663023ff;
+  --color-coral-darkest: #4c241aff;
+
+  /* Purple Heart */
+  --color-purple-heart-lightest: #f1e9f8ff;
+  --color-purple-heart-lighter: #e4d4f2ff;
+  --color-purple-heart-light: #a26bd2ff;
+  --color-purple-heart: #7b2cbfff;
+  --color-purple-heart-dark: #622398ff;
+  --color-purple-heart-darker: #31114cff;
+  --color-purple-heart-darkest: #240d39ff;
+
+  /* Color Scheme 1 */
+  --color-color-scheme-1-text: #06020aff;
+  --color-color-scheme-1-foreground: #e6ebefff;
+  --color-color-scheme-1-background: #e6ebefff;
+  --color-color-scheme-1-border: #06020a26;
+  --color-color-scheme-1-accent: #0a3f66ff;
+
+  /* Color Scheme 2 */
+  --color-color-scheme-2-text: #06020aff;
+  --color-color-scheme-2-background: #ced8e0ff;
+  --color-color-scheme-2-border: #06020a26;
+  --color-color-scheme-2-accent: #0a3f66ff;
+  --color-color-scheme-2-foreground: #ced8e0ff;
+
+  /* Color Scheme 3 */
+  --color-color-scheme-3-text: #ffffffff;
+  --color-color-scheme-3-background: #06020aff;
+  --color-color-scheme-3-border: #ffffff33;
+  --color-color-scheme-3-accent: #ffffffff;
+  --color-color-scheme-3-foreground: #06020aff;
+
+  /* Color Scheme 4 */
+  --color-color-scheme-4-text: #ffffffff;
+  --color-color-scheme-4-background: #504d53ff;
+  --color-color-scheme-4-border: #ffffff33;
+  --color-color-scheme-4-accent: #ffffffff;
+  --color-color-scheme-4-foreground: #504d53ff;
+
+  /* Color Scheme 5 */
+  --color-color-scheme-5-text: #ffffffff;
+  --color-color-scheme-5-background: #0a3f66ff;
+  --color-color-scheme-5-border: #ffffff33;
+  --color-color-scheme-5-accent: #ffffffff;
+  --color-color-scheme-5-foreground: #0a3f66ff;
+
+  /* Font Sizes */
+  --text-6xl: 64px;
+  --text-6xl--line-height: 1.1;
+  --text-6xl--letter-spacing: -0.64px;
+
+  --text-xl: 20px;
+  --text-xl--line-height: 1.5;
+
+  --text-lg: 18px;
+  --text-lg--line-height: 1.5;
+}
