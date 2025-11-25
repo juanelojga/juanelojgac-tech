@@ -1,0 +1,94 @@
+---
+import { getTranslations, type Language } from "../lib/i18n";
+import NavDropdown from "./react/NavDropdown";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = "en" } = Astro.props;
+const t = getTranslations(lang);
+
+const dropdownItems = [
+  { label: t.navbar.dropdown.more, href: "#more" },
+  { label: t.navbar.dropdown.automations, href: "#automations" },
+  { label: t.navbar.dropdown.marketing, href: "#marketing" },
+];
+---
+
+<nav class="px-page-padding flex size-full flex-col items-center justify-center bg-white py-0">
+  <div class="flex w-full shrink-0 items-center justify-center gap-8">
+    <!-- Left Column: Navigation Links -->
+    <div class="flex min-h-px min-w-px shrink-0 grow basis-0 flex-col items-start">
+      <div class="flex shrink-0 items-center gap-8">
+        <a href="#services" class="flex shrink-0 items-center justify-center gap-1">
+          <span
+            class="font-inter text-regular text-scheme-text-primary leading-[1.5] font-normal text-nowrap whitespace-pre"
+          >
+            {t.navbar.links.services}
+          </span>
+        </a>
+        <a href="#about" class="flex shrink-0 items-center justify-center gap-1">
+          <span
+            class="font-inter text-regular text-scheme-text-primary leading-[1.5] font-normal text-nowrap whitespace-pre"
+          >
+            {t.navbar.links.about}
+          </span>
+        </a>
+        <NavDropdown label={t.navbar.links.work} items={dropdownItems} client:load />
+      </div>
+    </div>
+
+    <!-- Center: Logo -->
+    <div class="flex shrink-0 items-start">
+      <div
+        class="relative inline-grid shrink-0 grid-cols-[max-content] grid-rows-[max-content] place-items-start leading-[0]"
+      >
+        <!-- Logo Text -->
+        <div
+          class="font-poppins text-logo mt-[42px] ml-[114px] flex h-6 w-[100px] translate-x-[-50%] translate-y-[-50%] flex-col justify-center text-center leading-none font-extrabold text-black [grid-area:1_/_1]"
+        >
+          <p class="mb-0">JUANELOJGAC</p>
+          <p>Tech</p>
+        </div>
+        <!-- Logo Images -->
+        <div class="relative mt-0 ml-0 size-[84px] overflow-clip [grid-area:1_/_1]">
+          <div class="absolute top-[-3.39%] right-0 bottom-[3.39%] left-0">
+            <div class="absolute top-[-3.39%] right-0 bottom-[3.39%] left-0">
+              <div class="pointer-events-none absolute inset-0 overflow-hidden">
+                <img
+                  src="/assets/logo/logo-part-1.png"
+                  alt={t.navbar.logo.alt}
+                  class="absolute top-0 left-0 size-full max-w-none"
+                />
+              </div>
+            </div>
+            <div class="absolute top-[-3.39%] right-0 bottom-[3.39%] left-0">
+              <div class="pointer-events-none absolute inset-0 overflow-hidden">
+                <img
+                  src="/assets/logo/logo-part-2.png"
+                  alt={t.navbar.logo.alt}
+                  class="absolute top-0 left-0 size-full max-w-none"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: CTA Button -->
+    <div class="flex min-h-px min-w-px shrink-0 grow basis-0 flex-col items-end justify-center">
+      <a
+        href="#consult"
+        class="rounded-full-button border-tarawera bg-tarawera flex shrink-0 items-center justify-center gap-2 border border-solid px-5 py-1"
+      >
+        <span
+          class="font-inter text-regular leading-[1.5] font-medium text-nowrap whitespace-pre text-white"
+        >
+          {t.navbar.button.consult}
+        </span>
+      </a>
+    </div>
+  </div>
+</nav>

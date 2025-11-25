@@ -1,4 +1,22 @@
 {
+  "navbar": {
+    "links": {
+      "services": "Servicios",
+      "about": "Acerca de",
+      "work": "Trabajo"
+    },
+    "dropdown": {
+      "more": "Más",
+      "automations": "Automatizaciones",
+      "marketing": "Marketing"
+    },
+    "button": {
+      "consult": "Consultar"
+    },
+    "logo": {
+      "alt": "Logo de JUANELOJGAC Tech"
+    }
+  },
   "header": {
     "headline": "Empoderando startups y PYMEs con soluciones prácticas e inteligentes",
     "description": "Construimos lo que importa. Desde plataformas web que se mueven rápido hasta automatizaciones que ahorran tiempo, entregamos claridad y velocidad sin ruido.",

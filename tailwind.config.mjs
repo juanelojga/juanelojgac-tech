@@ -2,7 +2,28 @@
 export default {
   content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        tarawera: "#0a3f66",
+        "scheme-text-primary": "#06020a",
+        "scheme-border": "rgba(6, 2, 10, 0.15)",
+      },
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        poppins: ["Poppins", "sans-serif"],
+      },
+      fontSize: {
+        regular: "18px",
+        logo: "12px",
+      },
+      borderRadius: {
+        small: "8px",
+        "full-button": "100px",
+      },
+      spacing: {
+        "page-padding": "64px",
+      },
+    },
   },
   plugins: [],
 };
