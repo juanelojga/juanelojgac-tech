@@ -1,7 +1,12 @@
-import { Bars3Icon } from "@heroicons/react/24/outline";
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { useEffect, useRef, useState } from "react";
 
 interface NavLink {
+  label: string;
+  href: string;
+}
+
+interface DropdownItem {
   label: string;
   href: string;
 }
@@ -12,18 +17,25 @@ interface MobileMenuProps {
     about: NavLink;
     work: NavLink;
   };
+  workDropdownItems: DropdownItem[];
   consultButton: {
     label: string;
     href: string;
   };
 }
 
-export default function MobileMenu({ links, consultButton }: MobileMenuProps) {
+export default function MobileMenu({ links, workDropdownItems, consultButton }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isWorkDropdownOpen, setIsWorkDropdownOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+    setIsWorkDropdownOpen(false); // Close dropdown when menu closes
+  };
+
+  const toggleWorkDropdown = () => {
+    setIsWorkDropdownOpen(!isWorkDropdownOpen);
   };
 
   useEffect(() => {
@@ -53,10 +65,22 @@ export default function MobileMenu({ links, consultButton }: MobileMenuProps) {
 
   return (
     <div ref={menuRef} className="lg:hidden">
-      {/* Hamburger Button */}
+      {/* Hamburger/Close Button */}
       <button onClick={toggleMenu} aria-label="Toggle menu" aria-expanded={isOpen}>
-        <Bars3Icon className="text-scheme-text-primary h-6 w-6" aria-hidden="true" />
+        {isOpen ? (
+          <XMarkIcon className="text-scheme-text-primary h-6 w-6" aria-hidden="true" />
+        ) : (
+          <Bars3Icon className="text-scheme-text-primary h-6 w-6" aria-hidden="true" />
+        )}
       </button>
+
+      {/* Mobile Menu Overlay */}
+      {isOpen && (
+        <div
+          className="bg-opacity-50 fixed inset-0 top-[60px] z-40 bg-black"
+          onClick={toggleMenu}
+        />
+      )}
 
       {/* Mobile Menu */}
       <div
@@ -82,6 +106,37 @@ export default function MobileMenu({ links, consultButton }: MobileMenuProps) {
             >
               {links.about.label}
             </a>
+
+            {/* Work Dropdown */}
+            <div className="flex flex-col gap-3">
+              <button
+                onClick={toggleWorkDropdown}
+                className="font-inter text-regular text-scheme-text-primary flex items-center justify-between leading-[1.5] font-normal transition-opacity hover:opacity-70"
+                aria-expanded={isWorkDropdownOpen}
+              >
+                <span>{links.work.label}</span>
+                <img
+                  src="/assets/icons/chevron-down.svg"
+                  alt=""
+                  className={`size-6 transition-transform duration-300 ${isWorkDropdownOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+
+              {isWorkDropdownOpen && (
+                <div className="ml-4 flex flex-col gap-3 border-l-2 border-gray-200 pl-4">
+                  {workDropdownItems.map((item, index) => (
+                    <a
+                      key={index}
+                      href={item.href}
+                      onClick={handleLinkClick}
+                      className="font-inter text-regular text-scheme-text-primary leading-[1.5] font-normal transition-opacity hover:opacity-70"
+                    >
+                      {item.label}
+                    </a>
+                  ))}
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Consult Button */}

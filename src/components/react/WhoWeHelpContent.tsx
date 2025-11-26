@@ -23,7 +23,7 @@ export default function WhoWeHelpContent({ features, tagline }: WhoWeHelpContent
                   { "top-0 lg:mb-48": index === 0 },
                   { "lg:top-16 lg:-mt-32 lg:mb-32": index === 1 },
                   { "lg:top-32 lg:-mt-16 lg:mb-16": index === 2 },
-                  { "lg:top-0 lg:mb-16": index === 3 }
+                  { "lg:top-0": index === 3 }
                 )}
               >
                 <FeatureSection feature={feature} tagline={tagline} />
