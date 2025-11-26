@@ -4,6 +4,7 @@ interface Props {
   primaryCtaLink?: string;
   secondaryCtaLink?: string;
   videoSrc?: string;
+  placeholderImage?: string;
 }
 
 const {
@@ -18,10 +19,65 @@ const translations = await import(`../i18n/${lang}.json`);
 const t = translations.default.header;
 ---
 
+<!-- Mobile Header (hidden on lg and above) -->
 <section
-  class="relative flex w-full overflow-hidden"
+  class="bg-neutral-darker flex w-full flex-col gap-20 lg:hidden"
+  aria-labelledby="header-headline-mobile"
+>
+  <div class="flex w-full max-w-[1280px] flex-col">
+    <!-- Content Column -->
+    <div class="flex w-full flex-col gap-6 px-5 py-16">
+      <div class="flex w-full max-w-[560px] flex-col gap-6">
+        <!-- Text Content -->
+        <div class="flex w-full flex-col gap-5 text-white">
+          <h1
+            id="header-headline-mobile"
+            class="font-sora w-full text-4xl leading-[1.1] font-semibold tracking-[-0.48px]"
+          >
+            {t.headline}
+          </h1>
+          <p class="w-full text-sm leading-[1.5] font-normal">
+            {t.description}
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex items-start gap-4">
+          <!-- Primary Button -->
+          <a
+            href={primaryCtaLink}
+            class="text-neutral-darkest inline-flex items-center justify-center gap-2 rounded-full border border-white bg-white px-3 py-1.5 text-sm font-medium transition-colors hover:bg-white/90"
+            aria-label={t.primaryButton}
+          >
+            {t.primaryButton}
+          </a>
+
+          <!-- Secondary Button -->
+          <a
+            href={secondaryCtaLink}
+            class="border-white-20 inline-flex items-center justify-center gap-2 rounded-full border bg-transparent px-3 py-1.5 text-sm font-medium text-white transition-colors hover:border-white/40 hover:bg-white/5"
+            aria-label={t.secondaryButton}
+          >
+            {t.secondaryButton}
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Placeholder Image -->
+    <div class="relative h-[375px] w-full opacity-50">
+      <video autoplay loop muted playsinline class="size-full object-cover" aria-hidden="true">
+        <source src={videoSrc} type="video/mp4" />
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- Desktop Header (hidden on mobile, shown on lg and above) -->
+<section
+  class="relative hidden w-full overflow-hidden lg:flex"
   style="height: calc(100vh - 84px);"
-  aria-labelledby="header-headline"
+  aria-labelledby="header-headline-desktop"
 >
   <!-- Left Column: Video with Opacity -->
   <div class="relative flex h-full w-1/2 items-center justify-center opacity-50">
@@ -38,7 +94,7 @@ const t = translations.default.header;
     <div class="flex w-full max-w-[560px] flex-col gap-8">
       <!-- Text Content -->
       <div class="flex w-full flex-col gap-6 text-white">
-        <h1 id="header-headline" class="font-sora w-full text-5xl font-semibold">
+        <h1 id="header-headline-desktop" class="font-sora w-full text-5xl font-semibold">
           {t.headline}
         </h1>
         <p class="w-full text-xl font-normal">
