@@ -1,7 +1,6 @@
 ---
 import { getTranslations, type Language } from "../lib/i18n";
 import MobileMenu from "./react/MobileMenu";
-import NavDropdown from "./react/NavDropdown";
 
 interface Props {
   lang?: Language;
@@ -9,13 +8,6 @@ interface Props {
 
 const { lang = "en" } = Astro.props;
 const t = getTranslations(lang);
-
-// Prepare dropdown items for Work menu
-const workDropdownItems = [
-  { label: t.navbar.dropdown.more, href: "#more" },
-  { label: t.navbar.dropdown.automations, href: "#automations" },
-  { label: t.navbar.dropdown.marketing, href: "#marketing" },
-];
 
 // Prepare links for mobile menu
 const mobileLinks = {
@@ -62,7 +54,6 @@ const consultButton = {
             {t.navbar.links.about}
           </span>
         </a>
-        <NavDropdown client:load label={t.navbar.links.work} items={workDropdownItems} />
       </div>
     </div>
 
@@ -96,11 +87,6 @@ const consultButton = {
     </div>
 
     <!-- Mobile: Hamburger Menu -->
-    <MobileMenu
-      client:load
-      links={mobileLinks}
-      dropdownItems={workDropdownItems}
-      consultButton={consultButton}
-    />
+    <MobileMenu client:load links={mobileLinks} consultButton={consultButton} />
   </div>
 </nav>
