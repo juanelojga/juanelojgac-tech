@@ -1,0 +1,51 @@
+---
+import WhoWeHelpContent from "./react/WhoWeHelpContent";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+// Import translations
+const translations = await import(`../i18n/${lang}.json`);
+const t = translations.default.whoWeHelp;
+
+// Feature data structure
+const features = [
+  {
+    number: "01",
+    tag: t.features[0].tag,
+    title: t.features[0].title,
+    description: t.features[0].description,
+    image: "/assets/images/who-we-help/lean-builders.jpg",
+    imageAlt: t.features[0].imageAlt,
+  },
+  {
+    number: "02",
+    tag: t.features[1].tag,
+    title: t.features[1].title,
+    description: t.features[1].description,
+    image: "/assets/images/who-we-help/growing-business.jpg",
+    imageAlt: t.features[1].imageAlt,
+  },
+  {
+    number: "03",
+    tag: t.features[2].tag,
+    title: t.features[2].title,
+    description: t.features[2].description,
+    image: "/assets/images/who-we-help/product-teams.jpg",
+    imageAlt: t.features[2].imageAlt,
+  },
+  {
+    number: "04",
+    tag: t.features[3].tag,
+    title: t.features[3].title,
+    description: t.features[3].description,
+    image: "/assets/images/who-we-help/creative-professionals.jpg",
+    imageAlt: t.features[3].imageAlt,
+  },
+];
+---
+
+<WhoWeHelpContent client:load features={features} tagline={t.tagline} />
