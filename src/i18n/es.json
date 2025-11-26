@@ -53,5 +53,24 @@
         "imageAlt": "Profesionales diversos usando herramientas de IA para diseño, creación de contenido y aprendizaje"
       }
     ]
+  },
+  "challenges": {
+    "tabs": [
+      {
+        "heading": "Construyendo tecnología sin arruinarte",
+        "description": "Te estás ahogando en flujos de trabajo repetitivos que desperdician tiempo",
+        "imageAlt": "Profesional trabajando en laptop en oficina moderna"
+      },
+      {
+        "heading": "Automatizando el trabajo que te ralentiza",
+        "description": "Tu creación de contenido de marketing se siente desconectada de los resultados",
+        "imageAlt": "Visualización de flujo de trabajo de automatización"
+      },
+      {
+        "heading": "Contenido impulsado por IA que realmente convierte",
+        "description": "Tu espacio físico o digital necesita un rediseño inteligente",
+        "imageAlt": "Interfaz de creación de contenido con IA"
+      }
+    ]
   }
 }

@@ -53,5 +53,24 @@
         "imageAlt": "Diverse professionals using AI tools for design, content creation, and learning"
       }
     ]
+  },
+  "challenges": {
+    "tabs": [
+      {
+        "heading": "Building tech without breaking the bank",
+        "description": "You're drowning in repetitive workflows that waste time",
+        "imageAlt": "Professional working on laptop in modern office"
+      },
+      {
+        "heading": "Automating the work that slows you down",
+        "description": "Your marketing content creation feels disconnected from results",
+        "imageAlt": "Automation workflow visualization"
+      },
+      {
+        "heading": "AI-powered content that actually converts",
+        "description": "Your physical or digital space needs intelligent redesign",
+        "imageAlt": "AI-powered content creation interface"
+      }
+    ]
   }
 }
