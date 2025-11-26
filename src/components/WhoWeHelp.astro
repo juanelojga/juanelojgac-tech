@@ -1,0 +1,132 @@
+---
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+// Import translations
+const translations = await import(`../i18n/${lang}.json`);
+const t = translations.default.whoWeHelp;
+
+// Feature data structure
+const features = [
+  {
+    number: "01",
+    tag: t.features[0].tag,
+    title: t.features[0].title,
+    description: t.features[0].description,
+    image: "/assets/images/who-we-help/feature-1.svg",
+    imageAlt: t.features[0].imageAlt,
+  },
+  {
+    number: "02",
+    tag: t.features[1].tag,
+    title: t.features[1].title,
+    description: t.features[1].description,
+    image: "/assets/images/who-we-help/feature-2.svg",
+    imageAlt: t.features[1].imageAlt,
+  },
+  {
+    number: "03",
+    tag: t.features[2].tag,
+    title: t.features[2].title,
+    description: t.features[2].description,
+    image: "/assets/images/who-we-help/feature-3.svg",
+    imageAlt: t.features[2].imageAlt,
+  },
+  {
+    number: "04",
+    tag: t.features[3].tag,
+    title: t.features[3].title,
+    description: t.features[3].description,
+    image: "/assets/images/who-we-help/feature-4.svg",
+    imageAlt: t.features[3].imageAlt,
+  },
+];
+---
+
+<section class="flex w-full flex-col items-center bg-[#ced8e0]" aria-label={t.sectionLabel}>
+  {
+    features.map((feature, index) => (
+      <article class="w-full border-t border-[rgba(6,2,10,0.15)]" data-feature-index={index}>
+        <div class="mx-auto flex w-full max-w-[1280px] flex-col gap-8 px-5 pb-16 lg:gap-20 lg:px-16 lg:pb-28">
+          {/* Section Info Header */}
+          <div class="flex h-16 items-center gap-5 text-base leading-[1.5] font-semibold text-[#06020a] lg:gap-6 lg:text-xl">
+            <span class="shrink-0">{feature.number}</span>
+            <span class="shrink-0">{feature.tag}</span>
+          </div>
+
+          {/* Content: Stacked on mobile, horizontal on desktop */}
+          <div class="flex w-full flex-col gap-12 lg:flex-row lg:items-center lg:gap-20">
+            {/* Text Content */}
+            <div class="flex w-full flex-col gap-6 lg:flex-1 lg:gap-8">
+              {/* Title and Description */}
+              <div class="flex flex-col gap-3 lg:gap-4">
+                <div class="flex items-center">
+                  <span class="text-base leading-[1.5] font-semibold text-[#06020a]">
+                    {t.tagline}
+                  </span>
+                </div>
+
+                <div class="flex flex-col gap-5 text-[#06020a] lg:gap-6">
+                  <h2 class="font-sora text-[44px] leading-[1.2] font-semibold tracking-[-0.44px] lg:text-[60px] lg:tracking-[-0.6px]">
+                    {feature.title}
+                  </h2>
+                  <p class="text-base leading-[1.5] font-normal lg:text-xl">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+
+              {/* Action Buttons */}
+              <div class="flex items-center gap-6">
+                {/* Primary Button with border */}
+                <a
+                  href="#explore"
+                  class="inline-flex items-center justify-center gap-2 rounded-full border border-[rgba(6,2,10,0.15)] px-3 py-1.5 text-sm font-medium text-[#06020a] transition-colors hover:bg-black/5"
+                  aria-label={`${t.exploreButton} ${feature.title}`}
+                >
+                  {t.exploreButton}
+                </a>
+
+                {/* Secondary Button with icon */}
+                <a
+                  href="#explore"
+                  class="inline-flex items-center justify-center gap-2 rounded-full text-sm font-medium text-[#06020a] transition-colors hover:opacity-70 lg:text-lg"
+                  aria-label={`${t.exploreButton} ${feature.title}`}
+                >
+                  {t.exploreButton}
+                  <svg
+                    class="size-6"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M9.17188 17.9998L15.1719 11.9998L9.17188 5.99976"
+                      stroke="#06020a"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            {/* Image */}
+            <div class="relative aspect-square w-full overflow-hidden rounded-lg lg:size-[600px] lg:shrink-0">
+              <img
+                src={feature.image}
+                alt={feature.imageAlt}
+                class="size-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </article>
+    ))
+  }
+</section>

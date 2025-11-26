@@ -22,5 +22,36 @@
     "description": "We build what matters. From web platforms that move fast to automations that save time, we deliver clarity and speed without the noise.",
     "primaryButton": "Book consultation",
     "secondaryButton": "Learn more"
+  },
+  "whoWeHelp": {
+    "sectionLabel": "Who we help",
+    "tagline": "Audience",
+    "exploreButton": "Explore",
+    "features": [
+      {
+        "tag": "Lean builders",
+        "title": "Who we help",
+        "description": "SaaS startups moving fast need platforms that scale without slowing down. We build what you need, nothing more.",
+        "imageAlt": "Team collaborating in a modern workspace"
+      },
+      {
+        "tag": "Growing businesses",
+        "title": "Small businesses ready to go digital",
+        "description": "Small businesses ready to go digital find themselves stuck between outdated systems and expensive overhauls. We bridge that gap.",
+        "imageAlt": "Small business owner working on digital transformation"
+      },
+      {
+        "tag": "Product teams",
+        "title": "Entrepreneurs with a product vision",
+        "description": "Entrepreneurs with a vision but no technical team need partners who understand the journey from idea to market. That's us.",
+        "imageAlt": "Entrepreneurs discussing product vision"
+      },
+      {
+        "tag": "Feature three",
+        "title": "Who we serve",
+        "description": "Marketing agencies automating workflows, spatial designers reimagining environments, and students preparing for TOEFL all find solutions here.",
+        "imageAlt": "Diverse team working together on projects"
+      }
+    ]
   }
 }

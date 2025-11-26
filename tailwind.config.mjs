@@ -11,6 +11,7 @@ export default {
       fontFamily: {
         inter: ["Inter", "sans-serif"],
         poppins: ["Poppins", "sans-serif"],
+        sora: ["Sora", "sans-serif"],
       },
       fontSize: {
         regular: "18px",

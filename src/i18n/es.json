@@ -22,5 +22,36 @@
     "description": "Construimos lo que importa. Desde plataformas web que se mueven rápido hasta automatizaciones que ahorran tiempo, entregamos claridad y velocidad sin ruido.",
     "primaryButton": "Reservar consulta",
     "secondaryButton": "Saber más"
+  },
+  "whoWeHelp": {
+    "sectionLabel": "A quién ayudamos",
+    "tagline": "Audiencia",
+    "exploreButton": "Explorar",
+    "features": [
+      {
+        "tag": "Constructores ágiles",
+        "title": "A quién ayudamos",
+        "description": "Las startups SaaS que se mueven rápido necesitan plataformas que escalen sin ralentizarse. Construimos lo que necesitas, nada más.",
+        "imageAlt": "Equipo colaborando en un espacio de trabajo moderno"
+      },
+      {
+        "tag": "Negocios en crecimiento",
+        "title": "Pequeñas empresas listas para digitalizarse",
+        "description": "Las pequeñas empresas listas para digitalizarse se encuentran atrapadas entre sistemas obsoletos y costosas renovaciones. Nosotros cerramos esa brecha.",
+        "imageAlt": "Propietario de pequeña empresa trabajando en transformación digital"
+      },
+      {
+        "tag": "Equipos de producto",
+        "title": "Emprendedores con visión de producto",
+        "description": "Los emprendedores con visión pero sin equipo técnico necesitan socios que comprendan el viaje desde la idea hasta el mercado. Ese somos nosotros.",
+        "imageAlt": "Emprendedores discutiendo visión de producto"
+      },
+      {
+        "tag": "Característica tres",
+        "title": "A quién servimos",
+        "description": "Agencias de marketing automatizando flujos de trabajo, diseñadores espaciales reimaginando entornos y estudiantes preparándose para TOEFL encuentran soluciones aquí.",
+        "imageAlt": "Equipo diverso trabajando juntos en proyectos"
+      }
+    ]
   }
 }
