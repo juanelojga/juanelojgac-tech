@@ -29,28 +29,28 @@
     "exploreButton": "Explorar",
     "features": [
       {
-        "tag": "Constructores ágiles",
+        "tag": "Constructores Lean",
         "title": "A quién ayudamos",
-        "description": "Las startups SaaS que se mueven rápido necesitan plataformas que escalen sin ralentizarse. Construimos lo que necesitas, nada más.",
+        "description": "Las startups SaaS que se mueven rápido necesitan plataformas que escalen sin frenar su ritmo. Construimos exactamente lo que necesitas, nada más.",
         "imageAlt": "Equipo colaborando en un espacio de trabajo moderno"
       },
       {
         "tag": "Negocios en crecimiento",
         "title": "Pequeñas empresas listas para digitalizarse",
-        "description": "Las pequeñas empresas listas para digitalizarse se encuentran atrapadas entre sistemas obsoletos y costosas renovaciones. Nosotros cerramos esa brecha.",
-        "imageAlt": "Propietario de pequeña empresa trabajando en transformación digital"
+        "description": "Las pequeñas empresas que quieren digitalizarse suelen quedar atrapadas entre sistemas obsoletos y soluciones costosas. Cerramos esa brecha.",
+        "imageAlt": "Dueño de una pequeña empresa trabajando en transformación digital"
       },
       {
         "tag": "Equipos de producto",
-        "title": "Emprendedores con visión de producto",
-        "description": "Los emprendedores con visión pero sin equipo técnico necesitan socios que comprendan el viaje desde la idea hasta el mercado. Ese somos nosotros.",
-        "imageAlt": "Emprendedores discutiendo visión de producto"
+        "title": "Emprendedores con una visión de producto",
+        "description": "Los emprendedores con una visión pero sin equipo técnico necesitan socios que entiendan el camino de la idea al mercado. Ese somos nosotros.",
+        "imageAlt": "Emprendedores discutiendo una visión de producto"
       },
       {
-        "tag": "Característica tres",
-        "title": "A quién servimos",
-        "description": "Agencias de marketing automatizando flujos de trabajo, diseñadores espaciales reimaginando entornos y estudiantes preparándose para TOEFL encuentran soluciones aquí.",
-        "imageAlt": "Equipo diverso trabajando juntos en proyectos"
+        "tag": "Profesionales creativos y aprendices",
+        "title": "Personas y equipos que potencian sus habilidades con IA",
+        "description": "Desde automatización de contenido hasta diseño espacial y preparación para el TOEFL, te ayudamos a mejorar con IA.",
+        "imageAlt": "Profesionales diversos usando herramientas de IA para diseño, creación de contenido y aprendizaje"
       }
     ]
   }
