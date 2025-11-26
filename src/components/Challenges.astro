@@ -15,21 +15,21 @@ const challenges = [
     id: "tab-1",
     heading: t.tabs[0].heading,
     description: t.tabs[0].description,
-    image: "http://localhost:3845/assets/689de5ae0b0193f21b7422d9279f41da24399e60.png",
+    image: "/assets/images/challenges/automating.jpg",
     imageAlt: t.tabs[0].imageAlt,
   },
   {
     id: "tab-2",
     heading: t.tabs[1].heading,
     description: t.tabs[1].description,
-    image: "http://localhost:3845/assets/689de5ae0b0193f21b7422d9279f41da24399e60.png",
+    image: "/assets/images/challenges/building.jpg",
     imageAlt: t.tabs[1].imageAlt,
   },
   {
     id: "tab-3",
     heading: t.tabs[2].heading,
     description: t.tabs[2].description,
-    image: "http://localhost:3845/assets/689de5ae0b0193f21b7422d9279f41da24399e60.png",
+    image: "/assets/images/challenges/content.jpg",
     imageAlt: t.tabs[2].imageAlt,
   },
 ];
@@ -67,10 +67,10 @@ const challenges = [
               ]}
               data-index={index}
             >
-              <h3 class="font-sora mb-3 w-full text-2xl leading-[1.3] font-semibold tracking-[-0.4px] md:mb-4 md:text-3xl lg:text-4xl">
+              <h3 class="font-sora mb-3 w-full text-2xl leading-[1.3] font-semibold tracking-[-0.4px] md:mb-4 md:text-3xl lg:text-3xl">
                 {challenge.heading}
               </h3>
-              <p class="w-full text-base leading-[1.5] md:text-lg">{challenge.description}</p>
+              <p class="md:text-md w-full text-base leading-[1.5]">{challenge.description}</p>
             </button>
           ))
         }
