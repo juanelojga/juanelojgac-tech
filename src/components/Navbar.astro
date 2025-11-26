@@ -1,6 +1,7 @@
 ---
 import { getTranslations, type Language } from "../lib/i18n";
 import MobileMenu from "./react/MobileMenu";
+import NavDropdown from "./react/NavDropdown";
 
 interface Props {
   lang?: Language;
@@ -15,6 +16,13 @@ const mobileLinks = {
   about: { label: t.navbar.links.about, href: "#about" },
   work: { label: t.navbar.links.work, href: "#work" },
 };
+
+// Work dropdown items
+const workDropdownItems = [
+  { label: t.navbar.dropdown.more, href: "#more" },
+  { label: t.navbar.dropdown.automations, href: "#automations" },
+  { label: t.navbar.dropdown.marketing, href: "#marketing" },
+];
 
 const consultButton = {
   label: t.navbar.button.consult,
@@ -54,6 +62,13 @@ const consultButton = {
             {t.navbar.links.about}
           </span>
         </a>
+        <!-- Work Dropdown (Desktop) -->
+        <NavDropdown
+          client:load
+          label={t.navbar.links.work}
+          items={workDropdownItems}
+          isMobile={false}
+        />
       </div>
     </div>
 
@@ -87,6 +102,11 @@ const consultButton = {
     </div>
 
     <!-- Mobile: Hamburger Menu -->
-    <MobileMenu client:load links={mobileLinks} consultButton={consultButton} />
+    <MobileMenu
+      client:load
+      links={mobileLinks}
+      workDropdownItems={workDropdownItems}
+      consultButton={consultButton}
+    />
   </div>
 </nav>
