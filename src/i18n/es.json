@@ -72,5 +72,53 @@
         "imageAlt": "Interfaz de creación de contenido con IA"
       }
     ]
+  },
+  "services": {
+    "sectionLabel": "Servicios",
+    "heading": "Qué construimos",
+    "description": "Plataformas modernas y rápidas diseñadas para crecer con velocidad",
+    "services": [
+      {
+        "tagline": "Prioridad",
+        "title": "Desarrollo web que avanza",
+        "description": "Plataformas personalizadas, e-commerce, dashboards y aplicaciones web",
+        "buttonPrimary": "Consultar",
+        "buttonSecondary": "Explorar",
+        "image": "/assets/images/services/web-development.jpg",
+        "imageAlt": "Equipo colaborando en proyecto de desarrollo web"
+      },
+      {
+        "tagline": "Automatización",
+        "title": "Automatización de flujos de trabajo",
+        "description": "Elimina tareas manuales y recupera tu tiempo",
+        "button": "Explorar",
+        "image": "/assets/images/services/workflow-automation.jpg",
+        "imageAlt": "Visualización de flujo de trabajo automatizado"
+      },
+      {
+        "tagline": "Contenido",
+        "title": "Estudio de marketing",
+        "description": "Creación de contenido impulsado por IA que resuena con audiencias",
+        "button": "Explorar",
+        "image": "/assets/images/services/marketing-studio.jpg",
+        "imageAlt": "Creación de contenido y flujo de trabajo de marketing"
+      },
+      {
+        "tagline": "Diseño",
+        "title": "Consultoría espacial",
+        "description": "Reimagina tus entornos físicos o digitales",
+        "button": "Explorar",
+        "image": "/assets/images/services/spatial-consultancy.jpg",
+        "imageAlt": "Diseño espacial y consulta de arquitectura"
+      },
+      {
+        "tagline": "Aprendizaje",
+        "title": "Asistente TOEFL",
+        "description": "Herramientas inteligentes de preparación para el éxito en el dominio del inglés",
+        "button": "Explorar",
+        "image": "/assets/images/services/toefl-assistant.jpg",
+        "imageAlt": "Estudiante usando herramientas de preparación TOEFL"
+      }
+    ]
   }
 }

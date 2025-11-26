@@ -72,5 +72,53 @@
         "imageAlt": "AI-powered content creation interface"
       }
     ]
+  },
+  "services": {
+    "sectionLabel": "Services",
+    "heading": "What we build",
+    "description": "Fast, modern platforms built for growth and speed",
+    "services": [
+      {
+        "tagline": "Priority",
+        "title": "Web development that moves",
+        "description": "Custom platforms, e-commerce, dashboards, and web apps",
+        "buttonPrimary": "Consult",
+        "buttonSecondary": "Explore",
+        "image": "/assets/images/services/web-development.jpg",
+        "imageAlt": "Team collaborating on web development project"
+      },
+      {
+        "tagline": "Automation",
+        "title": "Workflow automation",
+        "description": "Eliminate manual tasks and reclaim your time",
+        "button": "Explore",
+        "image": "/assets/images/services/workflow-automation.jpg",
+        "imageAlt": "Automated workflow visualization"
+      },
+      {
+        "tagline": "Content",
+        "title": "Marketing studio",
+        "description": "AI-driven content creation that resonates with audiences",
+        "button": "Explore",
+        "image": "/assets/images/services/marketing-studio.jpg",
+        "imageAlt": "Content creation and marketing workflow"
+      },
+      {
+        "tagline": "Design",
+        "title": "Spatial consultancy",
+        "description": "Reimagine your physical or digital environments",
+        "button": "Explore",
+        "image": "/assets/images/services/spatial-consultancy.jpg",
+        "imageAlt": "Spatial design and architecture consultation"
+      },
+      {
+        "tagline": "Learning",
+        "title": "TOEFL assistant",
+        "description": "Intelligent prep tools for English proficiency success",
+        "button": "Explore",
+        "image": "/assets/images/services/toefl-assistant.jpg",
+        "imageAlt": "Student using TOEFL preparation tools"
+      }
+    ]
   }
 }
