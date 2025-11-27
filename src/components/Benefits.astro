@@ -1,4 +1,8 @@
 ---
+import BenefitCard from "./benefits/BenefitCard.astro";
+import BenefitHeroCard from "./benefits/BenefitHeroCard.astro";
+import SectionHeader from "./benefits/SectionHeader.astro";
+
 interface Props {
   lang: "en" | "es";
 }
@@ -8,451 +12,58 @@ const { lang } = Astro.props;
 // Import translations
 const translations = await import(`../i18n/${lang}.json`);
 const t = translations.default.benefits;
+
+// Benefits configuration
+const benefitCards = [
+  { hero: true, index: 0 }, // Speed Card
+  { hero: false, index: 1 }, // Needs Card
+  { hero: false, index: 2 }, // Quality Card
+  { hero: true, index: 3 }, // Design Card
+  { hero: true, index: 4 }, // Standard Card
+  { hero: false, index: 5 }, // People Card
+];
+
+// Organize benefits into columns based on the layout pattern
+const columns = [
+  [benefitCards[0], benefitCards[1]], // Column 1
+  [benefitCards[2], benefitCards[3]], // Column 2
+  [benefitCards[4], benefitCards[5]], // Column 3
+];
 ---
 
 <section id="benefits" class="bg-[#e6ebef] px-[5%] py-16 md:py-24 lg:py-28">
   <div class="container mx-auto max-w-[1280px]">
-    <!-- Section Header -->
-    <div class="mb-12 flex flex-col items-center gap-4 text-center md:mb-16 lg:mb-20">
-      <p class="font-semibold text-[#06020a]">
-        {t.tagline}
-      </p>
-      <div class="flex max-w-3xl flex-col">
-        <h2
-          class="font-['Sora'] text-5xl leading-[1.2] font-semibold tracking-[-0.6px] text-[#06020a] md:text-6xl"
-        >
-          {t.heading}
-        </h2>
-      </div>
-    </div>
+    <SectionHeader tagline={t.tagline} heading={t.heading} />
 
-    <!-- Benefits Grid -->
     <div class="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-3">
-      <!-- Column 1 -->
-      <div class="flex flex-col gap-6 md:gap-8">
-        <!-- Speed Card (Hero) -->
-        <div
-          class="relative flex h-auto flex-col justify-center overflow-hidden rounded-lg p-6 md:p-8 lg:min-h-[512px]"
-        >
-          <!-- Background with overlay -->
-          <div class="absolute inset-0">
-            <img
-              src={t.benefits[0].image}
-              alt={t.benefits[0].imageAlt}
-              class="h-full w-full object-cover"
-            />
-            <div class="absolute inset-0 bg-black/40"></div>
+      {
+        columns.map((column) => (
+          <div class="flex flex-col gap-6 md:gap-8">
+            {column.map((card) => {
+              const benefit = t.benefits[card.index];
+              return card.hero ? (
+                <BenefitHeroCard
+                  title={benefit.title}
+                  description={benefit.description}
+                  buttonText={benefit.button}
+                  image={benefit.image}
+                  imageAlt={benefit.imageAlt}
+                  tagline={benefit.tagline}
+                />
+              ) : (
+                <BenefitCard
+                  title={benefit.title}
+                  description={benefit.description}
+                  buttonText={benefit.button}
+                  image={benefit.image}
+                  imageAlt={benefit.imageAlt}
+                  tagline={benefit.tagline}
+                />
+              );
+            })}
           </div>
-
-          <!-- Content -->
-          <div class="relative z-10 flex flex-col gap-6">
-            <div class="flex flex-col gap-2">
-              {
-                t.benefits[0].tagline && (
-                  <p class="font-semibold text-white">{t.benefits[0].tagline}</p>
-                )
-              }
-              <div class="flex flex-col gap-4">
-                <h3
-                  class="font-['Sora'] text-3xl leading-[1.3] font-semibold tracking-[-0.4px] text-white md:text-4xl"
-                >
-                  {t.benefits[0].title}
-                </h3>
-                <p class="text-lg leading-[1.5] text-white">
-                  {t.benefits[0].description}
-                </p>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <button
-                class="flex items-center gap-2 text-white transition-opacity hover:opacity-80"
-              >
-                <span class="text-lg font-medium">{t.benefits[0].button}</span>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.5 7L14.5 12L9.5 17"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Needs Card (Icon) -->
-        <div class="relative flex flex-col overflow-hidden rounded-lg p-6 md:p-8">
-          <!-- Background with overlay -->
-          <div class="absolute inset-0">
-            <img
-              src={t.benefits[1].image}
-              alt={t.benefits[1].imageAlt}
-              class="h-full w-full object-cover"
-            />
-            <div class="absolute inset-0 bg-black/40"></div>
-          </div>
-
-          <!-- Content -->
-          <div class="relative z-10 flex flex-1 flex-col justify-between gap-6">
-            <div class="flex flex-col gap-4">
-              <!-- Icon placeholder -->
-              <div
-                class="flex h-12 w-12 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm"
-              >
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 28 28"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14 4L4 9L14 14L24 9L14 4Z"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                  <path
-                    d="M4 19L14 24L24 19"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                  <path
-                    d="M4 14L14 19L24 14"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </div>
-
-              <div class="flex flex-col gap-4">
-                <h3
-                  class="font-['Sora'] text-3xl leading-[1.3] font-semibold tracking-[-0.4px] text-white md:text-4xl"
-                >
-                  {t.benefits[1].title}
-                </h3>
-                <p class="text-lg leading-[1.5] text-white">
-                  {t.benefits[1].description}
-                </p>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <button
-                class="flex items-center gap-2 text-white transition-opacity hover:opacity-80"
-              >
-                <span class="text-lg font-medium">{t.benefits[1].button}</span>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.5 7L14.5 12L9.5 17"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Column 2 -->
-      <div class="flex flex-col gap-6 md:gap-8">
-        <!-- Quality Card (Icon) -->
-        <div class="relative flex flex-col overflow-hidden rounded-lg p-6 md:p-8">
-          <!-- Background with overlay -->
-          <div class="absolute inset-0">
-            <img
-              src={t.benefits[2].image}
-              alt={t.benefits[2].imageAlt}
-              class="h-full w-full object-cover"
-            />
-            <div class="absolute inset-0 bg-black/40"></div>
-          </div>
-
-          <!-- Content -->
-          <div class="relative z-10 flex flex-1 flex-col justify-between gap-6">
-            <div class="flex flex-col gap-4">
-              <!-- Icon placeholder -->
-              <div
-                class="flex h-12 w-12 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm"
-              >
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 28 28"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14 4L4 9L14 14L24 9L14 4Z"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                  <path
-                    d="M4 19L14 24L24 19"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                  <path
-                    d="M4 14L14 19L24 14"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </div>
-
-              <div class="flex flex-col gap-4">
-                <h3
-                  class="font-['Sora'] text-3xl leading-[1.3] font-semibold tracking-[-0.4px] text-white md:text-4xl"
-                >
-                  {t.benefits[2].title}
-                </h3>
-                <p class="text-lg leading-[1.5] text-white">
-                  {t.benefits[2].description}
-                </p>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <button
-                class="flex items-center gap-2 text-white transition-opacity hover:opacity-80"
-              >
-                <span class="text-lg font-medium">{t.benefits[2].button}</span>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.5 7L14.5 12L9.5 17"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Design Card (Hero) -->
-        <div
-          class="relative flex h-auto flex-col justify-center overflow-hidden rounded-lg p-6 md:p-8 lg:min-h-[512px]"
-        >
-          <!-- Background with overlay -->
-          <div class="absolute inset-0">
-            <img
-              src={t.benefits[3].image}
-              alt={t.benefits[3].imageAlt}
-              class="h-full w-full object-cover"
-            />
-            <div class="absolute inset-0 bg-black/40"></div>
-          </div>
-
-          <!-- Content -->
-          <div class="relative z-10 flex flex-col gap-6">
-            <div class="flex flex-col gap-2">
-              {
-                t.benefits[3].tagline && (
-                  <p class="font-semibold text-white">{t.benefits[3].tagline}</p>
-                )
-              }
-              <div class="flex flex-col gap-4">
-                <h3
-                  class="font-['Sora'] text-3xl leading-[1.3] font-semibold tracking-[-0.4px] text-white md:text-4xl"
-                >
-                  {t.benefits[3].title}
-                </h3>
-                <p class="text-lg leading-[1.5] text-white">
-                  {t.benefits[3].description}
-                </p>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <button
-                class="flex items-center gap-2 text-white transition-opacity hover:opacity-80"
-              >
-                <span class="text-lg font-medium">{t.benefits[3].button}</span>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.5 7L14.5 12L9.5 17"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Column 3 -->
-      <div class="flex flex-col gap-6 md:gap-8">
-        <!-- Standard Card (Hero) -->
-        <div
-          class="relative flex h-auto flex-col justify-center overflow-hidden rounded-lg p-6 md:p-8 lg:min-h-[512px]"
-        >
-          <!-- Background with overlay -->
-          <div class="absolute inset-0">
-            <img
-              src={t.benefits[4].image}
-              alt={t.benefits[4].imageAlt}
-              class="h-full w-full object-cover"
-            />
-            <div class="absolute inset-0 bg-black/40"></div>
-          </div>
-
-          <!-- Content -->
-          <div class="relative z-10 flex flex-col gap-6">
-            <div class="flex flex-col gap-2">
-              {
-                t.benefits[4].tagline && (
-                  <p class="font-semibold text-white">{t.benefits[4].tagline}</p>
-                )
-              }
-              <div class="flex flex-col gap-4">
-                <h3
-                  class="font-['Sora'] text-3xl leading-[1.3] font-semibold tracking-[-0.4px] text-white md:text-4xl"
-                >
-                  {t.benefits[4].title}
-                </h3>
-                <p class="text-lg leading-[1.5] text-white">
-                  {t.benefits[4].description}
-                </p>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <button
-                class="flex items-center gap-2 text-white transition-opacity hover:opacity-80"
-              >
-                <span class="text-lg font-medium">{t.benefits[4].button}</span>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.5 7L14.5 12L9.5 17"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- People Card (Icon) -->
-        <div class="relative flex flex-col overflow-hidden rounded-lg p-6 md:p-8">
-          <!-- Background with overlay -->
-          <div class="absolute inset-0">
-            <img
-              src={t.benefits[5].image}
-              alt={t.benefits[5].imageAlt}
-              class="h-full w-full object-cover"
-            />
-            <div class="absolute inset-0 bg-black/40"></div>
-          </div>
-
-          <!-- Content -->
-          <div class="relative z-10 flex flex-1 flex-col justify-between gap-6">
-            <div class="flex flex-col gap-4">
-              <!-- Icon placeholder -->
-              <div
-                class="flex h-12 w-12 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm"
-              >
-                <svg
-                  width="28"
-                  height="28"
-                  viewBox="0 0 28 28"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M14 4L4 9L14 14L24 9L14 4Z"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                  <path
-                    d="M4 19L14 24L24 19"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                  <path
-                    d="M4 14L14 19L24 14"
-                    stroke="white"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </div>
-
-              <div class="flex flex-col gap-4">
-                <h3
-                  class="font-['Sora'] text-3xl leading-[1.3] font-semibold tracking-[-0.4px] text-white md:text-4xl"
-                >
-                  {t.benefits[5].title}
-                </h3>
-                <p class="text-lg leading-[1.5] text-white">
-                  {t.benefits[5].description}
-                </p>
-              </div>
-            </div>
-            <div class="flex items-center gap-2">
-              <button
-                class="flex items-center gap-2 text-white transition-opacity hover:opacity-80"
-              >
-                <span class="text-lg font-medium">{t.benefits[5].button}</span>
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M9.5 7L14.5 12L9.5 17"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+        ))
+      }
     </div>
   </div>
 </section>
