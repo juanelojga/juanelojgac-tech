@@ -1,0 +1,69 @@
+---
+import BenefitCard from "./benefits/BenefitCard.astro";
+import BenefitHeroCard from "./benefits/BenefitHeroCard.astro";
+import SectionHeader from "./benefits/SectionHeader.astro";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+// Import translations
+const translations = await import(`../i18n/${lang}.json`);
+const t = translations.default.benefits;
+
+// Benefits configuration
+const benefitCards = [
+  { hero: true, index: 0 }, // Speed Card
+  { hero: false, index: 1 }, // Needs Card
+  { hero: false, index: 2 }, // Quality Card
+  { hero: true, index: 3 }, // Design Card
+  { hero: true, index: 4 }, // Standard Card
+  { hero: false, index: 5 }, // People Card
+];
+
+// Organize benefits into columns based on the layout pattern
+const columns = [
+  [benefitCards[0], benefitCards[1]], // Column 1
+  [benefitCards[2], benefitCards[3]], // Column 2
+  [benefitCards[4], benefitCards[5]], // Column 3
+];
+---
+
+<section id="benefits" class="bg-[#e6ebef] px-[5%] py-16 md:py-24 lg:py-28">
+  <div class="container mx-auto max-w-[1280px]">
+    <SectionHeader tagline={t.tagline} heading={t.heading} />
+
+    <div class="grid grid-cols-1 gap-6 md:gap-8 lg:grid-cols-3">
+      {
+        columns.map((column) => (
+          <div class="flex flex-col gap-6 md:gap-8">
+            {column.map((card) => {
+              const benefit = t.benefits[card.index];
+              return card.hero ? (
+                <BenefitHeroCard
+                  title={benefit.title}
+                  description={benefit.description}
+                  buttonText={benefit.button}
+                  image={benefit.image}
+                  imageAlt={benefit.imageAlt}
+                  tagline={benefit.tagline}
+                />
+              ) : (
+                <BenefitCard
+                  title={benefit.title}
+                  description={benefit.description}
+                  buttonText={benefit.button}
+                  image={benefit.image}
+                  imageAlt={benefit.imageAlt}
+                  tagline={benefit.tagline}
+                />
+              );
+            })}
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

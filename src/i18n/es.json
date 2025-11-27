@@ -120,5 +120,56 @@
         "imageAlt": "Estudiante usando herramientas de preparación TOEFL"
       }
     ]
+  },
+  "benefits": {
+    "tagline": "Ventaja",
+    "heading": "Operamos desde Ecuador y Estados Unidos",
+    "benefits": [
+      {
+        "tagline": "Velocidad",
+        "title": "Nos movemos rápido sin sacrificar calidad",
+        "description": "Por qué elegir JuaneloJGAC Tech",
+        "button": "Conocer",
+        "image": "/assets/images/benefits/speed.jpg",
+        "imageAlt": "Detalle de arquitectura moderna mostrando velocidad y precisión"
+      },
+      {
+        "title": "Cada solución empieza con tus necesidades reales",
+        "description": "Equipos transfronterizos, entendimiento local",
+        "button": "Explorar",
+        "image": "/assets/images/benefits/needs.jpg",
+        "imageAlt": "Espacio de trabajo de colaboración transfronteriza"
+      },
+      {
+        "title": "Sin atajos, sin deuda técnica",
+        "description": "Construido para startups y PYMEs",
+        "button": "Conocer",
+        "image": "/assets/images/benefits/quality.jpg",
+        "imageAlt": "Artesanía de calidad en desarrollo de software"
+      },
+      {
+        "tagline": "Diseño",
+        "title": "Conocemos ambos mercados profundamente",
+        "description": "Experiencia en Ecuador y EE.UU. combinada",
+        "button": "Explorar",
+        "image": "/assets/images/benefits/design.jpg",
+        "imageAlt": "Experiencia en diseño para múltiples mercados"
+      },
+      {
+        "tagline": "Estándar",
+        "title": "Entrega sin compromisos ni demoras",
+        "description": "Del inicio al lanzamiento en semanas",
+        "button": "Conocer",
+        "image": "/assets/images/benefits/standard.jpg",
+        "imageAlt": "Entrega y ejecución rápida"
+      },
+      {
+        "title": "Diseño que pone a las personas primero",
+        "description": "Cada línea de código sirve a tus usuarios",
+        "button": "Explorar",
+        "image": "/assets/images/benefits/people.jpg",
+        "imageAlt": "Enfoque de diseño centrado en el usuario"
+      }
+    ]
   }
 }
