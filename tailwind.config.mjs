@@ -7,6 +7,10 @@ export default {
         tarawera: "#0a3f66",
         "scheme-text-primary": "#06020a",
         "scheme-border": "rgba(6, 2, 10, 0.15)",
+        neutral: {
+          darkest: "#06020a",
+          darker: "#1a1a1a",
+        },
       },
       fontFamily: {
         inter: ["Inter", "sans-serif"],

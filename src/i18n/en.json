@@ -171,5 +171,44 @@
         "imageAlt": "User-centered design approach"
       }
     ]
+  },
+  "cta": {
+    "heading": "Ready to transform your business",
+    "description": "Let's talk about what's possible. A free consultation with our team takes thirty minutes and changes everything.",
+    "primaryButton": "Consult",
+    "secondaryButton": "Contact",
+    "backgroundImageAlt": "Team collaboration workspace"
+  },
+  "footer": {
+    "newsletter": {
+      "description": "Get insights on tech trends, product launches, and transformation strategies delivered to your inbox.",
+      "location": "Ecuador and United States based"
+    },
+    "contact": {
+      "label": "Contact",
+      "email": "juan.almeida@juanelojgac-tech.com"
+    },
+    "links": {
+      "services": {
+        "webDevelopment": "Web development",
+        "automations": "Automations",
+        "marketingStudio": "Marketing studio",
+        "spatialDesign": "Spatial design",
+        "toeflPrep": "TOEFL prep"
+      },
+      "company": {
+        "about": "About us",
+        "work": "Our work",
+        "howWeWork": "How we work",
+        "contact": "Contact",
+        "resources": "Resources"
+      }
+    },
+    "social": {
+      "instagram": "Follow us on Instagram",
+      "twitter": "Follow us on X",
+      "linkedin": "Follow us on LinkedIn"
+    },
+    "copyright": "© 2025 JuaneloJGAC Tech. All rights reserved."
   }
 }
