@@ -178,5 +178,37 @@
     "primaryButton": "Consultar",
     "secondaryButton": "Contactar",
     "backgroundImageAlt": "Espacio de trabajo de colaboración en equipo"
+  },
+  "footer": {
+    "newsletter": {
+      "description": "Recibe información sobre tendencias tecnológicas, lanzamientos de productos y estrategias de transformación en tu bandeja de entrada.",
+      "location": "Con sede en Ecuador y Estados Unidos"
+    },
+    "contact": {
+      "label": "Contacto",
+      "email": "juan.almeida@juanelojgac-tech.com"
+    },
+    "links": {
+      "services": {
+        "webDevelopment": "Desarrollo web",
+        "automations": "Automatizaciones",
+        "marketingStudio": "Estudio de marketing",
+        "spatialDesign": "Diseño espacial",
+        "toeflPrep": "Preparación TOEFL"
+      },
+      "company": {
+        "about": "Acerca de nosotros",
+        "work": "Nuestro trabajo",
+        "howWeWork": "Cómo trabajamos",
+        "contact": "Contacto",
+        "resources": "Recursos"
+      }
+    },
+    "social": {
+      "instagram": "Síguenos en Instagram",
+      "twitter": "Síguenos en X",
+      "linkedin": "Síguenos en LinkedIn"
+    },
+    "copyright": "© 2025 JuaneloJGAC Tech. Todos los derechos reservados."
   }
 }
