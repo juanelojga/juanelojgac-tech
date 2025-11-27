@@ -5,11 +5,14 @@ interface Props {
   secondaryCtaLink?: string;
 }
 
-const { lang, primaryCtaLink = "#contact", secondaryCtaLink = "#contact" } = Astro.props;
+const { lang } = Astro.props;
 
 // Import translations
 const translations = await import(`../i18n/${lang}.json`);
 const t = translations.default.cta;
+
+const primaryCtaLink = "https://calendly.com/juanelojga/30min";
+const secondaryCtaLink = "mailto:juan.almeida@juanelojgac-tech.com";
 ---
 
 <section
@@ -45,6 +48,8 @@ const t = translations.default.cta;
           href={primaryCtaLink}
           class="text-neutral-darkest inline-flex items-center justify-center gap-2 rounded-full border border-white bg-white px-3 py-1.5 text-sm font-medium transition-colors hover:bg-white/90 md:px-6 md:py-3 md:text-lg"
           aria-label={t.primaryButton}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           {t.primaryButton}
         </a>
