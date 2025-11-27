@@ -120,5 +120,56 @@
         "imageAlt": "Student using TOEFL preparation tools"
       }
     ]
+  },
+  "benefits": {
+    "tagline": "Advantage",
+    "heading": "We operate from Ecuador and the United States",
+    "benefits": [
+      {
+        "tagline": "Speed",
+        "title": "We move fast without sacrificing quality",
+        "description": "Why choose JuaneloJGAC Tech",
+        "button": "Learn",
+        "image": "/assets/images/benefits/speed.png",
+        "imageAlt": "Modern architecture detail showing speed and precision"
+      },
+      {
+        "title": "Every solution starts with your actual needs",
+        "description": "Cross-border teams, local understanding",
+        "button": "Explore",
+        "image": "/assets/images/benefits/needs.png",
+        "imageAlt": "Cross-border collaboration workspace"
+      },
+      {
+        "title": "No shortcuts, no technical debt",
+        "description": "Built for startups and SMEs",
+        "button": "Learn",
+        "image": "/assets/images/benefits/quality.png",
+        "imageAlt": "Quality craftsmanship in software development"
+      },
+      {
+        "tagline": "Design",
+        "title": "We know both markets deeply",
+        "description": "Ecuador and US expertise combined",
+        "button": "Explore",
+        "image": "/assets/images/benefits/design.png",
+        "imageAlt": "Cross-market design expertise"
+      },
+      {
+        "tagline": "Standard",
+        "title": "Delivery without compromise or delays",
+        "description": "From kickoff to launch in weeks",
+        "button": "Learn",
+        "image": "/assets/images/benefits/standard.png",
+        "imageAlt": "Fast delivery and execution"
+      },
+      {
+        "title": "Design that puts people first",
+        "description": "Every line of code serves your users",
+        "button": "Explore",
+        "image": "/assets/images/benefits/people.png",
+        "imageAlt": "User-centered design approach"
+      }
+    ]
   }
 }
