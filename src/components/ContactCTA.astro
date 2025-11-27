@@ -1,0 +1,63 @@
+---
+interface Props {
+  lang: "en" | "es";
+  primaryCtaLink?: string;
+  secondaryCtaLink?: string;
+}
+
+const { lang, primaryCtaLink = "#contact", secondaryCtaLink = "#contact" } = Astro.props;
+
+// Import translations
+const translations = await import(`../i18n/${lang}.json`);
+const t = translations.default.cta;
+---
+
+<section
+  class="relative w-full px-5 py-16 md:px-16 md:py-24 lg:py-28"
+  aria-labelledby="cta-heading"
+>
+  <!-- Background Image with Overlay -->
+  <div class="absolute inset-0 -z-10 opacity-80" aria-hidden="true">
+    <img src="/assets/images/cta/cta.jpg" alt="" class="size-full object-cover" />
+    <div class="absolute inset-0 bg-black/40"></div>
+  </div>
+
+  <!-- Content Container -->
+  <div class="mx-auto flex w-full max-w-[1280px] flex-col items-center">
+    <div class="flex w-full max-w-[768px] flex-col items-center gap-6 md:gap-8">
+      <!-- Text Content -->
+      <div class="flex w-full flex-col items-center gap-5 text-center text-white md:gap-6">
+        <h2
+          id="cta-heading"
+          class="font-sora w-full text-4xl leading-[1.2] font-semibold tracking-[-0.48px] md:text-5xl md:tracking-[-0.5px] lg:text-6xl lg:tracking-[-0.6px]"
+        >
+          {t.heading}
+        </h2>
+        <p class="w-full text-base leading-[1.5] font-normal md:text-lg lg:text-xl">
+          {t.description}
+        </p>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center justify-center gap-4">
+        <!-- Primary Button -->
+        <a
+          href={primaryCtaLink}
+          class="text-neutral-darkest inline-flex items-center justify-center gap-2 rounded-full border border-white bg-white px-3 py-1.5 text-sm font-medium transition-colors hover:bg-white/90 md:px-6 md:py-3 md:text-lg"
+          aria-label={t.primaryButton}
+        >
+          {t.primaryButton}
+        </a>
+
+        <!-- Secondary Button -->
+        <a
+          href={secondaryCtaLink}
+          class="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-transparent px-3 py-1.5 text-sm font-medium text-white transition-colors hover:border-white/40 hover:bg-white/5 md:px-6 md:py-3 md:text-lg"
+          aria-label={t.secondaryButton}
+        >
+          {t.secondaryButton}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -171,5 +171,12 @@
         "imageAlt": "Enfoque de diseño centrado en el usuario"
       }
     ]
+  },
+  "cta": {
+    "heading": "Listo para transformar tu negocio",
+    "description": "Hablemos de lo que es posible. Una consulta gratuita con nuestro equipo toma treinta minutos y lo cambia todo.",
+    "primaryButton": "Consultar",
+    "secondaryButton": "Contactar",
+    "backgroundImageAlt": "Espacio de trabajo de colaboración en equipo"
   }
 }

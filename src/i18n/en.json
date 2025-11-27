@@ -171,5 +171,12 @@
         "imageAlt": "User-centered design approach"
       }
     ]
+  },
+  "cta": {
+    "heading": "Ready to transform your business",
+    "description": "Let's talk about what's possible. A free consultation with our team takes thirty minutes and changes everything.",
+    "primaryButton": "Consult",
+    "secondaryButton": "Contact",
+    "backgroundImageAlt": "Team collaboration workspace"
   }
 }
