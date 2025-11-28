@@ -20,7 +20,7 @@ export default function WhoWeHelpContent({ features, tagline }: WhoWeHelpContent
               <div
                 className={clsx(
                   "relative border-t border-[rgba(6,2,10,0.15)] bg-[#ced8e0] pb-8 md:pb-14 lg:sticky lg:pb-0",
-                  { "top-20 lg:mb-48": index === 0 },
+                  { "top-0 lg:top-20 lg:mb-48": index === 0 },
                   { "lg:top-40 lg:-mt-32 lg:mb-32": index === 1 },
                   { "lg:top-60 lg:-mt-16 lg:mb-16": index === 2 },
                   { "lg:top-0": index === 3 }
