@@ -93,7 +93,7 @@ export default function MobileMenuEnhanced({
 
       {/* Enhanced Mobile Menu Overlay */}
       <div
-        className={`fixed inset-0 top-[60px] z-40 bg-black transition-all duration-500 ${
+        className={`fixed inset-0 top-[56px] z-40 bg-black transition-all duration-500 ${
           isOpen ? "opacity-40 backdrop-blur-sm" : "pointer-events-none opacity-0"
         }`}
         onClick={toggleMenu}
@@ -101,7 +101,7 @@ export default function MobileMenuEnhanced({
 
       {/* Enhanced Mobile Menu with Glass Effect */}
       <div
-        className={`fixed top-[60px] right-0 z-50 h-[calc(100vh-60px)] w-[85vw] max-w-sm transform transition-all duration-700 ease-out ${
+        className={`fixed top-[56px] right-0 z-50 h-[calc(100vh-56px)] w-[85vw] max-w-sm transform transition-all duration-700 ease-out ${
           isOpen ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
         }`}
         style={{
