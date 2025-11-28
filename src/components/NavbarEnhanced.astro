@@ -1,0 +1,154 @@
+---
+import { getTranslations, type Language } from "../lib/i18n";
+import MobileMenuEnhanced from "./react/MobileMenuEnhanced";
+import NavDropdown from "./react/NavDropdown";
+import ScrollNavbar from "./react/ScrollNavbar";
+
+interface Props {
+  lang?: Language;
+}
+
+const { lang = "en" } = Astro.props;
+const t = getTranslations(lang);
+
+// Prepare links for mobile menu
+const mobileLinks = {
+  services: { label: t.navbar.links.services, href: "#services" },
+  about: { label: t.navbar.links.about, href: "#about" },
+  work: { label: t.navbar.links.work, href: "#work" },
+};
+
+// Work dropdown items
+const workDropdownItems = [
+  { label: t.navbar.dropdown.more, href: "#more" },
+  { label: t.navbar.dropdown.automations, href: "#automations" },
+  { label: t.navbar.dropdown.marketing, href: "#marketing" },
+];
+
+const consultButton = {
+  label: t.navbar.button.consult,
+  href: "#consult",
+};
+---
+
+<ScrollNavbar client:load>
+  <nav class="flex flex-col items-center justify-center px-6 py-2 lg:px-16 lg:py-1">
+    <div class="flex w-full shrink-0 items-center justify-between gap-8 lg:justify-center">
+      <!-- Mobile: Logo (Left) - Compact Size -->
+      <a href="/" class="group flex items-center lg:hidden">
+        <div
+          class="relative size-10 overflow-clip transition-transform duration-500 ease-out group-hover:scale-105"
+        >
+          <img
+            src="/assets/logo/logo.png"
+            alt={t.navbar.logo.alt}
+            class="size-full object-contain"
+          />
+        </div>
+        <div
+          class="font-poppins -ml-1.5 flex flex-col items-center text-sm text-[11px] leading-none font-extrabold text-black transition-all duration-500 group-hover:tracking-wide"
+        >
+          <p>JUANELOJGAC</p>
+          <p>Tech</p>
+        </div>
+      </a>
+
+      <!-- Desktop: Left Column - Navigation Links -->
+      <div class="hidden min-h-px min-w-px shrink-0 grow basis-0 flex-col items-start lg:flex">
+        <div class="flex shrink-0 items-center gap-10">
+          <a
+            href="#services"
+            class="group relative flex shrink-0 items-center justify-center gap-1"
+          >
+            <span
+              class="font-inter text-scheme-text-primary group-hover:text-tarawera text-[15px] leading-[1.5] font-medium text-nowrap whitespace-pre transition-all duration-300"
+            >
+              {t.navbar.links.services}
+            </span>
+            <span
+              class="bg-tarawera absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <a href="#about" class="group relative flex shrink-0 items-center justify-center gap-1">
+            <span
+              class="font-inter text-scheme-text-primary group-hover:text-tarawera text-[15px] leading-[1.5] font-medium text-nowrap whitespace-pre transition-all duration-300"
+            >
+              {t.navbar.links.about}
+            </span>
+            <span
+              class="bg-tarawera absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"
+            ></span>
+          </a>
+          <!-- Work Dropdown (Desktop) -->
+          <NavDropdown
+            client:load
+            label={t.navbar.links.work}
+            items={workDropdownItems}
+            isMobile={false}
+          />
+        </div>
+      </div>
+
+      <!-- Desktop: Center - Logo HERO -->
+      <a href="/" class="group hidden items-center lg:flex">
+        <div
+          class="relative size-16 overflow-clip transition-all duration-500 ease-out group-hover:scale-105"
+        >
+          <img
+            src="/assets/logo/logo.png"
+            alt={t.navbar.logo.alt}
+            class="size-full object-contain drop-shadow-md"
+          />
+        </div>
+        <div
+          class="font-poppins group-hover:text-tarawera -ml-2.5 flex flex-col items-center text-sm leading-none font-extrabold text-black transition-all duration-500 group-hover:tracking-wide"
+          style="letter-spacing: -0.01em;"
+        >
+          <p>JUANELOJGAC</p>
+          <p>Tech</p>
+        </div>
+      </a>
+
+      <!-- Desktop: Right Column - CTA Button -->
+      <div
+        class="hidden min-h-px min-w-px shrink-0 grow basis-0 flex-col items-end justify-center lg:flex"
+      >
+        <a
+          href="#consult"
+          class="group border-tarawera bg-tarawera relative flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full border-2 border-solid px-5 py-1.5 transition-all duration-500 hover:scale-105 hover:bg-transparent hover:shadow-lg"
+        >
+          <span
+            class="font-inter group-hover:text-tarawera relative z-10 text-[14px] leading-[1.5] font-semibold text-nowrap whitespace-pre text-white transition-colors duration-500"
+          >
+            {t.navbar.button.consult}
+          </span>
+          <div
+            class="absolute inset-0 origin-left scale-x-0 transform bg-white transition-transform duration-500 group-hover:scale-x-100"
+          >
+          </div>
+        </a>
+      </div>
+
+      <!-- Mobile: Hamburger Menu -->
+      <MobileMenuEnhanced
+        client:load
+        links={mobileLinks}
+        workDropdownItems={workDropdownItems}
+        consultButton={consultButton}
+      />
+    </div>
+  </nav>
+</ScrollNavbar>
+
+<style>
+  /* Smooth scroll behavior for anchor links */
+  :global(html) {
+    scroll-behavior: smooth;
+  }
+
+  /* Enhance logo image rendering */
+  img {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+</style>
