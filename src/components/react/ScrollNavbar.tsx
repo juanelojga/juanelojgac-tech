@@ -42,15 +42,9 @@ export default function ScrollNavbar({ children }: ScrollNavbarProps) {
   }, [lastScrollY]);
 
   return (
-    <div
-      className="fixed top-0 right-0 left-0 z-50 transition-all duration-500 ease-out md:top-4 md:right-4 md:left-4"
-      style={{
-        backdropFilter: isScrolled ? "blur(12px) saturate(180%)" : "none",
-        WebkitBackdropFilter: isScrolled ? "blur(12px) saturate(180%)" : "none",
-      }}
-    >
+    <div className="fixed top-0 right-0 left-0 z-50 transition-all duration-500 ease-out lg:top-4 lg:right-4 lg:left-4">
       <div
-        className="relative transition-all duration-500 md:rounded-full"
+        className="relative transition-all duration-500 lg:rounded-full"
         style={{
           background: isScrolled ? "rgba(255, 255, 255, 0.9)" : "rgba(255, 255, 255, 1)",
         }}
