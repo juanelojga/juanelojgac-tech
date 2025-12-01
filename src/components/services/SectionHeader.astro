@@ -1,0 +1,25 @@
+---
+interface Props {
+  heading: string;
+  description: string;
+  sectionLabel: string;
+}
+
+const { heading, description, sectionLabel } = Astro.props;
+---
+
+<div class="mb-12 flex flex-col items-center gap-4 text-center md:mb-16 lg:mb-20">
+  <p class="font-semibold text-white">
+    {sectionLabel}
+  </p>
+  <div class="flex max-w-3xl flex-col gap-6">
+    <h2
+      class="font-['Sora'] text-5xl leading-[1.2] font-semibold tracking-[-0.6px] text-white md:text-6xl"
+    >
+      {heading}
+    </h2>
+    <p class="text-xl leading-[1.5] text-white">
+      {description}
+    </p>
+  </div>
+</div>
