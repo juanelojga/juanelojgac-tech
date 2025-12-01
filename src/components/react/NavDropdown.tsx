@@ -61,7 +61,7 @@ export default function NavDropdown({ label, items, isMobile = false }: NavDropd
     >
       <button
         onClick={toggleDropdown}
-        className="flex items-center justify-center gap-1"
+        className="flex cursor-pointer items-center justify-center gap-1"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
