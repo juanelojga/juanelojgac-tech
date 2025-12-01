@@ -2,16 +2,15 @@
   "navbar": {
     "links": {
       "services": "Servicios",
-      "about": "Acerca de",
+      "benefits": "Beneficios",
       "work": "Trabajo"
     },
     "dropdown": {
-      "more": "Más",
-      "automations": "Automatizaciones",
-      "marketing": "Marketing"
+      "challenges": "Desafios",
+      "who-we-help": "A quién ayudamos"
     },
     "button": {
-      "consult": "Consultar"
+      "contact": "Contactanos"
     },
     "logo": {
       "alt": "Logo de JUANELOJGAC Tech"

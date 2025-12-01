@@ -14,20 +14,24 @@ const t = getTranslations(lang);
 // Prepare links for mobile menu
 const mobileLinks = {
   services: { label: t.navbar.links.services, href: "#services" },
-  about: { label: t.navbar.links.about, href: "#about" },
+  about: { label: t.navbar.links.benefits, href: "#benefits" },
   work: { label: t.navbar.links.work, href: "#work" },
 };
 
+const desktopLinks = [
+  { label: t.navbar.links.services, href: "#services" },
+  { label: t.navbar.links.benefits, href: "#benefits" },
+];
+
 // Work dropdown items
 const workDropdownItems = [
-  { label: t.navbar.dropdown.more, href: "#more" },
-  { label: t.navbar.dropdown.automations, href: "#automations" },
-  { label: t.navbar.dropdown.marketing, href: "#marketing" },
+  { label: t.navbar.dropdown.challenges, href: "#challenges" },
+  { label: t.navbar.dropdown["who-we-help"], href: "#who-we-help" },
 ];
 
 const consultButton = {
-  label: t.navbar.button.consult,
-  href: "#consult",
+  label: t.navbar.button.contact,
+  href: "#contact-cta",
 };
 ---
 
@@ -56,29 +60,17 @@ const consultButton = {
       <!-- Desktop: Left Column - Navigation Links -->
       <div class="hidden min-h-px min-w-px shrink-0 grow basis-0 flex-col items-start lg:flex">
         <div class="flex shrink-0 items-center gap-10">
-          <a
-            href="#services"
-            class="group relative flex shrink-0 items-center justify-center gap-1"
-          >
-            <span
-              class="font-inter text-scheme-text-primary group-hover:text-tarawera text-[15px] leading-[1.5] font-medium text-nowrap whitespace-pre transition-all duration-300"
-            >
-              {t.navbar.links.services}
-            </span>
-            <span
-              class="bg-tarawera absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"
-            ></span>
-          </a>
-          <a href="#about" class="group relative flex shrink-0 items-center justify-center gap-1">
-            <span
-              class="font-inter text-scheme-text-primary group-hover:text-tarawera text-[15px] leading-[1.5] font-medium text-nowrap whitespace-pre transition-all duration-300"
-            >
-              {t.navbar.links.about}
-            </span>
-            <span
-              class="bg-tarawera absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"
-            ></span>
-          </a>
+          {
+            desktopLinks.map(({ label, href }) => (
+              <a href={href} class="group relative flex shrink-0 items-center justify-center gap-1">
+                <span class="font-inter text-scheme-text-primary group-hover:text-tarawera text-[15px] leading-[1.5] font-medium text-nowrap whitespace-pre transition-all duration-300">
+                  {label}
+                </span>
+                <span class="bg-tarawera absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))
+          }
+
           <!-- Work Dropdown (Desktop) -->
           <NavDropdown
             client:load
@@ -114,13 +106,13 @@ const consultButton = {
         class="hidden min-h-px min-w-px shrink-0 grow basis-0 flex-col items-end justify-center lg:flex"
       >
         <a
-          href="#consult"
+          href="#contact-cta"
           class="group border-tarawera bg-tarawera relative flex shrink-0 items-center justify-center gap-2 overflow-hidden rounded-full border-2 border-solid px-5 py-1.5 transition-all duration-500 hover:scale-105 hover:bg-transparent hover:shadow-lg"
         >
           <span
             class="font-inter group-hover:text-tarawera relative z-10 text-[14px] leading-[1.5] font-semibold text-nowrap whitespace-pre text-white transition-colors duration-500"
           >
-            {t.navbar.button.consult}
+            {t.navbar.button.contact}
           </span>
           <div
             class="absolute inset-0 origin-left scale-x-0 transform bg-white transition-transform duration-500 group-hover:scale-x-100"
