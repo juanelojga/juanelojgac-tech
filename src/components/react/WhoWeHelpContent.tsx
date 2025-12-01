@@ -10,7 +10,12 @@ interface WhoWeHelpContentProps {
 
 export default function WhoWeHelpContent({ features, tagline }: WhoWeHelpContentProps) {
   return (
-    <section className="bg-[#ced8e0]" aria-label="Who we help">
+    <section
+      className="bg-[#ced8e0]"
+      aria-label="Who we help"
+      id="who-we-help"
+      data-testid="who-we-help"
+    >
       <div className="sticky top-0">
         {features.map((feature, index) => {
           const featureId = `feature-${feature.number.toLowerCase()}`;
