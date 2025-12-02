@@ -3,4 +3,5 @@ export interface Service {
   description: string;
   image: string;
   imageAlt: string;
+  tagline: string;
 }
