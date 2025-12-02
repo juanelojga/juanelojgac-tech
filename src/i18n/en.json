@@ -188,20 +188,14 @@
       "email": "juan.almeida@juanelojgac-tech.com"
     },
     "links": {
-      "services": {
-        "webDevelopment": "Web development",
-        "automations": "Automations",
-        "marketingStudio": "Marketing studio",
-        "spatialDesign": "Spatial design",
-        "toeflPrep": "TOEFL prep"
-      },
       "company": {
         "about": "About us",
-        "work": "Our work",
-        "howWeWork": "How we work",
+        "challenges": "Challenges",
+        "whoWeHelp": "Who we help",
         "contact": "Contact",
-        "resources": "Resources"
-      }
+        "services": "Services"
+      },
+      "label": "Company"
     },
     "social": {
       "instagram": "Follow us on Instagram",
