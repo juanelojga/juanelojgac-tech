@@ -8,15 +8,20 @@ import NavbarEnhanced from "../components/NavbarEnhanced.astro";
 import Services from "../components/Services.astro";
 import WhoWeHelp from "../components/WhoWeHelp.astro";
 import Layout from "../layouts/Layout.astro";
+import { detectLanguageFromHeader } from "../lib/i18n";
+
+// Detect language from Accept-Language header
+const acceptLanguageHeader = Astro.request.headers.get("accept-language");
+const lang = detectLanguageFromHeader(acceptLanguageHeader);
 ---
 
-<Layout>
-  <NavbarEnhanced lang="en" />
-  <Header lang="en" />
-  <WhoWeHelp lang="en" />
-  <Challenges lang="en" />
-  <Services lang="en" />
-  <Benefits lang="en" />
-  <ContactCTA lang="en" />
-  <Footer lang="en" />
+<Layout lang={lang}>
+  <NavbarEnhanced lang={lang} />
+  <Header lang={lang} />
+  <WhoWeHelp lang={lang} />
+  <Challenges lang={lang} />
+  <Services lang={lang} />
+  <Benefits lang={lang} />
+  <ContactCTA lang={lang} />
+  <Footer lang={lang} />
 </Layout>

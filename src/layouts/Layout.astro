@@ -1,11 +1,28 @@
+---
+import { detectLanguageFromHeader, type Language } from "../lib/i18n";
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: Language;
+}
+
+const { title = "JuaneloJGAC Tech", description, lang: propLang } = Astro.props;
+
+// Detect language from Accept-Language header if not explicitly provided
+const acceptLanguageHeader = Astro.request.headers.get("accept-language");
+const langCode: Language = propLang || detectLanguageFromHeader(acceptLanguageHeader);
+---
+
 <!doctype html>
-<html lang="en">
+<html lang={langCode}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
+    {description && <meta name="description" content={description} />}
+    <title>{title}</title>
 
     <!-- Google Fonts - Sora and Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,7 +33,7 @@
     />
   </head>
   <body>
-    <slot />
+    <slot lang={langCode} />
   </body>
 </html>
 
