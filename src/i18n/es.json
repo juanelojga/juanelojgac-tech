@@ -2,23 +2,22 @@
   "navbar": {
     "links": {
       "services": "Servicios",
-      "about": "Acerca de",
+      "benefits": "Beneficios",
       "work": "Trabajo"
     },
     "dropdown": {
-      "more": "Más",
-      "automations": "Automatizaciones",
-      "marketing": "Marketing"
+      "challenges": "Desafíos",
+      "who-we-help": "A quién ayudamos"
     },
     "button": {
-      "consult": "Consultar"
+      "contact": "Contáctanos"
     },
     "logo": {
       "alt": "Logo de JUANELOJGAC Tech"
     }
   },
   "header": {
-    "headline": "Empoderando startups y PYMEs con soluciones prácticas e inteligentes",
+    "headline": "Empoderando a startups y PYMEs con soluciones prácticas e inteligentes",
     "description": "Construimos lo que importa. Desde plataformas web que se mueven rápido hasta automatizaciones que ahorran tiempo, entregamos claridad y velocidad sin ruido.",
     "primaryButton": "Reservar consulta",
     "secondaryButton": "Saber más"
@@ -29,8 +28,8 @@
     "exploreButton": "Explorar",
     "features": [
       {
-        "tag": "Constructores Lean",
-        "title": "A quién ayudamos",
+        "tag": "Equipos ágiles",
+        "title": "Startups SaaS que se mueven rápido",
         "description": "Las startups SaaS que se mueven rápido necesitan plataformas que escalen sin frenar su ritmo. Construimos exactamente lo que necesitas, nada más.",
         "imageAlt": "Equipo colaborando en un espacio de trabajo moderno"
       },
@@ -182,27 +181,21 @@
   "footer": {
     "newsletter": {
       "description": "Recibe información sobre tendencias tecnológicas, lanzamientos de productos y estrategias de transformación en tu bandeja de entrada.",
-      "location": "Con sede en Ecuador y Estados Unidos"
+      "location": "Con presencia en Ecuador y Estados Unidos"
     },
     "contact": {
       "label": "Contacto",
       "email": "juan.almeida@juanelojgac-tech.com"
     },
     "links": {
-      "services": {
-        "webDevelopment": "Desarrollo web",
-        "automations": "Automatizaciones",
-        "marketingStudio": "Estudio de marketing",
-        "spatialDesign": "Diseño espacial",
-        "toeflPrep": "Preparación TOEFL"
-      },
       "company": {
         "about": "Acerca de nosotros",
-        "work": "Nuestro trabajo",
-        "howWeWork": "Cómo trabajamos",
+        "challenges": "Nuestro trabajo",
+        "whoWeHelp": "A quién ayudamos",
         "contact": "Contacto",
-        "resources": "Recursos"
-      }
+        "services": "Servicios"
+      },
+      "label": "Empresa"
     },
     "social": {
       "instagram": "Síguenos en Instagram",

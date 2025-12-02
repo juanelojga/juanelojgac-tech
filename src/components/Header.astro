@@ -1,32 +1,27 @@
 ---
 interface Props {
   lang: "en" | "es";
-  primaryCtaLink?: string;
-  secondaryCtaLink?: string;
-  videoSrc?: string;
-  placeholderImage?: string;
 }
 
-const {
-  lang,
-  primaryCtaLink = "#contact",
-  secondaryCtaLink = "#about",
-  videoSrc = "/hero-video.mp4",
-} = Astro.props;
+const { lang } = Astro.props;
 
 // Import translations
 const translations = await import(`../i18n/${lang}.json`);
 const t = translations.default.header;
+
+const primaryCtaLink = "#contact-cta";
+const secondaryCtaLink = "#who-we-help";
+const videoSrc = "/hero-video.mp4";
 ---
 
 <!-- Mobile Header (hidden on lg and above) -->
-<section
+<header
   class="bg-neutral-darker flex w-full flex-col gap-20 lg:hidden"
   aria-labelledby="header-headline-mobile"
 >
   <div class="flex w-full max-w-[1280px] flex-col">
     <!-- Content Column -->
-    <div class="flex w-full flex-col gap-6 px-5 py-16">
+    <div class="flex w-full flex-col gap-6 px-5 pt-18 pb-16">
       <div class="flex w-full max-w-[560px] flex-col gap-6">
         <!-- Text Content -->
         <div class="flex w-full flex-col gap-5 text-white">
@@ -42,7 +37,7 @@ const t = translations.default.header;
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex items-start gap-4">
+        <nav class="flex items-start gap-4" aria-label="Primary actions">
           <!-- Primary Button -->
           <a
             href={primaryCtaLink}
@@ -60,33 +55,35 @@ const t = translations.default.header;
           >
             {t.secondaryButton}
           </a>
-        </div>
+        </nav>
       </div>
     </div>
 
     <!-- Placeholder Image -->
     <div class="relative h-[375px] w-full opacity-50">
-      <video autoplay loop muted playsinline class="size-full object-cover" aria-hidden="true">
-        <source src={videoSrc} type="video/mp4" />
-      </video>
+      <figure aria-hidden="true" class="absolute inset-0 size-full object-cover">
+        <video autoplay loop muted playsinline class="size-full object-cover" aria-hidden="true">
+          <source src={videoSrc} type="video/mp4" />
+        </video>
+      </figure>
     </div>
   </div>
-</section>
+</header>
 
 <!-- Desktop Header (hidden on mobile, shown on lg and above) -->
-<section
+<header
   class="relative hidden w-full overflow-hidden lg:flex"
-  style="height: calc(100vh - 84px);"
+  style="height: 100vh;"
   aria-labelledby="header-headline-desktop"
 >
   <!-- Left Column: Video with Opacity -->
   <div class="relative flex h-full w-1/2 items-center justify-center opacity-50">
     <!-- Video Background -->
-    <div class="absolute inset-0">
+    <figure aria-hidden="true" class="absolute inset-0">
       <video autoplay loop muted playsinline class="size-full object-cover" aria-hidden="true">
         <source src={videoSrc} type="video/mp4" />
       </video>
-    </div>
+    </figure>
   </div>
 
   <!-- Right Column: Content -->
@@ -103,7 +100,7 @@ const t = translations.default.header;
       </div>
 
       <!-- Action Buttons -->
-      <div class="flex items-start gap-4">
+      <nav class="flex items-start gap-4" aria-label="Primary actions">
         <!-- Primary Button -->
         <a
           href={primaryCtaLink}
@@ -121,7 +118,7 @@ const t = translations.default.header;
         >
           {t.secondaryButton}
         </a>
-      </div>
+      </nav>
     </div>
   </div>
-</section>
+</header>

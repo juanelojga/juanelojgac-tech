@@ -1,4 +1,9 @@
 ---
+import PriorityServiceCard from "./services/PriorityServiceCard.astro";
+import SectionHeader from "./services/SectionHeader.astro";
+import ServiceCard from "./services/ServiceCard.astro";
+import type { Service } from "./services/types.ts";
+
 interface Props {
   lang: "en" | "es";
 }
@@ -8,170 +13,24 @@ const { lang } = Astro.props;
 // Import translations
 const translations = await import(`../i18n/${lang}.json`);
 const t = translations.default.services;
+
+// Split out the services: one priority card, and the rest as standard cards
+const [priorityService, ...regularServices]: [Service, ...Service[]] = t.services;
 ---
 
 <section id="services" class="bg-[#504d53] px-[5%] py-16 md:py-24 lg:py-28">
   <div class="container mx-auto max-w-[1280px]">
     <!-- Section Header -->
-    <div class="mb-12 flex flex-col items-center gap-4 text-center md:mb-16 lg:mb-20">
-      <p class="font-semibold text-white">
-        {t.sectionLabel}
-      </p>
-      <div class="flex max-w-3xl flex-col gap-6">
-        <h2
-          class="font-['Sora'] text-5xl leading-[1.2] font-semibold tracking-[-0.6px] text-white md:text-6xl"
-        >
-          {t.heading}
-        </h2>
-        <p class="text-xl leading-[1.5] text-white">
-          {t.description}
-        </p>
-      </div>
-    </div>
+    <SectionHeader heading={t.heading} description={t.description} sectionLabel={t.sectionLabel} />
 
     <!-- Services Grid -->
     <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
-      <!-- Priority Service Card (Large) -->
-      <div class="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-[#504d53]">
-        <div class="flex flex-1 flex-col justify-center gap-8 p-6 md:p-8 lg:p-12">
-          <div class="flex flex-col gap-2">
-            <p class="font-semibold text-white">
-              {t.services[0].tagline}
-            </p>
-            <div class="flex flex-col gap-6">
-              <h3
-                class="font-['Sora'] text-4xl leading-[1.2] font-semibold tracking-[-0.48px] text-white md:text-5xl"
-              >
-                {t.services[0].title}
-              </h3>
-              <p class="text-lg leading-[1.5] text-white">
-                {t.services[0].description}
-              </p>
-            </div>
-          </div>
-        </div>
-        <div class="h-[360px] w-full">
-          <img
-            src={t.services[0].image}
-            alt={t.services[0].imageAlt}
-            class="h-full w-full object-cover"
-          />
-        </div>
-      </div>
+      <!-- Priority Service Card -->
+      <PriorityServiceCard service={priorityService} />
 
-      <!-- Right Column: 2x2 Grid -->
+      <!-- Regular Services -->
       <div class="grid grid-cols-1 gap-8 sm:grid-cols-2">
-        <!-- Automation Card -->
-        <div class="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-[#504d53]">
-          <div class="flex flex-col justify-center gap-6 p-6">
-            <div class="flex flex-col gap-2">
-              <p class="font-semibold text-white">
-                {t.services[1].tagline}
-              </p>
-              <div class="flex flex-col gap-2">
-                <h3
-                  class="font-['Sora'] text-2xl leading-[1.3] font-semibold tracking-[-0.32px] text-white md:text-3xl"
-                >
-                  {t.services[1].title}
-                </h3>
-                <p class="text-lg leading-[1.5] text-white">
-                  {t.services[1].description}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="h-[171px] w-full">
-            <img
-              src={t.services[1].image}
-              alt={t.services[1].imageAlt}
-              class="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-
-        <!-- Marketing Studio Card -->
-        <div class="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-[#504d53]">
-          <div class="flex flex-col justify-center gap-6 p-6">
-            <div class="flex flex-col gap-2">
-              <p class="font-semibold text-white">
-                {t.services[2].tagline}
-              </p>
-              <div class="flex flex-col gap-2">
-                <h3
-                  class="font-['Sora'] text-2xl leading-[1.3] font-semibold tracking-[-0.32px] text-white md:text-3xl"
-                >
-                  {t.services[2].title}
-                </h3>
-                <p class="text-lg leading-[1.5] text-white">
-                  {t.services[2].description}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="h-[171px] w-full">
-            <img
-              src={t.services[2].image}
-              alt={t.services[2].imageAlt}
-              class="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-
-        <!-- Spatial Consultancy Card -->
-        <div class="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-[#504d53]">
-          <div class="flex flex-col justify-center gap-6 p-6">
-            <div class="flex flex-col gap-2">
-              <p class="font-semibold text-white">
-                {t.services[3].tagline}
-              </p>
-              <div class="flex flex-col gap-2">
-                <h3
-                  class="font-['Sora'] text-2xl leading-[1.3] font-semibold tracking-[-0.32px] text-white md:text-3xl"
-                >
-                  {t.services[3].title}
-                </h3>
-                <p class="text-lg leading-[1.5] text-white">
-                  {t.services[3].description}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="h-[171px] w-full">
-            <img
-              src={t.services[3].image}
-              alt={t.services[3].imageAlt}
-              class="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-
-        <!-- TOEFL Assistant Card -->
-        <div class="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-[#504d53]">
-          <div class="flex flex-col justify-center gap-6 p-6">
-            <div class="flex flex-col gap-2">
-              <p class="font-semibold text-white">
-                {t.services[4].tagline}
-              </p>
-              <div class="flex flex-col gap-2">
-                <h3
-                  class="font-['Sora'] text-2xl leading-[1.3] font-semibold tracking-[-0.32px] text-white md:text-3xl"
-                >
-                  {t.services[4].title}
-                </h3>
-                <p class="text-lg leading-[1.5] text-white">
-                  {t.services[4].description}
-                </p>
-              </div>
-            </div>
-          </div>
-          <div class="h-[171px] w-full">
-            <img
-              src={t.services[4].image}
-              alt={t.services[4].imageAlt}
-              class="h-full w-full object-cover"
-            />
-          </div>
-        </div>
+        {regularServices.map((service: Service) => <ServiceCard service={service} />)}
       </div>
     </div>
   </div>

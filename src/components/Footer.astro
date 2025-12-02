@@ -8,6 +8,14 @@ const { lang } = Astro.props;
 // Import translations
 const translations = await import(`../i18n/${lang}.json`);
 const t = translations.default.footer;
+
+const companyLinks = [
+  { label: t.links.company.about, href: "/" },
+  { label: t.links.company.challenges, href: "#challenges" },
+  { label: t.links.company.whoWeHelp, href: "#who-we-help" },
+  { label: t.links.company.contact, href: "#contact-cta" },
+  { label: t.links.company.services, href: "#services" },
+];
 ---
 
 <footer class="bg-[#06020a] px-[5%] py-12 md:py-20 lg:py-20">
@@ -91,7 +99,7 @@ const t = translations.default.footer;
 
           <!-- LinkedIn -->
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/company/juanelojgac-tech-llc/"
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t.social.linkedin}
@@ -113,95 +121,21 @@ const t = translations.default.footer;
 
       <!-- Right Column: Links (Two Columns on Desktop) -->
       <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-8 md:max-w-[400px] md:gap-8">
-        <!-- Services Links -->
-        <nav aria-label={lang === "en" ? "Services" : "Servicios"}>
-          <ul class="flex flex-col">
-            <li class="px-0 py-2">
-              <a
-                href="/services/web-development"
-                class="text-base leading-[1.5] font-semibold text-white transition-opacity hover:opacity-70"
-              >
-                {t.links.services.webDevelopment}
-              </a>
-            </li>
-            <li class="px-0 py-2">
-              <a
-                href="/services/automations"
-                class="text-base leading-[1.5] font-semibold text-white transition-opacity hover:opacity-70"
-              >
-                {t.links.services.automations}
-              </a>
-            </li>
-            <li class="px-0 py-2">
-              <a
-                href="/services/marketing-studio"
-                class="text-base leading-[1.5] font-semibold text-white transition-opacity hover:opacity-70"
-              >
-                {t.links.services.marketingStudio}
-              </a>
-            </li>
-            <li class="px-0 py-2">
-              <a
-                href="/services/spatial-design"
-                class="text-base leading-[1.5] font-semibold text-white transition-opacity hover:opacity-70"
-              >
-                {t.links.services.spatialDesign}
-              </a>
-            </li>
-            <li class="px-0 py-2">
-              <a
-                href="/services/toefl-prep"
-                class="text-base leading-[1.5] font-semibold text-white transition-opacity hover:opacity-70"
-              >
-                {t.links.services.toeflPrep}
-              </a>
-            </li>
-          </ul>
-        </nav>
-
         <!-- Company Links -->
-        <nav aria-label={lang === "en" ? "Company" : "Empresa"}>
+        <nav aria-label={t.links.label}>
           <ul class="flex flex-col">
-            <li class="px-0 py-2">
-              <a
-                href="/about"
-                class="text-base leading-[1.5] font-semibold text-white transition-opacity hover:opacity-70"
-              >
-                {t.links.company.about}
-              </a>
-            </li>
-            <li class="px-0 py-2">
-              <a
-                href="/work"
-                class="text-base leading-[1.5] font-semibold text-white transition-opacity hover:opacity-70"
-              >
-                {t.links.company.work}
-              </a>
-            </li>
-            <li class="px-0 py-2">
-              <a
-                href="/how-we-work"
-                class="text-base leading-[1.5] font-semibold text-white transition-opacity hover:opacity-70"
-              >
-                {t.links.company.howWeWork}
-              </a>
-            </li>
-            <li class="px-0 py-2">
-              <a
-                href="/contact"
-                class="text-base leading-[1.5] font-semibold text-white transition-opacity hover:opacity-70"
-              >
-                {t.links.company.contact}
-              </a>
-            </li>
-            <li class="px-0 py-2">
-              <a
-                href="/resources"
-                class="text-base leading-[1.5] font-semibold text-white transition-opacity hover:opacity-70"
-              >
-                {t.links.company.resources}
-              </a>
-            </li>
+            {
+              companyLinks.map(({ label, href }) => (
+                <li class="px-0 py-2">
+                  <a
+                    href={href}
+                    class="text-base leading-[1.5] font-semibold text-white transition-opacity hover:opacity-70"
+                  >
+                    {label}
+                  </a>
+                </li>
+              ))
+            }
           </ul>
         </nav>
       </div>

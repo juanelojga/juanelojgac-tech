@@ -1,0 +1,32 @@
+---
+import type { Service } from "./types.ts";
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+---
+
+<div class="flex flex-col overflow-hidden rounded-lg border border-white/20 bg-[#504d53]">
+  <div class="flex flex-1 flex-col justify-center gap-8 p-6 md:p-8 lg:p-12">
+    <div class="flex flex-col gap-2">
+      <p class="font-semibold text-white">
+        {service.tagline}
+      </p>
+      <div class="flex flex-col gap-6">
+        <h3
+          class="font-['Sora'] text-4xl leading-[1.2] font-semibold tracking-[-0.48px] text-white md:text-5xl"
+        >
+          {service.title}
+        </h3>
+        <p class="text-lg leading-[1.5] text-white">
+          {service.description}
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="h-[360px] w-full">
+    <img src={service.image} alt={service.imageAlt} class="h-full w-full object-cover" />
+  </div>
+</div>

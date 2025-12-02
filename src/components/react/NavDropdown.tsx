@@ -61,7 +61,7 @@ export default function NavDropdown({ label, items, isMobile = false }: NavDropd
     >
       <button
         onClick={toggleDropdown}
-        className="flex items-center justify-center gap-1"
+        className="flex cursor-pointer items-center justify-center gap-1"
         aria-expanded={isOpen}
         aria-haspopup="true"
       >
@@ -80,7 +80,7 @@ export default function NavDropdown({ label, items, isMobile = false }: NavDropd
       {isOpen && (
         <div
           className={`rounded-small border-scheme-border absolute left-0 z-50 border border-solid bg-white shadow-lg ${
-            isMobile ? "top-full mt-2" : "top-8"
+            isMobile ? "top-full mt-2" : "top-full"
           }`}
         >
           <div className="font-inter text-regular text-scheme-text-primary box-border flex flex-col gap-4 overflow-clip rounded-[inherit] p-6 leading-[1.5] font-normal">
