@@ -1,8 +1,9 @@
 ---
 /**
- * SEO Component - Bilingual Meta Tags & Structured Data
+ * Advanced SEO Component - AI-Focused Semantic SEO with Structured Data
  *
- * Manages all SEO and social media metadata for pages.
+ * Manages all SEO and social media metadata with enhanced Schema.org structured data.
+ * Implements keyword-rich meta descriptions and bilingual AI-focused service schemas.
  * Supports English and Spanish with full Open Graph, Twitter Card, and Schema.org integration.
  */
 
@@ -11,24 +12,53 @@ import esTranslations from "../i18n/es.json";
 
 interface Props {
   title: string;
-  description: string;
+  description?: string;
   url: string;
   lang: "en" | "es";
   image?: string;
 }
 
-const { title, description, url, lang, image } = Astro.props;
+const { title, description: customDescription, url, lang, image } = Astro.props;
 
 // Get translations based on language
 const translations = lang === "en" ? enTranslations : esTranslations;
 const seo = translations.seo;
 
+/**
+ * Generate keyword-rich meta description
+ * Combines page title with AI-focused keywords for optimal SEO
+ */
+function generateKeywordRichDescription(
+  pageTitle: string,
+  customDesc: string | undefined,
+  keywords: string[],
+  defaultDesc: string
+): string {
+  if (customDesc) {
+    return customDesc;
+  }
+
+  // Create a keyword-rich description by combining title with top keywords
+  const keywordPhrase = keywords.slice(0, 2).join(", ");
+  return `${pageTitle} - ${keywordPhrase} solutions for startups and SMEs. ${defaultDesc}`;
+}
+
+// Generate optimized description
+const description = generateKeywordRichDescription(
+  title,
+  customDescription,
+  seo.keywordsList,
+  seo.defaultDescription
+);
+
 // Construct full URLs
 const baseUrl = "https://juanelojgac-tech.com";
 const canonicalUrl = `${baseUrl}${url}`;
 const alternateUrl = lang === "en" ? `${baseUrl}/es${url}` : `${baseUrl}${url.replace("/es", "")}`;
-const defaultImage = `${baseUrl}/og-image.jpg`;
-const ogImage = image ? `${baseUrl}${image}` : defaultImage;
+
+// OG Image with AI-inspired default
+const ogImage = image ? `${baseUrl}${image}` : `${baseUrl}${seo.defaultImage.url}`;
+const ogImageAlt = image ? title : seo.defaultImage.alt;
 
 // Alternate language
 const alternateLang = lang === "en" ? "es" : "en";
@@ -38,18 +68,29 @@ const currentLocale = lang === "en" ? "en_US" : "es_ES";
 // Page title with site name
 const fullTitle = `${title} | ${seo.siteName}`;
 
-// Structured data for Organization
+/**
+ * Enhanced Organization Schema with AI focus
+ */
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${baseUrl}/#organization`,
   name: seo.organization.name,
   url: baseUrl,
+  logo: {
+    "@type": "ImageObject",
+    url: `${baseUrl}/favicon.ico`,
+    width: "64",
+    height: "64",
+  },
   description: seo.organization.description,
-  logo: `${baseUrl}/favicon.ico`,
-  sameAs: [
-    "https://twitter.com/juanelojgac",
-    "https://linkedin.com/company/juanelojgac-tech",
-    "https://instagram.com/juanelojgac",
+  slogan: seo.organization.slogan,
+  foundingDate: "2024",
+  founders: [
+    {
+      "@type": "Person",
+      name: "Juan Almeida",
+    },
   ],
   contactPoint: {
     "@type": "ContactPoint",
@@ -65,6 +106,94 @@ const organizationSchema = {
     {
       "@type": "Country",
       name: "Ecuador",
+    },
+    {
+      "@type": "Place",
+      name: "Latin America",
+    },
+  ],
+  sameAs: [
+    "https://twitter.com/juanelojgac",
+    "https://linkedin.com/company/juanelojgac-tech",
+    "https://instagram.com/juanelojgac",
+  ],
+  knowsAbout: [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Automation",
+    "Digital Transformation",
+    "Web Development",
+    "AI Marketing",
+  ],
+};
+
+/**
+ * Service Schemas - AI-focused service offerings
+ * Includes detailed structured data for each core service
+ */
+const serviceSchemas = seo.services.map((service, index) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${baseUrl}/#service-${index + 1}`,
+  serviceType: service.serviceType,
+  name: service.name,
+  description: service.description,
+  provider: {
+    "@id": `${baseUrl}/#organization`,
+  },
+  areaServed: service.areaServed.map((area) => ({
+    "@type": area === "United States" || area === "Estados Unidos" ? "Country" : "Place",
+    name: area,
+  })),
+  offers: {
+    "@type": "Offer",
+    priceRange: service.priceRange,
+    priceCurrency: "USD",
+    availability: "https://schema.org/InStock",
+  },
+  category: "AI Solutions",
+  audience: {
+    "@type": "Audience",
+    audienceType: "Startups and SMEs",
+  },
+}));
+
+/**
+ * WebSite Schema for site-level information
+ */
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${baseUrl}/#website`,
+  url: baseUrl,
+  name: seo.siteName,
+  description: seo.organization.description,
+  publisher: {
+    "@id": `${baseUrl}/#organization`,
+  },
+  inLanguage: [lang === "en" ? "en-US" : "es-ES"],
+  potentialAction: {
+    "@type": "SearchAction",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: `${baseUrl}/search?q={search_term_string}`,
+    },
+    "query-input": "required name=search_term_string",
+  },
+};
+
+/**
+ * Breadcrumb Schema for navigation
+ */
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: baseUrl,
     },
   ],
 };
@@ -96,7 +225,7 @@ const organizationSchema = {
 <meta property="og:image" content={ogImage} />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-<meta property="og:image:alt" content={title} />
+<meta property="og:image:alt" content={ogImageAlt} />
 <meta property="og:locale" content={currentLocale} />
 <meta property="og:locale:alternate" content={alternateLocale} />
 <meta property="og:site_name" content={seo.siteName} />
@@ -107,14 +236,37 @@ const organizationSchema = {
 <meta name="twitter:title" content={fullTitle} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
-<meta name="twitter:image:alt" content={title} />
+<meta name="twitter:image:alt" content={ogImageAlt} />
 <meta name="twitter:site" content={seo.twitterHandle} />
 <meta name="twitter:creator" content={seo.twitterHandle} />
 
 <!-- Additional SEO Tags -->
-<meta name="robots" content="index, follow" />
+<meta
+  name="robots"
+  content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+/>
 <meta name="googlebot" content="index, follow" />
 <meta name="language" content={lang === "en" ? "English" : "Spanish"} />
 
-<!-- Structured Data (JSON-LD) -->
+<!-- AI-Related Meta Tags -->
+<meta name="topic" content="Artificial Intelligence, Digital Transformation, Automation" />
+<meta name="Classification" content="Business Services, Technology, AI Solutions" />
+<meta name="coverage" content="Worldwide" />
+<meta name="distribution" content="Global" />
+<meta name="rating" content="General" />
+
+<!-- Structured Data (JSON-LD) - Organization -->
 <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+
+<!-- Structured Data (JSON-LD) - WebSite -->
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+
+<!-- Structured Data (JSON-LD) - Services -->
+{
+  serviceSchemas.map((schema) => (
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))
+}
+
+<!-- Structured Data (JSON-LD) - Breadcrumb -->
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
