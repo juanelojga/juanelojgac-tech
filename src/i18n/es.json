@@ -202,6 +202,53 @@
       "twitter": "Síguenos en X",
       "linkedin": "Síguenos en LinkedIn"
     },
-    "copyright": "© 2025 JuaneloJGAC Tech. Todos los derechos reservados."
+    "copyright": "JuaneloJGAC Tech. Todos los derechos reservados."
+  },
+  "seo": {
+    "siteName": "JuaneloJGAC Tech",
+    "defaultTitle": "JuaneloJGAC Tech - Soluciones con IA para Startups y PYMEs",
+    "defaultDescription": "Empoderando a startups y PYMEs con soluciones de IA prácticas e inteligentes—entregadas con claridad, velocidad y diseño centrado en el ser humano.",
+    "keywords": "Soluciones IA, Transformación IA, Desarrollo de Software, Automatización, Marketing, Desarrollo Web, Servicios Bilingües",
+    "keywordsList": ["Transformación IA", "Automatización", "Transformación Digital"],
+    "twitterHandle": "@juanelojgac",
+    "organization": {
+      "name": "JuaneloJGAC Tech",
+      "description": "Empoderando a startups y PYMEs con soluciones de IA prácticas e inteligentes. Entregamos claridad, velocidad y diseño centrado en el ser humano para la transformación digital.",
+      "slogan": "Soluciones de IA prácticas entregadas con claridad, velocidad y diseño centrado en el ser humano"
+    },
+    "services": [
+      {
+        "name": "Plataforma de Automatizaciones con IA",
+        "description": "Elimina flujos de trabajo repetitivos con soluciones de automatización inteligente que ahorran tiempo y reducen errores. Automatizaciones personalizadas con IA diseñadas para startups y PYMEs.",
+        "serviceType": "Automatización IA",
+        "areaServed": ["Estados Unidos", "Latinoamérica"],
+        "priceRange": "$3,000-$10,000"
+      },
+      {
+        "name": "Estudio de Marketing con IA",
+        "description": "Creación de contenido y automatización de marketing impulsada por IA que resuena con tu audiencia. Transforma tu marketing con generación inteligente de contenido y optimización de campañas.",
+        "serviceType": "Marketing IA",
+        "areaServed": ["Estados Unidos", "Latinoamérica"],
+        "priceRange": "$3,000-$10,000"
+      },
+      {
+        "name": "Desarrollo Web Potenciado por IA",
+        "description": "Plataformas web modernas y rápidas construidas con asistencia de IA. E-commerce personalizado, dashboards y aplicaciones web diseñadas para crecer y escalar.",
+        "serviceType": "Desarrollo Web",
+        "areaServed": ["Estados Unidos", "Latinoamérica"],
+        "priceRange": "$3,000-$10,000"
+      },
+      {
+        "name": "Consultoría en IA y Transformación Digital",
+        "description": "Consultoría estratégica en IA para transformar tus procesos empresariales. Guía experta en implementación de IA, estrategia de automatización y hojas de ruta de transformación digital.",
+        "serviceType": "Consultoría IA",
+        "areaServed": ["Estados Unidos", "Latinoamérica"],
+        "priceRange": "$3,000-$10,000"
+      }
+    ],
+    "defaultImage": {
+      "url": "/og-image.jpg",
+      "alt": "JuaneloJGAC Tech - Soluciones futuristas con IA para transformación digital"
+    }
   }
 }

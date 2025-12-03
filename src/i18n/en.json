@@ -202,6 +202,53 @@
       "twitter": "Follow us on X",
       "linkedin": "Follow us on LinkedIn"
     },
-    "copyright": "© 2025 JuaneloJGAC Tech. All rights reserved."
+    "copyright": "JuaneloJGAC Tech. All rights reserved."
+  },
+  "seo": {
+    "siteName": "JuaneloJGAC Tech",
+    "defaultTitle": "JuaneloJGAC Tech - AI-Powered Solutions for Startups & SMEs",
+    "defaultDescription": "Empowering startups and SMEs with practical, intelligent AI solutions—delivered with clarity, speed, and human-centered design.",
+    "keywords": "AI Solutions, AI Transformation, Software Development, Automation, Marketing, Web Development, Bilingual Services",
+    "keywordsList": ["AI Transformation", "Automation", "Digital Transformation"],
+    "twitterHandle": "@juanelojgac",
+    "organization": {
+      "name": "JuaneloJGAC Tech",
+      "description": "Empowering startups and SMEs with practical, intelligent AI solutions. We deliver clarity, speed, and human-centered design for digital transformation.",
+      "slogan": "Practical AI solutions delivered with clarity, speed, and human-centered design"
+    },
+    "services": [
+      {
+        "name": "AI Automations Platform",
+        "description": "Eliminate repetitive workflows with intelligent automation solutions that save time and reduce errors. Custom AI-powered automations designed for startups and SMEs.",
+        "serviceType": "AI Automation",
+        "areaServed": ["United States", "Latin America"],
+        "priceRange": "$3,000-$10,000"
+      },
+      {
+        "name": "AI Marketing Studio",
+        "description": "AI-driven content creation and marketing automation that resonates with your audience. Transform your marketing with intelligent content generation and campaign optimization.",
+        "serviceType": "AI Marketing",
+        "areaServed": ["United States", "Latin America"],
+        "priceRange": "$3,000-$10,000"
+      },
+      {
+        "name": "AI-Powered Web Development",
+        "description": "Fast, modern web platforms built with AI assistance. Custom e-commerce, dashboards, and web applications designed for growth and scalability.",
+        "serviceType": "Web Development",
+        "areaServed": ["United States", "Latin America"],
+        "priceRange": "$3,000-$10,000"
+      },
+      {
+        "name": "AI Consultancy & Digital Transformation",
+        "description": "Strategic AI consulting to transform your business processes. Expert guidance on AI implementation, automation strategy, and digital transformation roadmaps.",
+        "serviceType": "AI Consulting",
+        "areaServed": ["United States", "Latin America"],
+        "priceRange": "$3,000-$10,000"
+      }
+    ],
+    "defaultImage": {
+      "url": "/og-image.jpg",
+      "alt": "JuaneloJGAC Tech - Futuristic AI-powered solutions for digital transformation"
+    }
   }
 }

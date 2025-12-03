@@ -1,11 +1,47 @@
+---
+import Seo from "../components/Seo.astro";
+import enTranslations from "../i18n/en.json";
+import esTranslations from "../i18n/es.json";
+import { detectLanguageFromHeader, type Language } from "../lib/i18n";
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: Language;
+  image?: string;
+}
+
+const { title, description, lang: propLang, image } = Astro.props;
+
+// Detect language from Accept-Language header if not explicitly provided
+const acceptLanguageHeader = Astro.request.headers.get("accept-language");
+const langCode: Language = propLang || detectLanguageFromHeader(acceptLanguageHeader);
+
+// Get default SEO values from translations
+const translations = langCode === "en" ? enTranslations : esTranslations;
+const seoDefaults = translations.seo;
+
+// Use provided values or fall back to defaults
+const pageTitle = title || seoDefaults.defaultTitle;
+const pageDescription = description || seoDefaults.defaultDescription;
+
+// Get current URL path
+const currentPath = Astro.url.pathname;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang={langCode}>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <Seo
+      title={pageTitle}
+      description={pageDescription}
+      url={currentPath}
+      lang={langCode}
+      image={image}
+    />
+
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>Astro Basics</title>
 
     <!-- Google Fonts - Sora and Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,7 +52,7 @@
     />
   </head>
   <body>
-    <slot />
+    <slot lang={langCode} />
   </body>
 </html>
 
