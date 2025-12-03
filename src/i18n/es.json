@@ -203,5 +203,16 @@
       "linkedin": "Síguenos en LinkedIn"
     },
     "copyright": "© 2025 JuaneloJGAC Tech. Todos los derechos reservados."
+  },
+  "seo": {
+    "siteName": "JuaneloJGAC Tech",
+    "defaultTitle": "JuaneloJGAC Tech - Soluciones con IA para Startups y PYMEs",
+    "defaultDescription": "Empoderando a startups y PYMEs con soluciones de IA prácticas e inteligentes—entregadas con claridad, velocidad y diseño centrado en el ser humano.",
+    "keywords": "Soluciones IA, Transformación IA, Desarrollo de Software, Automatización, Marketing, Desarrollo Web, Servicios Bilingües",
+    "twitterHandle": "@juanelojgac",
+    "organization": {
+      "name": "JuaneloJGAC Tech",
+      "description": "Empoderando a startups y PYMEs con soluciones de IA prácticas e inteligentes. Entregamos claridad, velocidad y diseño centrado en el ser humano para la transformación digital."
+    }
   }
 }

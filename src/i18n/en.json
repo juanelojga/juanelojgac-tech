@@ -203,5 +203,16 @@
       "linkedin": "Follow us on LinkedIn"
     },
     "copyright": "© 2025 JuaneloJGAC Tech. All rights reserved."
+  },
+  "seo": {
+    "siteName": "JuaneloJGAC Tech",
+    "defaultTitle": "JuaneloJGAC Tech - AI-Powered Solutions for Startups & SMEs",
+    "defaultDescription": "Empowering startups and SMEs with practical, intelligent AI solutions—delivered with clarity, speed, and human-centered design.",
+    "keywords": "AI Solutions, AI Transformation, Software Development, Automation, Marketing, Web Development, Bilingual Services",
+    "twitterHandle": "@juanelojgac",
+    "organization": {
+      "name": "JuaneloJGAC Tech",
+      "description": "Empowering startups and SMEs with practical, intelligent AI solutions. We deliver clarity, speed, and human-centered design for digital transformation."
+    }
   }
 }
