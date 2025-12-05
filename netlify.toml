@@ -1,23 +1,37 @@
 ############################################
-# GLOBAL: Disable builds by default
+# GLOBAL: Build settings
 ############################################
 
 [build]
-command = "echo 'Skipping Netlify build for non-production environments'"
-publish = "dist"
-ignore = "exit 0" # always skip unless overridden
-
-############################################
-# PRODUCTION: Actual build & deploy
-############################################
-
-[context.production]
-[context.production.build]
 command = "npm run build"
 publish = "dist"
 
 ############################################
-# HEADERS: Caching for static assets
+# PRODUCTION: Build and deploy
+############################################
+
+[context.production.environment]
+HUSKY = "0"
+NODE_VERSION = "24"
+NODE_ENV = "production"
+ASTRO_TELEMETRY_DISABLED = "1"
+
+############################################
+# SKIP DEPLOY PREVIEWS
+############################################
+
+[context.deploy-preview]
+ignore = "exit 0"
+
+############################################
+# SKIP BRANCH DEPLOYS
+############################################
+
+[context.branch-deploy]
+ignore = "exit 0"
+
+############################################
+# CACHING
 ############################################
 
 [[headers]]
@@ -35,28 +49,13 @@ for = "/*.css"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
-############################################
-# HTML: Cache lightly (avoid stale pages)
-############################################
-
 [[headers]]
 for = "/*.html"
 [headers.values]
 Cache-Control = "public, max-age=600"
 
-
 ############################################
-# ENVIRONMENT: Only for production
-############################################
-
-[context.production.environment]
-HUSKY = "0"
-NODE_VERSION = "24"
-NODE_ENV = "production"
-ASTRO_TELEMETRY_DISABLED = "1"
-
-############################################
-# DISABLE PROCESSING (performance)
+# Disable processing (performance)
 ############################################
 
 [build.processing]
