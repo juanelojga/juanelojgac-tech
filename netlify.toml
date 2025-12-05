@@ -12,6 +12,7 @@ publish = "dist"
 
 [context.production.environment]
 HUSKY = "0"
+HUSKY_SKIP_INSTALL = "1"
 NODE_VERSION = "24"
 NODE_ENV = "production"
 ASTRO_TELEMETRY_DISABLED = "1"
