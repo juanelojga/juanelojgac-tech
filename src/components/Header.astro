@@ -62,7 +62,16 @@ const videoSrc = "/hero-video.mp4";
     <!-- Placeholder Image -->
     <div class="relative h-[375px] w-full opacity-50">
       <figure aria-hidden="true" class="absolute inset-0 size-full object-cover">
-        <video autoplay loop muted playsinline class="size-full object-cover" aria-hidden="true">
+        <video
+          autoplay
+          loop
+          muted
+          playsinline
+          class="size-full object-cover"
+          aria-hidden="true"
+          preload="none"
+          poster="/video-poster.jpg"
+        >
           <source src={videoSrc} type="video/mp4" />
         </video>
       </figure>

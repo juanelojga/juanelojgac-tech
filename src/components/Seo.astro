@@ -5,6 +5,8 @@
  * Manages all SEO and social media metadata with enhanced Schema.org structured data.
  * Implements keyword-rich meta descriptions and bilingual AI-focused service schemas.
  * Supports English and Spanish with full Open Graph, Twitter Card, and Schema.org integration.
+ *
+ * Note: The `lang` attribute should be set on the <html> tag in your Layout file.
  */
 
 import enTranslations from "../i18n/en.json";
@@ -18,7 +20,7 @@ interface Props {
   image?: string;
 }
 
-const { title, description: customDescription, url, lang, image } = Astro.props;
+const { title, description: customDescription, lang, image } = Astro.props;
 
 // Get translations based on language
 const translations = lang === "en" ? enTranslations : esTranslations;
@@ -51,10 +53,13 @@ const description = generateKeywordRichDescription(
   seo.defaultDescription
 );
 
-// Construct full URLs
-const baseUrl = "https://juanelojgac-tech.com";
-const canonicalUrl = `${baseUrl}${url}`;
-const alternateUrl = lang === "en" ? `${baseUrl}/es${url}` : `${baseUrl}${url.replace("/es", "")}`;
+// Construct full URLs using Astro.site for dynamic base URL
+const baseUrl = Astro.site ? Astro.site.origin : "https://juanelojgac-tech.com";
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const alternateUrl =
+  lang === "en"
+    ? new URL(`/es${Astro.url.pathname}`, Astro.site).toString()
+    : new URL(Astro.url.pathname.replace("/es", ""), Astro.site).toString();
 
 // OG Image with AI-inspired default
 const ogImage = image ? `${baseUrl}${image}` : `${baseUrl}${seo.defaultImage.url}`;
@@ -211,8 +216,14 @@ const breadcrumbSchema = {
 <meta name="keywords" content={seo.keywords} />
 <meta name="author" content={seo.siteName} />
 
+<!-- Favicon and App Icons -->
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="manifest" href="/site.webmanifest" />
+
 <!-- Language and Canonical -->
-<html lang={lang}></html>
 <link rel="canonical" href={canonicalUrl} />
 <link rel="alternate" hreflang={alternateLang} href={alternateUrl} />
 <link rel="alternate" hreflang="x-default" href={`${baseUrl}/`} />
