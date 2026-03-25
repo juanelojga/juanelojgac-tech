@@ -1,5 +1,5 @@
-import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import reactRenderer from "@astrojs/react/server.js";
+import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { describe, expect, test } from "vitest";
 
 // Import the Astro page you want to test
