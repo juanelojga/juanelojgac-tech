@@ -11,7 +11,7 @@
     {
       "event": "PreToolUse",
       "matcher": "Write|Edit",
-      "command": "npm run format && npm run lint"
+      "command": "pnpm run format && pnpm run lint"
     }
   ],
   "_comment_hooks": [

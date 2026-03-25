@@ -55,11 +55,12 @@ const description = generateKeywordRichDescription(
 
 // Construct full URLs using Astro.site for dynamic base URL
 const baseUrl = Astro.site ? Astro.site.origin : "https://juanelojgac-tech.com";
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const siteBase = Astro.site ?? new URL(baseUrl);
+const canonicalUrl = new URL(Astro.url.pathname, siteBase).toString();
 const alternateUrl =
   lang === "en"
-    ? new URL(`/es${Astro.url.pathname}`, Astro.site).toString()
-    : new URL(Astro.url.pathname.replace("/es", ""), Astro.site).toString();
+    ? new URL(`/es${Astro.url.pathname}`, siteBase).toString()
+    : new URL(Astro.url.pathname.replace("/es", ""), siteBase).toString();
 
 // OG Image with AI-inspired default
 const ogImage = image ? `${baseUrl}${image}` : `${baseUrl}${seo.defaultImage.url}`;
