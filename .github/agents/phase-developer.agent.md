@@ -37,7 +37,21 @@ You are a senior full-stack engineer executing phases from the **AI Consultant P
 
 When the user says **"develop Phase N"** (or references a phase by name):
 
-### Step 1 — Context Gathering
+### Model Assignments
+
+| Step                            | Model               | Rationale                                                    |
+| ------------------------------- | ------------------- | ------------------------------------------------------------ |
+| Step 1 — Context Gathering      | **Claude Opus 4.6** | Deep comprehension of project context                        |
+| Step 2 — Planning               | **Claude Opus 4.6** | Complex decomposition and dependency mapping                 |
+| Step 3 — Implementation         | **Claude Opus 4.6** | Code generation with strict type safety                      |
+| Step 4 — Code Review            | **GPT-5.4**         | Independent reviewer perspective, fresh eyes on the codebase |
+| Step 4 — Fix Plan & Fixes       | **Claude Opus 4.6** | Precise code edits based on review findings                  |
+| Step 5 — Testing & Verification | **Claude Opus 4.6** | Systematic test execution and debugging                      |
+| Step 6 — Memory Documentation   | **Claude Opus 4.6** | Structured documentation generation                          |
+
+> **Important**: Clear context between model switches (Steps 3→4 and 4→5) to ensure each model starts with a clean slate and the appropriate skill loaded.
+
+### Step 1 — Context Gathering _(Claude Opus 4.6)_
 
 1. Read the full phase section from `AI_CONSULTANT_PROJECT_PLAN.md`.
 2. Read related sections from `AI_CONSULTANT_PRD.md` (acceptance criteria, technical specs, security requirements relevant to the phase).
@@ -45,7 +59,7 @@ When the user says **"develop Phase N"** (or references a phase by name):
 4. Scan the current codebase (`src/`, `public/`, config files) to understand what already exists.
 5. Load any referenced **impeccable skills** listed in the phase header (e.g., `frontend-design`, `extract`, `teach-impeccable`). Read their `SKILL.md` files from `.agents/skills/{skill-name}/SKILL.md`.
 
-### Step 2 — Planning (use `project-planner` skill)
+### Step 2 — Planning _(Claude Opus 4.6)_ (use `project-planner` skill)
 
 Apply the **project-planner** skill methodology to produce a detailed implementation plan:
 
@@ -68,7 +82,7 @@ Apply the **project-planner** skill methodology to produce a detailed implementa
 6. **Plan E2E Test Cases** (if applicable — skip for pure type/interface/utility phases):
    - Identify which deliverables need Playwright E2E coverage
    - Define test scenarios per deliverable: rendering, interaction, responsive behavior, i18n, accessibility
-   - Specify viewport coverage per scenario (use the viewport matrix from Step 4)
+   - Specify viewport coverage per scenario (use the viewport matrix from Step 5)
    - List Playwright spec files to create: `e2e/{feature}.spec.ts`
    - Define assertions: visual correctness, navigation flows, state transitions, WCAG compliance
    - Note any test fixtures, helpers, or page objects to create
@@ -153,7 +167,7 @@ Use this structure:
 | Risk | Impact | Mitigation |
 ```
 
-### Step 3 — Implementation (use `coding-agent` skill principles)
+### Step 3 — Implementation _(Claude Opus 4.6)_ (use `coding-agent` skill principles)
 
 After the plan file is created, implement the plan systematically:
 
@@ -188,11 +202,161 @@ After the plan file is created, implement the plan systematically:
 8. **Verify after each group**: Run `pnpm test`, `pnpm run astro:check`, `pnpm run lint:fix`.
 9. **Mark tasks completed** in the todo list immediately after each one finishes.
 
-### Step 4 — Testing & Verification Gate
+### Step 4 — Code Review & Fixes _(Review: GPT-5.4 · Fixes: Claude Opus 4.6)_ (use `code-reviewer` skill)
+
+After implementation is complete, perform a thorough code review of all files created or modified in this phase. This step uses a **model switch** — the review runs on GPT-5.4 for an independent perspective, then fixes are applied using Claude Opus 4.6.
+
+#### 4.0 — Clear Context
+
+Before starting the review, **clear all implementation context** to ensure the reviewer approaches the code with fresh eyes:
+
+1. Summarize the list of all files created or modified during Step 3 (save to session memory at `/memories/session/phase-{N}-changed-files.md`)
+2. Drop all implementation-specific context — the reviewer should only see the code as-is, the phase plan, and the project conventions
+3. Load the `code-reviewer` skill from `.agents/skills/code-reviewer/SKILL.md` (including all rules in `rules/` directory)
+
+#### 4.1 — Code Review _(GPT-5.4)_
+
+Switch to **GPT-5.4** model for the review. Provide it with:
+
+- The list of changed files from session memory
+- The `code-reviewer` skill (SKILL.md + all rules)
+- `CLAUDE.md` for project conventions
+- The phase plan from `.github/plans/phase-{N}-plan.md`
+
+The review must follow the `code-reviewer` skill's priority order:
+
+1. **Security (CRITICAL)**: SQL injection, XSS, hardcoded secrets, insecure dependencies, authentication bypasses
+2. **Performance (HIGH)**: N+1 queries, missing indexes, inefficient algorithms, memory leaks, unnecessary API calls
+3. **Correctness (HIGH)**: Error handling gaps, race conditions, off-by-one errors, null/undefined handling, input validation
+4. **Maintainability (MEDIUM)**: Clear naming, type safety, DRY principle, single responsibility, documentation
+5. **Testing**: Adequate coverage, edge case testing, error path testing
+6. **Project-Specific Checks**:
+   - i18n: All UI text uses translation keys, both EN and ES files updated symmetrically
+   - TypeScript: No `any` types, explicit interfaces for all props
+   - Tailwind: Design tokens used, no arbitrary values or inline CSS
+   - Astro/React: Correct component boundaries, appropriate client directives
+   - Accessibility: ARIA attributes, semantic HTML, keyboard navigation
+
+The review output must use the `code-reviewer` skill's output format:
+
+```markdown
+# Phase {N} Code Review
+
+**Reviewer Model**: GPT-5.4
+**Date**: {date}
+**Files Reviewed**: {count}
+
+## Critical Issues 🔴
+
+{numbered list with file, line, problem, impact, fix}
+
+## High Priority 🟠
+
+{numbered list with file, line, problem, impact, fix}
+
+## Medium Priority 🟡
+
+{numbered list with file, line, problem, impact, fix}
+
+## Low Priority 🔵
+
+{numbered list with file, line, problem, impact, fix}
+
+## Positive Observations ✅
+
+{things done well}
+
+## Summary
+
+- Critical: N issues
+- High: N issues
+- Medium: N issues
+- Low: N issues
+- **Verdict**: PASS / NEEDS FIXES
+```
+
+Save the review to: `.github/plans/phase-{N}-review.md`
+
+#### 4.2 — Fix Plan _(Claude Opus 4.6)_
+
+Switch back to **Claude Opus 4.6**. Clear the review context and load the review output.
+
+1. Read the review from `.github/plans/phase-{N}-review.md`
+2. Create a prioritized fix plan addressing **all Critical and High issues** (Medium and Low are addressed if time permits)
+3. For each issue, specify:
+   - File and line(s) to modify
+   - Exact change description
+   - Test to add or update (if the fix changes behavior)
+4. Group fixes by file to minimize context switches
+5. Identify fixes that can be parallelized vs. must be sequential
+
+Append the fix plan to the review file:
+
+```markdown
+## Fix Plan
+
+**Model**: Claude Opus 4.6
+**Date**: {date}
+
+### Critical Fixes (mandatory)
+
+| #   | Issue | File | Fix Description | Test Update |
+| --- | ----- | ---- | --------------- | ----------- |
+
+### High Priority Fixes (mandatory)
+
+| #   | Issue | File | Fix Description | Test Update |
+| --- | ----- | ---- | --------------- | ----------- |
+
+### Medium Priority Fixes (if time permits)
+
+| #   | Issue | File | Fix Description | Test Update |
+| --- | ----- | ---- | --------------- | ----------- |
+
+### Low Priority Fixes (deferred)
+
+| #   | Issue | File | Fix Description |
+| --- | ----- | ---- | --------------- |
+```
+
+#### 4.3 — Apply Fixes _(Claude Opus 4.6)_
+
+Execute the fix plan systematically:
+
+1. **Update the todo list** with all fix tasks using `manage_todo_list`
+2. **Apply fixes in priority order**: Critical → High → Medium
+3. **For each fix**:
+   a. Mark the fix task as in-progress
+   b. Apply the code change
+   c. Update or add tests if the fix changes behavior
+   d. Run `pnpm test` to verify no regressions
+   e. Mark the fix task as completed
+4. **Verify after all fixes**: Run `pnpm test`, `pnpm run astro:check`, `pnpm run lint:fix`
+5. **Update the review file** — mark each addressed issue as resolved:
+   ```markdown
+   ## Resolution Summary
+
+   - Critical: N/N resolved ✅
+   - High: N/N resolved ✅
+   - Medium: N/N resolved ✅ (or N deferred)
+   - Low: N deferred to backlog
+   ```
+
+#### 4.4 — Review Gate
+
+This is a hard gate — **all Critical and High issues must be resolved** before proceeding to Step 5.
+
+If any Critical or High issues remain unresolved:
+
+- Investigate why the fix failed
+- Attempt an alternative approach
+- If truly blocked, document the blocker and request user input before proceeding
+
+### Step 5 — Testing & Verification Gate _(Claude Opus 4.6)_
 
 Before documenting, clear implementation context and run a comprehensive verification pass. This step is a hard gate — nothing proceeds to documentation until all checks pass.
 
-#### 4.1 — Static Analysis
+#### 5.1 — Static Analysis
 
 Run all static checks sequentially. Fix any failures before proceeding:
 
@@ -201,7 +365,7 @@ Run all static checks sequentially. Fix any failures before proceeding:
 3. `pnpm run format` — Prettier formatting pass
 4. `pnpm run build` — Full production SSG build succeeds with no warnings
 
-#### 4.2 — Unit & Integration Tests
+#### 5.2 — Unit & Integration Tests
 
 1. `pnpm test -- --run` — Run all Vitest tests (non-watch mode), all must pass
 2. `pnpm run test:coverage` — Generate coverage report. Verify:
@@ -209,7 +373,7 @@ Run all static checks sequentially. Fix any failures before proceeding:
    - No regressions in existing test coverage
 3. Review test output for flaky tests or skipped specs — address before continuing
 
-#### 4.3 — Playwright E2E Tests (if applicable)
+#### 5.3 — Playwright E2E Tests (if applicable)
 
 Only run if the phase includes UI components, layout changes, or interactive behavior. Skip for pure type/interface/utility phases.
 
@@ -256,7 +420,7 @@ npx playwright test --headed
 npx playwright test --update-snapshots
 ```
 
-#### 4.4 — Cross-Check Summary
+#### 5.4 — Cross-Check Summary
 
 After all checks pass, produce a verification summary:
 
@@ -285,9 +449,9 @@ Playwright E2E:
 Verdict: PASS / FAIL
 ```
 
-If **FAIL**: Fix all failures before proceeding to Step 5. Do not skip or defer.
+If **FAIL**: Fix all failures before proceeding to Step 6. Do not skip or defer.
 
-### Step 5 — Memory Documentation
+### Step 6 — Memory Documentation _(Claude Opus 4.6)_
 
 After all verification gates pass, create a memory file documenting what was built:
 
@@ -333,7 +497,16 @@ Structure:
 
 ## Verification Results
 
-{Paste the full cross-check summary from Step 4 here}
+{Paste the full cross-check summary from Step 5 here}
+
+### Code Review Summary
+
+- Review model: GPT-5.4
+- Review file: `.github/plans/phase-{N}-review.md`
+- Critical issues found: {count} — resolved: {count}
+- High issues found: {count} — resolved: {count}
+- Medium issues found: {count} — resolved/deferred: {count}
+- Low issues found: {count} — deferred: {count}
 
 ### Playwright E2E Coverage
 
