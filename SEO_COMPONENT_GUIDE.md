@@ -114,7 +114,7 @@ When creating new pages, ensure:
 
 ### View Generated SEO Tags
 
-1. Build the project: `npm run build`
+1. Build the project: `pnpm run build`
 2. Check `dist/index.html` for rendered meta tags
 3. Use browser dev tools to inspect `<head>` section
 

@@ -9,12 +9,12 @@ and project-aligned code. It must always remain up to date as workflows evolve.
 
 ## 1. Tech Stack
 
-- **Astro** v5+
+- **Astro** v6+
 - **TypeScript** v5+
-- **React** v18+ (for interactive islands)
-- **Tailwind CSS** v3+
-- **Node.js** ≥ 20
-- **npm** (primary package manager)
+- **React** v19+ (for interactive islands)
+- **Tailwind CSS** v4+
+- **Node.js** ≥ 24
+- **pnpm** (primary package manager)
 - **ESLint + Prettier** (already installed and configured)
 - **Astro i18n** (supports English + Spanish)
 - Optional:
@@ -102,15 +102,15 @@ The project supports **English (EN)** and **Spanish (ES)**.
 }
 ```
 
-## 5. Key Commands (npm)
+## 5. Key Commands (pnpm)
 
-- Dev: npm run dev
-- Build: npm run build
-- Preview: npm run preview
-- Format: npm run format
-- Lint: npm run lint
-- Lint (fix): npm run lint:fix
-- Unit tests: npm test
+- Dev: pnpm run dev
+- Build: pnpm run build
+- Preview: pnpm run preview
+- Format: pnpm run format
+- Lint: pnpm run lint
+- Lint (fix): pnpm run lint:fix
+- Unit tests: pnpm test
 
 ⸻
 
@@ -163,8 +163,8 @@ The project supports **English (EN)** and **Spanish (ES)**.
 
 ### Requirements:
 
-- Node.js ≥ 20
-- npm ≥ 9
+- Node.js ≥ 24
+- pnpm ≥ 10
 
 ### Recommended VS Code Extensions:
 
