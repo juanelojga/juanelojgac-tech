@@ -1,0 +1,93 @@
+import React, { useCallback, useState } from "react";
+
+import { sanitizeUserInput } from "../../../lib/chat/validators";
+
+export interface ChatInputProps {
+  readonly placeholder: string;
+  readonly sendLabel: string;
+  readonly characterLimitLabel: string;
+  readonly onSubmit: (message: string) => void;
+  readonly disabled?: boolean;
+  readonly maxLength?: number;
+}
+
+const DEFAULT_MAX_LENGTH = 500;
+
+export default function ChatInput({
+  placeholder,
+  sendLabel,
+  characterLimitLabel,
+  onSubmit,
+  disabled = false,
+  maxLength = DEFAULT_MAX_LENGTH,
+}: ChatInputProps) {
+  const [value, setValue] = useState("");
+
+  const remaining = maxLength - value.length;
+  const canSubmit = value.trim().length > 0 && !disabled;
+
+  const handleSubmit = useCallback(() => {
+    const trimmed = value.trim();
+    if (!trimmed) return;
+    const sanitized = sanitizeUserInput(trimmed);
+    if (!sanitized) return;
+    onSubmit(sanitized);
+    setValue("");
+  }, [value, onSubmit]);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        handleSubmit();
+      }
+    },
+    [handleSubmit]
+  );
+
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      const newValue = e.target.value;
+      if (newValue.length <= maxLength) {
+        setValue(newValue);
+      } else {
+        setValue(newValue.slice(0, maxLength));
+      }
+    },
+    [maxLength]
+  );
+
+  return (
+    <div className="border-chat-input-border bg-chat-panel-input-bg border-t px-4 py-3">
+      <div className="mx-auto flex max-w-[var(--spacing-chat-input-max-width)] items-end gap-2">
+        <div className="relative flex-1">
+          <textarea
+            value={value}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            placeholder={placeholder}
+            disabled={disabled}
+            rows={1}
+            aria-label={placeholder}
+            className="border-chat-input-border focus:border-chat-input-focus-border focus:ring-chat-input-focus-ring placeholder:text-chat-input-placeholder w-full resize-none rounded-xl border px-4 py-2.5 text-sm leading-relaxed transition-colors focus:ring-2 focus:outline-none disabled:opacity-50"
+          />
+          <span
+            data-testid="character-count"
+            className={`mt-1 block text-right text-xs ${remaining < 50 ? "text-coral" : "text-neutral"}`}
+          >
+            {characterLimitLabel.replace("{{count}}", String(remaining))}
+          </span>
+        </div>
+        <button
+          type="button"
+          onClick={handleSubmit}
+          disabled={!canSubmit}
+          aria-label={sendLabel}
+          className="bg-chat-cta-primary hover:bg-chat-cta-primary-hover text-chat-cta-primary-text rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {sendLabel}
+        </button>
+      </div>
+    </div>
+  );
+}

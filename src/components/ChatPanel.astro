@@ -1,0 +1,42 @@
+---
+import { StaticContentProvider } from "../lib/chat/content/static-content-provider";
+import ChatContainer from "./react/chat/ChatContainer";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+// Import translations
+const translations = await import(`../i18n/${lang}.json`);
+const t = translations.default.chat;
+
+// Get starter prompts from the content provider
+const contentProvider = new StaticContentProvider();
+const starterPrompts = contentProvider.getStarterPrompts(lang);
+
+// Map translations to ChatContainer expected shape
+const chatTranslations = {
+  headerTitle: t.header.title,
+  headerSubtitle: t.header.subtitle,
+  inputPlaceholder: t.input.placeholder,
+  inputSend: t.input.send,
+  inputCharacterLimit: t.input.characterLimit,
+  welcomeMessage: t.messages.welcome,
+  typingText: t.messages.typing,
+  chipsLabel: t.chips.label,
+  chatRegionLabel: t.accessibility.chatRegion,
+  messageListLabel: t.accessibility.messageList,
+};
+---
+
+<ChatContainer
+  client:load
+  messages={[]}
+  starterPrompts={starterPrompts}
+  isTyping={false}
+  error={null}
+  onSendMessage={() => {}}
+  translations={chatTranslations}
+/>
