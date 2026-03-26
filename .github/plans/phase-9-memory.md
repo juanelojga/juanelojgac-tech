@@ -71,6 +71,7 @@ Verdict: PASS
 ### Unused Dependencies (informational)
 
 These production dependencies are in `package.json` but never imported:
+
 - `framer-motion` (^12.38.0)
 - `@heroicons/react` (^2.2.0)
 - `clsx` (^2.1.1)
