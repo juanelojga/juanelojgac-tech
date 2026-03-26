@@ -1,0 +1,49 @@
+---
+import { StaticContentProvider } from "../lib/chat/content/static-content-provider";
+import TrustPanelReact from "./react/TrustPanel";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+// Import translations
+const translations = await import(`../i18n/${lang}.json`);
+const t = translations.default.chat.panel;
+
+// Get content from the content provider
+const contentProvider = new StaticContentProvider();
+const companyFacts = contentProvider.getCompanyFacts(lang);
+const services = contentProvider.getServices(lang);
+const trustSignals = contentProvider.getTrustSignals(lang);
+
+// Shape service items for the panel (only fields needed by ServiceItem)
+const serviceItems = services.map((svc) => ({
+  id: svc.id,
+  title: svc.title,
+  shortDescription: svc.shortDescription,
+  relatedPrompt: svc.relatedPrompt,
+}));
+
+// Panel translations
+const panelTranslations = {
+  servicesLabel: t.servicesLabel,
+  trustLabel: t.trustLabel,
+  ctaBooking: t.ctaBooking,
+  ctaContact: t.ctaContact,
+  collapseLabel: t.collapseLabel,
+  expandLabel: t.expandLabel,
+};
+---
+
+<TrustPanelReact
+  client:load
+  companyName={companyFacts.name}
+  tagline={companyFacts.tagline}
+  services={serviceItems}
+  trustSignals={trustSignals}
+  translations={panelTranslations}
+  bookingUrl="https://calendly.com/juanelojgac"
+  contactEmail="hello@juanelojgac.tech"
+/>
