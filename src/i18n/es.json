@@ -1,215 +1,14 @@
 {
-  "navbar": {
-    "links": {
-      "services": "Servicios",
-      "benefits": "Beneficios",
-      "work": "Trabajo"
-    },
-    "dropdown": {
-      "challenges": "Desafíos",
-      "who-we-help": "A quién ayudamos"
-    },
-    "button": {
-      "contact": "Contáctanos"
-    },
-    "logo": {
-      "alt": "Logo de JUANELOJGAC Tech"
-    }
-  },
-  "header": {
-    "headline": "Empoderando a startups y PYMEs con soluciones prácticas e inteligentes",
-    "description": "Construimos lo que importa. Desde plataformas web que se mueven rápido hasta automatizaciones que ahorran tiempo, entregamos claridad y velocidad sin ruido.",
-    "primaryButton": "Reservar consulta",
-    "secondaryButton": "Saber más"
-  },
-  "whoWeHelp": {
-    "sectionLabel": "A quién ayudamos",
-    "tagline": "Audiencia",
-    "exploreButton": "Explorar",
-    "features": [
-      {
-        "tag": "Equipos ágiles",
-        "title": "Startups SaaS que se mueven rápido",
-        "description": "Las startups SaaS que se mueven rápido necesitan plataformas que escalen sin frenar su ritmo. Construimos exactamente lo que necesitas, nada más.",
-        "imageAlt": "Equipo colaborando en un espacio de trabajo moderno"
-      },
-      {
-        "tag": "Negocios en crecimiento",
-        "title": "Pequeñas empresas listas para digitalizarse",
-        "description": "Las pequeñas empresas que quieren digitalizarse suelen quedar atrapadas entre sistemas obsoletos y soluciones costosas. Cerramos esa brecha.",
-        "imageAlt": "Dueño de una pequeña empresa trabajando en transformación digital"
-      },
-      {
-        "tag": "Equipos de producto",
-        "title": "Emprendedores con una visión de producto",
-        "description": "Los emprendedores con una visión pero sin equipo técnico necesitan socios que entiendan el camino de la idea al mercado. Ese somos nosotros.",
-        "imageAlt": "Emprendedores discutiendo una visión de producto"
-      },
-      {
-        "tag": "Profesionales creativos y aprendices",
-        "title": "Personas y equipos que potencian sus habilidades con IA",
-        "description": "Desde automatización de contenido hasta diseño espacial y preparación para el TOEFL, te ayudamos a mejorar con IA.",
-        "imageAlt": "Profesionales diversos usando herramientas de IA para diseño, creación de contenido y aprendizaje"
-      }
-    ]
-  },
-  "challenges": {
-    "tabs": [
-      {
-        "heading": "Construyendo tecnología sin arruinarte",
-        "description": "Te estás ahogando en flujos de trabajo repetitivos que desperdician tiempo",
-        "imageAlt": "Profesional trabajando en laptop en oficina moderna"
-      },
-      {
-        "heading": "Automatizando el trabajo que te ralentiza",
-        "description": "Tu creación de contenido de marketing se siente desconectada de los resultados",
-        "imageAlt": "Visualización de flujo de trabajo de automatización"
-      },
-      {
-        "heading": "Contenido impulsado por IA que realmente convierte",
-        "description": "Tu espacio físico o digital necesita un rediseño inteligente",
-        "imageAlt": "Interfaz de creación de contenido con IA"
-      }
-    ]
-  },
-  "services": {
-    "sectionLabel": "Servicios",
-    "heading": "Qué construimos",
-    "description": "Plataformas modernas y rápidas diseñadas para crecer con velocidad",
-    "services": [
-      {
-        "tagline": "Prioridad",
-        "title": "Desarrollo web que avanza",
-        "description": "Plataformas personalizadas, e-commerce, dashboards y aplicaciones web",
-        "buttonPrimary": "Consultar",
-        "buttonSecondary": "Explorar",
-        "image": "/assets/images/services/web-development.jpg",
-        "imageAlt": "Equipo colaborando en proyecto de desarrollo web"
-      },
-      {
-        "tagline": "Automatización",
-        "title": "Automatización de flujos de trabajo",
-        "description": "Elimina tareas manuales y recupera tu tiempo",
-        "button": "Explorar",
-        "image": "/assets/images/services/workflow-automation.jpg",
-        "imageAlt": "Visualización de flujo de trabajo automatizado"
-      },
-      {
-        "tagline": "Contenido",
-        "title": "Estudio de marketing",
-        "description": "Creación de contenido impulsado por IA que resuena con audiencias",
-        "button": "Explorar",
-        "image": "/assets/images/services/marketing-studio.jpg",
-        "imageAlt": "Creación de contenido y flujo de trabajo de marketing"
-      },
-      {
-        "tagline": "Diseño",
-        "title": "Consultoría espacial",
-        "description": "Reimagina tus entornos físicos o digitales",
-        "button": "Explorar",
-        "image": "/assets/images/services/spatial-consultancy.jpg",
-        "imageAlt": "Diseño espacial y consulta de arquitectura"
-      },
-      {
-        "tagline": "Aprendizaje",
-        "title": "Asistente TOEFL",
-        "description": "Herramientas inteligentes de preparación para el éxito en el dominio del inglés",
-        "button": "Explorar",
-        "image": "/assets/images/services/toefl-assistant.jpg",
-        "imageAlt": "Estudiante usando herramientas de preparación TOEFL"
-      }
-    ]
-  },
-  "benefits": {
-    "tagline": "Ventaja",
-    "heading": "Operamos desde Ecuador y Estados Unidos",
-    "benefits": [
-      {
-        "tagline": "Velocidad",
-        "title": "Nos movemos rápido sin sacrificar calidad",
-        "description": "Por qué elegir JuaneloJGAC Tech",
-        "button": "Conocer",
-        "image": "/assets/images/benefits/speed.jpg",
-        "imageAlt": "Detalle de arquitectura moderna mostrando velocidad y precisión"
-      },
-      {
-        "title": "Cada solución empieza con tus necesidades reales",
-        "description": "Equipos transfronterizos, entendimiento local",
-        "button": "Explorar",
-        "image": "/assets/images/benefits/needs.jpg",
-        "imageAlt": "Espacio de trabajo de colaboración transfronteriza"
-      },
-      {
-        "title": "Sin atajos, sin deuda técnica",
-        "description": "Construido para startups y PYMEs",
-        "button": "Conocer",
-        "image": "/assets/images/benefits/quality.jpg",
-        "imageAlt": "Artesanía de calidad en desarrollo de software"
-      },
-      {
-        "tagline": "Diseño",
-        "title": "Conocemos ambos mercados profundamente",
-        "description": "Experiencia en Ecuador y EE.UU. combinada",
-        "button": "Explorar",
-        "image": "/assets/images/benefits/design.jpg",
-        "imageAlt": "Experiencia en diseño para múltiples mercados"
-      },
-      {
-        "tagline": "Estándar",
-        "title": "Entrega sin compromisos ni demoras",
-        "description": "Del inicio al lanzamiento en semanas",
-        "button": "Conocer",
-        "image": "/assets/images/benefits/standard.jpg",
-        "imageAlt": "Entrega y ejecución rápida"
-      },
-      {
-        "title": "Diseño que pone a las personas primero",
-        "description": "Cada línea de código sirve a tus usuarios",
-        "button": "Explorar",
-        "image": "/assets/images/benefits/people.jpg",
-        "imageAlt": "Enfoque de diseño centrado en el usuario"
-      }
-    ]
-  },
-  "cta": {
-    "heading": "Listo para transformar tu negocio",
-    "description": "Hablemos de lo que es posible. Una consulta gratuita con nuestro equipo toma treinta minutos y lo cambia todo.",
-    "primaryButton": "Consultar",
-    "secondaryButton": "Contactar",
-    "backgroundImageAlt": "Espacio de trabajo de colaboración en equipo"
-  },
-  "footer": {
-    "newsletter": {
-      "description": "Recibe información sobre tendencias tecnológicas, lanzamientos de productos y estrategias de transformación en tu bandeja de entrada.",
-      "location": "Con presencia en Ecuador y Estados Unidos"
-    },
-    "contact": {
-      "label": "Contacto",
-      "email": "juan.almeida@juanelojgac-tech.com"
-    },
-    "links": {
-      "company": {
-        "about": "Acerca de nosotros",
-        "challenges": "Nuestro trabajo",
-        "whoWeHelp": "A quién ayudamos",
-        "contact": "Contacto",
-        "services": "Servicios"
-      },
-      "label": "Empresa"
-    },
-    "social": {
-      "instagram": "Síguenos en Instagram",
-      "twitter": "Síguenos en X",
-      "linkedin": "Síguenos en LinkedIn"
-    },
-    "copyright": "JuaneloJGAC Tech. Todos los derechos reservados."
-  },
   "seo": {
     "siteName": "JuaneloJGAC Tech",
     "defaultTitle": "JuaneloJGAC Tech - Soluciones con IA para Startups y PYMEs",
     "defaultDescription": "Empoderando a startups y PYMEs con soluciones de IA prácticas e inteligentes—entregadas con claridad, velocidad y diseño centrado en el ser humano.",
     "keywords": "Soluciones IA, Transformación IA, Desarrollo de Software, Automatización, Marketing, Desarrollo Web, Servicios Bilingües",
-    "keywordsList": ["Transformación IA", "Automatización", "Transformación Digital"],
+    "keywordsList": [
+      "Transformación IA",
+      "Automatización",
+      "Transformación Digital"
+    ],
     "twitterHandle": "@juanelojgac",
     "organization": {
       "name": "JuaneloJGAC Tech",
@@ -221,28 +20,40 @@
         "name": "Plataforma de Automatizaciones con IA",
         "description": "Elimina flujos de trabajo repetitivos con soluciones de automatización inteligente que ahorran tiempo y reducen errores. Automatizaciones personalizadas con IA diseñadas para startups y PYMEs.",
         "serviceType": "Automatización IA",
-        "areaServed": ["Estados Unidos", "Latinoamérica"],
+        "areaServed": [
+          "Estados Unidos",
+          "Latinoamérica"
+        ],
         "priceRange": "$3,000-$10,000"
       },
       {
         "name": "Estudio de Marketing con IA",
         "description": "Creación de contenido y automatización de marketing impulsada por IA que resuena con tu audiencia. Transforma tu marketing con generación inteligente de contenido y optimización de campañas.",
         "serviceType": "Marketing IA",
-        "areaServed": ["Estados Unidos", "Latinoamérica"],
+        "areaServed": [
+          "Estados Unidos",
+          "Latinoamérica"
+        ],
         "priceRange": "$3,000-$10,000"
       },
       {
         "name": "Desarrollo Web Potenciado por IA",
         "description": "Plataformas web modernas y rápidas construidas con asistencia de IA. E-commerce personalizado, dashboards y aplicaciones web diseñadas para crecer y escalar.",
         "serviceType": "Desarrollo Web",
-        "areaServed": ["Estados Unidos", "Latinoamérica"],
+        "areaServed": [
+          "Estados Unidos",
+          "Latinoamérica"
+        ],
         "priceRange": "$3,000-$10,000"
       },
       {
         "name": "Consultoría en IA y Transformación Digital",
         "description": "Consultoría estratégica en IA para transformar tus procesos empresariales. Guía experta en implementación de IA, estrategia de automatización y hojas de ruta de transformación digital.",
         "serviceType": "Consultoría IA",
-        "areaServed": ["Estados Unidos", "Latinoamérica"],
+        "areaServed": [
+          "Estados Unidos",
+          "Latinoamérica"
+        ],
         "priceRange": "$3,000-$10,000"
       }
     ],

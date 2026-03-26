@@ -1,215 +1,14 @@
 {
-  "navbar": {
-    "links": {
-      "services": "Services",
-      "benefits": "Benefits",
-      "work": "Work"
-    },
-    "dropdown": {
-      "challenges": "Challenges",
-      "who-we-help": "Who we help"
-    },
-    "button": {
-      "contact": "Contact us"
-    },
-    "logo": {
-      "alt": "JUANELOJGAC Tech Logo"
-    }
-  },
-  "header": {
-    "headline": "Empowering startups and SMEs with practical, intelligent solutions",
-    "description": "We build what matters. From web platforms that move fast to automations that save time, we deliver clarity and speed without the noise.",
-    "primaryButton": "Book consultation",
-    "secondaryButton": "Learn more"
-  },
-  "whoWeHelp": {
-    "sectionLabel": "Who we help",
-    "tagline": "Audience",
-    "exploreButton": "Explore",
-    "features": [
-      {
-        "tag": "Lean builders",
-        "title": "Who we help",
-        "description": "SaaS startups moving fast need platforms that scale without slowing down. We build what you need, nothing more.",
-        "imageAlt": "Team collaborating in a modern workspace"
-      },
-      {
-        "tag": "Growing businesses",
-        "title": "Small businesses ready to go digital",
-        "description": "Small businesses ready to go digital find themselves stuck between outdated systems and expensive overhauls. We bridge that gap.",
-        "imageAlt": "Small business owner working on digital transformation"
-      },
-      {
-        "tag": "Product teams",
-        "title": "Entrepreneurs with a product vision",
-        "description": "Entrepreneurs with a vision but no technical team need partners who understand the journey from idea to market. That's us.",
-        "imageAlt": "Entrepreneurs discussing product vision"
-      },
-      {
-        "tag": "Creative professionals & learners",
-        "title": "People and teams enhancing their skills with AI",
-        "description": "From content automation to spatial design and TOEFL prep, we help you level up with AI.",
-        "imageAlt": "Diverse professionals using AI tools for design, content creation, and learning"
-      }
-    ]
-  },
-  "challenges": {
-    "tabs": [
-      {
-        "heading": "Building tech without breaking the bank",
-        "description": "You're drowning in repetitive workflows that waste time",
-        "imageAlt": "Professional working on laptop in modern office"
-      },
-      {
-        "heading": "Automating the work that slows you down",
-        "description": "Your marketing content creation feels disconnected from results",
-        "imageAlt": "Automation workflow visualization"
-      },
-      {
-        "heading": "AI-powered content that actually converts",
-        "description": "Your physical or digital space needs intelligent redesign",
-        "imageAlt": "AI-powered content creation interface"
-      }
-    ]
-  },
-  "services": {
-    "sectionLabel": "Services",
-    "heading": "What we build",
-    "description": "Fast, modern platforms built for growth and speed",
-    "services": [
-      {
-        "tagline": "Priority",
-        "title": "Web development that moves",
-        "description": "Custom platforms, e-commerce, dashboards, and web apps",
-        "buttonPrimary": "Consult",
-        "buttonSecondary": "Explore",
-        "image": "/assets/images/services/web-development.jpg",
-        "imageAlt": "Team collaborating on web development project"
-      },
-      {
-        "tagline": "Automation",
-        "title": "Workflow automation",
-        "description": "Eliminate manual tasks and reclaim your time",
-        "button": "Explore",
-        "image": "/assets/images/services/workflow-automation.jpg",
-        "imageAlt": "Automated workflow visualization"
-      },
-      {
-        "tagline": "Content",
-        "title": "Marketing studio",
-        "description": "AI-driven content creation that resonates with audiences",
-        "button": "Explore",
-        "image": "/assets/images/services/marketing-studio.jpg",
-        "imageAlt": "Content creation and marketing workflow"
-      },
-      {
-        "tagline": "Design",
-        "title": "Spatial consultancy",
-        "description": "Reimagine your physical or digital environments",
-        "button": "Explore",
-        "image": "/assets/images/services/spatial-consultancy.jpg",
-        "imageAlt": "Spatial design and architecture consultation"
-      },
-      {
-        "tagline": "Learning",
-        "title": "TOEFL assistant",
-        "description": "Intelligent prep tools for English proficiency success",
-        "button": "Explore",
-        "image": "/assets/images/services/toefl-assistant.jpg",
-        "imageAlt": "Student using TOEFL preparation tools"
-      }
-    ]
-  },
-  "benefits": {
-    "tagline": "Advantage",
-    "heading": "We operate from Ecuador and the United States",
-    "benefits": [
-      {
-        "tagline": "Speed",
-        "title": "We move fast without sacrificing quality",
-        "description": "Why choose JuaneloJGAC Tech",
-        "button": "Learn",
-        "image": "/assets/images/benefits/speed.jpg",
-        "imageAlt": "Modern architecture detail showing speed and precision"
-      },
-      {
-        "title": "Every solution starts with your actual needs",
-        "description": "Cross-border teams, local understanding",
-        "button": "Explore",
-        "image": "/assets/images/benefits/needs.jpg",
-        "imageAlt": "Cross-border collaboration workspace"
-      },
-      {
-        "title": "No shortcuts, no technical debt",
-        "description": "Built for startups and SMEs",
-        "button": "Learn",
-        "image": "/assets/images/benefits/quality.jpg",
-        "imageAlt": "Quality craftsmanship in software development"
-      },
-      {
-        "tagline": "Design",
-        "title": "We know both markets deeply",
-        "description": "Ecuador and US expertise combined",
-        "button": "Explore",
-        "image": "/assets/images/benefits/design.jpg",
-        "imageAlt": "Cross-market design expertise"
-      },
-      {
-        "tagline": "Standard",
-        "title": "Delivery without compromise or delays",
-        "description": "From kickoff to launch in weeks",
-        "button": "Learn",
-        "image": "/assets/images/benefits/standard.jpg",
-        "imageAlt": "Fast delivery and execution"
-      },
-      {
-        "title": "Design that puts people first",
-        "description": "Every line of code serves your users",
-        "button": "Explore",
-        "image": "/assets/images/benefits/people.jpg",
-        "imageAlt": "User-centered design approach"
-      }
-    ]
-  },
-  "cta": {
-    "heading": "Ready to transform your business",
-    "description": "Let's talk about what's possible. A free consultation with our team takes thirty minutes and changes everything.",
-    "primaryButton": "Consult",
-    "secondaryButton": "Contact",
-    "backgroundImageAlt": "Team collaboration workspace"
-  },
-  "footer": {
-    "newsletter": {
-      "description": "Get insights on tech trends, product launches, and transformation strategies delivered to your inbox.",
-      "location": "Ecuador and United States based"
-    },
-    "contact": {
-      "label": "Contact",
-      "email": "juan.almeida@juanelojgac-tech.com"
-    },
-    "links": {
-      "company": {
-        "about": "About us",
-        "challenges": "Challenges",
-        "whoWeHelp": "Who we help",
-        "contact": "Contact",
-        "services": "Services"
-      },
-      "label": "Company"
-    },
-    "social": {
-      "instagram": "Follow us on Instagram",
-      "twitter": "Follow us on X",
-      "linkedin": "Follow us on LinkedIn"
-    },
-    "copyright": "JuaneloJGAC Tech. All rights reserved."
-  },
   "seo": {
     "siteName": "JuaneloJGAC Tech",
     "defaultTitle": "JuaneloJGAC Tech - AI-Powered Solutions for Startups & SMEs",
     "defaultDescription": "Empowering startups and SMEs with practical, intelligent AI solutions—delivered with clarity, speed, and human-centered design.",
     "keywords": "AI Solutions, AI Transformation, Software Development, Automation, Marketing, Web Development, Bilingual Services",
-    "keywordsList": ["AI Transformation", "Automation", "Digital Transformation"],
+    "keywordsList": [
+      "AI Transformation",
+      "Automation",
+      "Digital Transformation"
+    ],
     "twitterHandle": "@juanelojgac",
     "organization": {
       "name": "JuaneloJGAC Tech",
@@ -221,28 +20,40 @@
         "name": "AI Automations Platform",
         "description": "Eliminate repetitive workflows with intelligent automation solutions that save time and reduce errors. Custom AI-powered automations designed for startups and SMEs.",
         "serviceType": "AI Automation",
-        "areaServed": ["United States", "Latin America"],
+        "areaServed": [
+          "United States",
+          "Latin America"
+        ],
         "priceRange": "$3,000-$10,000"
       },
       {
         "name": "AI Marketing Studio",
         "description": "AI-driven content creation and marketing automation that resonates with your audience. Transform your marketing with intelligent content generation and campaign optimization.",
         "serviceType": "AI Marketing",
-        "areaServed": ["United States", "Latin America"],
+        "areaServed": [
+          "United States",
+          "Latin America"
+        ],
         "priceRange": "$3,000-$10,000"
       },
       {
         "name": "AI-Powered Web Development",
         "description": "Fast, modern web platforms built with AI assistance. Custom e-commerce, dashboards, and web applications designed for growth and scalability.",
         "serviceType": "Web Development",
-        "areaServed": ["United States", "Latin America"],
+        "areaServed": [
+          "United States",
+          "Latin America"
+        ],
         "priceRange": "$3,000-$10,000"
       },
       {
         "name": "AI Consultancy & Digital Transformation",
         "description": "Strategic AI consulting to transform your business processes. Expert guidance on AI implementation, automation strategy, and digital transformation roadmaps.",
         "serviceType": "AI Consulting",
-        "areaServed": ["United States", "Latin America"],
+        "areaServed": [
+          "United States",
+          "Latin America"
+        ],
         "priceRange": "$3,000-$10,000"
       }
     ],
