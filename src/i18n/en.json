@@ -275,7 +275,9 @@
       "typing": "Thinking...",
       "errorGeneric": "Your message could not be processed. Please try again.",
       "errorNetwork": "Connection lost. Check your internet and try again.",
-      "errorRateLimit": "Too many messages. Please wait a moment before sending another."
+      "errorRateLimit": "Too many messages. Please wait a moment before sending another.",
+      "errorTimeout": "The response took too long. Please try again.",
+      "errorUnavailable": "The chat service is temporarily unavailable. Please try again later."
     },
     "chips": {
       "label": "Quick questions to get started"

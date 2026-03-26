@@ -4,8 +4,7 @@ import React from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import type { ChatMessage, StarterPrompt } from "../../../../lib/chat/types";
-import ChatContainer from "../ChatContainer";
-import type { ChatContainerTranslations } from "../ChatContainer";
+import ChatContainer, { type ChatContainerTranslations } from "../ChatContainer";
 
 const defaultTranslations: ChatContainerTranslations = {
   headerTitle: "AI Consultant",

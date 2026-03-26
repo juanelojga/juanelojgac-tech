@@ -275,7 +275,9 @@
       "typing": "Pensando...",
       "errorGeneric": "Tu mensaje no pudo ser procesado. Por favor, intenta de nuevo.",
       "errorNetwork": "Conexión perdida. Revisa tu internet e intenta de nuevo.",
-      "errorRateLimit": "Demasiados mensajes. Por favor, espera un momento antes de enviar otro."
+      "errorRateLimit": "Demasiados mensajes. Por favor, espera un momento antes de enviar otro.",
+      "errorTimeout": "La respuesta tardó demasiado. Por favor, intenta de nuevo.",
+      "errorUnavailable": "El servicio de chat no está disponible temporalmente. Por favor, intenta más tarde."
     },
     "chips": {
       "label": "Preguntas rápidas para comenzar"
