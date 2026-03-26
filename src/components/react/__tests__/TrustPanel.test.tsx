@@ -184,10 +184,10 @@ describe("TrustPanel", () => {
       expect(toggleBtn).toBeInTheDocument();
     });
 
-    it("toggle button shows collapse label by default on desktop", () => {
+    it("toggle button shows expand label by default on mobile", () => {
       render(<TrustPanel {...defaultProps} />);
       const toggleBtn = screen.getByTestId("panel-toggle");
-      expect(toggleBtn).toHaveTextContent("Hide details");
+      expect(toggleBtn).toHaveTextContent("Show details");
     });
   });
 });

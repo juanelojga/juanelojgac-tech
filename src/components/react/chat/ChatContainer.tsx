@@ -58,6 +58,7 @@ export default function ChatContainer({
     <section
       role="region"
       aria-label={translations.chatRegionLabel}
+      data-testid="chat-container"
       className="bg-chat-panel-bg flex h-full flex-col"
     >
       <ChatHeader title={translations.headerTitle} subtitle={translations.headerSubtitle} />
@@ -67,7 +68,8 @@ export default function ChatContainer({
         role="log"
         aria-label={translations.messageListLabel}
         aria-live="polite"
-        className="flex-1 overflow-y-auto px-4 py-4"
+        data-testid="chat-message-list"
+        className="flex-1 overflow-y-auto px-3 py-3 sm:px-4 sm:py-4"
       >
         {/* Conversation messages */}
         <div className="mx-auto max-w-[var(--spacing-chat-message-max-width)] space-y-3">

@@ -105,7 +105,8 @@ export default function ConsultantLayout({
   return (
     <section
       aria-label={layoutTranslations.consultantSection}
-      className="flex h-[600px] w-full flex-col overflow-hidden rounded-xl border border-neutral-200 shadow-lg lg:h-[700px] lg:flex-row"
+      data-testid="consultant-layout"
+      className="flex h-[calc(100dvh-6rem)] w-full flex-col overflow-hidden rounded-xl border border-neutral-200 shadow-lg sm:h-[600px] lg:h-[700px] lg:flex-row"
     >
       {/* Left Panel — Trust & Services */}
       <TrustPanel

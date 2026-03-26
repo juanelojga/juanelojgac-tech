@@ -20,7 +20,7 @@ export default function PromptChips({ chips, onChipClick, label, visible }: Prom
   if (!visible || chips.length === 0) return null;
 
   return (
-    <div className="px-4 py-3">
+    <div data-testid="prompt-chips" className="px-3 py-3 sm:px-4">
       <p className="text-neutral mb-2.5 text-xs font-medium">{label}</p>
       <div role="group" aria-label={label} className="flex flex-wrap gap-2">
         {chips.map((chip) => (
@@ -28,7 +28,8 @@ export default function PromptChips({ chips, onChipClick, label, visible }: Prom
             key={chip.id}
             type="button"
             onClick={handleClick(chip.prompt)}
-            className="bg-chat-chip-bg text-chat-chip-text border-chat-chip-border hover:bg-chat-chip-hover-bg hover:border-chat-chip-hover-border rounded-full border px-3.5 py-2 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none"
+            data-testid="prompt-chip"
+            className="bg-chat-chip-bg text-chat-chip-text border-chat-chip-border hover:bg-chat-chip-hover-bg hover:border-chat-chip-hover-border min-h-[44px] rounded-full border px-3.5 py-2 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none"
           >
             {chip.label}
           </button>

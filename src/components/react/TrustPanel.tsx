@@ -42,7 +42,8 @@ export default function TrustPanel({
   bookingUrl,
   contactEmail,
 }: TrustPanelProps) {
-  const [isExpanded, setIsExpanded] = useState(true);
+  // Start collapsed on mobile to prioritize chat view
+  const [isExpanded, setIsExpanded] = useState(false);
   const handlePromptInject = useMemo(() => onPromptInject ?? (() => {}), [onPromptInject]);
 
   const togglePanel = useCallback(() => {
@@ -52,7 +53,8 @@ export default function TrustPanel({
   return (
     <aside
       aria-label={companyName}
-      className="bg-chat-panel-sidebar-bg flex h-full w-full flex-col overflow-hidden lg:w-[var(--spacing-chat-panel-width-desktop)] xl:w-[var(--spacing-chat-panel-width-wide)]"
+      data-testid="trust-panel"
+      className="bg-chat-panel-sidebar-bg flex w-full flex-col overflow-hidden lg:h-full lg:w-[var(--spacing-chat-panel-width-desktop)] xl:w-[var(--spacing-chat-panel-width-wide)]"
     >
       {/* Identity Header */}
       <div className="border-neutral-darkest-10 border-b px-5 py-5">
@@ -65,7 +67,7 @@ export default function TrustPanel({
         type="button"
         data-testid="panel-toggle"
         onClick={togglePanel}
-        className="border-neutral-darkest-10 text-neutral hover:bg-chat-chip-hover-bg focus-visible:ring-chat-input-focus-border flex w-full items-center justify-between border-b px-5 py-2.5 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset lg:hidden"
+        className="border-neutral-darkest-10 text-neutral hover:bg-chat-chip-hover-bg focus-visible:ring-chat-input-focus-border flex min-h-[44px] w-full items-center justify-between border-b px-5 py-2.5 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset lg:hidden"
         aria-expanded={isExpanded}
       >
         {isExpanded ? translations.expandLabel : translations.collapseLabel}

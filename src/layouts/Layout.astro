@@ -2,7 +2,7 @@
 import Seo from "../components/Seo.astro";
 import enTranslations from "../i18n/en.json";
 import esTranslations from "../i18n/es.json";
-import { detectLanguageFromHeader, type Language } from "../lib/i18n";
+import type { Language } from "../lib/i18n";
 
 interface Props {
   title?: string;
@@ -13,9 +13,8 @@ interface Props {
 
 const { title, description, lang: propLang, image } = Astro.props;
 
-// Detect language from Accept-Language header if not explicitly provided
-const acceptLanguageHeader = Astro.request.headers.get("accept-language");
-const langCode: Language = propLang || detectLanguageFromHeader(acceptLanguageHeader);
+// In SSG mode, lang is always passed explicitly by page routes (/ → "en", /es → "es")
+const langCode: Language = propLang || "en";
 
 // Get default SEO values from translations
 const translations = langCode === "en" ? enTranslations : esTranslations;

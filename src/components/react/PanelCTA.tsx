@@ -14,7 +14,7 @@ export default function PanelCTA({
   contactEmail,
 }: PanelCTAProps) {
   return (
-    <div className="flex flex-col gap-2.5">
+    <div data-testid="panel-cta" className="flex flex-col gap-2.5">
       <a
         href={bookingUrl}
         target="_blank"

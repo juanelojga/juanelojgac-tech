@@ -69,7 +69,8 @@ export default function ChatInput({
             disabled={disabled}
             rows={1}
             aria-label={placeholder}
-            className="border-chat-input-border focus:border-chat-input-focus-border focus:ring-chat-input-focus-ring placeholder:text-chat-input-placeholder w-full resize-none rounded-xl border px-4 py-2.5 text-sm leading-relaxed transition-colors focus:ring-2 focus:outline-none disabled:opacity-50"
+            data-testid="chat-input"
+            className="border-chat-input-border focus:border-chat-input-focus-border focus:ring-chat-input-focus-ring placeholder:text-chat-input-placeholder w-full resize-none rounded-xl border px-3 py-2.5 text-sm leading-relaxed transition-colors focus:ring-2 focus:outline-none disabled:opacity-50 sm:px-4"
           />
           <span
             data-testid="character-count"
@@ -83,7 +84,8 @@ export default function ChatInput({
           onClick={handleSubmit}
           disabled={!canSubmit}
           aria-label={sendLabel}
-          className="bg-chat-cta-primary hover:bg-chat-cta-primary-hover text-chat-cta-primary-text rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50"
+          data-testid="chat-send-button"
+          className="bg-chat-cta-primary hover:bg-chat-cta-primary-hover text-chat-cta-primary-text min-h-[44px] min-w-[44px] rounded-xl px-4 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50"
         >
           {sendLabel}
         </button>

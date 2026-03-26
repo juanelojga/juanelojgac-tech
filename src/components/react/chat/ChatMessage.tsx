@@ -30,7 +30,7 @@ export default function ChatMessage({ message }: ChatMessageProps) {
 
   return (
     <div
-      data-testid={`message-${message.id}`}
+      data-testid={isUser ? "chat-message-user" : "chat-message-assistant"}
       className={`flex ${isUser ? "justify-end" : "justify-start"}`}
     >
       <article

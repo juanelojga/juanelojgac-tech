@@ -38,7 +38,7 @@ describe("ChatMessage", () => {
 
     it("aligns user messages to the right", () => {
       render(<ChatMessage message={createMessage()} />);
-      const wrapper = screen.getByTestId("message-msg-1");
+      const wrapper = screen.getByTestId("chat-message-user");
       expect(wrapper.className).toContain("justify-end");
     });
   });
@@ -64,7 +64,7 @@ describe("ChatMessage", () => {
 
     it("aligns assistant messages to the left", () => {
       render(<ChatMessage message={assistantMessage} />);
-      const wrapper = screen.getByTestId("message-msg-2");
+      const wrapper = screen.getByTestId("chat-message-assistant");
       expect(wrapper.className).toContain("justify-start");
     });
   });
