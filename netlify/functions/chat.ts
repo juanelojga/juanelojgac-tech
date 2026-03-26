@@ -1,4 +1,6 @@
 import type { Context } from "@netlify/functions";
+import { verifyTurnstileToken } from "../../src/lib/chat/verification";
+import { RateLimiter } from "../../src/lib/chat/rate-limiter";
 
 // ──────────────────────────────────────────────
 // Chat API Proxy — Netlify Function
@@ -24,6 +26,9 @@ const DEFAULT_MODEL = "meta-llama/llama-3.1-8b-instruct";
 /** OpenRouter API URL */
 const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
 
+/** Singleton rate limiter — resets on cold start */
+const rateLimiter = new RateLimiter();
+
 /** Site info for OpenRouter tracking */
 const SITE_URL = "https://juanelojgac-tech.com";
 const SITE_TITLE = "JuaneloJGAC Tech AI Consultant";
@@ -38,6 +43,7 @@ interface ChatRequestMessage {
 interface ChatRequestBody {
   messages: ChatRequestMessage[];
   language?: string;
+  turnstileToken?: string;
 }
 
 // ── Validation ──
@@ -113,6 +119,42 @@ export default async function handler(request: Request, _context: Context): Prom
 
   if (!validateRequestBody(body)) {
     return createErrorResponse(400, "Invalid request format");
+  }
+
+  // ── Rate limiting (per client IP) ──
+  // Prefer Netlify-set header (cannot be spoofed) over x-forwarded-for
+  const clientIp =
+    request.headers.get("x-nf-client-connection-ip") ??
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    "unknown";
+
+  const rateResult = rateLimiter.checkLimit(clientIp);
+  if (!rateResult.allowed) {
+    return new Response(
+      JSON.stringify({ error: { message: "Rate limit exceeded. Please try again shortly." } }),
+      {
+        status: 429,
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": SITE_URL,
+          "Retry-After": String(Math.ceil(rateResult.retryAfterMs / 1000)),
+        },
+      }
+    );
+  }
+
+  // ── Turnstile verification (if secret key is configured) ──
+  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+  if (turnstileSecret) {
+    const token = body.turnstileToken;
+    if (!token) {
+      return createErrorResponse(403, "Human verification required");
+    }
+
+    const verification = await verifyTurnstileToken(token, turnstileSecret, clientIp);
+    if (!verification.success) {
+      return createErrorResponse(403, "Human verification failed");
+    }
   }
 
   const model = process.env.OPENROUTER_MODEL ?? DEFAULT_MODEL;

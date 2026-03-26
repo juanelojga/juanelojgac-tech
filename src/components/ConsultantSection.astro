@@ -1,0 +1,104 @@
+---
+import { StaticContentProvider } from "../lib/chat/content/static-content-provider";
+import ConsultantLayout from "./react/chat/ConsultantLayout";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+// Import translations
+const translations = await import(`../i18n/${lang}.json`);
+const t = translations.default.chat;
+
+// Get content from the content provider
+const contentProvider = new StaticContentProvider();
+const companyFacts = contentProvider.getCompanyFacts(lang);
+const services = contentProvider.getServices(lang);
+const trustSignals = contentProvider.getTrustSignals(lang);
+const starterPrompts = contentProvider.getStarterPrompts(lang);
+
+// Shape service items for the panel
+const serviceItems = services.map((svc) => ({
+  id: svc.id,
+  title: svc.title,
+  shortDescription: svc.shortDescription,
+  relatedPrompt: svc.relatedPrompt,
+}));
+
+// Panel translations
+const panelTranslations = {
+  servicesLabel: t.panel.servicesLabel,
+  trustLabel: t.panel.trustLabel,
+  ctaBooking: t.panel.ctaBooking,
+  ctaContact: t.panel.ctaContact,
+  collapseLabel: t.panel.collapseLabel,
+  expandLabel: t.panel.expandLabel,
+};
+
+// Chat translations
+const chatTranslations = {
+  headerTitle: t.header.title,
+  headerSubtitle: t.header.subtitle,
+  inputPlaceholder: t.input.placeholder,
+  inputSend: t.input.send,
+  inputCharacterLimit: t.input.characterLimit,
+  welcomeMessage: t.messages.welcome,
+  typingText: t.messages.typing,
+  chipsLabel: t.chips.label,
+  chatRegionLabel: t.accessibility.chatRegion,
+  messageListLabel: t.accessibility.messageList,
+};
+
+// Layout translations
+const layoutTranslations = {
+  consultantSection: t.layout.consultantSection,
+  panelLabel: t.layout.panelLabel,
+  chatLabel: t.layout.chatLabel,
+};
+
+// Verification translations
+const verificationTranslations = {
+  title: t.verification.title,
+  description: t.verification.description,
+  verifying: t.verification.verifying,
+  success: t.verification.success,
+  error: t.verification.error,
+  expired: t.verification.expired,
+  networkError: t.verification.networkError,
+  ariaLabel: t.verification.ariaLabel,
+};
+
+// Error boundary translations
+const errorBoundaryTranslations = {
+  title: t.errorBoundary.title,
+  description: t.errorBoundary.description,
+  retry: t.errorBoundary.retry,
+};
+
+// Turnstile site key from environment (empty string disables verification)
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
+---
+
+<section id="consultant" class="bg-neutral-lightest py-16 lg:py-20">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <ConsultantLayout
+      client:load
+      companyName={companyFacts.name}
+      tagline={companyFacts.tagline}
+      services={serviceItems}
+      trustSignals={trustSignals}
+      starterPrompts={starterPrompts}
+      bookingUrl="https://calendly.com/juanelojgac"
+      contactEmail="hello@juanelojgac.tech"
+      panelTranslations={panelTranslations}
+      chatTranslations={chatTranslations}
+      layoutTranslations={layoutTranslations}
+      verificationTranslations={verificationTranslations}
+      errorBoundaryTranslations={errorBoundaryTranslations}
+      turnstileSiteKey={turnstileSiteKey}
+      language={lang}
+    />
+  </div>
+</section>

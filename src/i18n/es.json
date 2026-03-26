@@ -294,6 +294,30 @@
       "contact": "Envíanos un Correo",
       "learnMore": "Saber Más"
     },
+    "verification": {
+      "title": "Verifica que eres humano",
+      "description": "Por favor, completa la verificación para comenzar a chatear.",
+      "verifying": "Verificando...",
+      "success": "¡Verificado! Ya puedes comenzar a chatear.",
+      "error": "La verificación falló. Por favor, intenta de nuevo.",
+      "expired": "La verificación expiró. Por favor, verifica de nuevo.",
+      "networkError": "No se pudo conectar al servicio de verificación. Revisa tu conexión.",
+      "ariaLabel": "Desafío de verificación humana"
+    },
+    "rateLimit": {
+      "warning": "Estás enviando mensajes muy rápido. Por favor, espera un momento.",
+      "blocked": "Demasiadas solicitudes. Por favor, espera {{seconds}} segundos antes de intentar de nuevo."
+    },
+    "errorBoundary": {
+      "title": "Algo salió mal",
+      "description": "El chat encontró un error. Por favor, intenta refrescar la página.",
+      "retry": "Intentar de Nuevo"
+    },
+    "layout": {
+      "consultantSection": "Consultor de IA",
+      "panelLabel": "Panel de información de servicios",
+      "chatLabel": "Chatea con nuestro consultor de IA"
+    },
     "accessibility": {
       "chatRegion": "Chat de consultor de IA",
       "messageList": "Mensajes de la conversación",

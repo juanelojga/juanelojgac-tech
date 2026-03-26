@@ -1,6 +1,7 @@
 ---
 import Benefits from "../components/Benefits.astro";
 import Challenges from "../components/Challenges.astro";
+import ConsultantSection from "../components/ConsultantSection.astro";
 import ContactCTA from "../components/ContactCTA.astro";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
@@ -22,6 +23,7 @@ const lang = detectLanguageFromHeader(acceptLanguageHeader);
   <Challenges lang={lang} />
   <Services lang={lang} />
   <Benefits lang={lang} />
+  <ConsultantSection lang={lang} />
   <ContactCTA lang={lang} />
   <Footer lang={lang} />
 </Layout>

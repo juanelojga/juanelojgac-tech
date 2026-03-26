@@ -294,6 +294,30 @@
       "contact": "Send Us an Email",
       "learnMore": "Learn More"
     },
+    "verification": {
+      "title": "Verify you're human",
+      "description": "Please complete the verification below to start chatting.",
+      "verifying": "Verifying...",
+      "success": "Verified! You can now start chatting.",
+      "error": "Verification failed. Please try again.",
+      "expired": "Verification expired. Please verify again.",
+      "networkError": "Could not reach verification service. Please check your connection.",
+      "ariaLabel": "Human verification challenge"
+    },
+    "rateLimit": {
+      "warning": "You're sending messages too quickly. Please wait a moment.",
+      "blocked": "Too many requests. Please wait {{seconds}} seconds before trying again."
+    },
+    "errorBoundary": {
+      "title": "Something went wrong",
+      "description": "The chat encountered an error. Please try refreshing the page.",
+      "retry": "Try Again"
+    },
+    "layout": {
+      "consultantSection": "AI Consultant",
+      "panelLabel": "Service information panel",
+      "chatLabel": "Chat with our AI consultant"
+    },
     "accessibility": {
       "chatRegion": "AI consultant chat",
       "messageList": "Conversation messages",
