@@ -35,16 +35,16 @@ export default function ServiceItem({
       data-testid={`service-item-${id}`}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      className="group border-chat-chip-border bg-chat-panel-bg hover:border-tarawera hover:bg-chat-chip-hover-bg focus-visible:ring-chat-input-focus-border flex w-full cursor-pointer items-start gap-3 rounded-lg border p-3 text-left transition-colors focus-visible:ring-2 focus-visible:outline-none"
+      className="group hover:bg-chat-chip-hover-bg focus-visible:ring-chat-input-focus-border flex w-full cursor-pointer items-center gap-2.5 rounded-md px-2.5 py-2 text-left transition-colors focus-visible:ring-2 focus-visible:outline-none"
     >
       <div className="flex min-w-0 flex-1 flex-col">
-        <span className="font-sora text-tarawera group-hover:text-tarawera-dark text-sm font-semibold">
+        <span className="font-sora text-tarawera group-hover:text-tarawera-dark text-xs font-medium">
           {title}
         </span>
-        <span className="text-neutral-dark mt-0.5 text-xs leading-relaxed">{shortDescription}</span>
+        <span className="text-neutral mt-0.5 text-[11px] leading-relaxed">{shortDescription}</span>
       </div>
       <svg
-        className="text-neutral group-hover:text-tarawera mt-0.5 h-4 w-4 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
+        className="text-neutral-light group-hover:text-tarawera mt-0.5 h-3.5 w-3.5 flex-shrink-0 transition-transform group-hover:translate-x-0.5"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"

@@ -17,6 +17,7 @@ const contentProvider = new StaticContentProvider();
 const companyFacts = contentProvider.getCompanyFacts(lang);
 const services = contentProvider.getServices(lang);
 const trustSignals = contentProvider.getTrustSignals(lang);
+const outcomePrompts = contentProvider.getOutcomePrompts(lang);
 
 // Shape service items for the panel (only fields needed by ServiceItem)
 const serviceItems = services.map((svc) => ({
@@ -34,6 +35,7 @@ const panelTranslations = {
   ctaContact: t.ctaContact,
   collapseLabel: t.collapseLabel,
   expandLabel: t.expandLabel,
+  outcomesLabel: t.outcomesLabel,
 };
 ---
 
@@ -43,6 +45,7 @@ const panelTranslations = {
   tagline={companyFacts.tagline}
   services={serviceItems}
   trustSignals={trustSignals}
+  outcomePrompts={outcomePrompts}
   translations={panelTranslations}
   bookingUrl="https://calendly.com/juanelojgac"
   contactEmail="hello@juanelojgac.tech"

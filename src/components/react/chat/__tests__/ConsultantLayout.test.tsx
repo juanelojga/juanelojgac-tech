@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import type { StarterPrompt, TrustSignal } from "../../../../lib/chat/types";
+import type { OutcomePrompt, StarterPrompt, TrustSignal } from "../../../../lib/chat/types";
 import ConsultantLayout, { type ConsultantLayoutProps } from "../ConsultantLayout";
 
 // ── Test Fixtures ──
@@ -28,6 +28,15 @@ const mockTrustSignals: TrustSignal[] = [
   { id: "ts-satisfaction", type: "stat", label: "Client satisfaction", value: "98%" },
 ];
 
+const mockOutcomePrompts: OutcomePrompt[] = [
+  {
+    id: "outcome-grow-revenue",
+    label: "Grow revenue with AI",
+    prompt: "How can AI help me grow revenue?",
+    icon: "chart-up",
+  },
+];
+
 const mockStarterPrompts: StarterPrompt[] = [
   {
     id: "sp-1",
@@ -45,6 +54,7 @@ const mockPanelTranslations = {
   ctaContact: "Contact Us",
   collapseLabel: "Show details",
   expandLabel: "Hide details",
+  outcomesLabel: "How can we help?",
 };
 
 const mockChatTranslations = {
@@ -88,6 +98,7 @@ const defaultProps: ConsultantLayoutProps = {
   tagline: "Practical AI solutions",
   services: mockServices,
   trustSignals: mockTrustSignals,
+  outcomePrompts: mockOutcomePrompts,
   starterPrompts: mockStarterPrompts,
   bookingUrl: "https://calendly.com/juanelojgac",
   contactEmail: "hello@juanelojgac.tech",

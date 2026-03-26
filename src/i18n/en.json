@@ -65,7 +65,8 @@
       "ctaBooking": "Book a Free Consultation",
       "ctaContact": "Contact Us",
       "collapseLabel": "Show details",
-      "expandLabel": "Hide details"
+      "expandLabel": "Hide details",
+      "outcomesLabel": "How can we help?"
     },
     "messages": {
       "welcome": "Hello! I'm the JuaneloJGAC Tech assistant. I can help you explore our services, understand pricing ranges, and find the right solution for your needs. How can I help you today?",

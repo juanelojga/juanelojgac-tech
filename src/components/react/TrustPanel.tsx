@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useState } from "react";
 
-import type { TrustSignal } from "../../lib/chat/types";
+import type { OutcomePrompt, TrustSignal } from "../../lib/chat/types";
+import OutcomePrompts from "./OutcomePrompts";
 import PanelCTA from "./PanelCTA";
 import ServiceItem from "./ServiceItem";
 import TrustSignals from "./TrustSignals";
@@ -19,6 +20,7 @@ export interface TrustPanelTranslations {
   readonly ctaContact: string;
   readonly collapseLabel: string;
   readonly expandLabel: string;
+  readonly outcomesLabel: string;
 }
 
 export interface TrustPanelProps {
@@ -26,6 +28,7 @@ export interface TrustPanelProps {
   readonly tagline: string;
   readonly services: readonly ServiceItemData[];
   readonly trustSignals: readonly TrustSignal[];
+  readonly outcomePrompts: readonly OutcomePrompt[];
   readonly onPromptInject?: (prompt: string) => void;
   readonly translations: TrustPanelTranslations;
   readonly bookingUrl: string;
@@ -37,6 +40,7 @@ export default function TrustPanel({
   tagline,
   services,
   trustSignals,
+  outcomePrompts,
   onPromptInject,
   translations,
   bookingUrl,
@@ -87,12 +91,23 @@ export default function TrustPanel({
       <div
         className={`flex-1 overflow-y-auto transition-all duration-200 ease-in-out ${isExpanded ? "opacity-100" : "pointer-events-none h-0 overflow-hidden opacity-0 lg:pointer-events-auto lg:h-auto lg:overflow-y-auto lg:opacity-100"}`}
       >
-        {/* Services Section */}
+        {/* Outcome Prompts Section — Primary focus */}
+        {outcomePrompts.length > 0 && (
+          <div className="border-neutral-darkest-10 border-b px-5 py-4">
+            <OutcomePrompts
+              outcomes={outcomePrompts}
+              label={translations.outcomesLabel}
+              onPromptInject={handlePromptInject}
+            />
+          </div>
+        )}
+
+        {/* Services Section — De-emphasized compact list */}
         <div className="border-neutral-darkest-10 border-b px-5 py-4">
           <h3 className="font-sora text-neutral mb-3 text-xs font-semibold tracking-wider uppercase">
             {translations.servicesLabel}
           </h3>
-          <div className="space-y-2">
+          <div className="space-y-1">
             {services.map((service) => (
               <ServiceItem
                 key={service.id}

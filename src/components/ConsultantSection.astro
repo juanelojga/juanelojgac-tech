@@ -19,6 +19,7 @@ const companyFacts = contentProvider.getCompanyFacts(lang);
 const services = contentProvider.getServices(lang);
 const trustSignals = contentProvider.getTrustSignals(lang);
 const starterPrompts = contentProvider.getStarterPrompts(lang);
+const outcomePrompts = contentProvider.getOutcomePrompts(lang);
 
 // Shape service items for the panel
 const serviceItems = services.map((svc) => ({
@@ -36,6 +37,7 @@ const panelTranslations = {
   ctaContact: t.panel.ctaContact,
   collapseLabel: t.panel.collapseLabel,
   expandLabel: t.panel.expandLabel,
+  outcomesLabel: t.panel.outcomesLabel,
 };
 
 // Chat translations
@@ -90,6 +92,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
       tagline={companyFacts.tagline}
       services={serviceItems}
       trustSignals={trustSignals}
+      outcomePrompts={outcomePrompts}
       starterPrompts={starterPrompts}
       bookingUrl="https://calendly.com/juanelojgac"
       contactEmail="hello@juanelojgac.tech"

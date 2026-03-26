@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import type { TrustSignal } from "../../../lib/chat/types";
+import type { OutcomePrompt, TrustSignal } from "../../../lib/chat/types";
 import TrustPanel, { type TrustPanelTranslations } from "../TrustPanel";
 
 const mockServices = [
@@ -27,6 +27,21 @@ const mockServices = [
   },
 ];
 
+const mockOutcomePrompts: OutcomePrompt[] = [
+  {
+    id: "outcome-grow-revenue",
+    label: "Grow revenue with AI",
+    prompt: "How can AI help me grow revenue?",
+    icon: "chart-up",
+  },
+  {
+    id: "outcome-automate-ops",
+    label: "Automate operations",
+    prompt: "I want to automate my operations",
+    icon: "cog",
+  },
+];
+
 const mockTrustSignals: TrustSignal[] = [
   { id: "ts-projects", type: "stat", label: "Projects delivered", value: "50+" },
   { id: "ts-satisfaction", type: "stat", label: "Client satisfaction", value: "98%" },
@@ -40,6 +55,7 @@ const mockTranslations: TrustPanelTranslations = {
   ctaContact: "Contact Us",
   collapseLabel: "Show details",
   expandLabel: "Hide details",
+  outcomesLabel: "How can we help?",
 };
 
 const defaultProps = {
@@ -47,6 +63,7 @@ const defaultProps = {
   tagline: "Practical AI solutions delivered with clarity, speed, and human-centered design",
   services: mockServices,
   trustSignals: mockTrustSignals,
+  outcomePrompts: mockOutcomePrompts,
   onPromptInject: vi.fn(),
   translations: mockTranslations,
   bookingUrl: "https://calendly.com/juanelojgac",
@@ -135,6 +152,50 @@ describe("TrustPanel", () => {
       render(<TrustPanel {...defaultProps} />);
       const link = screen.getByRole("link", { name: /Contact Us/i });
       expect(link).toHaveAttribute("href", "mailto:hello@juanelojgac.tech");
+    });
+  });
+
+  describe("outcome prompts section", () => {
+    it("renders the outcomes section label", () => {
+      render(<TrustPanel {...defaultProps} />);
+      expect(screen.getByText("How can we help?")).toBeInTheDocument();
+    });
+
+    it("renders all outcome prompts", () => {
+      render(<TrustPanel {...defaultProps} />);
+      expect(screen.getByText("Grow revenue with AI")).toBeInTheDocument();
+      expect(screen.getByText("Automate operations")).toBeInTheDocument();
+    });
+
+    it("does not render outcomes section when array is empty", () => {
+      render(<TrustPanel {...defaultProps} outcomePrompts={[]} />);
+      expect(screen.queryByText("How can we help?")).not.toBeInTheDocument();
+    });
+
+    it("calls onPromptInject when an outcome is clicked", () => {
+      const onPromptInject = vi.fn();
+      render(<TrustPanel {...defaultProps} onPromptInject={onPromptInject} />);
+
+      fireEvent.click(screen.getByTestId("outcome-prompt-outcome-grow-revenue"));
+      expect(onPromptInject).toHaveBeenCalledWith("How can AI help me grow revenue?");
+    });
+  });
+
+  describe("section ordering", () => {
+    it("renders outcomes before services", () => {
+      const { container } = render(<TrustPanel {...defaultProps} />);
+      const html = container.innerHTML;
+      const outcomesPos = html.indexOf("How can we help?");
+      const servicesPos = html.indexOf("Our Services");
+      expect(outcomesPos).toBeLessThan(servicesPos);
+    });
+
+    it("renders services before trust signals", () => {
+      const { container } = render(<TrustPanel {...defaultProps} />);
+      const html = container.innerHTML;
+      const servicesPos = html.indexOf("Our Services");
+      const trustPos = html.indexOf("Why Work With Us");
+      expect(servicesPos).toBeLessThan(trustPos);
     });
   });
 

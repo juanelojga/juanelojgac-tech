@@ -2,6 +2,7 @@ import React, { useCallback, useState } from "react";
 
 import type {
   ChatMessage as ChatMessageType,
+  OutcomePrompt,
   StarterPrompt,
   TrustSignal,
 } from "../../../lib/chat/types";
@@ -27,6 +28,7 @@ export interface ConsultantLayoutProps {
   readonly tagline: string;
   readonly services: readonly ServiceItemData[];
   readonly trustSignals: readonly TrustSignal[];
+  readonly outcomePrompts: readonly OutcomePrompt[];
   readonly starterPrompts: readonly StarterPrompt[];
   readonly bookingUrl: string;
   readonly contactEmail: string;
@@ -51,6 +53,7 @@ export default function ConsultantLayout({
   tagline,
   services,
   trustSignals,
+  outcomePrompts,
   starterPrompts,
   bookingUrl,
   contactEmail,
@@ -114,6 +117,7 @@ export default function ConsultantLayout({
         tagline={tagline}
         services={services}
         trustSignals={trustSignals}
+        outcomePrompts={outcomePrompts}
         onPromptInject={handlePromptInject}
         translations={panelTranslations}
         bookingUrl={bookingUrl}
