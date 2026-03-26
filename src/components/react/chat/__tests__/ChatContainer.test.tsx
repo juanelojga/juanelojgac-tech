@@ -17,6 +17,8 @@ const defaultTranslations: ChatContainerTranslations = {
   welcomeMessage: "Welcome! How can I help you today?",
   typingText: "Thinking...",
   chipsLabel: "Suggested prompts",
+  followUpsLabel: "Suggested follow-ups",
+  errorRetry: "Try again",
   chatRegionLabel: "Chat assistant",
   messageListLabel: "Chat messages",
 };
@@ -52,6 +54,7 @@ describe("ChatContainer", () => {
     messages: [] as ChatMessage[],
     starterPrompts: defaultChips,
     promptGroups: defaultPromptGroups,
+    followUps: [],
     isTyping: false,
     error: null,
     onSendMessage: vi.fn(),

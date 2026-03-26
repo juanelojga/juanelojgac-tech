@@ -31,11 +31,19 @@ export class ChatAPIClient {
   private readonly endpoint: string;
   private readonly timeoutMs: number;
   private readonly retryConfig: RetryConfig;
+  private turnstileToken?: string;
 
   constructor(config?: Partial<ChatAPIClientConfig>) {
     this.endpoint = config?.endpoint ?? DEFAULT_ENDPOINT;
     this.timeoutMs = config?.timeoutMs ?? DEFAULT_TIMEOUT_MS;
     this.retryConfig = config?.retryConfig ?? DEFAULT_RETRY_CONFIG;
+  }
+
+  /**
+   * Sets the Turnstile verification token to include in requests.
+   */
+  setTurnstileToken(token: string): void {
+    this.turnstileToken = token;
   }
 
   /**
@@ -64,7 +72,11 @@ export class ChatAPIClient {
       response = await fetch(this.endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ messages, language }),
+        body: JSON.stringify({
+          messages,
+          language,
+          ...(this.turnstileToken && { turnstileToken: this.turnstileToken }),
+        }),
         signal: controller.signal,
       });
     } catch (error: unknown) {

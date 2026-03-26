@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useRef } from "react";
 
 import type {
   ChatMessage as ChatMessageType,
+  GuidedFollowUp,
   PromptGroup,
   StarterPrompt,
 } from "../../../lib/chat/types";
@@ -22,6 +23,8 @@ export interface ChatContainerTranslations {
   readonly welcomeMessage: string;
   readonly typingText: string;
   readonly chipsLabel: string;
+  readonly followUpsLabel: string;
+  readonly errorRetry: string;
   readonly chatRegionLabel: string;
   readonly messageListLabel: string;
 }
@@ -30,9 +33,11 @@ export interface ChatContainerProps {
   readonly messages: readonly ChatMessageType[];
   readonly starterPrompts: readonly StarterPrompt[];
   readonly promptGroups: readonly PromptGroup[];
+  readonly followUps: readonly GuidedFollowUp[];
   readonly isTyping: boolean;
   readonly error: string | null;
   readonly onSendMessage: (message: string) => void;
+  readonly onRetry?: () => void;
   readonly translations: ChatContainerTranslations;
 }
 
@@ -40,9 +45,11 @@ export default function ChatContainer({
   messages,
   starterPrompts,
   promptGroups,
+  followUps,
   isTyping,
   error,
   onSendMessage,
+  onRetry,
   translations,
 }: ChatContainerProps) {
   const messageEndRef = useRef<HTMLDivElement>(null);
@@ -112,8 +119,45 @@ export default function ChatContainer({
 
       {/* Error Alert */}
       {error && (
-        <div role="alert" className="bg-coral-lightest text-coral-dark px-4 py-2.5 text-sm">
-          {error}
+        <div
+          role="alert"
+          className="bg-coral-lightest text-coral-dark flex items-center gap-2 px-4 py-2.5 text-sm"
+        >
+          <span className="flex-1">{error}</span>
+          {onRetry && (
+            <button
+              type="button"
+              onClick={onRetry}
+              data-testid="chat-retry-button"
+              className="text-coral-dark hover:text-coral bg-coral-lightest hover:bg-coral-lighter rounded px-3 py-1 text-xs font-semibold transition-colors"
+            >
+              {translations.errorRetry}
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Follow-up suggestions — visible after assistant responses */}
+      {hasMessages && followUps.length > 0 && !isTyping && (
+        <div
+          data-testid="chat-follow-ups"
+          className="border-t border-neutral-200 px-3 py-2 sm:px-4"
+        >
+          <p className="text-neutral-dark mb-1.5 text-xs font-medium">
+            {translations.followUpsLabel}
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {followUps.map((followUp) => (
+              <button
+                key={followUp.id}
+                type="button"
+                onClick={() => handleChipClick(followUp.prompt)}
+                className="bg-tarawera-lightest text-tarawera hover:bg-tarawera-lighter rounded-full px-3 py-1 text-xs font-medium transition-colors"
+              >
+                {followUp.label}
+              </button>
+            ))}
+          </div>
         </div>
       )}
 

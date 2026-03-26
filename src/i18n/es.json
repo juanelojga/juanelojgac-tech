@@ -76,10 +76,12 @@
       "errorRateLimit": "Demasiados mensajes. Por favor, espera un momento antes de enviar otro.",
       "errorTimeout": "La respuesta tardó demasiado. Por favor, intenta de nuevo.",
       "errorUnavailable": "El servicio de chat no está disponible temporalmente. Por favor, intenta más tarde.",
+      "errorRetry": "Intentar de nuevo",
       "redirect": "¡Es una pregunta interesante! Aunque está fuera de mi área de especialización, me encantaría ayudarte con lo que mejor conozco — consultoría de IA, desarrollo web, automatización y soluciones de marketing. ¿Te sería útil alguno de estos temas?"
     },
     "chips": {
-      "label": "Preguntas rápidas para comenzar"
+      "label": "Preguntas rápidas para comenzar",
+      "followUpsLabel": "Sugerencias de seguimiento"
     },
     "outcomes": {
       "sectionLabel": "¿Cómo podemos ayudarte?",

@@ -53,8 +53,19 @@ const chatTranslations = {
   welcomeMessage: t.messages.welcome,
   typingText: t.messages.typing,
   chipsLabel: t.chips.label,
+  followUpsLabel: t.chips.followUpsLabel,
+  errorRetry: t.messages.errorRetry,
   chatRegionLabel: t.accessibility.chatRegion,
   messageListLabel: t.accessibility.messageList,
+};
+
+// Error translations (resolved i18n keys for error messages)
+const errorTranslations = {
+  errorGeneric: t.messages.errorGeneric,
+  errorNetwork: t.messages.errorNetwork,
+  errorRateLimit: t.messages.errorRateLimit,
+  errorTimeout: t.messages.errorTimeout,
+  errorUnavailable: t.messages.errorUnavailable,
 };
 
 // Layout translations
@@ -105,6 +116,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
       layoutTranslations={layoutTranslations}
       verificationTranslations={verificationTranslations}
       errorBoundaryTranslations={errorBoundaryTranslations}
+      errorTranslations={errorTranslations}
       turnstileSiteKey={turnstileSiteKey}
       language={lang}
     />

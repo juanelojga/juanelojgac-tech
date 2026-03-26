@@ -29,8 +29,10 @@ const chatTranslations = {
   welcomeMessage: t.messages.welcome,
   typingText: t.messages.typing,
   chipsLabel: t.chips.label,
+  followUpsLabel: t.chips.followUpsLabel,
   chatRegionLabel: t.accessibility.chatRegion,
   messageListLabel: t.accessibility.messageList,
+  errorRetry: t.messages.errorRetry,
 };
 ---
 
@@ -41,6 +43,7 @@ const chatTranslations = {
   promptGroups={promptGroups}
   isTyping={false}
   error={null}
+  followUps={[]}
   onSendMessage={() => {}}
   translations={chatTranslations}
 />

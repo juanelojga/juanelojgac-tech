@@ -78,8 +78,18 @@ const mockChatTranslations = {
   welcomeMessage: "Welcome! How can I help?",
   typingText: "Thinking...",
   chipsLabel: "Suggested prompts",
+  followUpsLabel: "Suggested follow-ups",
+  errorRetry: "Try again",
   chatRegionLabel: "Chat assistant",
   messageListLabel: "Chat messages",
+};
+
+const mockErrorTranslations = {
+  errorGeneric: "Something went wrong. Please try again.",
+  errorNetwork: "Connection lost.",
+  errorRateLimit: "Too many messages.",
+  errorTimeout: "Response timed out.",
+  errorUnavailable: "Service unavailable.",
 };
 
 const mockLayoutTranslations = {
@@ -120,6 +130,7 @@ const defaultProps: ConsultantLayoutProps = {
   layoutTranslations: mockLayoutTranslations,
   verificationTranslations: mockVerificationTranslations,
   errorBoundaryTranslations: mockErrorBoundaryTranslations,
+  errorTranslations: mockErrorTranslations,
   turnstileSiteKey: "test-site-key",
   language: "en",
 };
