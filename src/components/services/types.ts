@@ -1,7 +1,0 @@
-export interface Service {
-  title: string;
-  description: string;
-  image: string;
-  imageAlt: string;
-  tagline: string;
-}
