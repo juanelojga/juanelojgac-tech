@@ -2,7 +2,9 @@
 
 @theme {
   /* Fonts */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
   --font-sora: "Sora", ui-sans-serif, system-ui, sans-serif;
 
   /* Colors - Brand */
@@ -119,4 +121,55 @@
 
   --text-lg: 18px;
   --text-lg--line-height: 1.5;
+
+  /* ─── Chat UI Tokens ─── */
+
+  /* Message Bubbles */
+  --color-chat-bubble-user: #0a3f66ff;
+  --color-chat-bubble-user-text: #ffffffff;
+  --color-chat-bubble-assistant: #e6ebefff;
+  --color-chat-bubble-assistant-text: #06020aff;
+
+  /* Panel Backgrounds */
+  --color-chat-panel-bg: #ffffffff;
+  --color-chat-panel-sidebar-bg: #f2f2f2ff;
+  --color-chat-panel-header-bg: #0a3f66ff;
+  --color-chat-panel-header-text: #ffffffff;
+  --color-chat-panel-input-bg: #ffffffff;
+
+  /* Prompt Chip Styles */
+  --color-chat-chip-bg: #e6ebefff;
+  --color-chat-chip-text: #0a3f66ff;
+  --color-chat-chip-border: #ced8e0ff;
+  --color-chat-chip-hover-bg: #ced8e0ff;
+  --color-chat-chip-hover-border: #0a3f66ff;
+
+  /* Input Focus States */
+  --color-chat-input-border: #ced8e0ff;
+  --color-chat-input-focus-border: #00a79dff;
+  --color-chat-input-focus-ring: #00a79d33;
+  --color-chat-input-placeholder: #828084ff;
+
+  /* CTA Tokens */
+  --color-chat-cta-primary: #00a79dff;
+  --color-chat-cta-primary-hover: #00857dff;
+  --color-chat-cta-primary-text: #ffffffff;
+  --color-chat-cta-secondary: #ff7a59ff;
+  --color-chat-cta-secondary-hover: #cc6147ff;
+  --color-chat-cta-secondary-text: #ffffffff;
+
+  /* Typing Indicator */
+  --color-chat-typing-dot: #828084ff;
+
+  /* ─── Chat Layout Breakpoints ─── */
+  /* Two-panel layout strategy:
+     - Mobile (<768px): Full-screen chat, panel collapses to overlay drawer
+     - Tablet (768-1023px): Slide-in panel, chat fills remaining space
+     - Desktop (≥1024px): Persistent left panel (360px) + chat panel
+     - Wide (≥1280px): Persistent left panel (400px) + chat panel */
+
+  --spacing-chat-panel-width-desktop: 360px;
+  --spacing-chat-panel-width-wide: 400px;
+  --spacing-chat-message-max-width: 640px;
+  --spacing-chat-input-max-width: 720px;
 }

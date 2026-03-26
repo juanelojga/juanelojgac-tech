@@ -6,20 +6,14 @@ description: >
   and subagent opportunities, then implements using coding-agent skill.
   Creates plan files and memory documentation for each completed phase.
 tools:
-  - run_in_terminal
-  - read_file
-  - create_file
-  - replace_string_in_file
-  - multi_replace_string_in_file
-  - file_search
-  - grep_search
-  - semantic_search
-  - list_dir
-  - manage_todo_list
-  - get_errors
+  - edit
+  - execute
+  - read
+  - search
+  - todos
   - memory
   - runSubagent
-  - search_subagent
+  - web
 ---
 
 # Phase Developer Agent
