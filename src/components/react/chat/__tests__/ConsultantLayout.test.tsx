@@ -29,7 +29,12 @@ const mockTrustSignals: TrustSignal[] = [
 ];
 
 const mockStarterPrompts: StarterPrompt[] = [
-  { id: "sp-1", label: "Tell me about AI", prompt: "Tell me about AI integration", intent: "ai-integration" },
+  {
+    id: "sp-1",
+    label: "Tell me about AI",
+    prompt: "Tell me about AI integration",
+    intent: "ai-integration",
+  },
   { id: "sp-2", label: "Web platform", prompt: "I need a web platform", intent: "web-platform" },
 ];
 

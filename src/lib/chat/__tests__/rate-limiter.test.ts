@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
-import { type RateLimitConfig, RateLimiter,type RateLimitResult } from "../rate-limiter";
+import { type RateLimitConfig, RateLimiter, type RateLimitResult } from "../rate-limiter";
 
 // ──────────────────────────────────────────────
 // Tests for in-memory sliding window rate limiter

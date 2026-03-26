@@ -69,9 +69,7 @@ export default class ChatErrorBoundary extends Component<
               </svg>
             </div>
 
-            <h2 className="font-sora text-tarawera mb-2 text-lg font-bold">
-              {translations.title}
-            </h2>
+            <h2 className="font-sora text-tarawera mb-2 text-lg font-bold">{translations.title}</h2>
             <p className="text-neutral-dark mb-6 text-sm leading-relaxed">
               {translations.description}
             </p>

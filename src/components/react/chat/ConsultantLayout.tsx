@@ -1,6 +1,10 @@
 import React, { useCallback, useState } from "react";
 
-import type { ChatMessage as ChatMessageType, StarterPrompt, TrustSignal } from "../../../lib/chat/types";
+import type {
+  ChatMessage as ChatMessageType,
+  StarterPrompt,
+  TrustSignal,
+} from "../../../lib/chat/types";
 import TrustPanel, { type ServiceItemData, type TrustPanelTranslations } from "../TrustPanel";
 import ChatContainer, { type ChatContainerTranslations } from "./ChatContainer";
 import ChatErrorBoundary, { type ErrorBoundaryTranslations } from "./ChatErrorBoundary";

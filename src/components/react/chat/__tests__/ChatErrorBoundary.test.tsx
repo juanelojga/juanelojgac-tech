@@ -103,9 +103,7 @@ describe("ChatErrorBoundary", () => {
 
       // React logs errors + our boundary logs
       expect(consoleSpy).toHaveBeenCalled();
-      const boundaryLog = consoleSpy.mock.calls.find(
-        (call) => call[0] === "[ChatErrorBoundary]"
-      );
+      const boundaryLog = consoleSpy.mock.calls.find((call) => call[0] === "[ChatErrorBoundary]");
       expect(boundaryLog).toBeDefined();
 
       consoleSpy.mockRestore();

@@ -87,11 +87,11 @@ Verdict: PASS
 
 ### New Tests Added: 72
 
-| Test File | Count |
-|-----------|-------|
-| ConsultantLayout.test.tsx | 11 |
-| HumanVerification.test.tsx | 13 |
-| ChatErrorBoundary.test.tsx | 7 |
-| integration.test.ts | 17 |
-| verification.test.ts | 11 |
-| rate-limiter.test.ts | 13 |
+| Test File                  | Count |
+| -------------------------- | ----- |
+| ConsultantLayout.test.tsx  | 11    |
+| HumanVerification.test.tsx | 13    |
+| ChatErrorBoundary.test.tsx | 7     |
+| integration.test.ts        | 17    |
+| verification.test.ts       | 11    |
+| rate-limiter.test.ts       | 13    |

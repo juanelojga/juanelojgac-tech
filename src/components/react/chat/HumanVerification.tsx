@@ -106,19 +106,11 @@ export default function HumanVerification({
         <p className="text-neutral-dark mb-6 text-sm leading-relaxed">{translations.description}</p>
 
         {/* Turnstile widget container */}
-        <div
-          ref={widgetRef}
-          data-testid="turnstile-widget"
-          className="mb-4 flex justify-center"
-        />
+        <div ref={widgetRef} data-testid="turnstile-widget" className="mb-4 flex justify-center" />
 
         {/* Status message */}
         {statusMessage && (
-          <p
-            role="status"
-            aria-live="polite"
-            className={`text-sm ${getStatusColor(status)}`}
-          >
+          <p role="status" aria-live="polite" className={`text-sm ${getStatusColor(status)}`}>
             {statusMessage}
           </p>
         )}

@@ -1,7 +1,11 @@
 import { beforeEach, describe, expect, it, type Mock, vi } from "vitest";
 
 import type { ChatMessage, ContentProvider } from "../types";
-import { createChatMessage, createMockContentProvider, type MockContentProvider } from "./factories";
+import {
+  createChatMessage,
+  createMockContentProvider,
+  type MockContentProvider,
+} from "./factories";
 
 // ──────────────────────────────────────────────
 // Integration Tests — Cross-Component Data Flow
@@ -41,7 +45,8 @@ describe("Integration: Cross-Component Data Flow", () => {
   beforeEach(async () => {
     vi.clearAllMocks();
     mockSendMessage.mockResolvedValue({
-      content: "I'd be happy to help with your web platform needs! We offer custom web development solutions.",
+      content:
+        "I'd be happy to help with your web platform needs! We offer custom web development solutions.",
       finishReason: "stop",
       usage: { prompt_tokens: 100, completion_tokens: 50, total_tokens: 150 },
     });
@@ -135,7 +140,9 @@ describe("Integration: Cross-Component Data Flow", () => {
     });
 
     it("extracts lead attributes from user messages", () => {
-      const userMessages = [makeUserMessage("I need an AI chatbot for my e-commerce startup within 3 months")];
+      const userMessages = [
+        makeUserMessage("I need an AI chatbot for my e-commerce startup within 3 months"),
+      ];
 
       const attributes = leadExtractor.extractLeadAttributes(userMessages);
 
@@ -252,7 +259,9 @@ describe("Integration: Cross-Component Data Flow", () => {
     });
 
     it("extracts lead attributes from Spanish messages", () => {
-      const spanishMessages = [makeUserMessage("Necesito integrar IA en mi empresa de comercio electrónico")];
+      const spanishMessages = [
+        makeUserMessage("Necesito integrar IA en mi empresa de comercio electrónico"),
+      ];
       const attributes = leadExtractor.extractLeadAttributes(spanishMessages);
 
       expect(attributes).toBeDefined();

@@ -1,9 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import {
-  TURNSTILE_VERIFY_URL,
-  verifyTurnstileToken,
-} from "../verification";
+import { TURNSTILE_VERIFY_URL, verifyTurnstileToken } from "../verification";
 
 // ──────────────────────────────────────────────
 // Tests for server-side Turnstile token verification

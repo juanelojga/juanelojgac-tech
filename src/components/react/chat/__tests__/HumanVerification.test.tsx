@@ -246,13 +246,7 @@ describe("HumanVerification", () => {
       const mockTurnstile = createMockTurnstile();
       (window as unknown as Record<string, unknown>).turnstile = mockTurnstile;
 
-      render(
-        <HumanVerification
-          siteKey=""
-          onVerified={vi.fn()}
-          translations={mockTranslations}
-        />
-      );
+      render(<HumanVerification siteKey="" onVerified={vi.fn()} translations={mockTranslations} />);
 
       expect(mockTurnstile.render).not.toHaveBeenCalled();
     });
