@@ -48,9 +48,7 @@ describe("ChatHeader", () => {
           scopeDescription="This assistant specializes in AI consulting."
         />
       );
-      expect(
-        screen.getByText("This assistant specializes in AI consulting.")
-      ).toBeInTheDocument();
+      expect(screen.getByText("This assistant specializes in AI consulting.")).toBeInTheDocument();
     });
 
     it("does not render scope description when not provided", () => {
@@ -59,9 +57,7 @@ describe("ChatHeader", () => {
     });
 
     it("renders scope description with correct test id", () => {
-      render(
-        <ChatHeader {...defaultProps} scopeDescription="Scope info" />
-      );
+      render(<ChatHeader {...defaultProps} scopeDescription="Scope info" />);
       expect(screen.getByTestId("chat-scope-description")).toBeInTheDocument();
     });
   });

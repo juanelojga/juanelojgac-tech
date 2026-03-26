@@ -110,17 +110,13 @@ describe("GroupedPromptChips", () => {
       const onChipClick = vi.fn();
       render(<GroupedPromptChips {...defaultProps} onChipClick={onChipClick} />);
       fireEvent.click(screen.getByText("I need a web platform"));
-      expect(onChipClick).toHaveBeenCalledWith(
-        "I need a custom web platform for my business"
-      );
+      expect(onChipClick).toHaveBeenCalledWith("I need a custom web platform for my business");
     });
   });
 
   describe("visibility", () => {
     it("hides all chips when visible is false", () => {
-      const { container } = render(
-        <GroupedPromptChips {...defaultProps} visible={false} />
-      );
+      const { container } = render(<GroupedPromptChips {...defaultProps} visible={false} />);
       expect(container.firstChild).toBeNull();
     });
 
@@ -132,9 +128,7 @@ describe("GroupedPromptChips", () => {
 
   describe("empty state", () => {
     it("renders nothing when promptGroups array is empty", () => {
-      const { container } = render(
-        <GroupedPromptChips {...defaultProps} promptGroups={[]} />
-      );
+      const { container } = render(<GroupedPromptChips {...defaultProps} promptGroups={[]} />);
       expect(container.firstChild).toBeNull();
     });
 
@@ -150,9 +144,7 @@ describe("GroupedPromptChips", () => {
     });
 
     it("renders nothing when starterPrompts array is empty", () => {
-      const { container } = render(
-        <GroupedPromptChips {...defaultProps} starterPrompts={[]} />
-      );
+      const { container } = render(<GroupedPromptChips {...defaultProps} starterPrompts={[]} />);
       expect(container.firstChild).toBeNull();
     });
   });
