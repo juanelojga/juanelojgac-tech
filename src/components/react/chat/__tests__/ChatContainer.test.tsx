@@ -21,7 +21,12 @@ const defaultTranslations: ChatContainerTranslations = {
 };
 
 const defaultChips: StarterPrompt[] = [
-  { id: "1", label: "Tell me about AI", prompt: "Tell me about AI integration", intent: "ai-integration" },
+  {
+    id: "1",
+    label: "Tell me about AI",
+    prompt: "Tell me about AI integration",
+    intent: "ai-integration",
+  },
   { id: "2", label: "Web platform", prompt: "I need a web platform", intent: "web-platform" },
 ];
 
