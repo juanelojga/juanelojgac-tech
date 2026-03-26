@@ -3,6 +3,7 @@ import React, { useCallback, useState } from "react";
 import type {
   ChatMessage as ChatMessageType,
   OutcomePrompt,
+  PromptGroup,
   StarterPrompt,
   TrustSignal,
 } from "../../../lib/chat/types";
@@ -30,6 +31,7 @@ export interface ConsultantLayoutProps {
   readonly trustSignals: readonly TrustSignal[];
   readonly outcomePrompts: readonly OutcomePrompt[];
   readonly starterPrompts: readonly StarterPrompt[];
+  readonly promptGroups: readonly PromptGroup[];
   readonly bookingUrl: string;
   readonly contactEmail: string;
   readonly panelTranslations: TrustPanelTranslations;
@@ -55,6 +57,7 @@ export default function ConsultantLayout({
   trustSignals,
   outcomePrompts,
   starterPrompts,
+  promptGroups,
   bookingUrl,
   contactEmail,
   panelTranslations,
@@ -131,6 +134,7 @@ export default function ConsultantLayout({
             <ChatContainer
               messages={messages}
               starterPrompts={starterPrompts}
+              promptGroups={promptGroups}
               isTyping={isTyping}
               error={error}
               onSendMessage={handleSendMessage}

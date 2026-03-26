@@ -40,6 +40,32 @@ describe("ChatHeader", () => {
     });
   });
 
+  describe("scope description", () => {
+    it("renders scope description when provided", () => {
+      render(
+        <ChatHeader
+          {...defaultProps}
+          scopeDescription="This assistant specializes in AI consulting."
+        />
+      );
+      expect(
+        screen.getByText("This assistant specializes in AI consulting.")
+      ).toBeInTheDocument();
+    });
+
+    it("does not render scope description when not provided", () => {
+      render(<ChatHeader {...defaultProps} />);
+      expect(screen.queryByTestId("chat-scope-description")).not.toBeInTheDocument();
+    });
+
+    it("renders scope description with correct test id", () => {
+      render(
+        <ChatHeader {...defaultProps} scopeDescription="Scope info" />
+      );
+      expect(screen.getByTestId("chat-scope-description")).toBeInTheDocument();
+    });
+  });
+
   describe("i18n", () => {
     it("renders Spanish title and subtitle", () => {
       render(
@@ -51,6 +77,19 @@ describe("ChatHeader", () => {
       expect(screen.getByText("Consultor de IA")).toBeInTheDocument();
       expect(
         screen.getByText("Pregunta sobre nuestros servicios, precios, proceso y más")
+      ).toBeInTheDocument();
+    });
+
+    it("renders Spanish scope description", () => {
+      render(
+        <ChatHeader
+          title="Consultor de IA"
+          subtitle="Pregunta"
+          scopeDescription="Este asistente se especializa en consultoría de IA."
+        />
+      );
+      expect(
+        screen.getByText("Este asistente se especializa en consultoría de IA.")
       ).toBeInTheDocument();
     });
   });

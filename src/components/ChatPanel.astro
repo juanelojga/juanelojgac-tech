@@ -12,17 +12,20 @@ const { lang } = Astro.props;
 const translations = await import(`../i18n/${lang}.json`);
 const t = translations.default.chat;
 
-// Get starter prompts from the content provider
+// Get starter prompts and prompt groups from the content provider
 const contentProvider = new StaticContentProvider();
 const starterPrompts = contentProvider.getStarterPrompts(lang);
+const promptGroups = contentProvider.getPromptGroups(lang);
 
 // Map translations to ChatContainer expected shape
 const chatTranslations = {
   headerTitle: t.header.title,
   headerSubtitle: t.header.subtitle,
+  headerScopeDescription: t.input.scopeDescription,
   inputPlaceholder: t.input.placeholder,
   inputSend: t.input.send,
   inputCharacterLimit: t.input.characterLimit,
+  inputHelperText: t.input.helperText,
   welcomeMessage: t.messages.welcome,
   typingText: t.messages.typing,
   chipsLabel: t.chips.label,
@@ -35,6 +38,7 @@ const chatTranslations = {
   client:load
   messages={[]}
   starterPrompts={starterPrompts}
+  promptGroups={promptGroups}
   isTyping={false}
   error={null}
   onSendMessage={() => {}}

@@ -3,15 +3,17 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import type { ChatMessage, StarterPrompt } from "../../../../lib/chat/types";
+import type { ChatMessage, PromptGroup, StarterPrompt } from "../../../../lib/chat/types";
 import ChatContainer, { type ChatContainerTranslations } from "../ChatContainer";
 
 const defaultTranslations: ChatContainerTranslations = {
   headerTitle: "AI Consultant",
   headerSubtitle: "Here to help",
+  headerScopeDescription: "Specializes in AI consulting services",
   inputPlaceholder: "Type your message...",
   inputSend: "Send",
   inputCharacterLimit: "{count}/{max} characters",
+  inputHelperText: "Ask about our services, pricing, and timelines.",
   welcomeMessage: "Welcome! How can I help you today?",
   typingText: "Thinking...",
   chipsLabel: "Suggested prompts",
@@ -29,6 +31,11 @@ const defaultChips: StarterPrompt[] = [
   { id: "2", label: "Web platform", prompt: "I need a web platform", intent: "web-platform" },
 ];
 
+const defaultPromptGroups: PromptGroup[] = [
+  { groupLabel: "Explore", promptIds: ["1"] },
+  { groupLabel: "Get Started", promptIds: ["2"] },
+];
+
 function createMessage(overrides: Partial<ChatMessage> = {}): ChatMessage {
   return {
     id: "msg-1",
@@ -44,6 +51,7 @@ describe("ChatContainer", () => {
   const defaultProps = {
     messages: [] as ChatMessage[],
     starterPrompts: defaultChips,
+    promptGroups: defaultPromptGroups,
     isTyping: false,
     error: null,
     onSendMessage: vi.fn(),

@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import type { OutcomePrompt, StarterPrompt, TrustSignal } from "../../../../lib/chat/types";
+import type { OutcomePrompt, PromptGroup, StarterPrompt, TrustSignal } from "../../../../lib/chat/types";
 import ConsultantLayout, { type ConsultantLayoutProps } from "../ConsultantLayout";
 
 // ── Test Fixtures ──
@@ -47,6 +47,11 @@ const mockStarterPrompts: StarterPrompt[] = [
   { id: "sp-2", label: "Web platform", prompt: "I need a web platform", intent: "web-platform" },
 ];
 
+const mockPromptGroups: PromptGroup[] = [
+  { groupLabel: "Explore", promptIds: ["sp-1"] },
+  { groupLabel: "Get Started", promptIds: ["sp-2"] },
+];
+
 const mockPanelTranslations = {
   servicesLabel: "Our Services",
   trustLabel: "Why Work With Us",
@@ -60,9 +65,11 @@ const mockPanelTranslations = {
 const mockChatTranslations = {
   headerTitle: "AI Consultant",
   headerSubtitle: "Ask about our services",
+  headerScopeDescription: "Specializes in AI consulting",
   inputPlaceholder: "Type your message...",
   inputSend: "Send",
   inputCharacterLimit: "{count}/{max} characters",
+  inputHelperText: "Ask about services, pricing, and timelines.",
   welcomeMessage: "Welcome! How can I help?",
   typingText: "Thinking...",
   chipsLabel: "Suggested prompts",
@@ -100,6 +107,7 @@ const defaultProps: ConsultantLayoutProps = {
   trustSignals: mockTrustSignals,
   outcomePrompts: mockOutcomePrompts,
   starterPrompts: mockStarterPrompts,
+  promptGroups: mockPromptGroups,
   bookingUrl: "https://calendly.com/juanelojgac",
   contactEmail: "hello@juanelojgac.tech",
   panelTranslations: mockPanelTranslations,

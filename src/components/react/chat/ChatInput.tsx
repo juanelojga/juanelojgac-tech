@@ -9,6 +9,7 @@ export interface ChatInputProps {
   readonly onSubmit: (message: string) => void;
   readonly disabled?: boolean;
   readonly maxLength?: number;
+  readonly helperText?: string;
 }
 
 const DEFAULT_MAX_LENGTH = 500;
@@ -20,6 +21,7 @@ export default function ChatInput({
   onSubmit,
   disabled = false,
   maxLength = DEFAULT_MAX_LENGTH,
+  helperText,
 }: ChatInputProps) {
   const [value, setValue] = useState("");
 
@@ -92,6 +94,14 @@ export default function ChatInput({
           {sendLabel}
         </button>
       </div>
+      {helperText && (
+        <p
+          data-testid="chat-helper-text"
+          className="text-neutral mx-auto mt-1.5 max-w-[var(--spacing-chat-input-max-width)] text-xs leading-relaxed opacity-70"
+        >
+          {helperText}
+        </p>
+      )}
     </div>
   );
 }

@@ -178,4 +178,40 @@ describe("ChatInput", () => {
       expect(onSubmit).not.toHaveBeenCalled();
     });
   });
+
+  describe("helper text", () => {
+    it("renders helper text when provided", () => {
+      render(
+        <ChatInput
+          {...defaultProps}
+          helperText="Ask about our services, pricing, and timelines."
+        />
+      );
+      expect(
+        screen.getByText("Ask about our services, pricing, and timelines.")
+      ).toBeInTheDocument();
+    });
+
+    it("does not render helper text when not provided", () => {
+      render(<ChatInput {...defaultProps} />);
+      expect(screen.queryByTestId("chat-helper-text")).not.toBeInTheDocument();
+    });
+
+    it("renders helper text with correct test id", () => {
+      render(<ChatInput {...defaultProps} helperText="Helper info" />);
+      expect(screen.getByTestId("chat-helper-text")).toBeInTheDocument();
+    });
+
+    it("renders Spanish helper text", () => {
+      render(
+        <ChatInput
+          {...defaultProps}
+          helperText="Pregunta sobre nuestros servicios, precios y plazos."
+        />
+      );
+      expect(
+        screen.getByText("Pregunta sobre nuestros servicios, precios y plazos.")
+      ).toBeInTheDocument();
+    });
+  });
 });

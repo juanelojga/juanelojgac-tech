@@ -1,18 +1,24 @@
 import React, { useCallback, useEffect, useRef } from "react";
 
-import type { ChatMessage as ChatMessageType, StarterPrompt } from "../../../lib/chat/types";
+import type {
+  ChatMessage as ChatMessageType,
+  PromptGroup,
+  StarterPrompt,
+} from "../../../lib/chat/types";
 import ChatHeader from "./ChatHeader";
 import ChatInput from "./ChatInput";
 import ChatMessage from "./ChatMessage";
-import PromptChips from "./PromptChips";
+import GroupedPromptChips from "./GroupedPromptChips";
 import TypingIndicator from "./TypingIndicator";
 
 export interface ChatContainerTranslations {
   readonly headerTitle: string;
   readonly headerSubtitle: string;
+  readonly headerScopeDescription: string;
   readonly inputPlaceholder: string;
   readonly inputSend: string;
   readonly inputCharacterLimit: string;
+  readonly inputHelperText: string;
   readonly welcomeMessage: string;
   readonly typingText: string;
   readonly chipsLabel: string;
@@ -23,6 +29,7 @@ export interface ChatContainerTranslations {
 export interface ChatContainerProps {
   readonly messages: readonly ChatMessageType[];
   readonly starterPrompts: readonly StarterPrompt[];
+  readonly promptGroups: readonly PromptGroup[];
   readonly isTyping: boolean;
   readonly error: string | null;
   readonly onSendMessage: (message: string) => void;
@@ -32,6 +39,7 @@ export interface ChatContainerProps {
 export default function ChatContainer({
   messages,
   starterPrompts,
+  promptGroups,
   isTyping,
   error,
   onSendMessage,
@@ -61,7 +69,11 @@ export default function ChatContainer({
       data-testid="chat-container"
       className="bg-chat-panel-bg flex h-full flex-col"
     >
-      <ChatHeader title={translations.headerTitle} subtitle={translations.headerSubtitle} />
+      <ChatHeader
+        title={translations.headerTitle}
+        subtitle={translations.headerSubtitle}
+        scopeDescription={translations.headerScopeDescription}
+      />
 
       {/* Message Area */}
       <div
@@ -105,11 +117,12 @@ export default function ChatContainer({
         </div>
       )}
 
-      {/* Prompt Chips — visible only when no messages */}
-      <PromptChips
-        chips={starterPrompts}
+      {/* Grouped Prompt Chips — visible only when no messages */}
+      <GroupedPromptChips
+        promptGroups={promptGroups}
+        starterPrompts={starterPrompts}
         onChipClick={handleChipClick}
-        label={translations.chipsLabel}
+        sectionLabel={translations.chipsLabel}
         visible={!hasMessages}
       />
 
@@ -120,6 +133,7 @@ export default function ChatContainer({
         characterLimitLabel={translations.inputCharacterLimit}
         onSubmit={onSendMessage}
         disabled={isTyping}
+        helperText={translations.inputHelperText}
       />
     </section>
   );
