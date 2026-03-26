@@ -250,5 +250,54 @@
       "url": "/og-image.jpg",
       "alt": "JuaneloJGAC Tech - Soluciones futuristas con IA para transformación digital"
     }
+  },
+  "chat": {
+    "header": {
+      "title": "Consultor de IA",
+      "subtitle": "Pregunta sobre nuestros servicios, precios, proceso y más"
+    },
+    "input": {
+      "placeholder": "Escribe tu mensaje...",
+      "send": "Enviar",
+      "characterLimit": "{{count}} caracteres restantes"
+    },
+    "panel": {
+      "title": "JuaneloJGAC Tech",
+      "servicesLabel": "Nuestros Servicios",
+      "trustLabel": "Por Qué Trabajar Con Nosotros",
+      "ctaBooking": "Reserva una Consulta Gratuita",
+      "ctaContact": "Contáctanos",
+      "collapseLabel": "Mostrar detalles",
+      "expandLabel": "Ocultar detalles"
+    },
+    "messages": {
+      "welcome": "¡Hola! Soy el asistente de JuaneloJGAC Tech. Puedo ayudarte a explorar nuestros servicios, entender rangos de precios y encontrar la solución adecuada para tus necesidades. ¿Cómo puedo ayudarte hoy?",
+      "typing": "Pensando...",
+      "errorGeneric": "Tu mensaje no pudo ser procesado. Por favor, intenta de nuevo.",
+      "errorNetwork": "Conexión perdida. Revisa tu internet e intenta de nuevo.",
+      "errorRateLimit": "Demasiados mensajes. Por favor, espera un momento antes de enviar otro."
+    },
+    "chips": {
+      "label": "Preguntas rápidas para comenzar"
+    },
+    "summary": {
+      "title": "Resumen del Proyecto",
+      "solutionLabel": "Solución Recomendada",
+      "timelineLabel": "Cronograma Estimado",
+      "priceLabel": "Rango de Precio",
+      "nextStepsLabel": "Próximos Pasos"
+    },
+    "cta": {
+      "booking": "Reservar una Consulta",
+      "contact": "Envíanos un Correo",
+      "learnMore": "Saber Más"
+    },
+    "accessibility": {
+      "chatRegion": "Chat de consultor de IA",
+      "messageList": "Mensajes de la conversación",
+      "newMessage": "Nuevo mensaje del asistente",
+      "sendButton": "Enviar mensaje",
+      "chipGroup": "Preguntas sugeridas"
+    }
   }
 }

@@ -250,5 +250,54 @@
       "url": "/og-image.jpg",
       "alt": "JuaneloJGAC Tech - Futuristic AI-powered solutions for digital transformation"
     }
+  },
+  "chat": {
+    "header": {
+      "title": "AI Consultant",
+      "subtitle": "Ask about our services, pricing, process, and more"
+    },
+    "input": {
+      "placeholder": "Type your message...",
+      "send": "Send",
+      "characterLimit": "{{count}} characters remaining"
+    },
+    "panel": {
+      "title": "JuaneloJGAC Tech",
+      "servicesLabel": "Our Services",
+      "trustLabel": "Why Work With Us",
+      "ctaBooking": "Book a Free Consultation",
+      "ctaContact": "Contact Us",
+      "collapseLabel": "Show details",
+      "expandLabel": "Hide details"
+    },
+    "messages": {
+      "welcome": "Hello! I'm the JuaneloJGAC Tech assistant. I can help you explore our services, understand pricing ranges, and find the right solution for your needs. How can I help you today?",
+      "typing": "Thinking...",
+      "errorGeneric": "Your message could not be processed. Please try again.",
+      "errorNetwork": "Connection lost. Check your internet and try again.",
+      "errorRateLimit": "Too many messages. Please wait a moment before sending another."
+    },
+    "chips": {
+      "label": "Quick questions to get started"
+    },
+    "summary": {
+      "title": "Project Summary",
+      "solutionLabel": "Recommended Solution",
+      "timelineLabel": "Estimated Timeline",
+      "priceLabel": "Price Range",
+      "nextStepsLabel": "Next Steps"
+    },
+    "cta": {
+      "booking": "Book a Consultation",
+      "contact": "Send Us an Email",
+      "learnMore": "Learn More"
+    },
+    "accessibility": {
+      "chatRegion": "AI consultant chat",
+      "messageList": "Conversation messages",
+      "newMessage": "New message from assistant",
+      "sendButton": "Send message",
+      "chipGroup": "Suggested questions"
+    }
   }
 }

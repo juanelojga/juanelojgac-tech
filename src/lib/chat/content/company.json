@@ -1,0 +1,106 @@
+{
+  "en": {
+    "companyFacts": {
+      "name": "JuaneloJGAC Tech",
+      "tagline": "Practical AI solutions delivered with clarity, speed, and human-centered design",
+      "description": "We help startups and SMEs leverage AI, automation, and modern web technology to grow faster and operate smarter. Based in Ecuador and the United States, we combine cross-border expertise with deep technical knowledge to deliver solutions that work.",
+      "processSteps": [
+        "Discovery — We listen, ask questions, and map your real needs",
+        "Strategy — We define scope, timeline, and the right technical approach",
+        "Build — We develop iteratively, sharing progress at every step",
+        "Launch — We deploy, test, and hand off with documentation and support"
+      ],
+      "teamDescription": "A focused team of engineers, designers, and AI specialists with experience across SaaS, e-commerce, automation, and digital transformation — operating from Ecuador and the United States."
+    },
+    "trustSignals": [
+      {
+        "id": "ts-projects-delivered",
+        "type": "stat",
+        "label": "Projects delivered",
+        "value": "50+"
+      },
+      {
+        "id": "ts-client-satisfaction",
+        "type": "stat",
+        "label": "Client satisfaction",
+        "value": "98%"
+      },
+      {
+        "id": "ts-countries",
+        "type": "stat",
+        "label": "Countries served",
+        "value": "US & LATAM"
+      },
+      {
+        "id": "ts-bilingual",
+        "type": "badge",
+        "label": "Fully bilingual",
+        "value": "EN / ES"
+      },
+      {
+        "id": "ts-fast-delivery",
+        "type": "badge",
+        "label": "Typical delivery",
+        "value": "4–12 weeks"
+      },
+      {
+        "id": "ts-no-debt",
+        "type": "badge",
+        "label": "No technical debt",
+        "value": "Clean code guarantee"
+      }
+    ]
+  },
+  "es": {
+    "companyFacts": {
+      "name": "JuaneloJGAC Tech",
+      "tagline": "Soluciones de IA prácticas entregadas con claridad, velocidad y diseño centrado en el ser humano",
+      "description": "Ayudamos a startups y PYMEs a aprovechar la IA, automatización y tecnología web moderna para crecer más rápido y operar de forma más inteligente. Con sede en Ecuador y Estados Unidos, combinamos experiencia transfronteriza con conocimiento técnico profundo para entregar soluciones que funcionan.",
+      "processSteps": [
+        "Descubrimiento — Escuchamos, hacemos preguntas y mapeamos tus necesidades reales",
+        "Estrategia — Definimos alcance, cronograma y el enfoque técnico adecuado",
+        "Construcción — Desarrollamos iterativamente, compartiendo avances en cada paso",
+        "Lanzamiento — Desplegamos, probamos y entregamos con documentación y soporte"
+      ],
+      "teamDescription": "Un equipo enfocado de ingenieros, diseñadores y especialistas en IA con experiencia en SaaS, e-commerce, automatización y transformación digital — operando desde Ecuador y Estados Unidos."
+    },
+    "trustSignals": [
+      {
+        "id": "ts-projects-delivered",
+        "type": "stat",
+        "label": "Proyectos entregados",
+        "value": "50+"
+      },
+      {
+        "id": "ts-client-satisfaction",
+        "type": "stat",
+        "label": "Satisfacción del cliente",
+        "value": "98%"
+      },
+      {
+        "id": "ts-countries",
+        "type": "stat",
+        "label": "Países atendidos",
+        "value": "EE.UU. y LATAM"
+      },
+      {
+        "id": "ts-bilingual",
+        "type": "badge",
+        "label": "Completamente bilingüe",
+        "value": "EN / ES"
+      },
+      {
+        "id": "ts-fast-delivery",
+        "type": "badge",
+        "label": "Entrega típica",
+        "value": "4–12 semanas"
+      },
+      {
+        "id": "ts-no-debt",
+        "type": "badge",
+        "label": "Sin deuda técnica",
+        "value": "Garantía de código limpio"
+      }
+    ]
+  }
+}

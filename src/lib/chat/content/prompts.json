@@ -1,0 +1,204 @@
+{
+  "en": {
+    "starterPrompts": [
+      {
+        "id": "sp-services",
+        "label": "What services do you offer?",
+        "prompt": "What services does JuaneloJGAC Tech offer?",
+        "intent": "general"
+      },
+      {
+        "id": "sp-web-platform",
+        "label": "I need a web platform",
+        "prompt": "I need a custom web platform for my business. Can you help?",
+        "intent": "web-platform"
+      },
+      {
+        "id": "sp-automation",
+        "label": "Automate my workflows",
+        "prompt": "I want to automate repetitive tasks in my business. What can you do?",
+        "intent": "automation"
+      },
+      {
+        "id": "sp-ai",
+        "label": "Integrate AI into my business",
+        "prompt": "I want to integrate AI into my business processes. Where should I start?",
+        "intent": "ai-integration"
+      },
+      {
+        "id": "sp-pricing",
+        "label": "What are your pricing ranges?",
+        "prompt": "What are the typical pricing ranges for your services?",
+        "intent": "general"
+      }
+    ],
+    "guidedFollowUps": [
+      {
+        "id": "gf-project-type",
+        "label": "What type of project are you considering?",
+        "prompt": "What type of project are you considering? For example: a web app, automation, AI tool, marketing system, or TOEFL prep.",
+        "applicablePhases": ["greeting", "discovery"]
+      },
+      {
+        "id": "gf-target-users",
+        "label": "Who are your target users?",
+        "prompt": "Who will use this solution? Tell me about your target audience or end users.",
+        "applicablePhases": ["discovery"]
+      },
+      {
+        "id": "gf-goals",
+        "label": "What's your main goal?",
+        "prompt": "What's the primary goal you want to achieve with this project?",
+        "applicablePhases": ["discovery", "qualification"]
+      },
+      {
+        "id": "gf-timeline",
+        "label": "When do you need this delivered?",
+        "prompt": "What's your ideal timeline? Do you need this right away or are you still exploring?",
+        "applicablePhases": ["qualification"]
+      },
+      {
+        "id": "gf-budget",
+        "label": "Do you have a budget in mind?",
+        "prompt": "Do you have a budget range in mind? This helps us recommend the right scope.",
+        "applicablePhases": ["qualification"]
+      },
+      {
+        "id": "gf-summary",
+        "label": "Generate a project summary",
+        "prompt": "Based on our conversation, can you generate a project summary with recommendations?",
+        "applicablePhases": ["qualification", "summary"]
+      },
+      {
+        "id": "gf-book-call",
+        "label": "Book a consultation",
+        "prompt": "I'd like to book a free consultation to discuss this further.",
+        "applicablePhases": ["summary", "completed"]
+      }
+    ],
+    "outOfScopeRedirect": {
+      "message": "I'm here to help with JuaneloJGAC Tech's services — web development, automation, AI integration, marketing, and spatial consulting. Here's how we can help you.",
+      "suggestedPrompts": [
+        {
+          "id": "sp-redirect-services",
+          "label": "View available services",
+          "prompt": "What services does JuaneloJGAC Tech offer?",
+          "intent": "general"
+        },
+        {
+          "id": "sp-redirect-ai",
+          "label": "AI integration options",
+          "prompt": "Tell me about your AI integration services",
+          "intent": "ai-integration"
+        },
+        {
+          "id": "sp-redirect-web",
+          "label": "Web development options",
+          "prompt": "Tell me about your web development services",
+          "intent": "web-platform"
+        }
+      ]
+    }
+  },
+  "es": {
+    "starterPrompts": [
+      {
+        "id": "sp-services",
+        "label": "¿Qué servicios ofrecen?",
+        "prompt": "¿Qué servicios ofrece JuaneloJGAC Tech?",
+        "intent": "general"
+      },
+      {
+        "id": "sp-web-platform",
+        "label": "Necesito una plataforma web",
+        "prompt": "Necesito una plataforma web personalizada para mi negocio. ¿Pueden ayudarme?",
+        "intent": "web-platform"
+      },
+      {
+        "id": "sp-automation",
+        "label": "Automatizar mis procesos",
+        "prompt": "Quiero automatizar tareas repetitivas en mi negocio. ¿Qué pueden hacer?",
+        "intent": "automation"
+      },
+      {
+        "id": "sp-ai",
+        "label": "Integrar IA en mi negocio",
+        "prompt": "Quiero integrar IA en los procesos de mi negocio. ¿Por dónde empiezo?",
+        "intent": "ai-integration"
+      },
+      {
+        "id": "sp-pricing",
+        "label": "¿Cuáles son sus rangos de precio?",
+        "prompt": "¿Cuáles son los rangos de precio típicos de sus servicios?",
+        "intent": "general"
+      }
+    ],
+    "guidedFollowUps": [
+      {
+        "id": "gf-project-type",
+        "label": "¿Qué tipo de proyecto estás considerando?",
+        "prompt": "¿Qué tipo de proyecto estás considerando? Por ejemplo: una app web, automatización, herramienta de IA, sistema de marketing o preparación TOEFL.",
+        "applicablePhases": ["greeting", "discovery"]
+      },
+      {
+        "id": "gf-target-users",
+        "label": "¿Quiénes son tus usuarios objetivo?",
+        "prompt": "¿Quién usará esta solución? Cuéntame sobre tu audiencia objetivo o usuarios finales.",
+        "applicablePhases": ["discovery"]
+      },
+      {
+        "id": "gf-goals",
+        "label": "¿Cuál es tu objetivo principal?",
+        "prompt": "¿Cuál es el objetivo principal que quieres lograr con este proyecto?",
+        "applicablePhases": ["discovery", "qualification"]
+      },
+      {
+        "id": "gf-timeline",
+        "label": "¿Para cuándo lo necesitas?",
+        "prompt": "¿Cuál es tu cronograma ideal? ¿Lo necesitas pronto o aún estás explorando?",
+        "applicablePhases": ["qualification"]
+      },
+      {
+        "id": "gf-budget",
+        "label": "¿Tienes un presupuesto en mente?",
+        "prompt": "¿Tienes un rango de presupuesto en mente? Esto nos ayuda a recomendar el alcance adecuado.",
+        "applicablePhases": ["qualification"]
+      },
+      {
+        "id": "gf-summary",
+        "label": "Generar resumen del proyecto",
+        "prompt": "Con base en nuestra conversación, ¿puedes generar un resumen del proyecto con recomendaciones?",
+        "applicablePhases": ["qualification", "summary"]
+      },
+      {
+        "id": "gf-book-call",
+        "label": "Reservar una consulta",
+        "prompt": "Me gustaría reservar una consulta gratuita para discutir esto con más detalle.",
+        "applicablePhases": ["summary", "completed"]
+      }
+    ],
+    "outOfScopeRedirect": {
+      "message": "Estoy aquí para ayudarte con los servicios de JuaneloJGAC Tech — desarrollo web, automatización, integración de IA, marketing y consultoría espacial. Así es como podemos ayudarte.",
+      "suggestedPrompts": [
+        {
+          "id": "sp-redirect-services",
+          "label": "Ver servicios disponibles",
+          "prompt": "¿Qué servicios ofrece JuaneloJGAC Tech?",
+          "intent": "general"
+        },
+        {
+          "id": "sp-redirect-ai",
+          "label": "Opciones de integración de IA",
+          "prompt": "Cuéntame sobre sus servicios de integración de IA",
+          "intent": "ai-integration"
+        },
+        {
+          "id": "sp-redirect-web",
+          "label": "Opciones de desarrollo web",
+          "prompt": "Cuéntame sobre sus servicios de desarrollo web",
+          "intent": "web-platform"
+        }
+      ]
+    }
+  }
+}

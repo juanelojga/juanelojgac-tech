@@ -1,4 +1,4 @@
-import type { vi } from "vitest";
+import type { Mock, vi } from "vitest";
 
 import type { Language } from "../../i18n";
 import type {
@@ -237,96 +237,118 @@ export function createFollowUpSuggestion(
 // Mock service factories — produce mock implementations
 // ──────────────────────────────────────────────
 
-type MockFn = ReturnType<typeof import("vitest").vi.fn>;
-
 export interface MockChatMessageSender extends ChatMessageSender {
-  sendMessage: MockFn;
+  sendMessage: Mock<ChatMessageSender["sendMessage"]>;
 }
 
 export interface MockChatStateManager extends ChatStateManager {
-  getState: MockFn;
-  resetConversation: MockFn;
-  updateLanguage: MockFn;
+  getState: Mock<ChatStateManager["getState"]>;
+  resetConversation: Mock<ChatStateManager["resetConversation"]>;
+  updateLanguage: Mock<ChatStateManager["updateLanguage"]>;
 }
 
 export interface MockChatSummaryGenerator extends ChatSummaryGenerator {
-  generateSummary: MockFn;
-  canGenerateSummary: MockFn;
+  generateSummary: Mock<ChatSummaryGenerator["generateSummary"]>;
+  canGenerateSummary: Mock<ChatSummaryGenerator["canGenerateSummary"]>;
 }
 
 export interface MockChatAssistantService extends ChatAssistantService {
-  sendMessage: MockFn;
-  getState: MockFn;
-  resetConversation: MockFn;
-  updateLanguage: MockFn;
-  generateSummary: MockFn;
-  canGenerateSummary: MockFn;
+  sendMessage: Mock<ChatAssistantService["sendMessage"]>;
+  getState: Mock<ChatAssistantService["getState"]>;
+  resetConversation: Mock<ChatAssistantService["resetConversation"]>;
+  updateLanguage: Mock<ChatAssistantService["updateLanguage"]>;
+  generateSummary: Mock<ChatAssistantService["generateSummary"]>;
+  canGenerateSummary: Mock<ChatAssistantService["canGenerateSummary"]>;
 }
 
 export function createMockChatAssistantService(vitest: typeof vi): MockChatAssistantService {
   const state = createConversationState();
   return {
-    sendMessage: vitest.fn().mockResolvedValue(
+    sendMessage: vitest.fn<ChatAssistantService["sendMessage"]>().mockResolvedValue(
       createChatMessage({
         role: "assistant",
         content: "Hello! How can I help you today?",
       })
     ),
-    getState: vitest.fn().mockReturnValue(state),
-    resetConversation: vitest.fn(),
-    updateLanguage: vitest.fn(),
-    generateSummary: vitest.fn().mockResolvedValue(createProjectSummary()),
-    canGenerateSummary: vitest.fn().mockReturnValue(false),
+    getState: vitest.fn<ChatAssistantService["getState"]>().mockReturnValue(state),
+    resetConversation: vitest.fn<ChatAssistantService["resetConversation"]>(),
+    updateLanguage: vitest.fn<ChatAssistantService["updateLanguage"]>(),
+    generateSummary: vitest
+      .fn<ChatAssistantService["generateSummary"]>()
+      .mockResolvedValue(createProjectSummary()),
+    canGenerateSummary: vitest
+      .fn<ChatAssistantService["canGenerateSummary"]>()
+      .mockReturnValue(false),
   };
 }
 
 export interface MockContentProvider extends ContentProvider {
-  getServices: MockFn;
-  getCompanyFacts: MockFn;
-  getTrustSignals: MockFn;
-  getStarterPrompts: MockFn;
-  getGuidedFollowUps: MockFn;
-  getOutOfScopeRedirect: MockFn;
+  getServices: Mock<ContentProvider["getServices"]>;
+  getCompanyFacts: Mock<ContentProvider["getCompanyFacts"]>;
+  getTrustSignals: Mock<ContentProvider["getTrustSignals"]>;
+  getStarterPrompts: Mock<ContentProvider["getStarterPrompts"]>;
+  getGuidedFollowUps: Mock<ContentProvider["getGuidedFollowUps"]>;
+  getOutOfScopeRedirect: Mock<ContentProvider["getOutOfScopeRedirect"]>;
 }
 
 export function createMockContentProvider(vitest: typeof vi): MockContentProvider {
   return {
-    getServices: vitest.fn().mockReturnValue([createServiceContent()]),
-    getCompanyFacts: vitest.fn().mockReturnValue(createCompanyFacts()),
-    getTrustSignals: vitest.fn().mockReturnValue([createTrustSignal()]),
-    getStarterPrompts: vitest.fn().mockReturnValue([createStarterPrompt()]),
-    getGuidedFollowUps: vitest.fn().mockReturnValue([createGuidedFollowUp()]),
-    getOutOfScopeRedirect: vitest.fn().mockReturnValue(createOutOfScopeRedirect()),
+    getServices: vitest
+      .fn<ContentProvider["getServices"]>()
+      .mockReturnValue([createServiceContent()]),
+    getCompanyFacts: vitest
+      .fn<ContentProvider["getCompanyFacts"]>()
+      .mockReturnValue(createCompanyFacts()),
+    getTrustSignals: vitest
+      .fn<ContentProvider["getTrustSignals"]>()
+      .mockReturnValue([createTrustSignal()]),
+    getStarterPrompts: vitest
+      .fn<ContentProvider["getStarterPrompts"]>()
+      .mockReturnValue([createStarterPrompt()]),
+    getGuidedFollowUps: vitest
+      .fn<ContentProvider["getGuidedFollowUps"]>()
+      .mockReturnValue([createGuidedFollowUp()]),
+    getOutOfScopeRedirect: vitest
+      .fn<ContentProvider["getOutOfScopeRedirect"]>()
+      .mockReturnValue(createOutOfScopeRedirect()),
   };
 }
 
 export interface MockScopeEnforcer extends ScopeEnforcer {
-  evaluateScope: MockFn;
+  evaluateScope: Mock<ScopeEnforcer["evaluateScope"]>;
 }
 
 export interface MockCTAInjector extends CTAInjector {
-  determineCTAs: MockFn;
+  determineCTAs: Mock<CTAInjector["determineCTAs"]>;
 }
 
 export interface MockFollowUpGuide extends FollowUpGuide {
-  suggestFollowUps: MockFn;
+  suggestFollowUps: Mock<FollowUpGuide["suggestFollowUps"]>;
 }
 
 export interface MockConversationOrchestrator extends ConversationOrchestrator {
-  evaluateScope: MockFn;
-  determineCTAs: MockFn;
-  suggestFollowUps: MockFn;
-  extractLeadAttributes: MockFn;
+  evaluateScope: Mock<ConversationOrchestrator["evaluateScope"]>;
+  determineCTAs: Mock<ConversationOrchestrator["determineCTAs"]>;
+  suggestFollowUps: Mock<ConversationOrchestrator["suggestFollowUps"]>;
+  extractLeadAttributes: Mock<ConversationOrchestrator["extractLeadAttributes"]>;
 }
 
 export function createMockConversationOrchestrator(
   vitest: typeof vi
 ): MockConversationOrchestrator {
   return {
-    evaluateScope: vitest.fn().mockReturnValue(createScopeEvaluationResult()),
-    determineCTAs: vitest.fn().mockReturnValue(createCTAInjectionResult()),
-    suggestFollowUps: vitest.fn().mockReturnValue(createFollowUpSuggestion()),
-    extractLeadAttributes: vitest.fn().mockReturnValue({}),
+    evaluateScope: vitest
+      .fn<ConversationOrchestrator["evaluateScope"]>()
+      .mockReturnValue(createScopeEvaluationResult()),
+    determineCTAs: vitest
+      .fn<ConversationOrchestrator["determineCTAs"]>()
+      .mockReturnValue(createCTAInjectionResult()),
+    suggestFollowUps: vitest
+      .fn<ConversationOrchestrator["suggestFollowUps"]>()
+      .mockReturnValue(createFollowUpSuggestion()),
+    extractLeadAttributes: vitest
+      .fn<ConversationOrchestrator["extractLeadAttributes"]>()
+      .mockReturnValue({}),
   };
 }
 
