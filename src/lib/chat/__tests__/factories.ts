@@ -289,6 +289,8 @@ export interface MockContentProvider extends ContentProvider {
   getStarterPrompts: Mock<ContentProvider["getStarterPrompts"]>;
   getGuidedFollowUps: Mock<ContentProvider["getGuidedFollowUps"]>;
   getOutOfScopeRedirect: Mock<ContentProvider["getOutOfScopeRedirect"]>;
+  getOutcomePrompts: Mock<ContentProvider["getOutcomePrompts"]>;
+  getPromptGroups: Mock<ContentProvider["getPromptGroups"]>;
 }
 
 export function createMockContentProvider(vitest: typeof vi): MockContentProvider {
@@ -311,6 +313,8 @@ export function createMockContentProvider(vitest: typeof vi): MockContentProvide
     getOutOfScopeRedirect: vitest
       .fn<ContentProvider["getOutOfScopeRedirect"]>()
       .mockReturnValue(createOutOfScopeRedirect()),
+    getOutcomePrompts: vitest.fn<ContentProvider["getOutcomePrompts"]>().mockReturnValue([]),
+    getPromptGroups: vitest.fn<ContentProvider["getPromptGroups"]>().mockReturnValue([]),
   };
 }
 

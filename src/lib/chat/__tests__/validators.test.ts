@@ -12,10 +12,12 @@ import type {
   InlineCTA,
   LeadAttributes,
   MessageRole,
+  OutcomePrompt,
   OutOfScopeRedirect,
   PriceRange,
   ProjectSummary,
   ProjectType,
+  PromptGroup,
   RecommendedSolution,
   ScopeEvaluationResult,
   ServiceContent,
@@ -36,10 +38,12 @@ import {
   isValidInlineCTA,
   isValidLeadAttributes,
   isValidMessageRole,
+  isValidOutcomePrompt,
   isValidOutOfScopeRedirect,
   isValidPriceRange,
   isValidProjectSummary,
   isValidProjectType,
+  isValidPromptGroup,
   isValidRecommendedSolution,
   isValidScopeEvaluationResult,
   isValidServiceContent,
@@ -774,6 +778,84 @@ describe("isValidFollowUpSuggestion", () => {
 
   it("returns false for null", () => {
     expect(isValidFollowUpSuggestion(null)).toBe(false);
+  });
+});
+
+// ──────────────────────────────────────────────
+// V2 Validators
+// ──────────────────────────────────────────────
+
+function validOutcomePrompt(overrides: Partial<OutcomePrompt> = {}): OutcomePrompt {
+  return {
+    id: "outcome-test",
+    label: "Test outcome",
+    prompt: "Test prompt for outcome",
+    icon: "chart-up",
+    ...overrides,
+  };
+}
+
+function validPromptGroup(overrides: Partial<PromptGroup> = {}): PromptGroup {
+  return {
+    groupLabel: "Test Group",
+    promptIds: ["sp-services", "sp-pricing"],
+    ...overrides,
+  };
+}
+
+describe("isValidOutcomePrompt", () => {
+  it("returns true for valid OutcomePrompt", () => {
+    expect(isValidOutcomePrompt(validOutcomePrompt())).toBe(true);
+  });
+
+  it("returns false when id is empty", () => {
+    expect(isValidOutcomePrompt(validOutcomePrompt({ id: "" }))).toBe(false);
+  });
+
+  it("returns false when label is empty", () => {
+    expect(isValidOutcomePrompt(validOutcomePrompt({ label: "" }))).toBe(false);
+  });
+
+  it("returns false when prompt is empty", () => {
+    expect(isValidOutcomePrompt(validOutcomePrompt({ prompt: "" }))).toBe(false);
+  });
+
+  it("returns false when icon is empty", () => {
+    expect(isValidOutcomePrompt(validOutcomePrompt({ icon: "" }))).toBe(false);
+  });
+
+  it("returns false for null", () => {
+    expect(isValidOutcomePrompt(null)).toBe(false);
+  });
+
+  it("returns false for non-object", () => {
+    expect(isValidOutcomePrompt("string")).toBe(false);
+  });
+});
+
+describe("isValidPromptGroup", () => {
+  it("returns true for valid PromptGroup", () => {
+    expect(isValidPromptGroup(validPromptGroup())).toBe(true);
+  });
+
+  it("returns false when groupLabel is empty", () => {
+    expect(isValidPromptGroup(validPromptGroup({ groupLabel: "" }))).toBe(false);
+  });
+
+  it("returns false when promptIds is empty", () => {
+    expect(isValidPromptGroup(validPromptGroup({ promptIds: [] }))).toBe(false);
+  });
+
+  it("returns false when promptIds contains empty string", () => {
+    expect(isValidPromptGroup(validPromptGroup({ promptIds: ["valid", ""] }))).toBe(false);
+  });
+
+  it("returns false for null", () => {
+    expect(isValidPromptGroup(null)).toBe(false);
+  });
+
+  it("returns false for non-object", () => {
+    expect(isValidPromptGroup(42)).toBe(false);
   });
 });
 

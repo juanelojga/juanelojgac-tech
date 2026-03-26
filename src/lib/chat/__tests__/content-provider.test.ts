@@ -6,7 +6,9 @@ import type { ConversationPhase } from "../types";
 import {
   isValidCompanyFacts,
   isValidGuidedFollowUp,
+  isValidOutcomePrompt,
   isValidOutOfScopeRedirect,
+  isValidPromptGroup,
   isValidServiceContent,
   isValidStarterPrompt,
   isValidTrustSignal,
@@ -251,6 +253,120 @@ describe("StaticContentProvider", () => {
       const en = provider.getOutOfScopeRedirect("en");
       const es = provider.getOutOfScopeRedirect("es");
       expect(en.suggestedPrompts.length).toBe(es.suggestedPrompts.length);
+    });
+  });
+
+  // ──────────────────────────────────────────────
+  // getOutcomePrompts (V2)
+  // ──────────────────────────────────────────────
+
+  describe("getOutcomePrompts", () => {
+    it.each(languages)("returns non-empty array for %s", (lang) => {
+      const prompts = provider.getOutcomePrompts(lang);
+      expect(prompts.length).toBeGreaterThan(0);
+    });
+
+    it.each(languages)("returns valid OutcomePrompt objects for %s", (lang) => {
+      const prompts = provider.getOutcomePrompts(lang);
+      for (const prompt of prompts) {
+        expect(isValidOutcomePrompt(prompt)).toBe(true);
+      }
+    });
+
+    it("returns outcome prompts with matching IDs across languages", () => {
+      const enIds = provider.getOutcomePrompts("en").map((p) => p.id);
+      const esIds = provider.getOutcomePrompts("es").map((p) => p.id);
+      expect(enIds).toEqual(esIds);
+    });
+
+    it("returns the same number of outcome prompts across languages", () => {
+      const en = provider.getOutcomePrompts("en");
+      const es = provider.getOutcomePrompts("es");
+      expect(en.length).toBe(es.length);
+    });
+
+    it("returns outcome prompts with matching icons across languages", () => {
+      const en = provider.getOutcomePrompts("en");
+      const es = provider.getOutcomePrompts("es");
+      for (let i = 0; i < en.length; i++) {
+        expect(en[i].icon).toBe(es[i].icon);
+      }
+    });
+
+    it("returns at least 4 outcome prompts", () => {
+      const prompts = provider.getOutcomePrompts("en");
+      expect(prompts.length).toBeGreaterThanOrEqual(4);
+    });
+
+    it("returns readonly arrays", () => {
+      const prompts = provider.getOutcomePrompts("en");
+      expect(Object.isFrozen(prompts)).toBe(true);
+    });
+
+    it("returns the same instance for repeated calls (caching)", () => {
+      const first = provider.getOutcomePrompts("en");
+      const second = provider.getOutcomePrompts("en");
+      expect(first).toBe(second);
+    });
+  });
+
+  // ──────────────────────────────────────────────
+  // getPromptGroups (V2)
+  // ──────────────────────────────────────────────
+
+  describe("getPromptGroups", () => {
+    it.each(languages)("returns non-empty array for %s", (lang) => {
+      const groups = provider.getPromptGroups(lang);
+      expect(groups.length).toBeGreaterThan(0);
+    });
+
+    it.each(languages)("returns valid PromptGroup objects for %s", (lang) => {
+      const groups = provider.getPromptGroups(lang);
+      for (const group of groups) {
+        expect(isValidPromptGroup(group)).toBe(true);
+      }
+    });
+
+    it("returns the same number of groups across languages", () => {
+      const en = provider.getPromptGroups("en");
+      const es = provider.getPromptGroups("es");
+      expect(en.length).toBe(es.length);
+    });
+
+    it("returns groups with matching promptIds across languages", () => {
+      const en = provider.getPromptGroups("en");
+      const es = provider.getPromptGroups("es");
+      for (let i = 0; i < en.length; i++) {
+        expect(en[i].promptIds).toEqual(es[i].promptIds);
+      }
+    });
+
+    it("all prompt group promptIds reference existing starter prompts", () => {
+      for (const lang of languages) {
+        const groups = provider.getPromptGroups(lang);
+        const starterIds = new Set(provider.getStarterPrompts(lang).map((p) => p.id));
+        for (const group of groups) {
+          for (const id of group.promptIds) {
+            expect(starterIds.has(id), `Prompt ID "${id}" not found in starter prompts`).toBe(true);
+          }
+        }
+      }
+    });
+
+    it("returns at least 2 prompt groups", () => {
+      const groups = provider.getPromptGroups("en");
+      expect(groups.length).toBeGreaterThanOrEqual(2);
+    });
+
+    it("returns readonly arrays", () => {
+      const groups = provider.getPromptGroups("en");
+      expect(Object.isFrozen(groups)).toBe(true);
+    });
+
+    it("returns the same instance for repeated calls (caching)", () => {
+      const first = provider.getPromptGroups("en");
+      const second = provider.getPromptGroups("en");
+      expect(first).toBe(second);
     });
   });
 

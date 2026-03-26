@@ -342,4 +342,144 @@ describe("Content Validation — EN/ES Parity", () => {
       }
     });
   });
+
+  // ──────────────────────────────────────────────
+  // Outcome prompts parity (V2)
+  // ──────────────────────────────────────────────
+
+  describe("outcome prompts parity", () => {
+    it("every EN outcome prompt ID has an ES counterpart", () => {
+      const enIds = provider.getOutcomePrompts("en").map((p) => p.id);
+      const esIds = provider.getOutcomePrompts("es").map((p) => p.id);
+      for (const id of enIds) {
+        expect(esIds).toContain(id);
+      }
+    });
+
+    it("outcome prompt icons match across languages", () => {
+      const en = provider.getOutcomePrompts("en");
+      const es = provider.getOutcomePrompts("es");
+      for (let i = 0; i < en.length; i++) {
+        expect(en[i].icon).toBe(es[i].icon);
+      }
+    });
+
+    it("outcome prompts preserve the same order across languages", () => {
+      const enIds = provider.getOutcomePrompts("en").map((p) => p.id);
+      const esIds = provider.getOutcomePrompts("es").map((p) => p.id);
+      expect(enIds).toEqual(esIds);
+    });
+
+    it("no outcome prompt label exceeds 50 characters", () => {
+      for (const lang of languages) {
+        for (const prompt of provider.getOutcomePrompts(lang)) {
+          expect(
+            prompt.label.length,
+            `Outcome "${prompt.id}" label too long in ${lang}: "${prompt.label}"`
+          ).toBeLessThanOrEqual(50);
+        }
+      }
+    });
+
+    it("no outcome prompt contains HTML tags", () => {
+      const htmlRegex = /<[^>]+>/;
+      for (const lang of languages) {
+        for (const prompt of provider.getOutcomePrompts(lang)) {
+          expect(htmlRegex.test(prompt.label), `HTML in outcome label: ${prompt.label}`).toBe(
+            false
+          );
+          expect(htmlRegex.test(prompt.prompt), `HTML in outcome prompt: ${prompt.prompt}`).toBe(
+            false
+          );
+        }
+      }
+    });
+  });
+
+  // ──────────────────────────────────────────────
+  // Prompt groups parity (V2)
+  // ──────────────────────────────────────────────
+
+  describe("prompt groups parity", () => {
+    it("prompt groups have matching promptIds across languages", () => {
+      const en = provider.getPromptGroups("en");
+      const es = provider.getPromptGroups("es");
+      for (let i = 0; i < en.length; i++) {
+        expect(en[i].promptIds).toEqual(es[i].promptIds);
+      }
+    });
+
+    it("all promptIds in groups reference valid starter prompt IDs", () => {
+      for (const lang of languages) {
+        const starterIds = new Set(provider.getStarterPrompts(lang).map((p) => p.id));
+        const groups = provider.getPromptGroups(lang);
+        for (const group of groups) {
+          for (const id of group.promptIds) {
+            expect(
+              starterIds.has(id),
+              `Prompt group "${group.groupLabel}" references unknown prompt ID "${id}" in ${lang}`
+            ).toBe(true);
+          }
+        }
+      }
+    });
+
+    it("same number of prompt groups across languages", () => {
+      const en = provider.getPromptGroups("en");
+      const es = provider.getPromptGroups("es");
+      expect(en.length).toBe(es.length);
+    });
+  });
+
+  // ──────────────────────────────────────────────
+  // Consultant i18n keys parity (V2)
+  // ──────────────────────────────────────────────
+
+  describe("consultant i18n keys parity", () => {
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const enI18n = require("../../../i18n/en.json");
+    // eslint-disable-next-line @typescript-eslint/no-require-imports
+    const esI18n = require("../../../i18n/es.json");
+
+    function flattenKeys(obj: Record<string, unknown>, prefix = ""): string[] {
+      const keys: string[] = [];
+      for (const key of Object.keys(obj)) {
+        const fullKey = prefix ? `${prefix}.${key}` : key;
+        const value = obj[key];
+        if (typeof value === "object" && value !== null && !Array.isArray(value)) {
+          keys.push(...flattenKeys(value as Record<string, unknown>, fullKey));
+        } else {
+          keys.push(fullKey);
+        }
+      }
+      return keys;
+    }
+
+    it("consultant section exists in both languages", () => {
+      expect(enI18n.consultant).toBeDefined();
+      expect(esI18n.consultant).toBeDefined();
+    });
+
+    it("all EN consultant.* keys exist in ES", () => {
+      const enKeys = flattenKeys(enI18n.consultant, "consultant");
+      const esKeys = flattenKeys(esI18n.consultant, "consultant");
+      for (const key of enKeys) {
+        expect(esKeys, `Missing ES key: ${key}`).toContain(key);
+      }
+    });
+
+    it("all ES consultant.* keys exist in EN", () => {
+      const enKeys = flattenKeys(enI18n.consultant, "consultant");
+      const esKeys = flattenKeys(esI18n.consultant, "consultant");
+      for (const key of esKeys) {
+        expect(enKeys, `Missing EN key: ${key}`).toContain(key);
+      }
+    });
+
+    it("consultant keys are symmetric", () => {
+      const enKeys = flattenKeys(enI18n.consultant, "consultant").sort();
+      const esKeys = flattenKeys(esI18n.consultant, "consultant").sort();
+      expect(enKeys).toEqual(esKeys);
+    });
+  });
 });

@@ -4,7 +4,9 @@ import type {
   ContentProvider,
   ConversationPhase,
   GuidedFollowUp,
+  OutcomePrompt,
   OutOfScopeRedirect,
+  PromptGroup,
   ServiceContent,
   StarterPrompt,
   TrustSignal,
@@ -32,11 +34,15 @@ interface PromptsJSON {
     starterPrompts: StarterPrompt[];
     guidedFollowUps: GuidedFollowUp[];
     outOfScopeRedirect: OutOfScopeRedirect;
+    outcomePrompts: OutcomePrompt[];
+    promptGroups: PromptGroup[];
   };
   es: {
     starterPrompts: StarterPrompt[];
     guidedFollowUps: GuidedFollowUp[];
     outOfScopeRedirect: OutOfScopeRedirect;
+    outcomePrompts: OutcomePrompt[];
+    promptGroups: PromptGroup[];
   };
 }
 
@@ -57,6 +63,8 @@ export class StaticContentProvider implements ContentProvider {
   private readonly guidedFollowUps: Record<Language, readonly GuidedFollowUp[]>;
   private readonly filteredFollowUps: Map<string, readonly GuidedFollowUp[]> = new Map();
   private readonly outOfScopeRedirect: Record<Language, OutOfScopeRedirect>;
+  private readonly outcomePrompts: Record<Language, readonly OutcomePrompt[]>;
+  private readonly promptGroups: Record<Language, readonly PromptGroup[]>;
 
   constructor() {
     const svc = servicesData as ServicesJSON;
@@ -92,6 +100,16 @@ export class StaticContentProvider implements ContentProvider {
       en: prompts.en.outOfScopeRedirect,
       es: prompts.es.outOfScopeRedirect,
     };
+
+    this.outcomePrompts = {
+      en: Object.freeze(prompts.en.outcomePrompts),
+      es: Object.freeze(prompts.es.outcomePrompts),
+    };
+
+    this.promptGroups = {
+      en: Object.freeze(prompts.en.promptGroups),
+      es: Object.freeze(prompts.es.promptGroups),
+    };
   }
 
   getServices(language: Language): readonly ServiceContent[] {
@@ -124,5 +142,13 @@ export class StaticContentProvider implements ContentProvider {
 
   getOutOfScopeRedirect(language: Language): OutOfScopeRedirect {
     return this.outOfScopeRedirect[language];
+  }
+
+  getOutcomePrompts(language: Language): readonly OutcomePrompt[] {
+    return this.outcomePrompts[language];
+  }
+
+  getPromptGroups(language: Language): readonly PromptGroup[] {
+    return this.promptGroups[language];
   }
 }

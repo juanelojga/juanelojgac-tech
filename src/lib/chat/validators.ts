@@ -10,10 +10,12 @@ import type {
   InlineCTA,
   LeadAttributes,
   MessageRole,
+  OutcomePrompt,
   OutOfScopeRedirect,
   PriceRange,
   ProjectSummary,
   ProjectType,
+  PromptGroup,
   RecommendedSolution,
   ScopeEvaluationResult,
   ServiceContent,
@@ -300,6 +302,28 @@ export function isValidFollowUpSuggestion(value: unknown): value is FollowUpSugg
   if (typeof v.shouldTransitionPhase !== "boolean") return false;
   if (v.shouldTransitionPhase && !isValidConversationPhase(v.nextPhase)) return false;
   return true;
+}
+
+export function isValidOutcomePrompt(value: unknown): value is OutcomePrompt {
+  if (!isObject(value)) return false;
+  const v = value as Record<string, unknown>;
+  return (
+    isNonEmptyString(v.id) &&
+    isNonEmptyString(v.label) &&
+    isNonEmptyString(v.prompt) &&
+    isNonEmptyString(v.icon)
+  );
+}
+
+export function isValidPromptGroup(value: unknown): value is PromptGroup {
+  if (!isObject(value)) return false;
+  const v = value as Record<string, unknown>;
+  return (
+    isNonEmptyString(v.groupLabel) &&
+    Array.isArray(v.promptIds) &&
+    v.promptIds.length > 0 &&
+    v.promptIds.every((id: unknown) => isNonEmptyString(id))
+  );
 }
 
 // ──────────────────────────────────────────────

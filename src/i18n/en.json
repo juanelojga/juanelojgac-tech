@@ -4,11 +4,7 @@
     "defaultTitle": "JuaneloJGAC Tech - AI-Powered Solutions for Startups & SMEs",
     "defaultDescription": "Empowering startups and SMEs with practical, intelligent AI solutions—delivered with clarity, speed, and human-centered design.",
     "keywords": "AI Solutions, AI Transformation, Software Development, Automation, Marketing, Web Development, Bilingual Services",
-    "keywordsList": [
-      "AI Transformation",
-      "Automation",
-      "Digital Transformation"
-    ],
+    "keywordsList": ["AI Transformation", "Automation", "Digital Transformation"],
     "twitterHandle": "@juanelojgac",
     "organization": {
       "name": "JuaneloJGAC Tech",
@@ -20,40 +16,28 @@
         "name": "AI Automations Platform",
         "description": "Eliminate repetitive workflows with intelligent automation solutions that save time and reduce errors. Custom AI-powered automations designed for startups and SMEs.",
         "serviceType": "AI Automation",
-        "areaServed": [
-          "United States",
-          "Latin America"
-        ],
+        "areaServed": ["United States", "Latin America"],
         "priceRange": "$3,000-$10,000"
       },
       {
         "name": "AI Marketing Studio",
         "description": "AI-driven content creation and marketing automation that resonates with your audience. Transform your marketing with intelligent content generation and campaign optimization.",
         "serviceType": "AI Marketing",
-        "areaServed": [
-          "United States",
-          "Latin America"
-        ],
+        "areaServed": ["United States", "Latin America"],
         "priceRange": "$3,000-$10,000"
       },
       {
         "name": "AI-Powered Web Development",
         "description": "Fast, modern web platforms built with AI assistance. Custom e-commerce, dashboards, and web applications designed for growth and scalability.",
         "serviceType": "Web Development",
-        "areaServed": [
-          "United States",
-          "Latin America"
-        ],
+        "areaServed": ["United States", "Latin America"],
         "priceRange": "$3,000-$10,000"
       },
       {
         "name": "AI Consultancy & Digital Transformation",
         "description": "Strategic AI consulting to transform your business processes. Expert guidance on AI implementation, automation strategy, and digital transformation roadmaps.",
         "serviceType": "AI Consulting",
-        "areaServed": [
-          "United States",
-          "Latin America"
-        ],
+        "areaServed": ["United States", "Latin America"],
         "priceRange": "$3,000-$10,000"
       }
     ],
@@ -70,7 +54,9 @@
     "input": {
       "placeholder": "Type your message...",
       "send": "Send",
-      "characterLimit": "{{count}} characters remaining"
+      "characterLimit": "{{count}} characters remaining",
+      "helperText": "Ask about our services, pricing, timelines, or how AI can help your business.",
+      "scopeDescription": "This assistant specializes in JuaneloJGAC Tech services and AI consulting."
     },
     "panel": {
       "title": "JuaneloJGAC Tech",
@@ -88,10 +74,25 @@
       "errorNetwork": "Connection lost. Check your internet and try again.",
       "errorRateLimit": "Too many messages. Please wait a moment before sending another.",
       "errorTimeout": "The response took too long. Please try again.",
-      "errorUnavailable": "The chat service is temporarily unavailable. Please try again later."
+      "errorUnavailable": "The chat service is temporarily unavailable. Please try again later.",
+      "redirect": "That's an interesting question! While it falls outside my area of expertise, I'd love to help you with what I know best — AI consulting, web development, automation, and marketing solutions. Would any of these be helpful?"
     },
     "chips": {
       "label": "Quick questions to get started"
+    },
+    "outcomes": {
+      "sectionLabel": "How can we help?",
+      "items": {
+        "grow-revenue": "Grow revenue with AI",
+        "automate-ops": "Automate operations",
+        "build-platform": "Build a digital platform",
+        "transform-marketing": "Transform your marketing",
+        "get-strategy": "Get an AI strategy"
+      }
+    },
+    "promptGroups": {
+      "explore": "Explore Services",
+      "getStarted": "Get Started"
     },
     "summary": {
       "title": "Project Summary",
@@ -135,6 +136,24 @@
       "newMessage": "New message from assistant",
       "sendButton": "Send message",
       "chipGroup": "Suggested questions"
+    }
+  },
+  "consultant": {
+    "header": {
+      "logoAlt": "JuaneloJGAC Tech logo",
+      "languageSwitchLabel": "Language",
+      "currentLanguageLabel": "EN",
+      "targetLanguageLabel": "ES"
+    },
+    "hero": {
+      "headline": "AI-Powered Consulting for Your Business",
+      "subheadline": "Get expert guidance on AI integration, automation, and digital transformation — tailored to your goals.",
+      "ctaLabel": "Start a Conversation"
+    },
+    "footer": {
+      "copyright": "© 2026 JuaneloJGAC Tech. All rights reserved.",
+      "contactLabel": "Contact Us",
+      "privacyLabel": "Privacy Policy"
     }
   }
 }

@@ -77,7 +77,7 @@
       }
     ],
     "outOfScopeRedirect": {
-      "message": "I'm here to help with JuaneloJGAC Tech's services — web development, automation, AI integration, marketing, and spatial consulting. Here's how we can help you.",
+      "message": "That's an interesting question! While it falls outside my area of expertise, I'd love to help you with what I know best — AI consulting, web development, automation, and marketing solutions. Would any of these be helpful?",
       "suggestedPrompts": [
         {
           "id": "sp-redirect-services",
@@ -98,7 +98,49 @@
           "intent": "web-platform"
         }
       ]
-    }
+    },
+    "outcomePrompts": [
+      {
+        "id": "outcome-grow-revenue",
+        "label": "Grow revenue with AI",
+        "prompt": "How can AI help me grow revenue and reach more customers?",
+        "icon": "chart-up"
+      },
+      {
+        "id": "outcome-automate-ops",
+        "label": "Automate operations",
+        "prompt": "I want to automate repetitive tasks and streamline my operations. What can you do?",
+        "icon": "cog"
+      },
+      {
+        "id": "outcome-build-platform",
+        "label": "Build a digital platform",
+        "prompt": "I need a modern web platform for my business. Can you help me build one?",
+        "icon": "globe"
+      },
+      {
+        "id": "outcome-transform-marketing",
+        "label": "Transform your marketing",
+        "prompt": "How can AI improve my marketing strategy and content creation?",
+        "icon": "megaphone"
+      },
+      {
+        "id": "outcome-get-strategy",
+        "label": "Get an AI strategy",
+        "prompt": "I want expert guidance on where to start with AI in my business. Can you help?",
+        "icon": "lightbulb"
+      }
+    ],
+    "promptGroups": [
+      {
+        "groupLabel": "Explore Services",
+        "promptIds": ["sp-services", "sp-pricing", "sp-ai"]
+      },
+      {
+        "groupLabel": "Get Started",
+        "promptIds": ["sp-web-platform", "sp-automation"]
+      }
+    ]
   },
   "es": {
     "starterPrompts": [
@@ -178,7 +220,7 @@
       }
     ],
     "outOfScopeRedirect": {
-      "message": "Estoy aquí para ayudarte con los servicios de JuaneloJGAC Tech — desarrollo web, automatización, integración de IA, marketing y consultoría espacial. Así es como podemos ayudarte.",
+      "message": "¡Es una pregunta interesante! Aunque está fuera de mi área de especialización, me encantaría ayudarte con lo que mejor conozco — consultoría de IA, desarrollo web, automatización y soluciones de marketing. ¿Te sería útil alguno de estos temas?",
       "suggestedPrompts": [
         {
           "id": "sp-redirect-services",
@@ -199,6 +241,48 @@
           "intent": "web-platform"
         }
       ]
-    }
+    },
+    "outcomePrompts": [
+      {
+        "id": "outcome-grow-revenue",
+        "label": "Aumentar ingresos con IA",
+        "prompt": "¿Cómo puede la IA ayudarme a aumentar ingresos y llegar a más clientes?",
+        "icon": "chart-up"
+      },
+      {
+        "id": "outcome-automate-ops",
+        "label": "Automatizar operaciones",
+        "prompt": "Quiero automatizar tareas repetitivas y optimizar mis operaciones. ¿Qué pueden hacer?",
+        "icon": "cog"
+      },
+      {
+        "id": "outcome-build-platform",
+        "label": "Construir una plataforma digital",
+        "prompt": "Necesito una plataforma web moderna para mi negocio. ¿Pueden ayudarme a construirla?",
+        "icon": "globe"
+      },
+      {
+        "id": "outcome-transform-marketing",
+        "label": "Transformar tu marketing",
+        "prompt": "¿Cómo puede la IA mejorar mi estrategia de marketing y creación de contenido?",
+        "icon": "megaphone"
+      },
+      {
+        "id": "outcome-get-strategy",
+        "label": "Obtener una estrategia de IA",
+        "prompt": "Quiero orientación experta sobre por dónde empezar con IA en mi negocio. ¿Pueden ayudarme?",
+        "icon": "lightbulb"
+      }
+    ],
+    "promptGroups": [
+      {
+        "groupLabel": "Explorar Servicios",
+        "promptIds": ["sp-services", "sp-pricing", "sp-ai"]
+      },
+      {
+        "groupLabel": "Comenzar",
+        "promptIds": ["sp-web-platform", "sp-automation"]
+      }
+    ]
   }
 }

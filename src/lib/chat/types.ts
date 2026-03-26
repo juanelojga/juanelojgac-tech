@@ -157,6 +157,53 @@ export interface StarterPrompt {
   readonly intent: ProjectType | "general";
 }
 
+// ──────────────────────────────────────────────
+// Outcome Prompts & Prompt Groups (V2)
+// ──────────────────────────────────────────────
+
+/** A business-outcome-first prompt in the left rail */
+export interface OutcomePrompt {
+  readonly id: string;
+  readonly label: string;
+  readonly prompt: string;
+  readonly icon: string;
+}
+
+/** A named group of starter prompts for the chat welcome state */
+export interface PromptGroup {
+  readonly groupLabel: string;
+  readonly promptIds: readonly string[];
+}
+
+// ──────────────────────────────────────────────
+// Page Shell Props (V2)
+// ──────────────────────────────────────────────
+
+/** Props for the sticky consultant header */
+export interface ConsultantHeaderProps {
+  readonly logoAlt: string;
+  readonly languageSwitchLabel: string;
+  readonly currentLanguageLabel: string;
+  readonly targetLanguageLabel: string;
+  readonly targetLanguageUrl: string;
+}
+
+/** Props for the consultant hero section */
+export interface ConsultantHeroProps {
+  readonly headline: string;
+  readonly subheadline: string;
+  readonly ctaLabel: string;
+}
+
+/** Props for the consultant footer */
+export interface ConsultantFooterProps {
+  readonly copyright: string;
+  readonly contactLabel: string;
+  readonly contactEmail: string;
+  readonly privacyLabel?: string;
+  readonly privacyUrl?: string;
+}
+
 /** A follow-up suggestion the assistant can offer */
 export interface GuidedFollowUp {
   readonly id: string;
@@ -212,6 +259,8 @@ export interface ContentProvider {
   getStarterPrompts(language: Language): readonly StarterPrompt[];
   getGuidedFollowUps(language: Language, phase: ConversationPhase): readonly GuidedFollowUp[];
   getOutOfScopeRedirect(language: Language): OutOfScopeRedirect;
+  getOutcomePrompts(language: Language): readonly OutcomePrompt[];
+  getPromptGroups(language: Language): readonly PromptGroup[];
 }
 
 // ──────────────────────────────────────────────
