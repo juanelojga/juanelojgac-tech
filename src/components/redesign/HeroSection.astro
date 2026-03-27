@@ -1,0 +1,97 @@
+---
+import enTranslations from "../../i18n/en.json";
+import esTranslations from "../../i18n/es.json";
+import type { Language } from "../../lib/i18n";
+import HeroVisual from "./react/HeroVisual";
+import TrustMetrics from "./react/TrustMetrics";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = (lang === "es" ? esTranslations : enTranslations).redesign.hero;
+
+const trustMetrics = [
+  { value: "50+", label: t.trustProjects, numericValue: 50 },
+  { value: "98%", label: t.trustSatisfaction, numericValue: 98 },
+  { value: "US & LATAM", label: t.trustMarkets },
+];
+---
+
+<section
+  id="hero-section"
+  class="from-midnight to-midnight-light relative overflow-hidden bg-gradient-to-b pt-28 pb-20 lg:pt-36 lg:pb-32"
+  aria-label={t.microLabel}
+>
+  <!-- Background orbs (decorative, z-0) -->
+  <div class="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+    <div class="orb orb-cyan"></div>
+    <div class="orb orb-teal"></div>
+    <div class="orb orb-violet"></div>
+  </div>
+
+  <!-- Content (z-10) -->
+  <div class="relative z-10 mx-auto max-w-7xl px-4 lg:px-8">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+      <!-- Left column: text content -->
+      <div>
+        <!-- Micro-label -->
+        <span
+          class="text-accent-cyan inline-block text-xs font-semibold uppercase tracking-[0.2em] opacity-0"
+          style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 0ms;"
+        >
+          {t.microLabel}
+        </span>
+
+        <!-- Headline -->
+        <h1
+          class="font-sora mt-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-text-bright opacity-0 sm:text-5xl lg:text-6xl xl:text-7xl"
+          style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 100ms;"
+        >
+          {t.headline}
+        </h1>
+
+        <!-- Subheadline -->
+        <p
+          class="mt-6 max-w-xl text-lg text-text-muted opacity-0 lg:text-xl"
+          style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 300ms;"
+        >
+          {t.subheadline}
+        </p>
+
+        <!-- CTA row -->
+        <div
+          class="mt-8 flex flex-col gap-4 opacity-0 sm:flex-row sm:items-center"
+          style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 500ms;"
+        >
+          <a
+            href="#contact"
+            class="from-accent-cyan to-accent-teal inline-flex min-h-[48px] items-center justify-center rounded-xl bg-gradient-to-r px-8 py-4 text-base font-semibold text-midnight shadow-lg shadow-accent-cyan/20 transition-opacity duration-200 hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan"
+          >
+            {t.ctaPrimary}
+          </a>
+          <a
+            href="#services"
+            class="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-white/20 px-8 py-4 text-base font-semibold text-text-bright transition-colors duration-200 hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-cyan"
+          >
+            {t.ctaSecondary}
+          </a>
+        </div>
+
+        <!-- Trust metrics -->
+        <div
+          class="opacity-0"
+          style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 700ms;"
+        >
+          <TrustMetrics client:load metrics={trustMetrics} />
+        </div>
+      </div>
+
+      <!-- Right column: visual (desktop only) -->
+      <div class="hidden lg:block">
+        <HeroVisual client:load />
+      </div>
+    </div>
+  </div>
+</section>
