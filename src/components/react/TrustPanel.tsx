@@ -118,7 +118,6 @@ export default function TrustPanel({
             ))}
           </div>
         </div>
-
       </div>
 
       {/* CTA Section — Always visible */}

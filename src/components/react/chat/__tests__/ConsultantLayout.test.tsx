@@ -3,11 +3,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import type {
-  OutcomePrompt,
-  PromptGroup,
-  StarterPrompt,
-} from "../../../../lib/chat/types";
+import type { OutcomePrompt, PromptGroup, StarterPrompt } from "../../../../lib/chat/types";
 import ConsultantLayout, { type ConsultantLayoutProps } from "../ConsultantLayout";
 
 // ── Test Fixtures ──
