@@ -4,7 +4,7 @@ import { chatSelectors, sendChatMessage } from "./helpers/chat";
 import { test } from "./helpers/fixtures";
 
 /**
- * Mobile E2E tests for the AI Consultant experience.
+ * Mobile E2E tests for the redesigned homepage.
  * Viewport: 375×812 (iPhone 14).
  */
 test.describe("Consultant Mobile (375×812)", () => {
@@ -36,16 +36,25 @@ test.describe("Consultant Mobile (375×812)", () => {
     const header = page.locator("header");
     const headerBox = await header.boundingBox();
     expect(headerBox).not.toBeNull();
-    // Header should be compact on mobile — not taller than 60px
-    expect(headerBox!.height).toBeLessThanOrEqual(60);
+    // Header is h-16 (64px) on mobile
+    expect(headerBox!.height).toBeLessThanOrEqual(68);
   });
 
   test("renders the hero section on mobile", async ({ page }) => {
     await goToPage(page);
 
     await expect(
-      page.getByRole("heading", { name: "AI-Powered Consulting for Your Business" })
+      page.getByRole("heading", {
+        name: "Build Smarter Products, Automations, and AI Experiences",
+      })
     ).toBeVisible();
+  });
+
+  test("renders the services section on mobile", async ({ page }) => {
+    await goToPage(page);
+
+    const servicesSection = page.locator("#services");
+    await expect(servicesSection).toBeVisible();
   });
 
   test("renders the footer on mobile", async ({ page }) => {
@@ -53,7 +62,7 @@ test.describe("Consultant Mobile (375×812)", () => {
 
     const footer = page.locator("footer");
     await expect(footer).toBeVisible();
-    await expect(footer).toContainText("© 2026 JuaneloJGAC Tech");
+    await expect(footer).toContainText("© 2026 JuaneloJGAC Tech. All rights reserved.");
   });
 
   // ── Chat-First Layout ──
@@ -184,7 +193,17 @@ test.describe("Consultant Mobile (375×812)", () => {
     await goToPage(page, "es");
 
     await expect(
-      page.getByRole("heading", { name: "Consultoría con IA para Tu Negocio" })
+      page.getByRole("heading", {
+        name: "Construya Productos, Automatizaciones y Experiencias de IA Más Inteligentes",
+      })
+    ).toBeVisible();
+  });
+
+  test("mobile ES shows Spanish services section", async ({ page }) => {
+    await goToPage(page, "es");
+
+    await expect(
+      page.getByRole("heading", { name: "Soluciones Diseñadas para el Crecimiento" })
     ).toBeVisible();
   });
 

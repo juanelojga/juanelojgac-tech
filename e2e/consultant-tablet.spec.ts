@@ -4,7 +4,7 @@ import { chatSelectors, sendChatMessage } from "./helpers/chat";
 import { test } from "./helpers/fixtures";
 
 /**
- * Tablet E2E tests for the AI Consultant experience.
+ * Tablet E2E tests for the redesigned homepage.
  * Viewport: 768×1024 (iPad gen 7).
  */
 test.describe("Consultant Tablet (768×1024)", () => {
@@ -34,9 +34,17 @@ test.describe("Consultant Tablet (768×1024)", () => {
     await goToPage(page);
 
     await expect(
-      page.getByRole("heading", { name: "AI-Powered Consulting for Your Business" })
+      page.getByRole("heading", {
+        name: "Build Smarter Products, Automations, and AI Experiences",
+      })
     ).toBeVisible();
-    await expect(page.locator("text=Start a Conversation")).toBeVisible();
+  });
+
+  test("renders the services section on tablet", async ({ page }) => {
+    await goToPage(page);
+
+    const servicesSection = page.locator("#services");
+    await expect(servicesSection).toBeVisible();
   });
 
   test("renders the footer on tablet", async ({ page }) => {
@@ -44,7 +52,7 @@ test.describe("Consultant Tablet (768×1024)", () => {
 
     const footer = page.locator("footer");
     await expect(footer).toBeVisible();
-    await expect(footer).toContainText("© 2026 JuaneloJGAC Tech");
+    await expect(footer).toContainText("© 2026 JuaneloJGAC Tech. All rights reserved.");
   });
 
   // ── Consultant Layout ──
@@ -113,7 +121,9 @@ test.describe("Consultant Tablet (768×1024)", () => {
     await goToPage(page, "es");
 
     await expect(
-      page.getByRole("heading", { name: "Consultoría con IA para Tu Negocio" })
+      page.getByRole("heading", {
+        name: "Construya Productos, Automatizaciones y Experiencias de IA Más Inteligentes",
+      })
     ).toBeVisible();
 
     const footer = page.locator("footer");

@@ -4,8 +4,8 @@ import { chatSelectors, sendChatMessage } from "./helpers/chat";
 import { test } from "./helpers/fixtures";
 
 /**
- * Desktop E2E tests for the AI Consultant experience.
- * Covers EN and ES conversation flows on desktop viewport (1280×720).
+ * Desktop E2E tests for the redesigned homepage.
+ * Covers EN and ES flows on desktop viewport (1280×720).
  */
 test.describe("Consultant Desktop — EN", () => {
   test.use({ viewport: { width: 1280, height: 720 }, locale: "en-US" });
@@ -15,41 +15,139 @@ test.describe("Consultant Desktop — EN", () => {
     await page.waitForLoadState("networkidle");
   };
 
-  // ── Page Shell Tests ──
+  // ── Redesigned Header Tests ──
 
-  test("renders the sticky header with logo and language switch", async ({ page }) => {
+  test("renders the fixed header with logo and language switch", async ({ page }) => {
     await goToPage(page);
 
     const header = page.locator("header");
     await expect(header).toBeVisible();
-    await expect(header).toHaveCSS("position", "sticky");
+    await expect(header).toHaveCSS("position", "fixed");
 
     // Logo
     const logo = header.locator('img[alt="JuaneloJGAC Tech logo"]');
     await expect(logo).toBeVisible();
 
-    // Language switch
+    // Language switch (pill style)
     await expect(header.locator("text=EN")).toBeVisible();
     await expect(header.locator("text=ES")).toBeVisible();
   });
 
-  test("renders the hero section with headline and CTA", async ({ page }) => {
+  test("header shows desktop nav links", async ({ page }) => {
+    await goToPage(page);
+
+    const header = page.locator("header");
+    await expect(header.locator('a[href="#services"]')).toBeVisible();
+    await expect(header.locator('a[href="#process"]')).toBeVisible();
+    await expect(header.locator('a[href="#about"]')).toBeVisible();
+    await expect(header.locator('a[href="#contact"]')).toBeVisible();
+  });
+
+  test("header shows CTA button on desktop", async ({ page }) => {
+    await goToPage(page);
+
+    const header = page.locator("header");
+    const cta = header.locator('a[href="#contact"]').filter({ hasText: "Book a Consultation" });
+    await expect(cta).toBeVisible();
+  });
+
+  test("header shows social icons on desktop", async ({ page }) => {
+    await goToPage(page);
+
+    const header = page.locator("header");
+    await expect(header.locator('a[aria-label="GitHub"]')).toBeVisible();
+    await expect(header.locator('a[aria-label="LinkedIn"]')).toBeVisible();
+    await expect(header.locator('a[aria-label="Instagram"]')).toBeVisible();
+  });
+
+  // ── Redesigned Hero Tests ──
+
+  test("renders the hero section with headline and CTAs", async ({ page }) => {
     await goToPage(page);
 
     await expect(
-      page.getByRole("heading", { name: "AI-Powered Consulting for Your Business" })
+      page.getByRole("heading", {
+        name: "Build Smarter Products, Automations, and AI Experiences",
+      })
     ).toBeVisible();
-    await expect(page.locator("text=Start a Conversation")).toBeVisible();
+
+    // Micro-label
+    await expect(page.locator("text=AI Consulting for Modern Businesses")).toBeVisible();
+
+    // Primary CTA
+    await expect(
+      page.locator('a[href="#contact"]').filter({ hasText: "Book a Free Consultation" })
+    ).toBeVisible();
+
+    // Secondary CTA
+    await expect(
+      page.locator('a[href="#services"]').filter({ hasText: "Explore Services" })
+    ).toBeVisible();
   });
 
-  test("renders the footer with copyright and links", async ({ page }) => {
+  test("hero displays trust metrics", async ({ page }) => {
+    await goToPage(page);
+
+    await expect(page.locator("text=Projects Delivered")).toBeVisible();
+    await expect(page.locator("text=Client Satisfaction")).toBeVisible();
+  });
+
+  // ── Services Preview Tests ──
+
+  test("renders the services section with heading", async ({ page }) => {
+    await goToPage(page);
+
+    const servicesSection = page.locator("#services");
+    await expect(servicesSection).toBeVisible();
+
+    await expect(
+      page.getByRole("heading", { name: "Solutions Designed for Growth" })
+    ).toBeVisible();
+  });
+
+  test("services section shows all 5 card titles", async ({ page }) => {
+    await goToPage(page);
+
+    await expect(page.locator("text=Web Development").first()).toBeVisible();
+    await expect(page.locator("text=Workflow Automation")).toBeVisible();
+    await expect(page.locator("text=AI Integration & Consulting")).toBeVisible();
+    await expect(page.locator("text=AI Marketing Studio")).toBeVisible();
+    await expect(page.locator("text=Spatial Consultancy")).toBeVisible();
+  });
+
+  // ── Redesigned Footer Tests ──
+
+  test("renders the footer with 4-column layout", async ({ page }) => {
     await goToPage(page);
 
     const footer = page.locator("footer");
     await expect(footer).toBeVisible();
-    await expect(footer).toContainText("© 2026 JuaneloJGAC Tech");
-    await expect(footer).toContainText("Contact Us");
-    await expect(footer).toContainText("Privacy Policy");
+    await expect(footer).toContainText("© 2026 JuaneloJGAC Tech. All rights reserved.");
+    await expect(footer).toContainText("AI-powered solutions for modern businesses");
+    await expect(footer).toContainText("Navigation");
+    await expect(footer).toContainText("Why Work With Us");
+  });
+
+  test("footer shows navigation and social links", async ({ page }) => {
+    await goToPage(page);
+
+    const footer = page.locator("footer");
+    await expect(footer.locator('a[href="#services"]')).toBeVisible();
+    await expect(footer.locator('a[href="/privacy"]')).toBeVisible();
+
+    const githubLink = footer.locator('a[aria-label="GitHub"]');
+    await expect(githubLink).toBeVisible();
+    await expect(githubLink).toHaveAttribute("target", "_blank");
+    await expect(githubLink).toHaveAttribute("rel", "noopener noreferrer");
+  });
+
+  test("footer shows trust notes", async ({ page }) => {
+    await goToPage(page);
+
+    const footer = page.locator("footer");
+    await expect(footer).toContainText("Fully bilingual — EN/ES");
+    await expect(footer).toContainText("Clean code approach");
+    await expect(footer).toContainText("US & LATAM clients");
   });
 
   // ── Consultant Layout Tests ──
@@ -253,9 +351,11 @@ test.describe("Consultant Desktop — EN", () => {
     // Should be on /es page
     expect(page.url()).toContain("/es");
 
-    // Spanish content should render
+    // Spanish hero content should render
     await expect(
-      page.getByRole("heading", { name: "Consultoría con IA para Tu Negocio" })
+      page.getByRole("heading", {
+        name: "Construya Productos, Automatizaciones y Experiencias de IA Más Inteligentes",
+      })
     ).toBeVisible();
     await expect(page.getByRole("heading", { name: "Consultor de IA" })).toBeVisible();
   });
@@ -291,9 +391,21 @@ test.describe("Consultant Desktop — ES", () => {
     await goToPage(page);
 
     await expect(
-      page.getByRole("heading", { name: "Consultoría con IA para Tu Negocio" })
+      page.getByRole("heading", {
+        name: "Construya Productos, Automatizaciones y Experiencias de IA Más Inteligentes",
+      })
     ).toBeVisible();
-    await expect(page.locator("text=Iniciar una Conversación")).toBeVisible();
+    await expect(page.locator("text=Agendar Consulta Gratis")).toBeVisible();
+  });
+
+  test("renders the Spanish services section", async ({ page }) => {
+    await goToPage(page);
+
+    await expect(
+      page.getByRole("heading", { name: "Soluciones Diseñadas para el Crecimiento" })
+    ).toBeVisible();
+    await expect(page.locator("text=Desarrollo Web")).toBeVisible();
+    await expect(page.locator("text=Automatización de Flujos")).toBeVisible();
   });
 
   test("renders the Spanish footer", async ({ page }) => {
@@ -302,7 +414,7 @@ test.describe("Consultant Desktop — ES", () => {
     const footer = page.locator("footer");
     await expect(footer).toBeVisible();
     await expect(footer).toContainText("© 2026 JuaneloJGAC Tech. Todos los derechos reservados.");
-    await expect(footer).toContainText("Contáctanos");
+    await expect(footer).toContainText("Contacto");
     await expect(footer).toContainText("Política de Privacidad");
   });
 
@@ -423,7 +535,9 @@ test.describe("Consultant Desktop — ES", () => {
 
     // English content should render
     await expect(
-      page.getByRole("heading", { name: "AI-Powered Consulting for Your Business" })
+      page.getByRole("heading", {
+        name: "Build Smarter Products, Automations, and AI Experiences",
+      })
     ).toBeVisible();
   });
 });
