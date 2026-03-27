@@ -114,6 +114,7 @@ const mockPanelTranslations = {
   collapseLabel: "Show details",
   expandLabel: "Hide details",
   outcomesLabel: "How can we help?",
+  panelLabel: "Service information panel",
 };
 
 const mockChatTranslations = {
@@ -165,8 +166,6 @@ const mockErrorBoundaryTranslations = {
 };
 
 const defaultProps: ConsultantLayoutProps = {
-  companyName: "JuaneloJGAC Tech",
-  tagline: "AI solutions",
   services: mockServices,
   outcomePrompts: mockOutcomePrompts,
   starterPrompts: mockStarterPrompts,

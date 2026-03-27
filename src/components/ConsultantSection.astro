@@ -15,7 +15,6 @@ const t = (lang === "es" ? esTranslations : enTranslations).chat;
 
 // Get content from the content provider
 const contentProvider = new StaticContentProvider();
-const companyFacts = contentProvider.getCompanyFacts(lang);
 const services = contentProvider.getServices(lang);
 const starterPrompts = contentProvider.getStarterPrompts(lang);
 const outcomePrompts = contentProvider.getOutcomePrompts(lang);
@@ -35,6 +34,7 @@ const panelTranslations = {
   collapseLabel: t.panel.collapseLabel,
   expandLabel: t.panel.expandLabel,
   outcomesLabel: t.panel.outcomesLabel,
+  panelLabel: t.panel.panelLabel,
 };
 
 // Chat translations
@@ -98,8 +98,6 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
   <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
     <ConsultantLayout
       client:load
-      companyName={companyFacts.name}
-      tagline={companyFacts.tagline}
       services={serviceItems}
       outcomePrompts={outcomePrompts}
       starterPrompts={starterPrompts}

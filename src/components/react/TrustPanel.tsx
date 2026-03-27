@@ -16,11 +16,10 @@ export interface TrustPanelTranslations {
   readonly collapseLabel: string;
   readonly expandLabel: string;
   readonly outcomesLabel: string;
+  readonly panelLabel: string;
 }
 
 export interface TrustPanelProps {
-  readonly companyName: string;
-  readonly tagline: string;
   readonly services: readonly ServiceItemData[];
   readonly outcomePrompts: readonly OutcomePrompt[];
   readonly onPromptInject?: (prompt: string) => void;
@@ -28,8 +27,6 @@ export interface TrustPanelProps {
 }
 
 export default function TrustPanel({
-  companyName,
-  tagline,
   services,
   outcomePrompts,
   onPromptInject,
@@ -45,18 +42,10 @@ export default function TrustPanel({
 
   return (
     <aside
-      aria-label={companyName}
+      aria-label={translations.panelLabel}
       data-testid="trust-panel"
       className="bg-chat-panel-sidebar-bg border-white-10 flex w-full flex-col overflow-hidden border-r backdrop-blur-md lg:h-full lg:w-[var(--spacing-chat-panel-width-desktop)] xl:w-[var(--spacing-chat-panel-width-wide)]"
     >
-      {/* Identity Header */}
-      <div className="border-white-10 border-b px-5 py-5">
-        <h2 className="font-sora text-text-bright text-lg font-bold tracking-tight">
-          {companyName}
-        </h2>
-        <p className="text-text-muted mt-1.5 text-xs leading-relaxed">{tagline}</p>
-      </div>
-
       {/* Toggle Button — visible only on mobile/tablet */}
       <button
         type="button"

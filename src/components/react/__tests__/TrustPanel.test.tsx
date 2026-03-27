@@ -47,11 +47,10 @@ const mockTranslations: TrustPanelTranslations = {
   collapseLabel: "Show details",
   expandLabel: "Hide details",
   outcomesLabel: "How can we help?",
+  panelLabel: "Service information panel",
 };
 
 const defaultProps = {
-  companyName: "JuaneloJGAC Tech",
-  tagline: "Practical AI solutions delivered with clarity, speed, and human-centered design",
   services: mockServices,
   outcomePrompts: mockOutcomePrompts,
   onPromptInject: vi.fn(),
@@ -62,22 +61,6 @@ describe("TrustPanel", () => {
   afterEach(() => {
     cleanup();
     vi.clearAllMocks();
-  });
-
-  describe("identity section", () => {
-    it("renders the company name", () => {
-      render(<TrustPanel {...defaultProps} />);
-      expect(screen.getByText("JuaneloJGAC Tech")).toBeInTheDocument();
-    });
-
-    it("renders the company tagline", () => {
-      render(<TrustPanel {...defaultProps} />);
-      expect(
-        screen.getByText(
-          "Practical AI solutions delivered with clarity, speed, and human-centered design"
-        )
-      ).toBeInTheDocument();
-    });
   });
 
   describe("services section", () => {
@@ -166,7 +149,7 @@ describe("TrustPanel", () => {
     it("has an accessible label for the panel", () => {
       render(<TrustPanel {...defaultProps} />);
       const aside = screen.getByRole("complementary");
-      expect(aside).toHaveAttribute("aria-label");
+      expect(aside).toHaveAttribute("aria-label", "Service information panel");
     });
 
     it("service items are all interactive buttons", () => {

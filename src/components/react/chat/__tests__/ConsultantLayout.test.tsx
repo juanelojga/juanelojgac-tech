@@ -52,6 +52,7 @@ const mockPanelTranslations = {
   collapseLabel: "Show details",
   expandLabel: "Hide details",
   outcomesLabel: "How can we help?",
+  panelLabel: "Service information panel",
 };
 
 const mockChatTranslations = {
@@ -103,8 +104,6 @@ const mockErrorBoundaryTranslations = {
 };
 
 const defaultProps: ConsultantLayoutProps = {
-  companyName: "JuaneloJGAC Tech",
-  tagline: "Practical AI solutions",
   services: mockServices,
   outcomePrompts: mockOutcomePrompts,
   starterPrompts: mockStarterPrompts,
@@ -134,8 +133,7 @@ describe("ConsultantLayout", () => {
 
     it("contains the trust panel", () => {
       render(<ConsultantLayout {...defaultProps} />);
-      expect(screen.getByText("JuaneloJGAC Tech")).toBeInTheDocument();
-      expect(screen.getByText("Practical AI solutions")).toBeInTheDocument();
+      expect(screen.getByTestId("trust-panel")).toBeInTheDocument();
     });
 
     it("contains the chat panel when verification is skipped", () => {
@@ -192,9 +190,9 @@ describe("ConsultantLayout", () => {
       expect(screen.getByRole("region", { name: "Chat assistant" })).toBeInTheDocument();
     });
 
-    it("renders panel with company name as label", () => {
+    it("renders panel with accessible label", () => {
       render(<ConsultantLayout {...defaultProps} turnstileSiteKey="" />);
-      const aside = screen.getByRole("complementary", { name: "JuaneloJGAC Tech" });
+      const aside = screen.getByRole("complementary", { name: "Service information panel" });
       expect(aside).toBeInTheDocument();
     });
   });

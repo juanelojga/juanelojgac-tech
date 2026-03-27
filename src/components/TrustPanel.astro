@@ -14,7 +14,6 @@ const t = translations.default.chat.panel;
 
 // Get content from the content provider
 const contentProvider = new StaticContentProvider();
-const companyFacts = contentProvider.getCompanyFacts(lang);
 const services = contentProvider.getServices(lang);
 const outcomePrompts = contentProvider.getOutcomePrompts(lang);
 
@@ -32,13 +31,12 @@ const panelTranslations = {
   collapseLabel: t.collapseLabel,
   expandLabel: t.expandLabel,
   outcomesLabel: t.outcomesLabel,
+  panelLabel: t.panelLabel,
 };
 ---
 
 <TrustPanelReact
   client:load
-  companyName={companyFacts.name}
-  tagline={companyFacts.tagline}
   services={serviceItems}
   outcomePrompts={outcomePrompts}
   translations={panelTranslations}

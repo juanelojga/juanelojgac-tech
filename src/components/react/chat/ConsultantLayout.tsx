@@ -36,8 +36,6 @@ export interface LayoutTranslations {
 }
 
 export interface ConsultantLayoutProps {
-  readonly companyName: string;
-  readonly tagline: string;
   readonly services: readonly ServiceItemData[];
   readonly outcomePrompts: readonly OutcomePrompt[];
   readonly starterPrompts: readonly StarterPrompt[];
@@ -70,8 +68,6 @@ function generateLayoutMessageId(): string {
 }
 
 export default function ConsultantLayout({
-  companyName,
-  tagline,
   services,
   outcomePrompts,
   starterPrompts,
@@ -277,8 +273,6 @@ export default function ConsultantLayout({
     >
       {/* Left Panel — Trust & Services */}
       <TrustPanel
-        companyName={companyName}
-        tagline={tagline}
         services={services}
         outcomePrompts={outcomePrompts}
         onPromptInject={handlePromptInject}
