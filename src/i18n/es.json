@@ -158,5 +158,83 @@
       "contactLabel": "Contáctanos",
       "privacyLabel": "Política de Privacidad"
     }
+  },
+  "redesign": {
+    "header": {
+      "navServices": "Servicios",
+      "navProcess": "Proceso",
+      "navAbout": "Nosotros",
+      "navContact": "Contacto",
+      "ctaLabel": "Agendar Consulta",
+      "logoAlt": "Logo de JuaneloJGAC Tech",
+      "languageSwitchLabel": "Idioma",
+      "menuLabel": "Menú",
+      "closeMenuLabel": "Cerrar menú",
+      "socialGithubLabel": "GitHub",
+      "socialLinkedinLabel": "LinkedIn",
+      "socialInstagramLabel": "Instagram"
+    },
+    "hero": {
+      "microLabel": "Consultoría IA para Empresas Modernas",
+      "headline": "Construya Productos, Automatizaciones y Experiencias de IA Más Inteligentes",
+      "subheadline": "Desde integración de IA y automatización de flujos de trabajo hasta plataformas web escalables y experiencias digitales, ayudamos a las empresas a convertir ideas complejas en sistemas prácticos.",
+      "ctaPrimary": "Agendar Consulta Gratis",
+      "ctaSecondary": "Explorar Servicios",
+      "trustProjects": "Proyectos Entregados",
+      "trustSatisfaction": "Satisfacción del Cliente",
+      "trustMarkets": "Clientes en EE.UU. y LATAM"
+    },
+    "services": {
+      "sectionLabel": "Servicios",
+      "heading": "Soluciones Diseñadas para el Crecimiento",
+      "subheading": "Soluciones prácticas de IA y digitales creadas para mejorar operaciones, acelerar entregas y generar impacto medible en el negocio.",
+      "card1Title": "Desarrollo Web",
+      "card1Description": "Plataformas modernas, dashboards y productos digitales creados para velocidad, usabilidad y escala.",
+      "card2Title": "Automatización de Flujos",
+      "card2Description": "Reduzca trabajo manual y optimice operaciones con automatizaciones diseñadas para su negocio.",
+      "card3Title": "Integración IA y Consultoría",
+      "card3Description": "Convierta la IA en una ventaja práctica con soluciones alineadas a los objetivos reales de su negocio.",
+      "card4Title": "Studio de Marketing con IA",
+      "card4Description": "Use sistemas creativos asistidos por IA para mejorar producción de contenido, campañas y presencia digital.",
+      "card5Title": "Consultoría Espacial",
+      "card5Description": "Explore nuevas formas de mejorar entornos, distribuciones y experiencias a través del diseño inteligente y la tecnología."
+    },
+    "process": {
+      "sectionLabel": "Proceso",
+      "heading": "Un Camino Claro de la Idea a la Ejecución",
+      "subheading": "Combinamos estrategia, ejecución e ingeniería moderna para avanzar del concepto a la entrega con confianza.",
+      "step1Title": "Descubrir",
+      "step1Description": "Comenzamos entendiendo sus objetivos, contexto de negocio y desafíos técnicos.",
+      "step2Title": "Diseñar",
+      "step2Description": "Definimos la solución adecuada, estructuramos la experiencia y alineamos la tecnología con las prioridades del negocio.",
+      "step3Title": "Construir",
+      "step3Description": "Implementamos plataformas, automatizaciones y experiencias potenciadas con IA con calidad y agilidad.",
+      "step4Title": "Optimizar",
+      "step4Description": "Refinamos usabilidad, rendimiento y mantenibilidad a largo plazo para que su solución continúe generando valor."
+    },
+    "finalCta": {
+      "heading": "Construyamos Algo Más Inteligente",
+      "subheading": "Desde integración de IA y automatización de flujos hasta plataformas digitales modernas, ayudamos a las empresas a pasar de la estrategia a la ejecución con claridad y velocidad.",
+      "ctaPrimary": "Agendar Consulta Gratis",
+      "ctaSecondary": "Contáctenos",
+      "note": "Cuéntenos qué está construyendo, qué lo está frenando o dónde la IA podría crear ventaja."
+    },
+    "footer": {
+      "brandStatement": "Soluciones potenciadas con IA para empresas modernas",
+      "brandParagraph": "Ayudamos a startups y pymes a convertir ideas complejas en sistemas prácticos a través de integración de IA, automatización y desarrollo web moderno.",
+      "navLabel": "Navegación",
+      "navServices": "Servicios",
+      "navProcess": "Proceso",
+      "navAbout": "Nosotros",
+      "navContact": "Contacto",
+      "navPrivacy": "Política de Privacidad",
+      "trustLabel": "Por Qué Trabajar Con Nosotros",
+      "trustBilingual": "Totalmente bilingüe — EN/ES",
+      "trustDelivery": "Entrega típica — 4–12 semanas",
+      "trustCode": "Enfoque de código limpio",
+      "trustMarkets": "Clientes en EE.UU. y LATAM",
+      "socialLabel": "Social",
+      "copyright": "© 2026 JuaneloJGAC Tech. Todos los derechos reservados."
+    }
   }
 }
