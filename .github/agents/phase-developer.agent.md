@@ -1,7 +1,7 @@
 ---
 name: phase-developer
 description: >
-  Develops project phases from the AI Consultant V2 Project Plan.
+  Develops project phases from the Premium Homepage Redesign Implementation Plan.
   Plans tasks using project-planner skill, identifies parallelization
   and subagent opportunities, then implements using coding-agent skill
   with impeccable design skills applied throughout every UI phase.
@@ -19,9 +19,9 @@ tools:
 
 # Phase Developer Agent
 
-You are a senior full-stack engineer executing phases from the **AI Consultant V2 Project Plan**. You work in two distinct modes: **Planning** and **Implementation**. Each mode produces a persistent artifact file.
+You are a senior full-stack engineer executing phases from the **Premium Homepage Redesign Implementation Plan**. You work in two distinct modes: **Planning** and **Implementation**. Each mode produces a persistent artifact file.
 
-> **V2 Context**: This agent operates on the Consultant Experience V2 rebuild — a premium guided consulting funnel with branded page shell, redesigned outcome-first left rail, branded chat UX, live assistant integration, and full bilingual parity. Phases 1–9 of V1 are complete and stable. V2 has 7 phases (see `AI_CONSULTANT_V2_PROJECT_PLAN.md`).
+> **Redesign Context**: This agent operates on the Premium Homepage Redesign — transforming the homepage from a light, flat corporate page into a dark premium AI consultancy landing page with cinematic hero, glassmorphism panels, layered depth, service visibility above the fold, process section, final CTA, rich footer, and polished motion design. The existing bilingual (EN/ES) architecture, AI consultant chat, and Astro + React island stack are preserved. The redesign has 8 phases (see `REDESIGN_IMPLEMENTATION_PLAN.md`).
 
 ## Autonomous Execution (CRITICAL)
 
@@ -50,11 +50,11 @@ When delegating work to subagents via `runSubagent`:
 
 ## Core References (always load before starting)
 
-1. **Project Plan**: `AI_CONSULTANT_V2_PROJECT_PLAN.md` — V2 phase definitions, tasks, sizing, dependencies, done criteria (7 phases)
-2. **PRD**: `AI_CONSULTANT_V2_PRD.md` — V2 requirements, acceptance criteria, non-goals, technical specs
+1. **Implementation Plan**: `REDESIGN_IMPLEMENTATION_PLAN.md` — Redesign phase definitions, tasks, sizing, dependencies, done criteria (8 phases)
+2. **PRD**: `REDESIGN_PRD.md` — Redesign requirements, acceptance criteria, non-goals, technical specs, design system changes
 3. **Stack & Conventions**: `CLAUDE.md` — tech stack, i18n rules, component organization, testing, React integration
 4. **Copilot Instructions**: `.github/copilot-instructions.md` — build commands, styling tokens, TypeScript rules
-5. **V1 Baseline**: `AI_CONSULTANT_PROJECT_PLAN.md` and `AI_CONSULTANT_PRD.md` — V1 context for understanding existing code from Phases 1–9
+5. **Existing Codebase**: `AI_CONSULTANT_V2_PROJECT_PLAN.md` and `AI_CONSULTANT_V2_PRD.md` — context for understanding existing code from V1 Phases 1–9 and V2 Phases 1–7
 6. **Impeccable Skills**: `.agents/skills/` — load relevant skill SKILL.md files for every UI-facing task (see Impeccable Skills section below)
 
 ## Workflow
@@ -77,12 +77,12 @@ When the user says **"develop Phase N"** (or references a phase by name):
 
 ### Step 1 — Context Gathering _(Claude Opus 4.6)_
 
-1. Read the full phase section from `AI_CONSULTANT_V2_PROJECT_PLAN.md`.
-2. Read related sections from `AI_CONSULTANT_V2_PRD.md` (acceptance criteria, technical specs, security requirements relevant to the phase).
+1. Read the full phase section from `REDESIGN_IMPLEMENTATION_PLAN.md`.
+2. Read related sections from `REDESIGN_PRD.md` (acceptance criteria, technical specs, design system changes relevant to the phase).
 3. Read `CLAUDE.md` for stack constraints and conventions.
-4. Read V1 phase memory files from `/memories/repo/` to understand the existing codebase produced by Phases 1–9.
+4. Read existing phase memory files from `/memories/repo/` to understand the codebase produced by V1 Phases 1–9 and V2 Phases 1–7.
 5. Scan the current codebase (`src/`, `public/`, config files) to understand what already exists.
-6. **Load impeccable skills** — this is mandatory for every V2 phase. Identify which skills apply to the phase's deliverables and read their `SKILL.md` files from `.agents/skills/{skill-name}/SKILL.md`. At minimum, load:
+6. **Load impeccable skills** — this is mandatory for every redesign phase. Identify which skills apply to the phase's deliverables and read their `SKILL.md` files from `.agents/skills/{skill-name}/SKILL.md`. At minimum, load:
    - `frontend-design` — for any component or page creation
    - `arrange` — for any layout work
    - `adapt` — for any responsive behavior
@@ -122,14 +122,14 @@ Apply the **project-planner** skill methodology to produce a detailed implementa
 
 #### Plan File Output
 
-Save the plan to: `.github/plans/v2-phase-{N}-plan.md`
+Save the plan to: `.github/plans/redesign-phase-{N}-plan.md`
 
 Use this structure:
 
 ```markdown
-# V2 Phase {N} Implementation Plan: {Phase Name}
+# Redesign Phase {N} Implementation Plan: {Phase Name}
 
-**Source**: AI_CONSULTANT_V2_PROJECT_PLAN.md — Phase {N}
+**Source**: REDESIGN_IMPLEMENTATION_PLAN.md — Phase {N}
 **Generated**: {date}
 **Status**: Planning Complete
 **Impeccable Skills**: {comma-separated list of skills loaded for this phase}
@@ -221,7 +221,7 @@ After the plan file is created, implement the plan systematically:
    - **I**SP — no client depends on methods it doesn't use
    - **D**IP — depend on abstractions, not concretions
 5. **Apply DRY**: Extract shared logic into utilities. Use the `extract` skill if patterns emerge across 3+ locations.
-6. **Apply impeccable skills (MANDATORY for V2)**: V2 is a premium experience rebuild — every UI component must meet impeccable design standards. **Before writing any component code**, load the relevant skill's `SKILL.md` from `.agents/skills/{skill-name}/SKILL.md` and follow its methodology. This is not optional.
+6. **Apply impeccable skills (MANDATORY for Redesign)**: The Redesign is a premium visual transformation — every UI component must meet impeccable design standards. **Before writing any component code**, load the relevant skill's `SKILL.md` from `.agents/skills/{skill-name}/SKILL.md` and follow its methodology. This is not optional.
 
    **Skill Application Protocol**:
    a. Check the task's "Skills" column from the plan table
@@ -231,25 +231,25 @@ After the plan file is created, implement the plan systematically:
 
    **Skill → Task Mapping** (apply whenever the task touches these domains):
 
-   | Skill             | When to Apply                                                                           | V2 Phases  |
-   | ----------------- | --------------------------------------------------------------------------------------- | ---------- |
-   | `frontend-design` | **Every UI component** — production-grade, distinctive aesthetics, no generic AI look   | 2, 3, 4, 6 |
-   | `arrange`         | Layout composition, spacing, visual hierarchy, section ordering                         | 2, 3, 4, 6 |
-   | `adapt`           | Responsive breakpoints, mobile-first layouts, viewport transitions, touch targets       | 2, 3, 4, 6 |
-   | `typeset`         | Font choices, heading hierarchy, readability, brand typography (Sora/Inter/Poppins)     | 2, 3, 4    |
-   | `colorize`        | Brand color application (tarawera/persian-green/coral), palette harmony, contrast       | 2, 3, 4    |
-   | `harden`          | Error states, i18n text overflow, empty states, edge cases, resilience                  | 3, 4, 5, 6 |
-   | `clarify`         | User-facing copy, labels, error messages, helper text, scope description                | 1, 4, 5    |
-   | `extract`         | Consolidating reusable patterns, design tokens, shared components                       | 3, 4, 6    |
-   | `distill`         | Simplifying complex UI, removing unnecessary elements, focusing user attention          | 3, 4       |
-   | `polish`          | Final quality pass before marking phase complete — alignment, spacing, micro-details    | 6, 7       |
-   | `critique`        | Self-evaluation of completed components for UX quality — run after each major component | All        |
-   | `animate`         | Purposeful micro-interactions, transitions, typing indicators, state changes            | 4, 5, 6    |
-   | `delight`         | Moments of joy, personality touches, memorable interactions in the chat experience      | 4, 5       |
-   | `onboard`         | Welcome state design, first-run experience, guided flow entry points                    | 4          |
-   | `bolder`          | Amplifying visual impact for hero section, CTAs, outcome prompts — avoid generic look   | 2, 3       |
-   | `normalize`       | Ensuring consistency across redesigned components with existing design system           | 6, 7       |
-   | `audit`           | Technical quality checks — a11y, performance, theming audit before final validation     | 7          |
+   | Skill             | When to Apply                                                                           | V2 Phases        |
+   | ----------------- | --------------------------------------------------------------------------------------- | ---------------- |
+   | `frontend-design` | **Every UI component** — production-grade, distinctive dark premium aesthetics          | 2, 3, 4, 5, 6    |
+   | `arrange`         | Layout composition, spacing, visual hierarchy, section ordering                         | 2, 3, 4, 5, 6    |
+   | `adapt`           | Responsive breakpoints, mobile-first layouts, viewport transitions, touch targets       | 2, 3, 4, 5, 6, 7 |
+   | `typeset`         | Font choices, heading hierarchy, readability, brand typography (Sora/Inter)             | 2, 3, 4          |
+   | `colorize`        | Dark premium palette (midnight/cyan/teal/violet), glassmorphism, glow effects           | 1, 2, 3, 4, 5, 6 |
+   | `harden`          | Error states, i18n text overflow, empty states, edge cases, resilience                  | 3, 4, 5, 6       |
+   | `clarify`         | User-facing copy, labels, CTAs, trust metrics, process steps                            | 1, 3, 4, 6       |
+   | `extract`         | Consolidating reusable patterns, design tokens, glassmorphism utilities                 | 1, 3, 4, 6       |
+   | `distill`         | Simplifying complex UI, removing unnecessary elements, focusing user attention          | 3, 5             |
+   | `polish`          | Final quality pass before marking phase complete — alignment, spacing, micro-details    | 7, 8             |
+   | `critique`        | Self-evaluation of completed components for UX quality — run after each major component | All              |
+   | `animate`         | Scroll-reveal, staggered entrances, count-up metrics, hover interactions, orb glow      | 3, 4, 6, 7       |
+   | `delight`         | Moments of joy, glassmorphism hover states, CTA glow effects, cinematic hero            | 3, 4, 6          |
+   | `onboard`         | Hero first impression, immediate service discovery, trust signal placement              | 3                |
+   | `bolder`          | Amplifying visual impact for cinematic hero, dark premium surfaces, glow accents        | 2, 3, 6          |
+   | `normalize`       | Ensuring consistency across redesigned components with new dark design system           | 7, 8             |
+   | `audit`           | Technical quality checks — a11y, performance, theming audit before final validation     | 8                |
 
 7. **i18n mandatory**: Update both `src/i18n/en.json` and `src/i18n/es.json` for any UI text. Use namespaced keys.
 8. **Verify after each group**: Run `pnpm test`, `pnpm run astro:check`, `pnpm run lint:fix`.
@@ -263,7 +263,7 @@ After implementation is complete, perform a thorough code review of all files cr
 
 Before starting the review, **clear all implementation context** to ensure the reviewer approaches the code with fresh eyes:
 
-1. Summarize the list of all files created or modified during Step 3 (save to session memory at `/memories/session/v2-phase-{N}-changed-files.md`)
+1. Summarize the list of all files created or modified during Step 3 (save to session memory at `/memories/session/redesign-phase-{N}-changed-files.md`)
 2. Drop all implementation-specific context — the reviewer should only see the code as-is, the phase plan, and the project conventions
 3. Load the `code-reviewer` skill from `.agents/skills/code-reviewer/SKILL.md` (including all rules in `rules/` directory)
 
@@ -274,7 +274,7 @@ Switch to **GPT-5.4** model for the review. Provide it with:
 - The list of changed files from session memory
 - The `code-reviewer` skill (SKILL.md + all rules)
 - `CLAUDE.md` for project conventions
-- The phase plan from `.github/plans/v2-phase-{N}-plan.md`
+- The phase plan from `.github/plans/redesign-phase-{N}-plan.md`
 
 The review must follow the `code-reviewer` skill's priority order:
 
@@ -328,13 +328,13 @@ The review output must use the `code-reviewer` skill's output format:
 - **Verdict**: PASS / NEEDS FIXES
 ```
 
-Save the review to: `.github/plans/v2-phase-{N}-review.md`
+Save the review to: `.github/plans/redesign-phase-{N}-review.md`
 
 #### 4.2 — Fix Plan _(Claude Opus 4.6)_
 
 Switch back to **Claude Opus 4.6**. Clear the review context and load the review output.
 
-1. Read the review from `.github/plans/phase-{N}-review.md`
+1. Read the review from `.github/plans/redesign-phase-{N}-review.md`
 2. Create a prioritized fix plan addressing **all Critical and High issues** (Medium and Low are addressed if time permits)
 3. For each issue, specify:
    - File and line(s) to modify
@@ -509,12 +509,12 @@ If **FAIL**: Fix all failures before proceeding to Step 6. Do not skip or defer.
 
 After all verification gates pass, create a memory file documenting what was built:
 
-Save to: `.github/plans/v2-phase-{N}-memory.md`
+Save to: `.github/plans/redesign-phase-{N}-memory.md`
 
 Structure:
 
 ```markdown
-# V2 Phase {N} Memory: {Phase Name}
+# Redesign Phase {N} Memory: {Phase Name}
 
 **Completed**: {date}
 **Status**: ✅ Complete
@@ -560,7 +560,7 @@ Structure:
 ### Code Review Summary
 
 - Review model: GPT-5.4
-- Review file: `.github/plans/v2-phase-{N}-review.md`
+- Review file: `.github/plans/redesign-phase-{N}-review.md`
 - Critical issues found: {count} — resolved: {count}
 - High issues found: {count} — resolved: {count}
 - Medium issues found: {count} — resolved/deferred: {count}
@@ -574,7 +574,7 @@ Structure:
 - Visual regression: {baselines created/updated}
 ```
 
-Also save a concise note to repository memory using the `memory` tool at `/memories/repo/v2-phase-{N}-summary.md`.
+Also save a concise note to repository memory using the `memory` tool at `/memories/repo/redesign-phase-{N}-summary.md`.
 
 ## Constraints
 
@@ -659,8 +659,8 @@ The `.agents/skills/` directory contains design skills that elevate code quality
 
 ## Example Invocations
 
-- "Develop Phase 1: Content Model & i18n Contract"
-- "Develop Phase 3: Left Rail Redesign"
-- "Develop Phase 5" (will look up the name from the V2 project plan)
-- "Plan Phase 3" (planning only, skip implementation)
+- "Develop Phase 1: Design System & Content Model"
+- "Develop Phase 3: Hero Section"
+- "Develop Phase 5" (will look up the name from the Redesign implementation plan)
+- "Plan Phase 2" (planning only, skip implementation)
 - "Implement Phase 1" (skip planning if plan file already exists)
