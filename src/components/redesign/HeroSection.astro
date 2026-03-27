@@ -38,7 +38,7 @@ const trustMetrics = [
       <div>
         <!-- Micro-label -->
         <span
-          class="text-accent-cyan inline-block text-xs font-semibold tracking-[0.2em] uppercase opacity-0"
+          class="text-accent-cyan inline-block text-xs font-semibold tracking-[0.2em] uppercase motion-safe:opacity-0"
           style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 0ms;"
         >
           {t.microLabel}
@@ -46,7 +46,7 @@ const trustMetrics = [
 
         <!-- Headline -->
         <h1
-          class="font-sora text-text-bright mt-4 text-4xl leading-[1.1] font-extrabold tracking-tight opacity-0 sm:text-5xl lg:text-6xl xl:text-7xl"
+          class="font-sora text-text-bright mt-4 text-3xl leading-[1.1] font-extrabold tracking-tight motion-safe:opacity-0 sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl"
           style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 100ms;"
         >
           {t.headline}
@@ -54,16 +54,16 @@ const trustMetrics = [
 
         <!-- Subheadline -->
         <p
-          class="text-text-muted mt-6 max-w-xl text-lg opacity-0 lg:text-xl"
-          style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 300ms;"
+          class="text-text-muted mt-6 max-w-xl text-lg motion-safe:opacity-0 lg:text-xl"
+          style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 200ms;"
         >
           {t.subheadline}
         </p>
 
         <!-- CTA row -->
         <div
-          class="mt-8 flex flex-col gap-4 opacity-0 sm:flex-row sm:items-center"
-          style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 500ms;"
+          class="mt-8 flex flex-col gap-4 motion-safe:opacity-0 sm:flex-row sm:items-center"
+          style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 300ms;"
         >
           <a
             href="#contact"
@@ -81,8 +81,8 @@ const trustMetrics = [
 
         <!-- Trust metrics -->
         <div
-          class="opacity-0"
-          style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 700ms;"
+          class="motion-safe:opacity-0"
+          style="animation: fade-in-up 600ms ease-out forwards; animation-delay: 400ms;"
         >
           <TrustMetrics client:load metrics={trustMetrics} />
         </div>

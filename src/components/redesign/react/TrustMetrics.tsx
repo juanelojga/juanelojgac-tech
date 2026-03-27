@@ -111,7 +111,10 @@ export default function TrustMetrics({ metrics }: TrustMetricsProps) {
   }, []);
 
   return (
-    <div ref={containerRef} className="mt-10 grid grid-cols-3 gap-6 lg:mt-12">
+    <div
+      ref={containerRef}
+      className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-3 sm:gap-6 lg:mt-12"
+    >
       {metrics.map((metric, i) => (
         <MetricItem key={i} metric={metric} isVisible={isVisible} />
       ))}

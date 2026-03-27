@@ -105,11 +105,11 @@ const socialLinks = [
       </div>
 
       <!-- Col 4: Social -->
-      <div>
+      <div class="text-center sm:text-left">
         <h3 class="text-text-bright mb-4 text-xs font-semibold tracking-wider uppercase">
           {t.socialLabel}
         </h3>
-        <div class="flex items-center gap-3">
+        <div class="flex items-center justify-center gap-3 sm:justify-start">
           {
             socialLinks.map((social) => (
               <a
@@ -117,7 +117,7 @@ const socialLinks = [
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={social.label}
-                class="social-icon-link text-text-muted hover:text-accent-cyan rounded-lg p-2 transition-all duration-200"
+                class="social-icon-link text-text-muted hover:text-accent-cyan min-h-[44px] min-w-[44px] rounded-lg p-2.5 transition-all duration-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

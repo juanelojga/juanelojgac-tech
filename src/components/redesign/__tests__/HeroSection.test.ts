@@ -57,7 +57,7 @@ describe("HeroSection", () => {
     });
 
     it("uses large responsive headline sizes", () => {
-      expect(heroSource).toContain("text-4xl");
+      expect(heroSource).toContain("text-3xl");
       expect(heroSource).toContain("lg:text-6xl");
     });
 

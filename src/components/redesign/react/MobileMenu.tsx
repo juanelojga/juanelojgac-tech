@@ -211,7 +211,7 @@ export default function MobileMenu({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={socialGithubLabel}
-                className="text-text-muted hover:text-accent-cyan rounded-lg p-2 transition-colors duration-200"
+                className="text-text-muted hover:text-accent-cyan min-h-[44px] min-w-[44px] rounded-lg p-2.5 transition-colors duration-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -234,7 +234,7 @@ export default function MobileMenu({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={socialLinkedinLabel}
-                className="text-text-muted hover:text-accent-cyan rounded-lg p-2 transition-colors duration-200"
+                className="text-text-muted hover:text-accent-cyan min-h-[44px] min-w-[44px] rounded-lg p-2.5 transition-colors duration-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -258,7 +258,7 @@ export default function MobileMenu({
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={socialInstagramLabel}
-                className="text-text-muted hover:text-accent-cyan rounded-lg p-2 transition-colors duration-200"
+                className="text-text-muted hover:text-accent-cyan min-h-[44px] min-w-[44px] rounded-lg p-2.5 transition-colors duration-200"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

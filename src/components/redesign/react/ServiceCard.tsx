@@ -89,6 +89,17 @@ const icons: Record<string, React.ReactElement> = {
 export default function ServiceCard({ icon, title, description, index }: ServiceCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const prefersReducedMotion = useRef(false);
+
+  useEffect(() => {
+    prefersReducedMotion.current =
+      typeof window !== "undefined" &&
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion.current) {
+      setIsVisible(true);
+    }
+  }, []);
 
   const handleIntersection = useCallback(
     (entries: IntersectionObserverEntry[], observer: IntersectionObserver) => {
@@ -104,7 +115,7 @@ export default function ServiceCard({ icon, title, description, index }: Service
 
   useEffect(() => {
     const el = cardRef.current;
-    if (!el) return;
+    if (!el || prefersReducedMotion.current) return;
 
     const observer = new IntersectionObserver(handleIntersection, {
       threshold: 0.1,
@@ -118,21 +129,23 @@ export default function ServiceCard({ icon, title, description, index }: Service
     };
   }, [handleIntersection]);
 
-  const staggerDelay = `${index * 100}ms`;
+  const staggerDelay = prefersReducedMotion.current ? "0ms" : `${index * 120}ms`;
 
   return (
     <div
       ref={cardRef}
-      className="group bg-midnight-surface hover:border-accent-cyan/30 hover:shadow-accent-cyan/5 rounded-2xl border border-white/5 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+      className="group bg-midnight-surface hover:border-accent-cyan/30 hover:shadow-accent-cyan/5 rounded-2xl border border-white/5 p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg motion-reduce:transition-none motion-reduce:hover:translate-y-0"
       style={{
         opacity: isVisible ? 1 : 0,
         transform: isVisible ? "translateY(0)" : "translateY(20px)",
-        transition: "opacity 600ms ease-out, transform 600ms ease-out",
+        transition: prefersReducedMotion.current
+          ? "none"
+          : "opacity 600ms ease-out, transform 600ms ease-out",
         transitionDelay: staggerDelay,
       }}
     >
       {/* Icon */}
-      <div className="text-accent-cyan mb-4 transition-transform duration-300 group-hover:scale-110">
+      <div className="text-accent-cyan mb-4 transition-transform duration-300 group-hover:scale-110 motion-reduce:transition-none motion-reduce:group-hover:scale-100">
         {icons[icon] ?? icons.code}
       </div>
 
@@ -145,7 +158,7 @@ export default function ServiceCard({ icon, title, description, index }: Service
       {/* Arrow indicator */}
       <div className="mt-4 flex justify-end">
         <span
-          className="text-text-muted group-hover:text-accent-cyan transition-all duration-300 group-hover:translate-x-1"
+          className="text-text-muted group-hover:text-accent-cyan transition-all duration-300 group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0"
           aria-hidden="true"
         >
           →

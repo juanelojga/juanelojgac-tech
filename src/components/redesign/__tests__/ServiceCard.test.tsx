@@ -136,8 +136,8 @@ describe("ServiceCard", () => {
     it("applies stagger delay based on index", () => {
       const { container } = render(<ServiceCard {...mockProps} index={2} />);
       const card = container.firstChild as HTMLElement;
-      // Index 2 should have 200ms transition delay for stagger effect
-      expect(card.style.transitionDelay).toBe("200ms");
+      // Index 2 should have 240ms transition delay for stagger effect (120ms intervals)
+      expect(card.style.transitionDelay).toBe("240ms");
     });
 
     it("cleans up observer on unmount", () => {
