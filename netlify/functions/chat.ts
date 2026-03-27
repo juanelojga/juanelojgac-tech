@@ -25,14 +25,15 @@ const ALLOWED_METHODS = new Set(["POST", "OPTIONS"]);
 const DEFAULT_MODEL = "meta-llama/llama-3.1-8b-instruct";
 
 /** OpenRouter API URL */
-const OPENROUTER_API_URL = "https://openrouter.ai/api/v1/chat/completions";
+const OPENROUTER_API_URL =
+  process.env.OPENROUTER_API_URL ?? "https://openrouter.ai/api/v1/chat/completions";
 
 /** Singleton rate limiter — resets on cold start */
 const rateLimiter = new RateLimiter();
 
 /** Site info for OpenRouter tracking */
-const SITE_URL = "https://juanelojgac-tech.com";
-const SITE_TITLE = "JuaneloJGAC Tech AI Consultant";
+const SITE_URL = process.env.SITE_URL ?? "https://juanelojgac-tech.com";
+const SITE_TITLE = process.env.SITE_TITLE ?? "JuaneloJGAC Tech AI Consultant";
 
 // ── Types ──
 

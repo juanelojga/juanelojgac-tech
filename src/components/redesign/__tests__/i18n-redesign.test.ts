@@ -108,40 +108,6 @@ describe("Redesign i18n key symmetry", () => {
     });
   });
 
-  describe("redesign.process", () => {
-    const expectedKeys = [
-      "sectionLabel",
-      "heading",
-      "subheading",
-      "step1Title",
-      "step1Description",
-      "step2Title",
-      "step2Description",
-      "step3Title",
-      "step3Description",
-      "step4Title",
-      "step4Description",
-    ];
-
-    it.each(expectedKeys)("has process key '%s' in both languages", (key) => {
-      const enProcess = enRedesign.process as NestedKeys;
-      const esProcess = esRedesign.process as NestedKeys;
-      expect(enProcess[key], `EN redesign.process.${key}`).toBeDefined();
-      expect(esProcess[key], `ES redesign.process.${key}`).toBeDefined();
-    });
-  });
-
-  describe("redesign.finalCta", () => {
-    const expectedKeys = ["heading", "subheading", "ctaPrimary", "ctaSecondary", "note"];
-
-    it.each(expectedKeys)("has finalCta key '%s' in both languages", (key) => {
-      const enCta = enRedesign.finalCta as NestedKeys;
-      const esCta = esRedesign.finalCta as NestedKeys;
-      expect(enCta[key], `EN redesign.finalCta.${key}`).toBeDefined();
-      expect(esCta[key], `ES redesign.finalCta.${key}`).toBeDefined();
-    });
-  });
-
   describe("redesign.footer", () => {
     const expectedKeys = [
       "brandStatement",

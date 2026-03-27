@@ -180,26 +180,6 @@
       "trustSatisfaction": "Client Satisfaction",
       "trustMarkets": "US & LATAM Clients Served"
     },
-    "process": {
-      "sectionLabel": "Process",
-      "heading": "A Clear Path from Idea to Execution",
-      "subheading": "We combine strategy, execution, and modern engineering to move from concept to delivery with confidence.",
-      "step1Title": "Discover",
-      "step1Description": "We start by understanding your goals, business context, and technical challenges.",
-      "step2Title": "Design",
-      "step2Description": "We define the right solution, structure the experience, and align technology with business priorities.",
-      "step3Title": "Build",
-      "step3Description": "We implement platforms, automations, and AI-powered experiences with quality and momentum.",
-      "step4Title": "Optimize",
-      "step4Description": "We refine usability, performance, and long-term maintainability so your solution continues to deliver value."
-    },
-    "finalCta": {
-      "heading": "Let's Build Something Smarter",
-      "subheading": "From AI integration and workflow automation to modern digital platforms, we help businesses move from strategy to execution with clarity and speed.",
-      "ctaPrimary": "Book a Free Consultation",
-      "ctaSecondary": "Contact Us",
-      "note": "Tell us what you are building, what is slowing you down, or where AI could create leverage."
-    },
     "footer": {
       "brandStatement": "AI-powered solutions for modern businesses",
       "brandParagraph": "We help startups and SMEs turn complex ideas into practical systems through AI integration, automation, and modern web development.",

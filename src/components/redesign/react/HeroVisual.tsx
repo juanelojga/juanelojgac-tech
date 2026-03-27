@@ -103,7 +103,24 @@ export default function HeroVisual({ className = "" }: HeroVisualProps) {
             <div className="h-2 w-10 rounded-full bg-white/15" />
             <div className="bg-accent-cyan/20 h-5 w-5 rounded-full" />
           </div>
-          <div className="text-accent-cyan/80 text-xl font-bold">↑ 42%</div>
+          <div className="text-accent-cyan/80 flex items-center gap-1 text-xl font-bold">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <line x1="12" y1="19" x2="12" y2="5" />
+              <polyline points="5 12 12 5 19 12" />
+            </svg>
+            42%
+          </div>
           <div className="mt-1 h-1.5 w-20 rounded-full bg-white/10" />
         </div>
       </div>

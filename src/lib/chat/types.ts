@@ -179,31 +179,6 @@ export interface PromptGroup {
 // Page Shell Props (V2)
 // ──────────────────────────────────────────────
 
-/** Props for the sticky consultant header */
-export interface ConsultantHeaderProps {
-  readonly logoAlt: string;
-  readonly languageSwitchLabel: string;
-  readonly currentLanguageLabel: string;
-  readonly targetLanguageLabel: string;
-  readonly targetLanguageUrl: string;
-}
-
-/** Props for the consultant hero section */
-export interface ConsultantHeroProps {
-  readonly headline: string;
-  readonly subheadline: string;
-  readonly ctaLabel: string;
-}
-
-/** Props for the consultant footer */
-export interface ConsultantFooterProps {
-  readonly copyright: string;
-  readonly contactLabel: string;
-  readonly contactEmail: string;
-  readonly privacyLabel?: string;
-  readonly privacyUrl?: string;
-}
-
 /** A follow-up suggestion the assistant can offer */
 export interface GuidedFollowUp {
   readonly id: string;

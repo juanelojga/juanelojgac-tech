@@ -180,26 +180,6 @@
       "trustSatisfaction": "Satisfacción del Cliente",
       "trustMarkets": "Clientes en EE.UU. y LATAM"
     },
-    "process": {
-      "sectionLabel": "Proceso",
-      "heading": "Un Camino Claro de la Idea a la Ejecución",
-      "subheading": "Combinamos estrategia, ejecución e ingeniería moderna para avanzar del concepto a la entrega con confianza.",
-      "step1Title": "Descubrir",
-      "step1Description": "Comenzamos entendiendo sus objetivos, contexto de negocio y desafíos técnicos.",
-      "step2Title": "Diseñar",
-      "step2Description": "Definimos la solución adecuada, estructuramos la experiencia y alineamos la tecnología con las prioridades del negocio.",
-      "step3Title": "Construir",
-      "step3Description": "Implementamos plataformas, automatizaciones y experiencias potenciadas con IA con calidad y agilidad.",
-      "step4Title": "Optimizar",
-      "step4Description": "Refinamos usabilidad, rendimiento y mantenibilidad a largo plazo para que su solución continúe generando valor."
-    },
-    "finalCta": {
-      "heading": "Construyamos Algo Más Inteligente",
-      "subheading": "Desde integración de IA y automatización de flujos hasta plataformas digitales modernas, ayudamos a las empresas a pasar de la estrategia a la ejecución con claridad y velocidad.",
-      "ctaPrimary": "Agendar Consulta Gratis",
-      "ctaSecondary": "Contáctenos",
-      "note": "Cuéntenos qué está construyendo, qué lo está frenando o dónde la IA podría crear ventaja."
-    },
     "footer": {
       "brandStatement": "Soluciones potenciadas con IA para empresas modernas",
       "brandParagraph": "Ayudamos a startups y pymes a convertir ideas complejas en sistemas prácticos a través de integración de IA, automatización y desarrollo web moderno.",

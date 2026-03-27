@@ -1,46 +1,61 @@
-# Astro Starter Kit: Basics
+# JuaneloJGAC Tech
 
-```sh
-pnpm create astro@latest -- --template basics
+Marketing site + AI consultant chat built with Astro, React components, and Netlify Functions.
+
+## Requirements
+
+- Node.js 20+
+- `pnpm` (project uses `pnpm@10.33.0`)
+
+## Setup
+
+1. Install dependencies:
+
+```bash
+pnpm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+2. Create your local environment file from the template:
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+```bash
+cp .env.example .env
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+3. Update `.env` with your real credentials and values.
 
-## 🧞 Commands
+## Environment Variables
 
-All commands are run from the root of the project, from a terminal:
+Use `.env.example` as the reference. Key variables:
 
-| Command                    | Action                                           |
-| :------------------------- | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm run dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm run build`           | Build your production site to `./dist/`          |
-| `pnpm run preview`         | Preview your build locally, before deploying     |
-| `pnpm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm run astro -- --help` | Get help using the Astro CLI                     |
+- `PUBLIC_TURNSTILE_SITE_KEY`: Cloudflare Turnstile site key (safe for client use).
+- `OPENROUTER_API_KEY`: Server-side OpenRouter API key.
+- `OPENROUTER_MODEL`: Model ID used for chat completions.
+- `TURNSTILE_SECRET_KEY`: Server-side Turnstile secret key.
+- `SITE_URL`: App URL used for CORS and OpenRouter referer header.
+- `SITE_TITLE`: App title sent to OpenRouter.
+- `OPENROUTER_API_URL`: OpenRouter chat completions endpoint.
 
-## 👀 Want to learn more?
+Notes:
+- `.env` is ignored by git.
+- `.env.example` is committed as the template.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Local Usage
+
+Run the dev server:
+
+```bash
+pnpm dev
+```
+
+Useful commands:
+
+- `pnpm build`: Build production output.
+- `pnpm preview`: Preview the production build locally.
+- `pnpm lint`: Run ESLint.
+- `pnpm astro:check`: Run Astro type/content checks.
+- `pnpm test`: Run unit tests.
+- `pnpm test:coverage`: Run tests with coverage.
+
+## Deployment
+
+For Netlify deployment, set the same server-side environment variables (`OPENROUTER_API_KEY`, `TURNSTILE_SECRET_KEY`, and related settings) in Netlify project environment settings.

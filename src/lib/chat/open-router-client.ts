@@ -60,8 +60,8 @@ const DEFAULT_BASE_URL = "https://openrouter.ai/api/v1";
 const DEFAULT_MAX_TOKENS = 1024;
 const DEFAULT_TEMPERATURE = 0.7;
 const DEFAULT_TIMEOUT_MS = 30000;
-const SITE_URL = "https://juanelojgac-tech.com";
-const SITE_TITLE = "JuaneloJGAC Tech AI Consultant";
+const SITE_URL = process.env.SITE_URL ?? "https://juanelojgac-tech.com";
+const SITE_TITLE = process.env.SITE_TITLE ?? "JuaneloJGAC Tech AI Consultant";
 
 // ── Response type (internal) ──
 
