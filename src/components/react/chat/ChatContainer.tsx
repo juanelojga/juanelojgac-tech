@@ -139,10 +139,7 @@ export default function ChatContainer({
 
       {/* Follow-up suggestions — visible after assistant responses */}
       {hasMessages && followUps.length > 0 && !isTyping && (
-        <div
-          data-testid="chat-follow-ups"
-          className="border-t border-white-10 px-3 py-2 sm:px-4"
-        >
+        <div data-testid="chat-follow-ups" className="border-white-10 border-t px-3 py-2 sm:px-4">
           <p className="text-text-muted mb-1.5 text-xs font-medium">
             {translations.followUpsLabel}
           </p>
@@ -152,7 +149,7 @@ export default function ChatContainer({
                 key={followUp.id}
                 type="button"
                 onClick={() => handleChipClick(followUp.prompt)}
-                className="bg-white-5 text-text-bright border border-white-10 hover:bg-white-10 hover:border-accent-cyan/30 min-h-[44px] rounded-full px-3.5 py-2 text-xs font-medium transition-colors"
+                className="bg-white-5 text-text-bright border-white-10 hover:bg-white-10 hover:border-accent-cyan/30 min-h-[44px] rounded-full border px-3.5 py-2 text-xs font-medium transition-colors"
               >
                 {followUp.label}
               </button>

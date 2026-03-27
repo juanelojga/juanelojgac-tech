@@ -41,7 +41,9 @@ export default function ServiceItem({
         <span className="font-sora text-text-bright group-hover:text-accent-cyan text-xs font-medium">
           {title}
         </span>
-        <span className="text-text-muted mt-0.5 text-[11px] leading-relaxed">{shortDescription}</span>
+        <span className="text-text-muted mt-0.5 text-[11px] leading-relaxed">
+          {shortDescription}
+        </span>
       </div>
       <svg
         className="text-text-muted group-hover:text-accent-cyan mt-0.5 h-3.5 w-3.5 flex-shrink-0 transition-transform group-hover:translate-x-0.5"

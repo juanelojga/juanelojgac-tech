@@ -19,7 +19,7 @@ export default function PanelCTA({
         href={bookingUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-gradient-to-r from-accent-cyan to-accent-teal text-midnight hover:from-accent-cyan/90 hover:to-accent-teal/90 focus-visible:ring-accent-cyan flex items-center justify-center rounded-lg px-4 py-3 text-sm font-semibold shadow-sm transition-all hover:shadow-md focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
+        className="from-accent-cyan to-accent-teal text-midnight hover:from-accent-cyan/90 hover:to-accent-teal/90 focus-visible:ring-accent-cyan flex items-center justify-center rounded-lg bg-gradient-to-r px-4 py-3 text-sm font-semibold shadow-sm transition-all hover:shadow-md focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none"
       >
         {bookingLabel}
       </a>
