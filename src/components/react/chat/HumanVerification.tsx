@@ -50,13 +50,15 @@ export default function HumanVerification({
     setStatus("expired");
   }, []);
 
-  // Load Turnstile widget when component mounts
+  // Dynamically load the Turnstile script and render the widget
   useEffect(() => {
     if (!siteKey || !widgetRef.current) return;
 
-    // Check if Turnstile script is loaded
-    const turnstile = (window as TurnstileWindow).turnstile;
-    if (turnstile && typeof turnstile.render === "function") {
+    let cancelled = false;
+
+    const renderWidget = () => {
+      const turnstile = (window as TurnstileWindow).turnstile;
+      if (!turnstile || !widgetRef.current || cancelled) return;
       setStatus("verifying");
       widgetIdRef.current = turnstile.render(widgetRef.current, {
         sitekey: siteKey,
@@ -65,10 +67,38 @@ export default function HumanVerification({
         "expired-callback": handleExpired,
         theme: "dark",
       });
+    };
+
+    // If Turnstile is already available, render immediately
+    if ((window as TurnstileWindow).turnstile) {
+      renderWidget();
+      return () => {
+        cancelled = true;
+        const turnstileCleanup = (window as TurnstileWindow).turnstile;
+        if (turnstileCleanup && widgetIdRef.current) {
+          turnstileCleanup.remove(widgetIdRef.current);
+        }
+      };
     }
 
+    // Dynamically inject the Turnstile script if not already present
+    const SCRIPT_ID = "cf-turnstile-script";
+    let script = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
+
+    if (!script) {
+      script = document.createElement("script");
+      script.id = SCRIPT_ID;
+      script.src = "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+      script.async = true;
+      document.head.appendChild(script);
+    }
+
+    const onLoad = () => renderWidget();
+    script.addEventListener("load", onLoad);
+
     return () => {
-      // Clean up widget on unmount
+      cancelled = true;
+      script?.removeEventListener("load", onLoad);
       const turnstileCleanup = (window as TurnstileWindow).turnstile;
       if (turnstileCleanup && widgetIdRef.current) {
         turnstileCleanup.remove(widgetIdRef.current);

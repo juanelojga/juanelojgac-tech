@@ -63,7 +63,8 @@
       "servicesLabel": "Nuestros Servicios",
       "collapseLabel": "Mostrar detalles",
       "expandLabel": "Ocultar detalles",
-      "outcomesLabel": "¿Cómo podemos ayudarte?"
+      "outcomesLabel": "¿Cómo podemos ayudarte?",
+      "panelLabel": "Panel de información de servicios"
     },
     "messages": {
       "welcome": "¡Hola! Soy el asistente de JuaneloJGAC Tech. Puedo ayudarte a explorar nuestros servicios, entender rangos de precios y encontrar la solución adecuada para tus necesidades. ¿Cómo puedo ayudarte hoy?",

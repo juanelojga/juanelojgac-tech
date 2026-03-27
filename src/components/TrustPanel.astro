@@ -8,9 +8,10 @@ interface Props {
 
 const { lang } = Astro.props;
 
-// Import translations
-const translations = await import(`../i18n/${lang}.json`);
-const t = translations.default.chat.panel;
+// Import translations — use static imports to avoid Vite chunking warnings
+import enTranslations from "../i18n/en.json";
+import esTranslations from "../i18n/es.json";
+const t = (lang === "es" ? esTranslations : enTranslations).chat.panel;
 
 // Get content from the content provider
 const contentProvider = new StaticContentProvider();
