@@ -94,24 +94,21 @@ test.describe("Consultant Desktop — EN", () => {
 
   // ── Redesigned Footer Tests ──
 
-  test("renders the footer with 4-column layout", async ({ page }) => {
+  test("renders the footer with the remaining footer sections", async ({ page }) => {
     await goToPage(page);
 
     const footer = page.locator("footer");
     await expect(footer).toBeVisible();
     await expect(footer).toContainText("© 2026 JuaneloJGAC Tech. All rights reserved.");
     await expect(footer).toContainText("AI-powered solutions for modern businesses");
-    await expect(footer).toContainText("Navigation");
     await expect(footer).toContainText("Why Work With Us");
+    await expect(footer).toContainText("Social");
   });
 
-  test("footer shows navigation and social links", async ({ page }) => {
+  test("footer shows social links", async ({ page }) => {
     await goToPage(page);
 
     const footer = page.locator("footer");
-    await expect(footer.locator('a[href="#services"]')).toBeVisible();
-    await expect(footer.locator('a[href="/privacy"]')).toBeVisible();
-
     const githubLink = footer.locator('a[aria-label="GitHub"]');
     await expect(githubLink).toBeVisible();
     await expect(githubLink).toHaveAttribute("target", "_blank");
@@ -268,15 +265,6 @@ test.describe("Consultant Desktop — EN", () => {
     await expect(userMessage.first()).toContainText("web platform");
   });
 
-  test("trust panel shows CTAs", async ({ page }) => {
-    await goToPage(page);
-
-    const panelCta = page.locator(chatSelectors.panelCTA);
-    await expect(panelCta).toBeVisible();
-    await expect(panelCta).toContainText("Book a Free Consultation");
-    await expect(panelCta).toContainText("Contact Us");
-  });
-
   test("character count updates as user types", async ({ page }) => {
     await goToPage(page);
 
@@ -382,8 +370,8 @@ test.describe("Consultant Desktop — ES", () => {
     const footer = page.locator("footer");
     await expect(footer).toBeVisible();
     await expect(footer).toContainText("© 2026 JuaneloJGAC Tech. Todos los derechos reservados.");
-    await expect(footer).toContainText("Contacto");
-    await expect(footer).toContainText("Política de Privacidad");
+    await expect(footer).toContainText("Por Qué Trabajar Con Nosotros");
+    await expect(footer).toContainText("Social");
   });
 
   test("renders Spanish header and welcome message", async ({ page }) => {
@@ -432,14 +420,6 @@ test.describe("Consultant Desktop — ES", () => {
     const trustPanel = page.locator(chatSelectors.trustPanel);
     await expect(trustPanel).toContainText("Nuestros Servicios");
     await expect(trustPanel).toContainText("Por Qué Trabajar Con Nosotros");
-  });
-
-  test("trust panel shows Spanish CTA labels", async ({ page }) => {
-    await goToPage(page);
-
-    const panelCta = page.locator(chatSelectors.panelCTA);
-    await expect(panelCta).toContainText("Reserva una Consulta Gratuita");
-    await expect(panelCta).toContainText("Contáctanos");
   });
 
   test("clicking a Spanish prompt chip sends it as a user message", async ({ page }) => {

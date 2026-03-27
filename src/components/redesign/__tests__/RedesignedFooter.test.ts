@@ -30,18 +30,6 @@ describe("RedesignedFooter", () => {
       expect(result).toContain("We help startups and SMEs");
     });
 
-    it("renders navigation links", async () => {
-      const container = await AstroContainer.create();
-      const result = await container.renderToString(RedesignedFooter, {
-        props: { lang: "en" },
-      });
-      expect(result).toContain("Services");
-      expect(result).toContain("Process");
-      expect(result).toContain("About");
-      expect(result).toContain("Contact");
-      expect(result).toContain("Privacy Policy");
-    });
-
     it("renders trust notes", async () => {
       const container = await AstroContainer.create();
       const result = await container.renderToString(RedesignedFooter, {
@@ -88,7 +76,6 @@ describe("RedesignedFooter", () => {
       const result = await container.renderToString(RedesignedFooter, {
         props: { lang: "en" },
       });
-      expect(result).toContain("Navigation");
       expect(result).toContain("Why Work With Us");
       expect(result).toContain("Social");
     });
@@ -111,17 +98,6 @@ describe("RedesignedFooter", () => {
       expect(result).toContain("Soluciones potenciadas con IA para empresas modernas");
     });
 
-    it("renders Spanish navigation links", async () => {
-      const container = await AstroContainer.create();
-      const result = await container.renderToString(RedesignedFooter, {
-        props: { lang: "es" },
-      });
-      expect(result).toContain("Servicios");
-      expect(result).toContain("Proceso");
-      expect(result).toContain("Nosotros");
-      expect(result).toContain("Contacto");
-    });
-
     it("renders Spanish trust notes", async () => {
       const container = await AstroContainer.create();
       const result = await container.renderToString(RedesignedFooter, {
@@ -137,7 +113,6 @@ describe("RedesignedFooter", () => {
       const result = await container.renderToString(RedesignedFooter, {
         props: { lang: "es" },
       });
-      expect(result).toContain("Navegación");
       expect(result).toContain("Por Qué Trabajar Con Nosotros");
     });
 

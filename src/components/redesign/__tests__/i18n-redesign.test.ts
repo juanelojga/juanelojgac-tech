@@ -147,12 +147,6 @@ describe("Redesign i18n key symmetry", () => {
     const expectedKeys = [
       "brandStatement",
       "brandParagraph",
-      "navLabel",
-      "navServices",
-      "navProcess",
-      "navAbout",
-      "navContact",
-      "navPrivacy",
       "trustLabel",
       "trustBilingual",
       "trustDelivery",

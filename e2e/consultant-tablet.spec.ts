@@ -90,13 +90,6 @@ test.describe("Consultant Tablet (768×1024)", () => {
     await expect(chipsContainer).toBeVisible();
   });
 
-  test("panel CTA is visible on tablet", async ({ page }) => {
-    await goToPage(page);
-
-    const panelCta = page.locator(chatSelectors.panelCTA);
-    await expect(panelCta).toBeVisible();
-  });
-
   // ── Tablet i18n ──
 
   test("tablet ES layout loads Spanish content", async ({ page }) => {

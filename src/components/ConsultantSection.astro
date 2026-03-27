@@ -32,8 +32,6 @@ const serviceItems = services.map((svc) => ({
 // Panel translations
 const panelTranslations = {
   servicesLabel: t.panel.servicesLabel,
-  ctaBooking: t.panel.ctaBooking,
-  ctaContact: t.panel.ctaContact,
   collapseLabel: t.panel.collapseLabel,
   expandLabel: t.panel.expandLabel,
   outcomesLabel: t.panel.outcomesLabel,
@@ -106,8 +104,6 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
       outcomePrompts={outcomePrompts}
       starterPrompts={starterPrompts}
       promptGroups={promptGroups}
-      bookingUrl="https://calendly.com/juanelojgac"
-      contactEmail="hello@juanelojgac.tech"
       panelTranslations={panelTranslations}
       chatTranslations={chatTranslations}
       layoutTranslations={layoutTranslations}

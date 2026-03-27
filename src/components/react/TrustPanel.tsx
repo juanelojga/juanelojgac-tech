@@ -2,7 +2,6 @@ import React, { useCallback, useMemo, useState } from "react";
 
 import type { OutcomePrompt } from "../../lib/chat/types";
 import OutcomePrompts from "./OutcomePrompts";
-import PanelCTA from "./PanelCTA";
 import ServiceItem from "./ServiceItem";
 
 export interface ServiceItemData {
@@ -14,8 +13,6 @@ export interface ServiceItemData {
 
 export interface TrustPanelTranslations {
   readonly servicesLabel: string;
-  readonly ctaBooking: string;
-  readonly ctaContact: string;
   readonly collapseLabel: string;
   readonly expandLabel: string;
   readonly outcomesLabel: string;
@@ -28,8 +25,6 @@ export interface TrustPanelProps {
   readonly outcomePrompts: readonly OutcomePrompt[];
   readonly onPromptInject?: (prompt: string) => void;
   readonly translations: TrustPanelTranslations;
-  readonly bookingUrl: string;
-  readonly contactEmail: string;
 }
 
 export default function TrustPanel({
@@ -39,8 +34,6 @@ export default function TrustPanel({
   outcomePrompts,
   onPromptInject,
   translations,
-  bookingUrl,
-  contactEmail,
 }: TrustPanelProps) {
   // Start collapsed on mobile to prioritize chat view
   const [isExpanded, setIsExpanded] = useState(false);
@@ -118,16 +111,6 @@ export default function TrustPanel({
             ))}
           </div>
         </div>
-      </div>
-
-      {/* CTA Section — Always visible */}
-      <div className="border-white-10 mt-auto border-t px-5 py-4">
-        <PanelCTA
-          bookingLabel={translations.ctaBooking}
-          bookingUrl={bookingUrl}
-          contactLabel={translations.ctaContact}
-          contactEmail={contactEmail}
-        />
       </div>
     </aside>
   );

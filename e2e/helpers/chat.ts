@@ -17,7 +17,6 @@ export const chatSelectors = {
   userMessage: '[data-testid="chat-message-user"]',
   assistantMessage: '[data-testid="chat-message-assistant"]',
   trustPanel: '[data-testid="trust-panel"]',
-  panelCTA: '[data-testid="panel-cta"]',
   retryButton: '[data-testid="chat-retry-button"]',
   followUps: '[data-testid="chat-follow-ups"]',
   outcomePrompt: '[data-testid^="outcome-prompt-"]',

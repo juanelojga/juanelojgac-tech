@@ -42,8 +42,6 @@ export interface ConsultantLayoutProps {
   readonly outcomePrompts: readonly OutcomePrompt[];
   readonly starterPrompts: readonly StarterPrompt[];
   readonly promptGroups: readonly PromptGroup[];
-  readonly bookingUrl: string;
-  readonly contactEmail: string;
   readonly panelTranslations: TrustPanelTranslations;
   readonly chatTranslations: ChatContainerTranslations;
   readonly layoutTranslations: LayoutTranslations;
@@ -78,8 +76,6 @@ export default function ConsultantLayout({
   outcomePrompts,
   starterPrompts,
   promptGroups,
-  bookingUrl,
-  contactEmail,
   panelTranslations,
   chatTranslations,
   layoutTranslations,
@@ -287,8 +283,6 @@ export default function ConsultantLayout({
         outcomePrompts={outcomePrompts}
         onPromptInject={handlePromptInject}
         translations={panelTranslations}
-        bookingUrl={bookingUrl}
-        contactEmail={contactEmail}
       />
 
       {/* Right Panel — Chat or Verification */}

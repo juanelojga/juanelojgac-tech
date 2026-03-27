@@ -44,8 +44,6 @@ const mockOutcomePrompts: OutcomePrompt[] = [
 
 const mockTranslations: TrustPanelTranslations = {
   servicesLabel: "Our Services",
-  ctaBooking: "Book a Free Consultation",
-  ctaContact: "Contact Us",
   collapseLabel: "Show details",
   expandLabel: "Hide details",
   outcomesLabel: "How can we help?",
@@ -58,8 +56,6 @@ const defaultProps = {
   outcomePrompts: mockOutcomePrompts,
   onPromptInject: vi.fn(),
   translations: mockTranslations,
-  bookingUrl: "https://calendly.com/juanelojgac",
-  contactEmail: "hello@juanelojgac.tech",
 };
 
 describe("TrustPanel", () => {
@@ -102,30 +98,6 @@ describe("TrustPanel", () => {
       expect(
         screen.getByText("Custom platforms, e-commerce, dashboards, and web apps")
       ).toBeInTheDocument();
-    });
-  });
-
-  describe("CTA section", () => {
-    it("renders the booking CTA", () => {
-      render(<TrustPanel {...defaultProps} />);
-      expect(screen.getByText("Book a Free Consultation")).toBeInTheDocument();
-    });
-
-    it("renders the contact CTA", () => {
-      render(<TrustPanel {...defaultProps} />);
-      expect(screen.getByText("Contact Us")).toBeInTheDocument();
-    });
-
-    it("booking CTA links to Calendly", () => {
-      render(<TrustPanel {...defaultProps} />);
-      const link = screen.getByRole("link", { name: /Book a Free Consultation/i });
-      expect(link).toHaveAttribute("href", "https://calendly.com/juanelojgac");
-    });
-
-    it("contact CTA links to email", () => {
-      render(<TrustPanel {...defaultProps} />);
-      const link = screen.getByRole("link", { name: /Contact Us/i });
-      expect(link).toHaveAttribute("href", "mailto:hello@juanelojgac.tech");
     });
   });
 

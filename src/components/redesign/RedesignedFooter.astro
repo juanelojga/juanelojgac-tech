@@ -11,14 +11,6 @@ const { lang } = Astro.props;
 const t = (lang === "es" ? esTranslations : enTranslations).redesign.footer;
 const homeUrl = lang === "en" ? "/" : "/es";
 
-const navLinks = [
-  { label: t.navServices, href: "#services" },
-  { label: t.navProcess, href: "#process" },
-  { label: t.navAbout, href: "#about" },
-  { label: t.navContact, href: "#contact" },
-  { label: t.navPrivacy, href: "/privacy" },
-];
-
 const trustNotes = [t.trustBilingual, t.trustDelivery, t.trustCode, t.trustMarkets];
 
 const socialLinks = [
@@ -42,8 +34,7 @@ const socialLinks = [
 
 <footer class="border-t border-white/5 bg-[#050d18] pt-16 pb-8 lg:pt-24">
   <div class="mx-auto max-w-7xl px-4 lg:px-8">
-    <!-- 4-column grid -->
-    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
       <!-- Col 1: Brand -->
       <div class="sm:col-span-2 lg:col-span-1">
         <a href={homeUrl} class="mb-4 inline-block">
@@ -64,28 +55,7 @@ const socialLinks = [
         </p>
       </div>
 
-      <!-- Col 2: Navigation -->
-      <div>
-        <h3 class="text-text-bright mb-4 text-xs font-semibold tracking-wider uppercase">
-          {t.navLabel}
-        </h3>
-        <ul class="space-y-3">
-          {
-            navLinks.map((link) => (
-              <li>
-                <a
-                  href={link.href}
-                  class="text-text-muted hover:text-text-bright text-sm transition-colors duration-200"
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <!-- Col 3: Trust Notes -->
+      <!-- Col 2: Trust Notes -->
       <div>
         <h3 class="text-text-bright mb-4 text-xs font-semibold tracking-wider uppercase">
           {t.trustLabel}
@@ -104,7 +74,7 @@ const socialLinks = [
         </ul>
       </div>
 
-      <!-- Col 4: Social -->
+      <!-- Col 3: Social -->
       <div class="text-center sm:text-left">
         <h3 class="text-text-bright mb-4 text-xs font-semibold tracking-wider uppercase">
           {t.socialLabel}

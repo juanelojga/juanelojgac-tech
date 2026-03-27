@@ -95,7 +95,6 @@ describe("Page Shell Composition", () => {
 
       expect(html).toContain("<footer");
       expect(html).toContain("AI-powered solutions for modern businesses");
-      expect(html).toContain("Navigation");
       expect(html).toContain("Why Work With Us");
       expect(html).toContain("© 2026 JuaneloJGAC Tech. All rights reserved.");
     });
@@ -108,7 +107,6 @@ describe("Page Shell Composition", () => {
 
       expect(html).toContain("<footer");
       expect(html).toContain("Soluciones potenciadas con IA para empresas modernas");
-      expect(html).toContain("Navegación");
       expect(html).toContain("Por Qué Trabajar Con Nosotros");
       expect(html).toContain("© 2026 JuaneloJGAC Tech. Todos los derechos reservados.");
     });

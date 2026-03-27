@@ -111,8 +111,6 @@ const mockPromptGroups = [{ groupLabel: "Explore", promptIds: ["sp-1"] }];
 
 const mockPanelTranslations = {
   servicesLabel: "Our Services",
-  ctaBooking: "Book a Free Consultation",
-  ctaContact: "Contact Us",
   collapseLabel: "Show details",
   expandLabel: "Hide details",
   outcomesLabel: "How can we help?",
@@ -173,8 +171,6 @@ const defaultProps: ConsultantLayoutProps = {
   outcomePrompts: mockOutcomePrompts,
   starterPrompts: mockStarterPrompts,
   promptGroups: mockPromptGroups,
-  bookingUrl: "https://calendly.com/test",
-  contactEmail: "test@test.com",
   panelTranslations: mockPanelTranslations,
   chatTranslations: mockChatTranslations,
   layoutTranslations: mockLayoutTranslations,

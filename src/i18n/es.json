@@ -61,8 +61,6 @@
     "panel": {
       "title": "JuaneloJGAC Tech",
       "servicesLabel": "Nuestros Servicios",
-      "ctaBooking": "Reserva una Consulta Gratuita",
-      "ctaContact": "Contáctanos",
       "collapseLabel": "Mostrar detalles",
       "expandLabel": "Ocultar detalles",
       "outcomesLabel": "¿Cómo podemos ayudarte?"
@@ -206,12 +204,6 @@
     "footer": {
       "brandStatement": "Soluciones potenciadas con IA para empresas modernas",
       "brandParagraph": "Ayudamos a startups y pymes a convertir ideas complejas en sistemas prácticos a través de integración de IA, automatización y desarrollo web moderno.",
-      "navLabel": "Navegación",
-      "navServices": "Servicios",
-      "navProcess": "Proceso",
-      "navAbout": "Nosotros",
-      "navContact": "Contacto",
-      "navPrivacy": "Política de Privacidad",
       "trustLabel": "Por Qué Trabajar Con Nosotros",
       "trustBilingual": "Totalmente bilingüe — EN/ES",
       "trustDelivery": "Entrega típica — 4–12 semanas",

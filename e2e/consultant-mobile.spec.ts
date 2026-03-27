@@ -144,13 +144,6 @@ test.describe("Consultant Mobile (375×812)", () => {
     expect(btnBox!.width).toBeGreaterThanOrEqual(44);
   });
 
-  test("panel CTA is always visible on mobile", async ({ page }) => {
-    await goToPage(page);
-
-    const panelCta = page.locator(chatSelectors.panelCTA);
-    await expect(panelCta).toBeVisible();
-  });
-
   test("clicking a chip on mobile sends a message", async ({ page }) => {
     await goToPage(page);
 
