@@ -68,7 +68,6 @@ describe("Redesign i18n key symmetry", () => {
   describe("redesign.header", () => {
     const expectedKeys = [
       "navServices",
-      "navProcess",
       "navAbout",
       "navContact",
       "ctaLabel",

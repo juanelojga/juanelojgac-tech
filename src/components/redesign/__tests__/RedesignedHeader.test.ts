@@ -47,7 +47,6 @@ describe("RedesignedHeader", () => {
 
     it("contains anchor-based nav links", () => {
       expect(headerSource).toContain("#services");
-      expect(headerSource).toContain("#process");
       expect(headerSource).toContain("#about");
       expect(headerSource).toContain("#contact");
     });
@@ -120,7 +119,6 @@ describe("RedesignedHeader", () => {
 
     it("has all required EN header translation keys", () => {
       expect(t.navServices).toBe("Services");
-      expect(t.navProcess).toBe("Process");
       expect(t.navAbout).toBe("About");
       expect(t.navContact).toBe("Contact");
       expect(t.ctaLabel).toBe("Book a Consultation");
@@ -141,7 +139,6 @@ describe("RedesignedHeader", () => {
 
     it("has all required ES header translation keys", () => {
       expect(t.navServices).toBe("Servicios");
-      expect(t.navProcess).toBe("Proceso");
       expect(t.navAbout).toBe("Nosotros");
       expect(t.navContact).toBe("Contacto");
       expect(t.ctaLabel).toBe("Agendar Consulta");
