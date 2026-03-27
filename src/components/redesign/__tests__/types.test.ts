@@ -5,6 +5,8 @@ import type {
   FinalCTAProps,
   HeroSectionProps,
   HeroVisualProps,
+  MobileMenuProps,
+  NavLink,
   ProcessStepProps,
   RedesignedFooterProps,
   RedesignedHeaderProps,
@@ -163,6 +165,55 @@ describe("Redesign TypeScript interfaces", () => {
         links: [],
       };
       expect(props.className).toBeUndefined();
+    });
+  });
+
+  describe("NavLink", () => {
+    it("contains label and href", () => {
+      const link: NavLink = { label: "Services", href: "#services" };
+      expect(link.label).toBe("Services");
+      expect(link.href).toBe("#services");
+    });
+  });
+
+  describe("MobileMenuProps", () => {
+    it("accepts all required fields", () => {
+      const props: MobileMenuProps = {
+        lang: "en",
+        navLinks: [{ label: "Services", href: "#services" }],
+        ctaLabel: "Book a Consultation",
+        menuLabel: "Menu",
+        closeMenuLabel: "Close menu",
+        socialGithubLabel: "GitHub",
+        socialLinkedinLabel: "LinkedIn",
+        socialInstagramLabel: "Instagram",
+        languageSwitchLabel: "Language",
+        homeUrl: "/",
+        altLangUrl: "/es",
+        currentLang: "en",
+      };
+      expect(props.navLinks).toHaveLength(1);
+      expect(props.lang).toBe("en");
+      expect(props.ctaLabel).toBe("Book a Consultation");
+    });
+
+    it("accepts ES language variant", () => {
+      const props: MobileMenuProps = {
+        lang: "es",
+        navLinks: [{ label: "Servicios", href: "#services" }],
+        ctaLabel: "Agendar Consulta",
+        menuLabel: "Menú",
+        closeMenuLabel: "Cerrar menú",
+        socialGithubLabel: "GitHub",
+        socialLinkedinLabel: "LinkedIn",
+        socialInstagramLabel: "Instagram",
+        languageSwitchLabel: "Idioma",
+        homeUrl: "/es",
+        altLangUrl: "/",
+        currentLang: "es",
+      };
+      expect(props.lang).toBe("es");
+      expect(props.currentLang).toBe("es");
     });
   });
 });

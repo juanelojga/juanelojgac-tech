@@ -101,3 +101,25 @@ export interface SocialIconsProps {
   /** Optional CSS class for the container */
   className?: string;
 }
+
+/** Navigation link data */
+export interface NavLink {
+  label: string;
+  href: string;
+}
+
+/** Props for the mobile menu React island */
+export interface MobileMenuProps {
+  lang: "en" | "es";
+  navLinks: NavLink[];
+  ctaLabel: string;
+  menuLabel: string;
+  closeMenuLabel: string;
+  socialGithubLabel: string;
+  socialLinkedinLabel: string;
+  socialInstagramLabel: string;
+  languageSwitchLabel: string;
+  homeUrl: string;
+  altLangUrl: string;
+  currentLang: "en" | "es";
+}
