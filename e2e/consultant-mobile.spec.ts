@@ -50,13 +50,6 @@ test.describe("Consultant Mobile (375×812)", () => {
     ).toBeVisible();
   });
 
-  test("renders the services section on mobile", async ({ page }) => {
-    await goToPage(page);
-
-    const servicesSection = page.locator("#services");
-    await expect(servicesSection).toBeVisible();
-  });
-
   test("renders the footer on mobile", async ({ page }) => {
     await goToPage(page);
 
@@ -196,14 +189,6 @@ test.describe("Consultant Mobile (375×812)", () => {
       page.getByRole("heading", {
         name: "Construya Productos, Automatizaciones y Experiencias de IA Más Inteligentes",
       })
-    ).toBeVisible();
-  });
-
-  test("mobile ES shows Spanish services section", async ({ page }) => {
-    await goToPage(page, "es");
-
-    await expect(
-      page.getByRole("heading", { name: "Soluciones Diseñadas para el Crecimiento" })
     ).toBeVisible();
   });
 

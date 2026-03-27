@@ -92,29 +92,6 @@ test.describe("Consultant Desktop — EN", () => {
     await expect(page.locator("text=Client Satisfaction")).toBeVisible();
   });
 
-  // ── Services Preview Tests ──
-
-  test("renders the services section with heading", async ({ page }) => {
-    await goToPage(page);
-
-    const servicesSection = page.locator("#services");
-    await expect(servicesSection).toBeVisible();
-
-    await expect(
-      page.getByRole("heading", { name: "Solutions Designed for Growth" })
-    ).toBeVisible();
-  });
-
-  test("services section shows all 5 card titles", async ({ page }) => {
-    await goToPage(page);
-
-    await expect(page.locator("text=Web Development").first()).toBeVisible();
-    await expect(page.locator("text=Workflow Automation")).toBeVisible();
-    await expect(page.locator("text=AI Integration & Consulting")).toBeVisible();
-    await expect(page.locator("text=AI Marketing Studio")).toBeVisible();
-    await expect(page.locator("text=Spatial Consultancy")).toBeVisible();
-  });
-
   // ── Redesigned Footer Tests ──
 
   test("renders the footer with 4-column layout", async ({ page }) => {

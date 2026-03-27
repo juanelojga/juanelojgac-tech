@@ -60,7 +60,6 @@ describe("Page Shell Composition", () => {
 
       expect(indexSource).toContain("RedesignedHeader");
       expect(indexSource).toContain("HeroSection");
-      expect(indexSource).toContain("ServicesPreview");
       expect(indexSource).toContain("RedesignedFooter");
     });
 
@@ -69,7 +68,6 @@ describe("Page Shell Composition", () => {
 
       expect(esSource).toContain("RedesignedHeader");
       expect(esSource).toContain("HeroSection");
-      expect(esSource).toContain("ServicesPreview");
       expect(esSource).toContain("RedesignedFooter");
     });
 
@@ -78,7 +76,6 @@ describe("Page Shell Composition", () => {
 
       expect(indexSource).toContain('<RedesignedHeader lang="en"');
       expect(indexSource).toContain('<HeroSection lang="en"');
-      expect(indexSource).toContain('<ServicesPreview lang="en"');
       expect(indexSource).toContain('<RedesignedFooter lang="en"');
     });
 
@@ -87,7 +84,6 @@ describe("Page Shell Composition", () => {
 
       expect(esSource).toContain('<RedesignedHeader lang="es"');
       expect(esSource).toContain('<HeroSection lang="es"');
-      expect(esSource).toContain('<ServicesPreview lang="es"');
       expect(esSource).toContain('<RedesignedFooter lang="es"');
     });
 

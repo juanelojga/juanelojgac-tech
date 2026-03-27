@@ -40,13 +40,6 @@ test.describe("Consultant Tablet (768×1024)", () => {
     ).toBeVisible();
   });
 
-  test("renders the services section on tablet", async ({ page }) => {
-    await goToPage(page);
-
-    const servicesSection = page.locator("#services");
-    await expect(servicesSection).toBeVisible();
-  });
-
   test("renders the footer on tablet", async ({ page }) => {
     await goToPage(page);
 

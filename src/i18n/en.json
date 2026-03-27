@@ -184,21 +184,6 @@
       "trustSatisfaction": "Client Satisfaction",
       "trustMarkets": "US & LATAM Clients Served"
     },
-    "services": {
-      "sectionLabel": "Services",
-      "heading": "Solutions Designed for Growth",
-      "subheading": "Practical AI and digital solutions built to improve operations, accelerate delivery, and create measurable business impact.",
-      "card1Title": "Web Development",
-      "card1Description": "Modern platforms, dashboards, and digital products built for speed, usability, and scale.",
-      "card2Title": "Workflow Automation",
-      "card2Description": "Reduce manual work and streamline operations with tailored automations designed around your business.",
-      "card3Title": "AI Integration & Consulting",
-      "card3Description": "Turn AI into a practical advantage with solutions aligned to real business goals and workflows.",
-      "card4Title": "AI Marketing Studio",
-      "card4Description": "Use AI-assisted creative systems to improve content production, campaigns, and digital brand presence.",
-      "card5Title": "Spatial Consultancy",
-      "card5Description": "Explore new ways to improve environments, layouts, and experiences through intelligent design and technology."
-    },
     "process": {
       "sectionLabel": "Process",
       "heading": "A Clear Path from Idea to Execution",

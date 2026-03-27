@@ -109,31 +109,6 @@ describe("Redesign i18n key symmetry", () => {
     });
   });
 
-  describe("redesign.services", () => {
-    const expectedKeys = [
-      "sectionLabel",
-      "heading",
-      "subheading",
-      "card1Title",
-      "card1Description",
-      "card2Title",
-      "card2Description",
-      "card3Title",
-      "card3Description",
-      "card4Title",
-      "card4Description",
-      "card5Title",
-      "card5Description",
-    ];
-
-    it.each(expectedKeys)("has services key '%s' in both languages", (key) => {
-      const enServices = enRedesign.services as NestedKeys;
-      const esServices = esRedesign.services as NestedKeys;
-      expect(enServices[key], `EN redesign.services.${key}`).toBeDefined();
-      expect(esServices[key], `ES redesign.services.${key}`).toBeDefined();
-    });
-  });
-
   describe("redesign.process", () => {
     const expectedKeys = [
       "sectionLabel",

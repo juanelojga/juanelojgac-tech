@@ -31,36 +31,6 @@ export interface TrustMetricsProps {
   metrics: TrustMetric[];
 }
 
-/** Data shape for a single service card */
-export interface ServiceCardData {
-  /** SVG icon markup or React element key */
-  icon: string;
-  /** Card title */
-  title: string;
-  /** One-line description */
-  description: string;
-}
-
-/** Props for a single service card (React island for hover interactions) */
-export interface ServiceCardProps {
-  /** SVG icon markup */
-  icon: string;
-  /** Card title */
-  title: string;
-  /** One-line description */
-  description: string;
-  /** Card position index for stagger animation delay */
-  index: number;
-}
-
-/** Props for the services preview section (React island) */
-export interface ServicesPreviewProps {
-  services: ServiceCardData[];
-  sectionLabel: string;
-  heading: string;
-  subheading: string;
-}
-
 /** Props for a single process step */
 export interface ProcessStepProps {
   /** Step number (1-4) */

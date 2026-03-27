@@ -184,21 +184,6 @@
       "trustSatisfaction": "Satisfacción del Cliente",
       "trustMarkets": "Clientes en EE.UU. y LATAM"
     },
-    "services": {
-      "sectionLabel": "Servicios",
-      "heading": "Soluciones Diseñadas para el Crecimiento",
-      "subheading": "Soluciones prácticas de IA y digitales creadas para mejorar operaciones, acelerar entregas y generar impacto medible en el negocio.",
-      "card1Title": "Desarrollo Web",
-      "card1Description": "Plataformas modernas, dashboards y productos digitales creados para velocidad, usabilidad y escala.",
-      "card2Title": "Automatización de Flujos",
-      "card2Description": "Reduzca trabajo manual y optimice operaciones con automatizaciones diseñadas para su negocio.",
-      "card3Title": "Integración IA y Consultoría",
-      "card3Description": "Convierta la IA en una ventaja práctica con soluciones alineadas a los objetivos reales de su negocio.",
-      "card4Title": "Studio de Marketing con IA",
-      "card4Description": "Use sistemas creativos asistidos por IA para mejorar producción de contenido, campañas y presencia digital.",
-      "card5Title": "Consultoría Espacial",
-      "card5Description": "Explore nuevas formas de mejorar entornos, distribuciones y experiencias a través del diseño inteligente y la tecnología."
-    },
     "process": {
       "sectionLabel": "Proceso",
       "heading": "Un Camino Claro de la Idea a la Ejecución",

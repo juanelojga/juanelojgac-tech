@@ -10,9 +10,6 @@ import type {
   ProcessStepProps,
   RedesignedFooterProps,
   RedesignedHeaderProps,
-  ServiceCardData,
-  ServiceCardProps,
-  ServicesPreviewProps,
   SocialIconsProps,
   SocialLink,
   TrustMetric,
@@ -68,44 +65,6 @@ describe("Redesign TypeScript interfaces", () => {
         ],
       };
       expect(props.metrics).toHaveLength(2);
-    });
-  });
-
-  describe("ServiceCardData", () => {
-    it("contains icon, title, and description", () => {
-      const card: ServiceCardData = {
-        icon: "<svg>...</svg>",
-        title: "Web Development",
-        description: "Modern platforms built for scale.",
-      };
-      expect(card.icon).toBeDefined();
-      expect(card.title).toBe("Web Development");
-      expect(card.description).toBeDefined();
-    });
-  });
-
-  describe("ServiceCardProps", () => {
-    it("extends card data with index", () => {
-      const props: ServiceCardProps = {
-        icon: "<svg>...</svg>",
-        title: "AI Integration",
-        description: "Turn AI into a practical advantage.",
-        index: 2,
-      };
-      expect(props.index).toBe(2);
-    });
-  });
-
-  describe("ServicesPreviewProps", () => {
-    it("accepts services array and section text", () => {
-      const props: ServicesPreviewProps = {
-        services: [{ icon: "<svg/>", title: "Test", description: "Desc" }],
-        sectionLabel: "Services",
-        heading: "Solutions",
-        subheading: "Practical solutions",
-      };
-      expect(props.services).toHaveLength(1);
-      expect(props.sectionLabel).toBe("Services");
     });
   });
 
