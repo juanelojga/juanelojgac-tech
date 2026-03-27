@@ -1,0 +1,53 @@
+---
+import enTranslations from "../../i18n/en.json";
+import esTranslations from "../../i18n/es.json";
+import type { Language } from "../../lib/i18n";
+import ServiceCard from "./react/ServiceCard";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = (lang === "es" ? esTranslations : enTranslations).redesign.services;
+
+const services = [
+  { icon: "code", title: t.card1Title, description: t.card1Description },
+  { icon: "zap", title: t.card2Title, description: t.card2Description },
+  { icon: "sparkles", title: t.card3Title, description: t.card3Description },
+  { icon: "megaphone", title: t.card4Title, description: t.card4Description },
+  { icon: "cube", title: t.card5Title, description: t.card5Description },
+];
+---
+
+<section id="services" class="bg-midnight-light py-20 lg:py-32" aria-label={t.sectionLabel}>
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+    <!-- Section header -->
+    <div class="mb-16 text-center">
+      <span class="text-accent-cyan inline-block text-xs font-semibold tracking-[0.2em] uppercase">
+        {t.sectionLabel}
+      </span>
+      <h2 class="font-sora text-text-bright mt-3 text-3xl font-bold lg:text-5xl">
+        {t.heading}
+      </h2>
+      <p class="text-text-muted mx-auto mt-4 max-w-2xl text-lg">
+        {t.subheading}
+      </p>
+    </div>
+
+    <!-- Card grid -->
+    <div class="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+      {
+        services.map((service, i) => (
+          <ServiceCard
+            client:visible
+            icon={service.icon}
+            title={service.title}
+            description={service.description}
+            index={i}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
