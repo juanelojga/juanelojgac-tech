@@ -128,5 +128,16 @@ describe("ConsultantHeader", () => {
       // Logo should link to home
       expect(enResult).toContain('href="/"');
     });
+
+    it("language switch links have mobile touch target sizing", async () => {
+      const container = await AstroContainer.create();
+      const result = await container.renderToString(ConsultantHeader, {
+        props: { lang: "en" },
+      });
+
+      // Should have min-h-[44px] for mobile touch targets
+      expect(result).toContain("min-h-[44px]");
+      expect(result).toContain("min-w-[44px]");
+    });
   });
 });

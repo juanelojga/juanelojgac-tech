@@ -19,12 +19,15 @@ const t = (lang === "es" ? esTranslations : enTranslations).consultant.footer;
     <nav class="flex items-center gap-4">
       <a
         href="mailto:hello@juanelojgac.tech"
-        class="text-tarawera hover:text-persian-green transition-colors"
+        class="text-tarawera hover:text-persian-green inline-flex min-h-[44px] items-center transition-colors sm:min-h-0"
       >
         {t.contactLabel}
       </a>
       <span class="text-neutral-lighter" aria-hidden="true">·</span>
-      <a href="/privacy" class="text-tarawera hover:text-persian-green transition-colors">
+      <a
+        href="/privacy"
+        class="text-tarawera hover:text-persian-green inline-flex min-h-[44px] items-center transition-colors sm:min-h-0"
+      >
         {t.privacyLabel}
       </a>
     </nav>

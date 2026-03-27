@@ -97,5 +97,25 @@ describe("ConsultantHero", () => {
 
       expect(result).toContain('href="#consultant"');
     });
+
+    it("uses compressed padding on mobile", async () => {
+      const container = await AstroContainer.create();
+      const result = await container.renderToString(ConsultantHero, {
+        props: { lang: "en" },
+      });
+
+      // Mobile should use py-6 (reduced), scaling to sm:py-10 and lg:py-14
+      expect(result).toContain("py-6");
+      expect(result).toContain("sm:py-10");
+    });
+
+    it("CTA meets minimum touch target size", async () => {
+      const container = await AstroContainer.create();
+      const result = await container.renderToString(ConsultantHero, {
+        props: { lang: "en" },
+      });
+
+      expect(result).toContain("min-h-[44px]");
+    });
   });
 });

@@ -85,5 +85,15 @@ describe("ConsultantFooter", () => {
 
       expect(result).toContain("mailto:hello@juanelojgac.tech");
     });
+
+    it("footer links have mobile touch target sizing", async () => {
+      const container = await AstroContainer.create();
+      const result = await container.renderToString(ConsultantFooter, {
+        props: { lang: "en" },
+      });
+
+      // Should have min-h-[44px] for mobile touch targets
+      expect(result).toContain("min-h-[44px]");
+    });
   });
 });

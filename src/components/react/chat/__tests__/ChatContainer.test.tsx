@@ -173,4 +173,36 @@ describe("ChatContainer", () => {
       expect(log).toHaveAttribute("aria-label", "Chat messages");
     });
   });
+
+  describe("touch targets", () => {
+    it("follow-up chips have min-h-[44px] for mobile touch targets", () => {
+      const followUps = [
+        {
+          id: "fu-1",
+          label: "Follow up 1",
+          prompt: "Follow up prompt 1",
+          applicablePhases: ["discovery" as const],
+        },
+        {
+          id: "fu-2",
+          label: "Follow up 2",
+          prompt: "Follow up prompt 2",
+          applicablePhases: ["discovery" as const],
+        },
+      ];
+      const messages = [createMessage({ role: "assistant", content: "Response" })];
+      render(<ChatContainer {...defaultProps} messages={messages} followUps={followUps} />);
+      const followUpButtons = screen.getAllByText(/Follow up/);
+      followUpButtons.forEach((btn) => {
+        expect(btn.className).toContain("min-h-[44px]");
+      });
+    });
+
+    it("retry button has min-h-[44px] for mobile touch targets", () => {
+      const onRetry = vi.fn();
+      render(<ChatContainer {...defaultProps} error="Error occurred" onRetry={onRetry} />);
+      const retryBtn = screen.getByTestId("chat-retry-button");
+      expect(retryBtn.className).toContain("min-h-[44px]");
+    });
+  });
 });

@@ -102,5 +102,14 @@ describe("ChatHeader", () => {
       const banner = screen.getByRole("banner");
       expect(banner.className).toContain("text-chat-panel-header-text");
     });
+
+    it("uses responsive padding for mobile and tablet", () => {
+      render(<ChatHeader {...defaultProps} />);
+      const banner = screen.getByRole("banner");
+      expect(banner.className).toContain("px-4");
+      expect(banner.className).toContain("py-3");
+      expect(banner.className).toContain("sm:px-5");
+      expect(banner.className).toContain("sm:py-4");
+    });
   });
 });

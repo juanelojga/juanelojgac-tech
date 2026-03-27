@@ -34,7 +34,7 @@ const homeUrl = lang === "en" ? "/" : "/es";
         href={homeUrl}
         aria-current={lang === "en" ? "page" : undefined}
         class:list={[
-          "rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors",
+          "flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-sm font-medium transition-colors sm:min-h-0 sm:min-w-0 sm:px-2.5 sm:py-1.5",
           lang === "en" ? "bg-tarawera text-white" : "text-tarawera hover:bg-tarawera-lightest",
         ]}
       >
@@ -44,7 +44,7 @@ const homeUrl = lang === "en" ? "/" : "/es";
         href={lang === "en" ? "/es" : "/"}
         aria-current={lang === "es" ? "page" : undefined}
         class:list={[
-          "rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors",
+          "flex min-h-[44px] min-w-[44px] items-center justify-center rounded-md text-sm font-medium transition-colors sm:min-h-0 sm:min-w-0 sm:px-2.5 sm:py-1.5",
           lang === "es" ? "bg-tarawera text-white" : "text-tarawera hover:bg-tarawera-lightest",
         ]}
       >

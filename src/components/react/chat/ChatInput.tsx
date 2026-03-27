@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 
 import { sanitizeUserInput } from "../../../lib/chat/validators";
 
@@ -24,6 +24,7 @@ export default function ChatInput({
   helperText,
 }: ChatInputProps) {
   const [value, setValue] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const remaining = maxLength - value.length;
   const canSubmit = value.trim().length > 0 && !disabled;
@@ -59,14 +60,25 @@ export default function ChatInput({
     [maxLength]
   );
 
+  const handleFocus = useCallback(() => {
+    // Scroll input into view when mobile keyboard opens
+    if (textareaRef.current) {
+      requestAnimationFrame(() => {
+        textareaRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      });
+    }
+  }, []);
+
   return (
     <div className="border-chat-input-border bg-chat-panel-input-bg border-t px-4 py-3">
       <div className="mx-auto flex max-w-[var(--spacing-chat-input-max-width)] items-end gap-2">
         <div className="relative flex-1">
           <textarea
+            ref={textareaRef}
             value={value}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
+            onFocus={handleFocus}
             placeholder={placeholder}
             disabled={disabled}
             rows={1}

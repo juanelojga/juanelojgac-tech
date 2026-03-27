@@ -129,7 +129,7 @@ export default function ChatContainer({
               type="button"
               onClick={onRetry}
               data-testid="chat-retry-button"
-              className="text-coral-dark hover:text-coral bg-coral-lightest hover:bg-coral-lighter rounded px-3 py-1 text-xs font-semibold transition-colors"
+              className="text-coral-dark hover:text-coral bg-coral-lightest hover:bg-coral-lighter min-h-[44px] rounded px-3.5 py-2 text-xs font-semibold transition-colors"
             >
               {translations.errorRetry}
             </button>
@@ -152,7 +152,7 @@ export default function ChatContainer({
                 key={followUp.id}
                 type="button"
                 onClick={() => handleChipClick(followUp.prompt)}
-                className="bg-tarawera-lightest text-tarawera hover:bg-tarawera-lighter rounded-full px-3 py-1 text-xs font-medium transition-colors"
+                className="bg-tarawera-lightest text-tarawera hover:bg-tarawera-lighter min-h-[44px] rounded-full px-3.5 py-2 text-xs font-medium transition-colors"
               >
                 {followUp.label}
               </button>
