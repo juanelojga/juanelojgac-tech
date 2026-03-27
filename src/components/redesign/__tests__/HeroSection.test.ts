@@ -107,9 +107,7 @@ describe("HeroSection", () => {
 
     it("has all required EN hero translation keys", () => {
       expect(t.microLabel).toBe("AI Consulting for Modern Businesses");
-      expect(t.headline).toBe(
-        "Build Smarter Products, Automations, and AI Experiences"
-      );
+      expect(t.headline).toBe("Build Smarter Products, Automations, and AI Experiences");
       expect(t.subheadline).toBeDefined();
       expect(t.ctaPrimary).toBe("Book a Free Consultation");
       expect(t.ctaSecondary).toBe("Explore Services");

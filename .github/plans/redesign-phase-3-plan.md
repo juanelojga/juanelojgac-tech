@@ -36,26 +36,26 @@ Phase 2 (header with #hero-section observer) ── DONE
 
 ### Group 1: Independent Components (Parallel Track)
 
-| # | Task | Files | Skills | Depends On | Done Criteria | Est. |
-|---|------|-------|--------|------------|---------------|------|
-| 1 | Background orb CSS | `src/styles/tailwind.css` | colorize, bolder | Phase 1 keyframes | Orb classes defined, GPU-accelerated | 0.5h |
-| 2 | HeroVisual.tsx | `src/components/redesign/react/HeroVisual.tsx` | frontend-design, animate, delight, bolder | Phase 1 keyframes | Floating glass panel renders, 60fps | 2h |
-| 3 | TrustMetrics.tsx | `src/components/redesign/react/TrustMetrics.tsx` | frontend-design, animate, harden | Phase 1 types | Count-up, a11y, reduced motion | 2h |
+| #   | Task               | Files                                            | Skills                                    | Depends On        | Done Criteria                        | Est. |
+| --- | ------------------ | ------------------------------------------------ | ----------------------------------------- | ----------------- | ------------------------------------ | ---- |
+| 1   | Background orb CSS | `src/styles/tailwind.css`                        | colorize, bolder                          | Phase 1 keyframes | Orb classes defined, GPU-accelerated | 0.5h |
+| 2   | HeroVisual.tsx     | `src/components/redesign/react/HeroVisual.tsx`   | frontend-design, animate, delight, bolder | Phase 1 keyframes | Floating glass panel renders, 60fps  | 2h   |
+| 3   | TrustMetrics.tsx   | `src/components/redesign/react/TrustMetrics.tsx` | frontend-design, animate, harden          | Phase 1 types     | Count-up, a11y, reduced motion       | 2h   |
 
 ### Group 2: Hero Assembly (Sequential — Critical Path)
 
-| # | Task | Files | Skills | Depends On | Done Criteria | Est. |
-|---|------|-------|--------|------------|---------------|------|
-| 4 | HeroSection.astro | `src/components/redesign/HeroSection.astro` | frontend-design, arrange, adapt, typeset, onboard | Group 1 | 2-col layout, dark gradient, staggered entrance | 2.5h |
-| 5 | Wire into pages | `src/pages/index.astro`, `src/pages/es.astro` | — | Task 4 | Both pages render new hero | 0.5h |
+| #   | Task              | Files                                         | Skills                                            | Depends On | Done Criteria                                   | Est. |
+| --- | ----------------- | --------------------------------------------- | ------------------------------------------------- | ---------- | ----------------------------------------------- | ---- |
+| 4   | HeroSection.astro | `src/components/redesign/HeroSection.astro`   | frontend-design, arrange, adapt, typeset, onboard | Group 1    | 2-col layout, dark gradient, staggered entrance | 2.5h |
+| 5   | Wire into pages   | `src/pages/index.astro`, `src/pages/es.astro` | —                                                 | Task 4     | Both pages render new hero                      | 0.5h |
 
 ### Group 3: Tests (TDD — before each implementation)
 
-| # | Task | Files | Depends On | Done Criteria | Est. |
-|---|------|-------|------------|---------------|------|
-| T1 | HeroSection tests | `src/components/redesign/__tests__/HeroSection.test.ts` | — | Source-template tests for structure, i18n | 0.5h |
-| T2 | HeroVisual tests | `src/components/redesign/__tests__/HeroVisual.test.tsx` | — | Render + a11y + reduced motion tests | 0.5h |
-| T3 | TrustMetrics tests | `src/components/redesign/__tests__/TrustMetrics.test.tsx` | — | Count-up, static fallback, a11y tests | 0.5h |
+| #   | Task               | Files                                                     | Depends On | Done Criteria                             | Est. |
+| --- | ------------------ | --------------------------------------------------------- | ---------- | ----------------------------------------- | ---- |
+| T1  | HeroSection tests  | `src/components/redesign/__tests__/HeroSection.test.ts`   | —          | Source-template tests for structure, i18n | 0.5h |
+| T2  | HeroVisual tests   | `src/components/redesign/__tests__/HeroVisual.test.tsx`   | —          | Render + a11y + reduced motion tests      | 0.5h |
+| T3  | TrustMetrics tests | `src/components/redesign/__tests__/TrustMetrics.test.tsx` | —          | Count-up, static fallback, a11y tests     | 0.5h |
 
 ## Verification Checklist
 
@@ -66,8 +66,8 @@ Phase 2 (header with #hero-section observer) ── DONE
 
 ## Risks & Mitigations
 
-| Risk | Impact | Mitigation |
-|------|--------|------------|
-| AstroContainer can't render React islands in tests | Medium | Use source-template testing pattern (proven in Phase 2) |
-| Hero visual animation janky on low-end devices | Medium | Use will-change, GPU-accelerated transforms only, test on throttled CPU |
-| Count-up animation causes CLS | Low | Reserve space with min-height, use font-variant-numeric: tabular-nums |
+| Risk                                               | Impact | Mitigation                                                              |
+| -------------------------------------------------- | ------ | ----------------------------------------------------------------------- |
+| AstroContainer can't render React islands in tests | Medium | Use source-template testing pattern (proven in Phase 2)                 |
+| Hero visual animation janky on low-end devices     | Medium | Use will-change, GPU-accelerated transforms only, test on throttled CPU |
+| Count-up animation causes CLS                      | Low    | Reserve space with min-height, use font-variant-numeric: tabular-nums   |

@@ -12,13 +12,7 @@ function easeOutCubic(t: number): number {
 /**
  * Single metric display with optional count-up animation.
  */
-function MetricItem({
-  metric,
-  isVisible,
-}: {
-  metric: TrustMetric;
-  isVisible: boolean;
-}) {
+function MetricItem({ metric, isVisible }: { metric: TrustMetric; isVisible: boolean }) {
   const [displayValue, setDisplayValue] = useState(0);
   const animationRef = useRef<number | null>(null);
   const hasAnimated = useRef(false);
@@ -51,9 +45,7 @@ function MetricItem({
   useEffect(() => {
     if (isVisible && !hasAnimated.current && isNumeric) {
       // Check for reduced motion preference
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
+      const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
       if (prefersReducedMotion) {
         setDisplayValue(metric.numericValue ?? 0);
@@ -74,15 +66,12 @@ function MetricItem({
     <div className="text-center lg:text-left">
       <div
         data-testid="metric-value"
-        className="text-3xl font-bold text-text-bright lg:text-4xl"
+        className="text-text-bright text-3xl font-bold lg:text-4xl"
         style={{ fontVariantNumeric: "tabular-nums" }}
       >
         {isNumeric ? `${displayValue}${suffix}` : metric.value}
       </div>
-      <div
-        data-testid="metric-label"
-        className="mt-1 text-sm text-text-muted"
-      >
+      <div data-testid="metric-label" className="text-text-muted mt-1 text-sm">
         {metric.label}
       </div>
       {/* Screen reader: always show final value */}
@@ -122,10 +111,7 @@ export default function TrustMetrics({ metrics }: TrustMetricsProps) {
   }, []);
 
   return (
-    <div
-      ref={containerRef}
-      className="mt-10 grid grid-cols-3 gap-6 lg:mt-12"
-    >
+    <div ref={containerRef} className="mt-10 grid grid-cols-3 gap-6 lg:mt-12">
       {metrics.map((metric, i) => (
         <MetricItem key={i} metric={metric} isVisible={isVisible} />
       ))}

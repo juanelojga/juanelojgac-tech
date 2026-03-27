@@ -97,9 +97,7 @@ describe("TrustMetrics", () => {
 
   describe("text-only metrics", () => {
     it("renders text-only metrics without count-up", () => {
-      const textOnlyMetrics = [
-        { value: "US & LATAM", label: "Markets" },
-      ];
+      const textOnlyMetrics = [{ value: "US & LATAM", label: "Markets" }];
       render(<TrustMetrics metrics={textOnlyMetrics} />);
       expect(screen.getByText("US & LATAM")).toBeInTheDocument();
     });
