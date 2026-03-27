@@ -121,7 +121,7 @@ export default function ChatContainer({
       {error && (
         <div
           role="alert"
-          className="bg-coral-lightest text-coral-dark flex items-center gap-2 px-4 py-2.5 text-sm"
+          className="bg-coral/10 text-coral flex items-center gap-2 px-4 py-2.5 text-sm"
         >
           <span className="flex-1">{error}</span>
           {onRetry && (
@@ -129,7 +129,7 @@ export default function ChatContainer({
               type="button"
               onClick={onRetry}
               data-testid="chat-retry-button"
-              className="text-coral-dark hover:text-coral bg-coral-lightest hover:bg-coral-lighter min-h-[44px] rounded px-3.5 py-2 text-xs font-semibold transition-colors"
+              className="text-coral hover:text-coral-light bg-coral/10 hover:bg-coral/20 min-h-[44px] rounded px-3.5 py-2 text-xs font-semibold transition-colors"
             >
               {translations.errorRetry}
             </button>
@@ -141,9 +141,9 @@ export default function ChatContainer({
       {hasMessages && followUps.length > 0 && !isTyping && (
         <div
           data-testid="chat-follow-ups"
-          className="border-t border-neutral-200 px-3 py-2 sm:px-4"
+          className="border-t border-white-10 px-3 py-2 sm:px-4"
         >
-          <p className="text-neutral-dark mb-1.5 text-xs font-medium">
+          <p className="text-text-muted mb-1.5 text-xs font-medium">
             {translations.followUpsLabel}
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -152,7 +152,7 @@ export default function ChatContainer({
                 key={followUp.id}
                 type="button"
                 onClick={() => handleChipClick(followUp.prompt)}
-                className="bg-tarawera-lightest text-tarawera hover:bg-tarawera-lighter min-h-[44px] rounded-full px-3.5 py-2 text-xs font-medium transition-colors"
+                className="bg-white-5 text-text-bright border border-white-10 hover:bg-white-10 hover:border-accent-cyan/30 min-h-[44px] rounded-full px-3.5 py-2 text-xs font-medium transition-colors"
               >
                 {followUp.label}
               </button>

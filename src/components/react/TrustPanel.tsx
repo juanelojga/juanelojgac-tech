@@ -58,12 +58,12 @@ export default function TrustPanel({
     <aside
       aria-label={companyName}
       data-testid="trust-panel"
-      className="bg-chat-panel-sidebar-bg flex w-full flex-col overflow-hidden lg:h-full lg:w-[var(--spacing-chat-panel-width-desktop)] xl:w-[var(--spacing-chat-panel-width-wide)]"
+      className="bg-chat-panel-sidebar-bg flex w-full flex-col overflow-hidden backdrop-blur-md border-r border-white-10 lg:h-full lg:w-[var(--spacing-chat-panel-width-desktop)] xl:w-[var(--spacing-chat-panel-width-wide)]"
     >
       {/* Identity Header */}
-      <div className="border-neutral-darkest-10 border-b px-5 py-5">
-        <h2 className="font-sora text-tarawera text-lg font-bold tracking-tight">{companyName}</h2>
-        <p className="text-neutral-dark mt-1.5 text-xs leading-relaxed">{tagline}</p>
+      <div className="border-b border-white-10 px-5 py-5">
+        <h2 className="font-sora text-text-bright text-lg font-bold tracking-tight">{companyName}</h2>
+        <p className="text-text-muted mt-1.5 text-xs leading-relaxed">{tagline}</p>
       </div>
 
       {/* Toggle Button — visible only on mobile/tablet */}
@@ -71,7 +71,7 @@ export default function TrustPanel({
         type="button"
         data-testid="panel-toggle"
         onClick={togglePanel}
-        className="border-neutral-darkest-10 text-neutral hover:bg-chat-chip-hover-bg focus-visible:ring-chat-input-focus-border flex min-h-[44px] w-full items-center justify-between border-b px-5 py-2.5 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset lg:hidden"
+        className="border-b border-white-10 text-text-muted hover:bg-white-5 focus-visible:ring-accent-cyan flex min-h-[44px] w-full items-center justify-between px-5 py-2.5 text-xs font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset lg:hidden"
         aria-expanded={isExpanded}
       >
         {isExpanded ? translations.expandLabel : translations.collapseLabel}
@@ -93,7 +93,7 @@ export default function TrustPanel({
       >
         {/* Outcome Prompts Section — Primary focus */}
         {outcomePrompts.length > 0 && (
-          <div className="border-neutral-darkest-10 border-b px-5 py-4">
+          <div className="border-b border-white-10 px-5 py-4">
             <OutcomePrompts
               outcomes={outcomePrompts}
               label={translations.outcomesLabel}
@@ -103,8 +103,8 @@ export default function TrustPanel({
         )}
 
         {/* Services Section — De-emphasized compact list */}
-        <div className="border-neutral-darkest-10 border-b px-5 py-4">
-          <h3 className="font-sora text-neutral mb-3 text-xs font-semibold tracking-wider uppercase">
+        <div className="border-b border-white-10 px-5 py-4">
+          <h3 className="font-sora text-text-muted mb-3 text-xs font-semibold tracking-wider uppercase">
             {translations.servicesLabel}
           </h3>
           <div className="space-y-1">
@@ -122,13 +122,13 @@ export default function TrustPanel({
         </div>
 
         {/* Trust Signals Section */}
-        <div className="border-neutral-darkest-10 border-b px-5 py-4">
+        <div className="border-b border-white-10 px-5 py-4">
           <TrustSignals signals={trustSignals} label={translations.trustLabel} />
         </div>
       </div>
 
       {/* CTA Section — Always visible */}
-      <div className="border-neutral-darkest-10 mt-auto border-t px-5 py-4">
+      <div className="mt-auto border-t border-white-10 px-5 py-4">
         <PanelCTA
           bookingLabel={translations.ctaBooking}
           bookingUrl={bookingUrl}

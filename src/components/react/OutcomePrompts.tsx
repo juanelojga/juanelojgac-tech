@@ -51,7 +51,7 @@ function OutcomeIcon({ icon, id }: { icon: string; id: string }) {
   return (
     <svg
       data-testid={`outcome-icon-${id}`}
-      className="text-persian-green h-5 w-5 flex-shrink-0"
+      className="text-accent-cyan h-5 w-5 flex-shrink-0"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -90,10 +90,10 @@ function OutcomeItem({
       data-testid={`outcome-prompt-${outcome.id}`}
       onClick={handleClick}
       onKeyDown={handleKeyDown}
-      className="group bg-chat-panel-bg hover:bg-persian-green-lightest border-persian-green-lighter hover:border-persian-green focus-visible:ring-chat-input-focus-border flex w-full cursor-pointer items-center gap-3 rounded-lg border px-3.5 py-3 text-left transition-colors focus-visible:ring-2 focus-visible:outline-none"
+      className="group bg-white-5 hover:bg-white-10 border-white-10 hover:border-accent-cyan/30 focus-visible:ring-accent-cyan flex w-full cursor-pointer items-center gap-3 rounded-xl border px-3.5 py-3 text-left transition-colors focus-visible:ring-2 focus-visible:outline-none"
     >
       <OutcomeIcon icon={outcome.icon} id={outcome.id} />
-      <span className="font-sora text-tarawera group-hover:text-tarawera-dark text-sm leading-snug font-semibold">
+      <span className="font-sora text-text-bright group-hover:text-accent-cyan text-sm leading-snug font-semibold">
         {outcome.label}
       </span>
     </button>
@@ -103,7 +103,7 @@ function OutcomeItem({
 export default function OutcomePrompts({ outcomes, label, onPromptInject }: OutcomePromptsProps) {
   return (
     <div className="space-y-2.5">
-      <h3 className="font-sora text-tarawera text-xs font-semibold tracking-wider uppercase">
+      <h3 className="font-sora text-text-muted text-xs font-semibold tracking-wider uppercase">
         {label}
       </h3>
       <div className="space-y-1.5">

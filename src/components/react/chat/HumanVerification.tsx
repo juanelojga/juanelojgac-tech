@@ -63,7 +63,7 @@ export default function HumanVerification({
         callback: handleSuccess,
         "error-callback": handleError,
         "expired-callback": handleExpired,
-        theme: "light",
+        theme: "dark",
       });
     }
 
@@ -85,9 +85,9 @@ export default function HumanVerification({
       aria-label={translations.ariaLabel}
     >
       <div className="mx-auto max-w-sm text-center">
-        <div className="bg-tarawera-lightest mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full">
+        <div className="bg-accent-cyan/10 mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full">
           <svg
-            className="text-tarawera h-7 w-7"
+            className="text-accent-cyan h-7 w-7"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -102,8 +102,8 @@ export default function HumanVerification({
           </svg>
         </div>
 
-        <h2 className="font-sora text-tarawera mb-2 text-lg font-bold">{translations.title}</h2>
-        <p className="text-neutral-dark mb-6 text-sm leading-relaxed">{translations.description}</p>
+        <h2 className="font-sora text-text-bright mb-2 text-lg font-bold">{translations.title}</h2>
+        <p className="text-text-muted mb-6 text-sm leading-relaxed">{translations.description}</p>
 
         {/* Turnstile widget container */}
         <div ref={widgetRef} data-testid="turnstile-widget" className="mb-4 flex justify-center" />
@@ -160,11 +160,11 @@ function getStatusMessage(
 function getStatusColor(status: VerificationStatus): string {
   switch (status) {
     case "success":
-      return "text-persian-green";
+      return "text-accent-teal";
     case "error":
     case "expired":
       return "text-coral";
     default:
-      return "text-neutral-dark";
+      return "text-text-muted";
   }
 }

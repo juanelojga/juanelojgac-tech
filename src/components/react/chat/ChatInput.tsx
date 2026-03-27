@@ -85,12 +85,12 @@ export default function ChatInput({
             aria-label={placeholder}
             aria-describedby="chat-char-count"
             data-testid="chat-input"
-            className="border-chat-input-border focus:border-chat-input-focus-border focus:ring-chat-input-focus-ring placeholder:text-chat-input-placeholder w-full resize-none rounded-xl border px-3 py-2.5 text-sm leading-relaxed transition-colors focus:ring-2 focus:outline-none disabled:opacity-50 sm:px-4"
+            className="border-chat-input-border focus:border-chat-input-focus-border focus:ring-chat-input-focus-ring placeholder:text-chat-input-placeholder text-text-bright w-full resize-none rounded-xl border bg-transparent px-3 py-2.5 text-sm leading-relaxed transition-colors focus:ring-2 focus:outline-none disabled:opacity-50 sm:px-4"
           />
           <span
             id="chat-char-count"
             data-testid="character-count"
-            className={`mt-1 block text-right text-xs ${remaining < 50 ? "text-coral" : "text-neutral"}`}
+            className={`mt-1 block text-right text-xs ${remaining < 50 ? "text-coral" : "text-text-muted"}`}
           >
             {characterLimitLabel.replace("{{count}}", String(remaining))}
           </span>
@@ -109,7 +109,7 @@ export default function ChatInput({
       {helperText && (
         <p
           data-testid="chat-helper-text"
-          className="text-neutral mx-auto mt-1.5 max-w-[var(--spacing-chat-input-max-width)] text-xs leading-relaxed opacity-70"
+          className="text-text-muted mx-auto mt-1.5 max-w-[var(--spacing-chat-input-max-width)] text-xs leading-relaxed opacity-70"
         >
           {helperText}
         </p>

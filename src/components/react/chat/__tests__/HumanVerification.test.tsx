@@ -105,7 +105,7 @@ describe("HumanVerification", () => {
         expect.any(HTMLElement),
         expect.objectContaining({
           sitekey: "test-key",
-          theme: "light",
+          theme: "dark",
         })
       );
     });

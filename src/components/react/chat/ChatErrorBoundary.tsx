@@ -52,7 +52,7 @@ export default class ChatErrorBoundary extends Component<
           role="alert"
         >
           <div className="mx-auto max-w-sm text-center">
-            <div className="bg-coral-lightest mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full">
+            <div className="bg-coral/10 mb-6 inline-flex h-14 w-14 items-center justify-center rounded-full">
               <svg
                 className="text-coral h-7 w-7"
                 fill="none"
@@ -69,15 +69,15 @@ export default class ChatErrorBoundary extends Component<
               </svg>
             </div>
 
-            <h2 className="font-sora text-tarawera mb-2 text-lg font-bold">{translations.title}</h2>
-            <p className="text-neutral-dark mb-6 text-sm leading-relaxed">
+            <h2 className="font-sora text-text-bright mb-2 text-lg font-bold">{translations.title}</h2>
+            <p className="text-text-muted mb-6 text-sm leading-relaxed">
               {translations.description}
             </p>
 
             <button
               type="button"
               onClick={this.handleRetry}
-              className="bg-tarawera hover:bg-tarawera-dark focus-visible:ring-chat-input-focus-border inline-flex items-center rounded-lg px-5 py-2.5 text-sm font-medium text-white transition-colors focus-visible:ring-2 focus-visible:outline-none"
+              className="bg-gradient-to-r from-accent-cyan to-accent-teal text-midnight hover:from-accent-cyan/90 hover:to-accent-teal/90 focus-visible:ring-accent-cyan inline-flex items-center rounded-lg px-5 py-2.5 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none"
             >
               {translations.retry}
             </button>

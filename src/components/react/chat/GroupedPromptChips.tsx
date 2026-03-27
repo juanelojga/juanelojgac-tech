@@ -41,12 +41,12 @@ export default function GroupedPromptChips({
 
   return (
     <div data-testid="grouped-prompt-chips" aria-label={sectionLabel} className="px-3 py-3 sm:px-4">
-      <p className="text-neutral mb-3 text-xs font-medium">{sectionLabel}</p>
+      <p className="text-text-muted mb-3 text-xs font-medium">{sectionLabel}</p>
 
       <div className="space-y-3">
         {resolvedGroups.map((group) => (
           <div key={group.groupLabel} role="group" aria-label={group.groupLabel}>
-            <h4 className="text-tarawera mb-1.5 text-xs font-semibold tracking-wide uppercase opacity-70">
+            <h4 className="text-accent-cyan mb-1.5 text-xs font-semibold tracking-wide uppercase opacity-70">
               {group.groupLabel}
             </h4>
             <div className="flex flex-wrap gap-2">

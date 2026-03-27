@@ -21,7 +21,7 @@ export default function PromptChips({ chips, onChipClick, label, visible }: Prom
 
   return (
     <div data-testid="prompt-chips" className="px-3 py-3 sm:px-4">
-      <p className="text-neutral mb-2.5 text-xs font-medium">{label}</p>
+      <p className="text-text-muted mb-2.5 text-xs font-medium">{label}</p>
       <div role="group" aria-label={label} className="flex flex-wrap gap-2">
         {chips.map((chip) => (
           <button

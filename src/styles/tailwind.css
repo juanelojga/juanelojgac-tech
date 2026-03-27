@@ -125,41 +125,41 @@
   /* ─── Chat UI Tokens ─── */
 
   /* Message Bubbles */
-  --color-chat-bubble-user: #0a3f66ff;
-  --color-chat-bubble-user-text: #ffffffff;
-  --color-chat-bubble-assistant: #e6ebefff;
-  --color-chat-bubble-assistant-text: #06020aff;
+  --color-chat-bubble-user: #38bdf8;
+  --color-chat-bubble-user-text: #07111f;
+  --color-chat-bubble-assistant: #ffffff0d;
+  --color-chat-bubble-assistant-text: #f8fafc;
 
   /* Panel Backgrounds */
-  --color-chat-panel-bg: #ffffffff;
-  --color-chat-panel-sidebar-bg: #f2f2f2ff;
-  --color-chat-panel-header-bg: #0a3f66ff;
-  --color-chat-panel-header-text: #ffffffff;
-  --color-chat-panel-input-bg: #ffffffff;
+  --color-chat-panel-bg: #11243a;
+  --color-chat-panel-sidebar-bg: #0d1b2a;
+  --color-chat-panel-header-bg: #11243a;
+  --color-chat-panel-header-text: #f8fafc;
+  --color-chat-panel-input-bg: #07111f;
 
   /* Prompt Chip Styles */
-  --color-chat-chip-bg: #e6ebefff;
-  --color-chat-chip-text: #0a3f66ff;
-  --color-chat-chip-border: #ced8e0ff;
-  --color-chat-chip-hover-bg: #ced8e0ff;
-  --color-chat-chip-hover-border: #0a3f66ff;
+  --color-chat-chip-bg: #ffffff0d;
+  --color-chat-chip-text: #f8fafc;
+  --color-chat-chip-border: #ffffff1a;
+  --color-chat-chip-hover-bg: #ffffff1a;
+  --color-chat-chip-hover-border: #38bdf84d;
 
   /* Input Focus States */
-  --color-chat-input-border: #ced8e0ff;
-  --color-chat-input-focus-border: #00a79dff;
-  --color-chat-input-focus-ring: #00a79d33;
-  --color-chat-input-placeholder: #828084ff;
+  --color-chat-input-border: #ffffff1a;
+  --color-chat-input-focus-border: #38bdf8;
+  --color-chat-input-focus-ring: #38bdf833;
+  --color-chat-input-placeholder: #a7b4c6;
 
   /* CTA Tokens */
-  --color-chat-cta-primary: #00a79dff;
-  --color-chat-cta-primary-hover: #00857dff;
-  --color-chat-cta-primary-text: #ffffffff;
-  --color-chat-cta-secondary: #ff7a59ff;
-  --color-chat-cta-secondary-hover: #cc6147ff;
-  --color-chat-cta-secondary-text: #ffffffff;
+  --color-chat-cta-primary: #38bdf8;
+  --color-chat-cta-primary-hover: #0ea5e9;
+  --color-chat-cta-primary-text: #07111f;
+  --color-chat-cta-secondary: #8b5cf6;
+  --color-chat-cta-secondary-hover: #7c3aed;
+  --color-chat-cta-secondary-text: #f8fafc;
 
   /* Typing Indicator */
-  --color-chat-typing-dot: #828084ff;
+  --color-chat-typing-dot: #a7b4c6;
 
   /* ─── Chat Layout Breakpoints ─── */
   /* Two-panel layout strategy:
