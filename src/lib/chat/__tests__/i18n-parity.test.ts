@@ -254,7 +254,7 @@ describe("i18n Parity — Phase 8", () => {
     const esI18n = require("../../../i18n/es.json");
 
     it("panel labels fit mobile widths (≤ 40 chars)", () => {
-      const panelKeys = ["servicesLabel", "trustLabel", "ctaBooking", "ctaContact"] as const;
+      const panelKeys = ["servicesLabel", "ctaBooking", "ctaContact"] as const;
       for (const key of panelKeys) {
         expect(
           enI18n.chat.panel[key].length,

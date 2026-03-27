@@ -3,7 +3,7 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import React from "react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import type { OutcomePrompt, TrustSignal } from "../../../lib/chat/types";
+import type { OutcomePrompt } from "../../../lib/chat/types";
 import TrustPanel, { type TrustPanelTranslations } from "../TrustPanel";
 
 const mockServices = [
@@ -42,15 +42,8 @@ const mockOutcomePrompts: OutcomePrompt[] = [
   },
 ];
 
-const mockTrustSignals: TrustSignal[] = [
-  { id: "ts-projects", type: "stat", label: "Projects delivered", value: "50+" },
-  { id: "ts-satisfaction", type: "stat", label: "Client satisfaction", value: "98%" },
-  { id: "ts-bilingual", type: "badge", label: "Fully bilingual", value: "EN / ES" },
-];
-
 const mockTranslations: TrustPanelTranslations = {
   servicesLabel: "Our Services",
-  trustLabel: "Why Work With Us",
   ctaBooking: "Book a Free Consultation",
   ctaContact: "Contact Us",
   collapseLabel: "Show details",
@@ -62,7 +55,6 @@ const defaultProps = {
   companyName: "JuaneloJGAC Tech",
   tagline: "Practical AI solutions delivered with clarity, speed, and human-centered design",
   services: mockServices,
-  trustSignals: mockTrustSignals,
   outcomePrompts: mockOutcomePrompts,
   onPromptInject: vi.fn(),
   translations: mockTranslations,
@@ -110,24 +102,6 @@ describe("TrustPanel", () => {
       expect(
         screen.getByText("Custom platforms, e-commerce, dashboards, and web apps")
       ).toBeInTheDocument();
-    });
-  });
-
-  describe("trust signals section", () => {
-    it("renders the trust signals section label", () => {
-      render(<TrustPanel {...defaultProps} />);
-      expect(screen.getByText("Why Work With Us")).toBeInTheDocument();
-    });
-
-    it("renders stat trust signals", () => {
-      render(<TrustPanel {...defaultProps} />);
-      expect(screen.getByText("50+")).toBeInTheDocument();
-      expect(screen.getByText("98%")).toBeInTheDocument();
-    });
-
-    it("renders badge trust signals", () => {
-      render(<TrustPanel {...defaultProps} />);
-      expect(screen.getByText("Fully bilingual")).toBeInTheDocument();
     });
   });
 
@@ -188,14 +162,6 @@ describe("TrustPanel", () => {
       const outcomesPos = html.indexOf("How can we help?");
       const servicesPos = html.indexOf("Our Services");
       expect(outcomesPos).toBeLessThan(servicesPos);
-    });
-
-    it("renders services before trust signals", () => {
-      const { container } = render(<TrustPanel {...defaultProps} />);
-      const html = container.innerHTML;
-      const servicesPos = html.indexOf("Our Services");
-      const trustPos = html.indexOf("Why Work With Us");
-      expect(servicesPos).toBeLessThan(trustPos);
     });
   });
 

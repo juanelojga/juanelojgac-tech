@@ -89,10 +89,6 @@ const mockServices = [
   },
 ];
 
-const mockTrustSignals = [
-  { id: "ts-projects", type: "stat" as const, label: "Projects", value: "50+" },
-];
-
 const mockOutcomePrompts = [
   {
     id: "outcome-1",
@@ -115,7 +111,6 @@ const mockPromptGroups = [{ groupLabel: "Explore", promptIds: ["sp-1"] }];
 
 const mockPanelTranslations = {
   servicesLabel: "Our Services",
-  trustLabel: "Why Work With Us",
   ctaBooking: "Book a Free Consultation",
   ctaContact: "Contact Us",
   collapseLabel: "Show details",
@@ -175,7 +170,6 @@ const defaultProps: ConsultantLayoutProps = {
   companyName: "JuaneloJGAC Tech",
   tagline: "AI solutions",
   services: mockServices,
-  trustSignals: mockTrustSignals,
   outcomePrompts: mockOutcomePrompts,
   starterPrompts: mockStarterPrompts,
   promptGroups: mockPromptGroups,

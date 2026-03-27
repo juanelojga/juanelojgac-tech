@@ -17,7 +17,6 @@ const t = (lang === "es" ? esTranslations : enTranslations).chat;
 const contentProvider = new StaticContentProvider();
 const companyFacts = contentProvider.getCompanyFacts(lang);
 const services = contentProvider.getServices(lang);
-const trustSignals = contentProvider.getTrustSignals(lang);
 const starterPrompts = contentProvider.getStarterPrompts(lang);
 const outcomePrompts = contentProvider.getOutcomePrompts(lang);
 const promptGroups = contentProvider.getPromptGroups(lang);
@@ -33,7 +32,6 @@ const serviceItems = services.map((svc) => ({
 // Panel translations
 const panelTranslations = {
   servicesLabel: t.panel.servicesLabel,
-  trustLabel: t.panel.trustLabel,
   ctaBooking: t.panel.ctaBooking,
   ctaContact: t.panel.ctaContact,
   collapseLabel: t.panel.collapseLabel,
@@ -105,7 +103,6 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
       companyName={companyFacts.name}
       tagline={companyFacts.tagline}
       services={serviceItems}
-      trustSignals={trustSignals}
       outcomePrompts={outcomePrompts}
       starterPrompts={starterPrompts}
       promptGroups={promptGroups}

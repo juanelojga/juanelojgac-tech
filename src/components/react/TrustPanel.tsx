@@ -1,10 +1,9 @@
 import React, { useCallback, useMemo, useState } from "react";
 
-import type { OutcomePrompt, TrustSignal } from "../../lib/chat/types";
+import type { OutcomePrompt } from "../../lib/chat/types";
 import OutcomePrompts from "./OutcomePrompts";
 import PanelCTA from "./PanelCTA";
 import ServiceItem from "./ServiceItem";
-import TrustSignals from "./TrustSignals";
 
 export interface ServiceItemData {
   readonly id: string;
@@ -15,7 +14,6 @@ export interface ServiceItemData {
 
 export interface TrustPanelTranslations {
   readonly servicesLabel: string;
-  readonly trustLabel: string;
   readonly ctaBooking: string;
   readonly ctaContact: string;
   readonly collapseLabel: string;
@@ -27,7 +25,6 @@ export interface TrustPanelProps {
   readonly companyName: string;
   readonly tagline: string;
   readonly services: readonly ServiceItemData[];
-  readonly trustSignals: readonly TrustSignal[];
   readonly outcomePrompts: readonly OutcomePrompt[];
   readonly onPromptInject?: (prompt: string) => void;
   readonly translations: TrustPanelTranslations;
@@ -39,7 +36,6 @@ export default function TrustPanel({
   companyName,
   tagline,
   services,
-  trustSignals,
   outcomePrompts,
   onPromptInject,
   translations,
@@ -123,10 +119,6 @@ export default function TrustPanel({
           </div>
         </div>
 
-        {/* Trust Signals Section */}
-        <div className="border-white-10 border-b px-5 py-4">
-          <TrustSignals signals={trustSignals} label={translations.trustLabel} />
-        </div>
       </div>
 
       {/* CTA Section — Always visible */}

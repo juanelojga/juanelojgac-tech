@@ -7,7 +7,6 @@ import type {
   OutcomePrompt,
   PromptGroup,
   StarterPrompt,
-  TrustSignal,
 } from "../../../../lib/chat/types";
 import ConsultantLayout, { type ConsultantLayoutProps } from "../ConsultantLayout";
 
@@ -26,11 +25,6 @@ const mockServices = [
     shortDescription: "Integrate AI into workflows",
     relatedPrompt: "I want to integrate AI",
   },
-];
-
-const mockTrustSignals: TrustSignal[] = [
-  { id: "ts-projects", type: "stat", label: "Projects delivered", value: "50+" },
-  { id: "ts-satisfaction", type: "stat", label: "Client satisfaction", value: "98%" },
 ];
 
 const mockOutcomePrompts: OutcomePrompt[] = [
@@ -59,7 +53,6 @@ const mockPromptGroups: PromptGroup[] = [
 
 const mockPanelTranslations = {
   servicesLabel: "Our Services",
-  trustLabel: "Why Work With Us",
   ctaBooking: "Book a Free Consultation",
   ctaContact: "Contact Us",
   collapseLabel: "Show details",
@@ -119,7 +112,6 @@ const defaultProps: ConsultantLayoutProps = {
   companyName: "JuaneloJGAC Tech",
   tagline: "Practical AI solutions",
   services: mockServices,
-  trustSignals: mockTrustSignals,
   outcomePrompts: mockOutcomePrompts,
   starterPrompts: mockStarterPrompts,
   promptGroups: mockPromptGroups,
@@ -163,12 +155,6 @@ describe("ConsultantLayout", () => {
       render(<ConsultantLayout {...defaultProps} />);
       expect(screen.getByText("Web Development")).toBeInTheDocument();
       expect(screen.getByText("AI Integration")).toBeInTheDocument();
-    });
-
-    it("renders trust signals in the panel", () => {
-      render(<ConsultantLayout {...defaultProps} />);
-      expect(screen.getByText("50+")).toBeInTheDocument();
-      expect(screen.getByText("98%")).toBeInTheDocument();
     });
   });
 

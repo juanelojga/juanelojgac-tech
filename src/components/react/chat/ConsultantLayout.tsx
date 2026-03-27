@@ -17,7 +17,6 @@ import type {
   OutcomePrompt,
   PromptGroup,
   StarterPrompt,
-  TrustSignal,
 } from "../../../lib/chat/types";
 import TrustPanel, { type ServiceItemData, type TrustPanelTranslations } from "../TrustPanel";
 import ChatContainer, { type ChatContainerTranslations } from "./ChatContainer";
@@ -40,7 +39,6 @@ export interface ConsultantLayoutProps {
   readonly companyName: string;
   readonly tagline: string;
   readonly services: readonly ServiceItemData[];
-  readonly trustSignals: readonly TrustSignal[];
   readonly outcomePrompts: readonly OutcomePrompt[];
   readonly starterPrompts: readonly StarterPrompt[];
   readonly promptGroups: readonly PromptGroup[];
@@ -77,7 +75,6 @@ export default function ConsultantLayout({
   companyName,
   tagline,
   services,
-  trustSignals,
   outcomePrompts,
   starterPrompts,
   promptGroups,
@@ -287,7 +284,6 @@ export default function ConsultantLayout({
         companyName={companyName}
         tagline={tagline}
         services={services}
-        trustSignals={trustSignals}
         outcomePrompts={outcomePrompts}
         onPromptInject={handlePromptInject}
         translations={panelTranslations}

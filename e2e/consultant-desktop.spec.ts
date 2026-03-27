@@ -268,15 +268,6 @@ test.describe("Consultant Desktop — EN", () => {
     await expect(userMessage.first()).toContainText("web platform");
   });
 
-  test("trust panel shows trust signals", async ({ page }) => {
-    await goToPage(page);
-
-    const trustPanel = page.locator(chatSelectors.trustPanel);
-    await expect(trustPanel.locator("text=Why Work With Us")).toBeVisible();
-    await expect(trustPanel.locator("text=50+")).toBeVisible();
-    await expect(trustPanel.locator("text=98%")).toBeVisible();
-  });
-
   test("trust panel shows CTAs", async ({ page }) => {
     await goToPage(page);
 
