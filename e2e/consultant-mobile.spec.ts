@@ -15,6 +15,49 @@ test.describe("Consultant Mobile (375×812)", () => {
     await page.waitForLoadState("networkidle");
   };
 
+  // ── Page Shell on Mobile ──
+
+  test("renders the header on mobile with logo and language switch", async ({ page }) => {
+    await goToPage(page);
+
+    const header = page.locator("header");
+    await expect(header).toBeVisible();
+
+    const logo = header.locator('img[alt="JuaneloJGAC Tech logo"]');
+    await expect(logo).toBeVisible();
+
+    await expect(header.locator("text=EN")).toBeVisible();
+    await expect(header.locator("text=ES")).toBeVisible();
+  });
+
+  test("header does not consume excessive viewport on mobile", async ({ page }) => {
+    await goToPage(page);
+
+    const header = page.locator("header");
+    const headerBox = await header.boundingBox();
+    expect(headerBox).not.toBeNull();
+    // Header should be compact on mobile — not taller than 60px
+    expect(headerBox!.height).toBeLessThanOrEqual(60);
+  });
+
+  test("renders the hero section on mobile", async ({ page }) => {
+    await goToPage(page);
+
+    await expect(
+      page.getByRole("heading", { name: "AI-Powered Consulting for Your Business" })
+    ).toBeVisible();
+  });
+
+  test("renders the footer on mobile", async ({ page }) => {
+    await goToPage(page);
+
+    const footer = page.locator("footer");
+    await expect(footer).toBeVisible();
+    await expect(footer).toContainText("© 2026 JuaneloJGAC Tech");
+  });
+
+  // ── Chat-First Layout ──
+
   test("renders the consultant layout on mobile", async ({ page }) => {
     await goToPage(page);
 
@@ -25,27 +68,32 @@ test.describe("Consultant Mobile (375×812)", () => {
   test("trust panel starts collapsed on mobile", async ({ page }) => {
     await goToPage(page);
 
-    // Panel toggle should be visible on mobile
     const toggleBtn = page.locator('[data-testid="panel-toggle"]');
     await expect(toggleBtn).toBeVisible();
-
-    // Toggle should show "Show details" (collapsed by default)
     await expect(toggleBtn).toContainText("Show details");
   });
 
   test("expanding the trust panel shows services", async ({ page }) => {
     await goToPage(page);
 
-    // Click toggle to expand
     const toggleBtn = page.locator('[data-testid="panel-toggle"]');
     await toggleBtn.click();
 
-    // Should now show services
     const trustPanel = page.locator(chatSelectors.trustPanel);
     await expect(trustPanel.locator("text=Our Services")).toBeVisible();
 
-    // Toggle label should change
     await expect(toggleBtn).toContainText("Hide details");
+  });
+
+  test("expanding the trust panel shows outcome prompts on mobile", async ({ page }) => {
+    await goToPage(page);
+
+    const toggleBtn = page.locator('[data-testid="panel-toggle"]');
+    await toggleBtn.click();
+
+    const trustPanel = page.locator(chatSelectors.trustPanel);
+    const outcomes = trustPanel.locator(chatSelectors.outcomePrompt);
+    await expect(outcomes.first()).toBeVisible();
   });
 
   test("shows welcome message and prompt chips on mobile", async ({ page }) => {
@@ -67,7 +115,6 @@ test.describe("Consultant Mobile (375×812)", () => {
     const input = page.locator(chatSelectors.inputField);
     await expect(input).toBeVisible();
 
-    // Type and send a message
     await sendChatMessage(page, "Hello from mobile");
 
     const userMessage = page.locator(chatSelectors.userMessage);
@@ -82,7 +129,6 @@ test.describe("Consultant Mobile (375×812)", () => {
 
     const chipBox = await firstChip.boundingBox();
     expect(chipBox).not.toBeNull();
-    // Verify minimum touch target height of 44px
     expect(chipBox!.height).toBeGreaterThanOrEqual(44);
   });
 
@@ -117,22 +163,29 @@ test.describe("Consultant Mobile (375×812)", () => {
     await expect(chipsContainer).not.toBeVisible();
   });
 
+  // ── Mobile i18n ──
+
   test("mobile ES layout loads Spanish content", async ({ page }) => {
     await goToPage(page, "es");
 
-    // Spanish welcome
     await expect(
       page
         .locator(chatSelectors.messageList)
         .locator("text=¡Hola! Soy el asistente de JuaneloJGAC Tech")
     ).toBeVisible();
 
-    // Spanish header
     await expect(page.getByRole("heading", { name: "Consultor de IA" })).toBeVisible();
 
-    // Spanish input placeholder
     const input = page.locator(chatSelectors.inputField);
     await expect(input).toHaveAttribute("placeholder", "Escribe tu mensaje...");
+  });
+
+  test("mobile ES header shows Spanish hero", async ({ page }) => {
+    await goToPage(page, "es");
+
+    await expect(
+      page.getByRole("heading", { name: "Consultoría con IA para Tu Negocio" })
+    ).toBeVisible();
   });
 
   test("mobile ES toggle label is in Spanish", async ({ page }) => {
@@ -148,7 +201,6 @@ test.describe("Consultant Mobile (375×812)", () => {
     const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
     const clientWidth = await page.evaluate(() => document.documentElement.clientWidth);
 
-    // scrollWidth should not exceed clientWidth by more than 1px (rounding)
     expect(scrollWidth).toBeLessThanOrEqual(clientWidth + 1);
   });
 });

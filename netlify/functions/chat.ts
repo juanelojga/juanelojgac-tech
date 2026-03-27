@@ -1,6 +1,7 @@
 import type { Context } from "@netlify/functions";
-import { verifyTurnstileToken } from "../../src/lib/chat/verification";
+
 import { RateLimiter } from "../../src/lib/chat/rate-limiter";
+import { verifyTurnstileToken } from "../../src/lib/chat/verification";
 
 // ──────────────────────────────────────────────
 // Chat API Proxy — Netlify Function

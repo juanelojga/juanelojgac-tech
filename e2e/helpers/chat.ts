@@ -11,13 +11,16 @@ export const chatSelectors = {
   messageList: '[data-testid="chat-message-list"]',
   inputField: '[data-testid="chat-input"]',
   sendButton: '[data-testid="chat-send-button"]',
-  promptChips: '[data-testid="prompt-chips"]',
-  promptChip: '[data-testid="prompt-chip"]',
+  promptChips: '[data-testid="grouped-prompt-chips"]',
+  promptChip: '[data-testid="grouped-prompt-chip"]',
   typingIndicator: '[data-testid="typing-indicator"]',
   userMessage: '[data-testid="chat-message-user"]',
   assistantMessage: '[data-testid="chat-message-assistant"]',
   trustPanel: '[data-testid="trust-panel"]',
   panelCTA: '[data-testid="panel-cta"]',
+  retryButton: '[data-testid="chat-retry-button"]',
+  followUps: '[data-testid="chat-follow-ups"]',
+  outcomePrompt: '[data-testid^="outcome-prompt-"]',
 } as const;
 
 /**

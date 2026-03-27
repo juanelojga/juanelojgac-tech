@@ -15,14 +15,51 @@ test.describe("Consultant Desktop — EN", () => {
     await page.waitForLoadState("networkidle");
   };
 
+  // ── Page Shell Tests ──
+
+  test("renders the sticky header with logo and language switch", async ({ page }) => {
+    await goToPage(page);
+
+    const header = page.locator("header");
+    await expect(header).toBeVisible();
+    await expect(header).toHaveCSS("position", "sticky");
+
+    // Logo
+    const logo = header.locator('img[alt="JuaneloJGAC Tech logo"]');
+    await expect(logo).toBeVisible();
+
+    // Language switch
+    await expect(header.locator("text=EN")).toBeVisible();
+    await expect(header.locator("text=ES")).toBeVisible();
+  });
+
+  test("renders the hero section with headline and CTA", async ({ page }) => {
+    await goToPage(page);
+
+    await expect(
+      page.getByRole("heading", { name: "AI-Powered Consulting for Your Business" })
+    ).toBeVisible();
+    await expect(page.locator("text=Start a Conversation")).toBeVisible();
+  });
+
+  test("renders the footer with copyright and links", async ({ page }) => {
+    await goToPage(page);
+
+    const footer = page.locator("footer");
+    await expect(footer).toBeVisible();
+    await expect(footer).toContainText("© 2026 JuaneloJGAC Tech");
+    await expect(footer).toContainText("Contact Us");
+    await expect(footer).toContainText("Privacy Policy");
+  });
+
+  // ── Consultant Layout Tests ──
+
   test("renders the consultant layout with trust panel and chat", async ({ page }) => {
     await goToPage(page);
 
-    // Trust panel is visible on desktop
     const trustPanel = page.locator(chatSelectors.trustPanel);
     await expect(trustPanel).toBeVisible();
 
-    // Chat container is visible
     const chatContainer = page.locator(chatSelectors.container);
     await expect(chatContainer).toBeVisible();
   });
@@ -38,10 +75,8 @@ test.describe("Consultant Desktop — EN", () => {
   test("shows English header and welcome message", async ({ page }) => {
     await goToPage(page);
 
-    // Header title
     await expect(page.getByRole("heading", { name: "AI Consultant" })).toBeVisible();
 
-    // Welcome message in chat
     await expect(
       page
         .locator(chatSelectors.messageList)
@@ -49,7 +84,29 @@ test.describe("Consultant Desktop — EN", () => {
     ).toBeVisible();
   });
 
-  test("displays starter prompt chips in English", async ({ page }) => {
+  // ── Outcome Prompts in Left Rail ──
+
+  test("displays outcome prompts in the trust panel", async ({ page }) => {
+    await goToPage(page);
+
+    const trustPanel = page.locator(chatSelectors.trustPanel);
+    const outcomes = trustPanel.locator(chatSelectors.outcomePrompt);
+    await expect(outcomes.first()).toBeVisible();
+  });
+
+  test("clicking an outcome prompt injects it into chat", async ({ page }) => {
+    await goToPage(page);
+
+    const outcome = page.locator(chatSelectors.outcomePrompt).first();
+    await outcome.click();
+
+    const userMessages = page.locator(chatSelectors.userMessage);
+    await expect(userMessages).toHaveCount(1);
+  });
+
+  // ── Grouped Prompt Chips ──
+
+  test("displays grouped starter prompt chips in English", async ({ page }) => {
     await goToPage(page);
 
     const chipsContainer = page.locator(chatSelectors.promptChips);
@@ -62,6 +119,15 @@ test.describe("Consultant Desktop — EN", () => {
     await expect(
       page.locator(`${chatSelectors.promptChip} >> text=I need a web platform`)
     ).toBeVisible();
+  });
+
+  test("prompt chips are organized in labeled groups", async ({ page }) => {
+    await goToPage(page);
+
+    const chipsSection = page.locator(chatSelectors.promptChips);
+    // Groups should be present as role=group elements
+    const groups = chipsSection.locator('[role="group"]');
+    await expect(groups).toHaveCount(2);
   });
 
   test("chat input is visible with English placeholder", async ({ page }) => {
@@ -83,13 +149,11 @@ test.describe("Consultant Desktop — EN", () => {
   test("clicking a prompt chip sends it as a user message", async ({ page }) => {
     await goToPage(page);
 
-    // Click a prompt chip
     const chip = page
       .locator(`${chatSelectors.promptChip}`)
       .filter({ hasText: "What services do you offer?" });
     await chip.click();
 
-    // User message should appear
     const userMessages = page.locator(chatSelectors.userMessage);
     await expect(userMessages).toHaveCount(1);
 
@@ -103,19 +167,18 @@ test.describe("Consultant Desktop — EN", () => {
 
     await sendChatMessage(page, "Tell me about your web development services");
 
-    // User message should appear
     const userMessage = page.locator(chatSelectors.userMessage);
     await expect(userMessage.first()).toContainText("Tell me about your web development services");
   });
 
+  // ── Trust Panel ──
+
   test("trust panel shows services with clickable items", async ({ page }) => {
     await goToPage(page);
 
-    // Services section should be visible on desktop
     const trustPanel = page.locator(chatSelectors.trustPanel);
     await expect(trustPanel.locator("text=Our Services")).toBeVisible();
 
-    // Should have service items
     const serviceItems = trustPanel.locator('[data-testid^="service-item-"]');
     await expect(serviceItems).toHaveCount(5);
   });
@@ -123,11 +186,9 @@ test.describe("Consultant Desktop — EN", () => {
   test("clicking a service item injects a prompt into chat", async ({ page }) => {
     await goToPage(page);
 
-    // Click a service item
     const serviceItem = page.locator('[data-testid="service-item-svc-web-development"]');
     await serviceItem.click();
 
-    // Should create a user message with the service's related prompt
     const userMessage = page.locator(chatSelectors.userMessage);
     await expect(userMessage.first()).toContainText("web platform");
   });
@@ -177,6 +238,27 @@ test.describe("Consultant Desktop — EN", () => {
     // Both should be on the same row (similar y position)
     expect(Math.abs(trustBox!.y - chatBox!.y)).toBeLessThan(20);
   });
+
+  // ── Language Switch Flow ──
+
+  test("clicking ES language link navigates to Spanish page", async ({ page }) => {
+    await goToPage(page);
+
+    // Click ES link in header
+    const header = page.locator("header");
+    const esLink = header.locator('a:has-text("ES")').first();
+    await esLink.click();
+    await page.waitForLoadState("networkidle");
+
+    // Should be on /es page
+    expect(page.url()).toContain("/es");
+
+    // Spanish content should render
+    await expect(
+      page.getByRole("heading", { name: "Consultoría con IA para Tu Negocio" })
+    ).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Consultor de IA" })).toBeVisible();
+  });
 });
 
 test.describe("Consultant Desktop — ES", () => {
@@ -190,13 +272,45 @@ test.describe("Consultant Desktop — ES", () => {
     await page.waitForLoadState("networkidle");
   };
 
+  // ── Page Shell (Spanish) ──
+
+  test("renders the Spanish header with logo and language switch", async ({ page }) => {
+    await goToPage(page);
+
+    const header = page.locator("header");
+    await expect(header).toBeVisible();
+
+    const logo = header.locator('img[alt="Logo de JuaneloJGAC Tech"]');
+    await expect(logo).toBeVisible();
+
+    // EN link should take user back to English page
+    await expect(header.locator('a[href="/"]')).toBeVisible();
+  });
+
+  test("renders the Spanish hero section", async ({ page }) => {
+    await goToPage(page);
+
+    await expect(
+      page.getByRole("heading", { name: "Consultoría con IA para Tu Negocio" })
+    ).toBeVisible();
+    await expect(page.locator("text=Iniciar una Conversación")).toBeVisible();
+  });
+
+  test("renders the Spanish footer", async ({ page }) => {
+    await goToPage(page);
+
+    const footer = page.locator("footer");
+    await expect(footer).toBeVisible();
+    await expect(footer).toContainText("© 2026 JuaneloJGAC Tech. Todos los derechos reservados.");
+    await expect(footer).toContainText("Contáctanos");
+    await expect(footer).toContainText("Política de Privacidad");
+  });
+
   test("renders Spanish header and welcome message", async ({ page }) => {
     await goToPage(page);
 
-    // Header title in Spanish
     await expect(page.getByRole("heading", { name: "Consultor de IA" })).toBeVisible();
 
-    // Welcome message in Spanish
     await expect(
       page
         .locator(chatSelectors.messageList)
@@ -292,5 +406,24 @@ test.describe("Consultant Desktop — ES", () => {
     expect(trustBox).not.toBeNull();
     expect(chatBox).not.toBeNull();
     expect(trustBox!.x).toBeLessThan(chatBox!.x);
+  });
+
+  // ── Language Switch Flow (ES → EN) ──
+
+  test("clicking EN language link navigates back to English page", async ({ page }) => {
+    await goToPage(page);
+
+    const header = page.locator("header");
+    const enLink = header.locator('a:has-text("EN")').first();
+    await enLink.click();
+    await page.waitForLoadState("networkidle");
+
+    // Should be on root page
+    expect(page.url()).not.toContain("/es");
+
+    // English content should render
+    await expect(
+      page.getByRole("heading", { name: "AI-Powered Consulting for Your Business" })
+    ).toBeVisible();
   });
 });

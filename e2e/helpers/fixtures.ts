@@ -1,4 +1,4 @@
-import { test as base, type Page } from "@playwright/test";
+import { type Page, test as base } from "@playwright/test";
 
 /**
  * Extended test fixtures for the AI Consultant E2E tests.

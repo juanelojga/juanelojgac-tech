@@ -15,6 +15,40 @@ test.describe("Consultant Tablet (768×1024)", () => {
     await page.waitForLoadState("networkidle");
   };
 
+  // ── Page Shell on Tablet ──
+
+  test("renders the header on tablet", async ({ page }) => {
+    await goToPage(page);
+
+    const header = page.locator("header");
+    await expect(header).toBeVisible();
+
+    const logo = header.locator('img[alt="JuaneloJGAC Tech logo"]');
+    await expect(logo).toBeVisible();
+
+    await expect(header.locator("text=EN")).toBeVisible();
+    await expect(header.locator("text=ES")).toBeVisible();
+  });
+
+  test("renders the hero section on tablet", async ({ page }) => {
+    await goToPage(page);
+
+    await expect(
+      page.getByRole("heading", { name: "AI-Powered Consulting for Your Business" })
+    ).toBeVisible();
+    await expect(page.locator("text=Start a Conversation")).toBeVisible();
+  });
+
+  test("renders the footer on tablet", async ({ page }) => {
+    await goToPage(page);
+
+    const footer = page.locator("footer");
+    await expect(footer).toBeVisible();
+    await expect(footer).toContainText("© 2026 JuaneloJGAC Tech");
+  });
+
+  // ── Consultant Layout ──
+
   test("renders the consultant layout on tablet", async ({ page }) => {
     await goToPage(page);
 
@@ -25,7 +59,6 @@ test.describe("Consultant Tablet (768×1024)", () => {
   test("trust panel toggle is visible on tablet (below lg breakpoint)", async ({ page }) => {
     await goToPage(page);
 
-    // At 768px, we are below the lg (1024px) breakpoint, so toggle should be visible
     const toggleBtn = page.locator('[data-testid="panel-toggle"]');
     await expect(toggleBtn).toBeVisible();
   });
@@ -63,6 +96,8 @@ test.describe("Consultant Tablet (768×1024)", () => {
     await expect(panelCta).toBeVisible();
   });
 
+  // ── Tablet i18n ──
+
   test("tablet ES layout loads Spanish content", async ({ page }) => {
     await goToPage(page, "es");
 
@@ -73,6 +108,19 @@ test.describe("Consultant Tablet (768×1024)", () => {
         .locator("text=¡Hola! Soy el asistente de JuaneloJGAC Tech")
     ).toBeVisible();
   });
+
+  test("tablet ES renders Spanish hero and footer", async ({ page }) => {
+    await goToPage(page, "es");
+
+    await expect(
+      page.getByRole("heading", { name: "Consultoría con IA para Tu Negocio" })
+    ).toBeVisible();
+
+    const footer = page.locator("footer");
+    await expect(footer).toContainText("© 2026 JuaneloJGAC Tech. Todos los derechos reservados.");
+  });
+
+  // ── Layout integrity ──
 
   test("no horizontal overflow on tablet", async ({ page }) => {
     await goToPage(page);
@@ -92,8 +140,18 @@ test.describe("Consultant Tablet (768×1024)", () => {
     const trustPanel = page.locator(chatSelectors.trustPanel);
     await expect(trustPanel.locator("text=Our Services")).toBeVisible();
 
-    // Service items should be visible
     const serviceItems = trustPanel.locator('[data-testid^="service-item-"]');
     await expect(serviceItems).toHaveCount(5);
+  });
+
+  test("expanding trust panel on tablet shows outcome prompts", async ({ page }) => {
+    await goToPage(page);
+
+    const toggleBtn = page.locator('[data-testid="panel-toggle"]');
+    await toggleBtn.click();
+
+    const trustPanel = page.locator(chatSelectors.trustPanel);
+    const outcomes = trustPanel.locator(chatSelectors.outcomePrompt);
+    await expect(outcomes.first()).toBeVisible();
   });
 });
