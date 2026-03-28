@@ -23,7 +23,20 @@ export interface HumanVerificationProps {
   readonly translations: HumanVerificationTranslations;
 }
 
-type VerificationStatus = "idle" | "verifying" | "success" | "error" | "expired";
+type VerificationStatus =
+  | "idle"
+  | "verifying"
+  | "success"
+  | "error"
+  | "expired"
+  | "networkError"
+  | "timeout";
+
+/** Time (ms) before auto-bypassing verification if Turnstile is unresponsive */
+const VERIFICATION_TIMEOUT_MS = 10_000;
+
+/** Brief delay (ms) to show network error message before auto-bypass */
+const ERROR_BYPASS_DELAY_MS = 2_000;
 
 export default function HumanVerification({
   siteKey,
@@ -33,9 +46,14 @@ export default function HumanVerification({
   const [status, setStatus] = useState<VerificationStatus>("idle");
   const widgetRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
+  const verifiedRef = useRef(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleSuccess = useCallback(
     (token: string) => {
+      if (verifiedRef.current) return;
+      verifiedRef.current = true;
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
       setStatus("success");
       onVerified(token);
     },
@@ -49,6 +67,23 @@ export default function HumanVerification({
   const handleExpired = useCallback(() => {
     setStatus("expired");
   }, []);
+
+  // Auto-bypass: if Turnstile doesn't verify within timeout, let users through
+  useEffect(() => {
+    if (!siteKey || verifiedRef.current) return;
+
+    timeoutRef.current = setTimeout(() => {
+      if (!verifiedRef.current) {
+        verifiedRef.current = true;
+        setStatus("timeout");
+        onVerified("");
+      }
+    }, VERIFICATION_TIMEOUT_MS);
+
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, [siteKey, onVerified]);
 
   // Dynamically load the Turnstile script and render the widget
   useEffect(() => {
@@ -67,6 +102,19 @@ export default function HumanVerification({
         "expired-callback": handleExpired,
         theme: "dark",
       });
+    };
+
+    /** Handle script load failure — show error then auto-bypass */
+    const handleScriptError = () => {
+      if (cancelled || verifiedRef.current) return;
+      setStatus("networkError");
+      setTimeout(() => {
+        if (!verifiedRef.current) {
+          verifiedRef.current = true;
+          if (timeoutRef.current) clearTimeout(timeoutRef.current);
+          onVerified("");
+        }
+      }, ERROR_BYPASS_DELAY_MS);
     };
 
     // If Turnstile is already available, render immediately
@@ -95,16 +143,18 @@ export default function HumanVerification({
 
     const onLoad = () => renderWidget();
     script.addEventListener("load", onLoad);
+    script.addEventListener("error", handleScriptError);
 
     return () => {
       cancelled = true;
       script?.removeEventListener("load", onLoad);
+      script?.removeEventListener("error", handleScriptError);
       const turnstileCleanup = (window as TurnstileWindow).turnstile;
       if (turnstileCleanup && widgetIdRef.current) {
         turnstileCleanup.remove(widgetIdRef.current);
       }
     };
-  }, [siteKey, handleSuccess, handleError, handleExpired]);
+  }, [siteKey, handleSuccess, handleError, handleExpired, onVerified]);
 
   const statusMessage = getStatusMessage(status, translations);
 
@@ -182,6 +232,10 @@ function getStatusMessage(
       return translations.error;
     case "expired":
       return translations.expired;
+    case "networkError":
+      return translations.networkError;
+    case "timeout":
+      return translations.verifying;
     default:
       return null;
   }
@@ -193,6 +247,7 @@ function getStatusColor(status: VerificationStatus): string {
       return "text-accent-teal";
     case "error":
     case "expired":
+    case "networkError":
       return "text-coral";
     default:
       return "text-text-muted";

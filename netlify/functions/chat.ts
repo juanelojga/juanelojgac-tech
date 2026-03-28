@@ -149,13 +149,13 @@ export default async function handler(request: Request, _context: Context): Prom
   const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
   if (turnstileSecret) {
     const token = body.turnstileToken;
-    if (!token) {
-      return createErrorResponse(403, "Human verification required");
-    }
-
-    const verification = await verifyTurnstileToken(token, turnstileSecret, clientIp);
-    if (!verification.success) {
-      return createErrorResponse(403, "Human verification failed");
+    // Empty token = client-side verification was bypassed (timeout / script error).
+    // Still allow the request — rate limiting provides baseline protection.
+    if (token) {
+      const verification = await verifyTurnstileToken(token, turnstileSecret, clientIp);
+      if (!verification.success) {
+        return createErrorResponse(403, "Human verification failed");
+      }
     }
   }
 

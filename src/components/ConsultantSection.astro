@@ -91,7 +91,10 @@ const errorBoundaryTranslations = {
 };
 
 // Turnstile site key from environment (empty string disables verification)
-const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "";
+// In development mode, skip verification entirely so the chat is immediately accessible
+const turnstileSiteKey = import.meta.env.DEV
+  ? ""
+  : (import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "");
 ---
 
 <section id="consultant" class="bg-midnight py-16 lg:py-24">

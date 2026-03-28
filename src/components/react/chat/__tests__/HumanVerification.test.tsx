@@ -1,7 +1,7 @@
 // @vitest-environment jsdom
-import { cleanup, render, screen } from "@testing-library/react";
+import { act, cleanup, render, screen } from "@testing-library/react";
 import React from "react";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import HumanVerification, { type HumanVerificationTranslations } from "../HumanVerification";
 
@@ -30,11 +30,18 @@ function createMockTurnstile(): MockTurnstile {
 }
 
 describe("HumanVerification", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+  });
+
   afterEach(() => {
     cleanup();
     vi.clearAllMocks();
+    vi.useRealTimers();
     // Clean up global
     delete (window as unknown as Record<string, unknown>).turnstile;
+    // Clean up injected script element from DOM
+    document.getElementById("cf-turnstile-script")?.remove();
   });
 
   describe("rendering", () => {
@@ -249,6 +256,124 @@ describe("HumanVerification", () => {
       render(<HumanVerification siteKey="" onVerified={vi.fn()} translations={mockTranslations} />);
 
       expect(mockTurnstile.render).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("timeout fallback", () => {
+    it("auto-bypasses verification after 10 seconds", () => {
+      const onVerified = vi.fn();
+
+      render(
+        <HumanVerification
+          siteKey="test-key"
+          onVerified={onVerified}
+          translations={mockTranslations}
+        />
+      );
+
+      expect(onVerified).not.toHaveBeenCalled();
+
+      act(() => {
+        vi.advanceTimersByTime(10_000);
+      });
+
+      expect(onVerified).toHaveBeenCalledWith("");
+    });
+
+    it("does not trigger timeout if turnstile verifies within time", () => {
+      const onVerified = vi.fn();
+      const mockTurnstile = createMockTurnstile();
+      mockTurnstile.render.mockImplementation(
+        (_el: HTMLElement, opts: { callback: (token: string) => void }) => {
+          opts.callback("valid-token");
+          return "widget-123";
+        }
+      );
+      (window as unknown as Record<string, unknown>).turnstile = mockTurnstile;
+
+      render(
+        <HumanVerification
+          siteKey="test-key"
+          onVerified={onVerified}
+          translations={mockTranslations}
+        />
+      );
+
+      // Should have been called once with the real token
+      expect(onVerified).toHaveBeenCalledTimes(1);
+      expect(onVerified).toHaveBeenCalledWith("valid-token");
+
+      // Advancing past timeout should NOT cause a second call
+      act(() => {
+        vi.advanceTimersByTime(10_000);
+      });
+      expect(onVerified).toHaveBeenCalledTimes(1);
+    });
+
+    it("clears timeout on unmount", () => {
+      const onVerified = vi.fn();
+
+      const { unmount } = render(
+        <HumanVerification
+          siteKey="test-key"
+          onVerified={onVerified}
+          translations={mockTranslations}
+        />
+      );
+
+      unmount();
+      act(() => {
+        vi.advanceTimersByTime(10_000);
+      });
+
+      expect(onVerified).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("script error handling", () => {
+    it("shows networkError message when script fails to load", () => {
+      render(
+        <HumanVerification
+          siteKey="test-key"
+          onVerified={vi.fn()}
+          translations={mockTranslations}
+        />
+      );
+
+      // Simulate script error event
+      const script = document.getElementById("cf-turnstile-script") as HTMLScriptElement;
+      expect(script).toBeTruthy();
+      act(() => {
+        script.dispatchEvent(new Event("error"));
+      });
+
+      expect(screen.getByText("Could not reach verification service.")).toBeInTheDocument();
+    });
+
+    it("auto-bypasses after script error with delay", () => {
+      const onVerified = vi.fn();
+
+      render(
+        <HumanVerification
+          siteKey="test-key"
+          onVerified={onVerified}
+          translations={mockTranslations}
+        />
+      );
+
+      const script = document.getElementById("cf-turnstile-script") as HTMLScriptElement;
+      act(() => {
+        script.dispatchEvent(new Event("error"));
+      });
+
+      // Not yet — needs 2s delay
+      expect(onVerified).not.toHaveBeenCalled();
+
+      act(() => {
+        vi.advanceTimersByTime(2_000);
+      });
+
+      expect(onVerified).toHaveBeenCalledWith("");
     });
   });
 });
