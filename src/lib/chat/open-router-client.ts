@@ -60,8 +60,8 @@ const DEFAULT_BASE_URL = "https://openrouter.ai/api/v1";
 const DEFAULT_MAX_TOKENS = 1024;
 const DEFAULT_TEMPERATURE = 0.7;
 const DEFAULT_TIMEOUT_MS = 30000;
-const SITE_URL = process.env.SITE_URL ?? "https://juanelojgac-tech.com";
-const SITE_TITLE = process.env.SITE_TITLE ?? "JuaneloJGAC Tech AI Consultant";
+const DEFAULT_SITE_URL = "https://juanelojgac-tech.com";
+const DEFAULT_SITE_TITLE = "JuaneloJGAC Tech AI Consultant";
 
 // ── Response type (internal) ──
 
@@ -85,6 +85,8 @@ export class OpenRouterClient {
   private readonly maxTokens: number;
   private readonly temperature: number;
   private readonly timeoutMs: number;
+  private readonly siteUrl: string;
+  private readonly siteTitle: string;
 
   constructor(config: OpenRouterConfig) {
     if (!config.apiKey || config.apiKey.trim().length === 0) {
@@ -100,6 +102,14 @@ export class OpenRouterClient {
     this.maxTokens = config.maxTokens ?? DEFAULT_MAX_TOKENS;
     this.temperature = config.temperature ?? DEFAULT_TEMPERATURE;
     this.timeoutMs = config.timeoutMs ?? DEFAULT_TIMEOUT_MS;
+    this.siteUrl =
+      typeof process !== "undefined"
+        ? (process.env.SITE_URL ?? DEFAULT_SITE_URL)
+        : DEFAULT_SITE_URL;
+    this.siteTitle =
+      typeof process !== "undefined"
+        ? (process.env.SITE_TITLE ?? DEFAULT_SITE_TITLE)
+        : DEFAULT_SITE_TITLE;
   }
 
   /**
@@ -126,8 +136,8 @@ export class OpenRouterClient {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${this.apiKey}`,
-          "HTTP-Referer": SITE_URL,
-          "X-Title": SITE_TITLE,
+          "HTTP-Referer": this.siteUrl,
+          "X-Title": this.siteTitle,
         },
         body,
         signal: controller.signal,

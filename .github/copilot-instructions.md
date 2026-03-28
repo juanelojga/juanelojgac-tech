@@ -13,7 +13,8 @@ See [CLAUDE.md](../CLAUDE.md) for full stack details, React integration rules, a
 ## Build and Test
 
 ```sh
-pnpm run dev          # Local dev server (localhost:4321)
+pnpm run dev          # Frontend-only dev server (localhost:4321) — no Netlify functions
+pnpm run dev:netlify  # Full-stack dev server (localhost:8888) — includes Netlify functions + .env
 pnpm run build        # Production build → dist/
 pnpm run lint:fix     # ESLint auto-fix
 pnpm run format       # Prettier formatting
@@ -21,6 +22,8 @@ pnpm test             # Vitest (watch mode)
 pnpm run test:coverage # Coverage report
 pnpm run astro:check  # TypeScript checking
 ```
+
+> **Chat feature**: The AI consultant chat requires `pnpm run dev:netlify` (needs `netlify-cli` installed globally: `npm i -g netlify-cli`). The chat calls `/.netlify/functions/chat` which is only served by the Netlify CLI dev server. Environment variables from `.env` are automatically loaded by `netlify dev`.
 
 Pre-commit hooks (Husky + lint-staged) auto-format and lint staged files.
 

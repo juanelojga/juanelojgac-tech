@@ -115,6 +115,12 @@ export class ChatAPIClient {
         return new OpenRouterError("rate_limit", message, true);
       case 400:
         return new OpenRouterError("invalid_request", message, false);
+      case 404:
+        return new OpenRouterError(
+          "server_error",
+          "Chat endpoint not found. Run 'pnpm run dev:netlify' for full-stack development.",
+          false
+        );
       case 502:
       case 503:
         return new OpenRouterError("server_error", message, true);
