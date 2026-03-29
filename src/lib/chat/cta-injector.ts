@@ -23,7 +23,7 @@ const CTA_ELIGIBLE_PHASES = new Set(["qualification", "summary", "completed"]);
 /** Standard booking CTA */
 const BOOKING_CTA: InlineCTA = {
   label: "Book a Free Consultation",
-  url: "https://calendly.com/juanelojgac",
+  url: "https://calendly.com/juanelojga/one-on-one-meeting",
   type: "booking",
 };
 

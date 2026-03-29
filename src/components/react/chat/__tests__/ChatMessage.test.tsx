@@ -71,7 +71,7 @@ describe("ChatMessage", () => {
 
   describe("inline CTAs", () => {
     const ctas: readonly InlineCTA[] = [
-      { label: "Book a Consultation", url: "https://calendly.com/juanelojgac", type: "booking" },
+      { label: "Book a Consultation", url: "https://calendly.com/juanelojga/one-on-one-meeting", type: "booking" },
       { label: "Contact Us", url: "mailto:hello@juanelojgac.tech", type: "contact" },
     ];
 
@@ -91,7 +91,7 @@ describe("ChatMessage", () => {
     it("renders CTAs as links with correct href", () => {
       render(<ChatMessage message={messageWithCTAs} />);
       const bookingLink = screen.getByRole("link", { name: /Book a Consultation/i });
-      expect(bookingLink).toHaveAttribute("href", "https://calendly.com/juanelojgac");
+      expect(bookingLink).toHaveAttribute("href", "https://calendly.com/juanelojga/one-on-one-meeting");
     });
 
     it("opens CTA links in new tab with security attributes", () => {

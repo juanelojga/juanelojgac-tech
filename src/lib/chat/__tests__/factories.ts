@@ -49,7 +49,7 @@ export function createChatMessage(overrides?: Partial<ChatMessage>): ChatMessage
 export function createInlineCTA(overrides?: Partial<InlineCTA>): InlineCTA {
   return {
     label: "Book a consultation",
-    url: "https://calendly.com/juanelojgac",
+    url: "https://calendly.com/juanelojga/one-on-one-meeting",
     type: "booking",
     ...overrides,
   };

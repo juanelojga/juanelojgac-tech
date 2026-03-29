@@ -165,7 +165,9 @@ export default function MobileMenu({
 
             {/* CTA */}
             <a
-              href="#contact"
+              href="https://calendly.com/juanelojga/one-on-one-meeting"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={close}
               className="from-accent-cyan to-accent-teal text-midnight mt-4 rounded-xl bg-gradient-to-r px-8 py-4 text-base font-semibold transition-opacity duration-200 hover:opacity-90"
             >
