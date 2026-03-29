@@ -9,8 +9,11 @@ import { verifyTurnstileToken } from "../../src/lib/chat/verification";
 // API key stays server-side — never reaches client.
 // ──────────────────────────────────────────────
 
-/** Maximum message content length */
+/** Maximum message content length for user/assistant messages */
 const MAX_MESSAGE_LENGTH = 5000;
+
+/** Maximum system prompt length (includes full service catalog + guidelines) */
+const MAX_SYSTEM_MESSAGE_LENGTH = 15000;
 
 /** Maximum number of messages in a request */
 const MAX_MESSAGES = 50;
@@ -34,6 +37,13 @@ const rateLimiter = new RateLimiter();
 /** Site info for OpenRouter tracking */
 const SITE_URL = process.env.SITE_URL ?? "https://juanelojgac-tech.com";
 const SITE_TITLE = process.env.SITE_TITLE ?? "JuaneloJGAC Tech AI Consultant";
+
+/** Derive the CORS origin from the request or fall back to SITE_URL */
+function getAllowedOrigin(request?: Request): string {
+  const origin = request?.headers.get("origin");
+  if (origin) return origin;
+  return SITE_URL;
+}
 
 // ── Types ──
 
@@ -62,7 +72,8 @@ function validateRequestBody(body: unknown): body is ChatRequestBody {
     const m = msg as Record<string, unknown>;
     if (typeof m.role !== "string" || !VALID_ROLES.has(m.role)) return false;
     if (typeof m.content !== "string") return false;
-    if (m.content.length === 0 || m.content.length > MAX_MESSAGE_LENGTH) return false;
+    const maxLen = m.role === "system" ? MAX_SYSTEM_MESSAGE_LENGTH : MAX_MESSAGE_LENGTH;
+    if (m.content.length === 0 || m.content.length > maxLen) return false;
   }
 
   if (b.language !== undefined && b.language !== "en" && b.language !== "es") return false;
@@ -70,21 +81,21 @@ function validateRequestBody(body: unknown): body is ChatRequestBody {
   return true;
 }
 
-function createErrorResponse(status: number, message: string): Response {
+function createErrorResponse(status: number, message: string, request?: Request): Response {
   return new Response(JSON.stringify({ error: { message } }), {
     status,
     headers: {
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": SITE_URL,
+      "Access-Control-Allow-Origin": getAllowedOrigin(request),
     },
   });
 }
 
-function createCORSResponse(): Response {
+function createCORSResponse(request: Request): Response {
   return new Response(null, {
     status: 204,
     headers: {
-      "Access-Control-Allow-Origin": SITE_URL,
+      "Access-Control-Allow-Origin": getAllowedOrigin(request),
       "Access-Control-Allow-Methods": "POST, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
       "Access-Control-Max-Age": "86400",
@@ -97,18 +108,18 @@ function createCORSResponse(): Response {
 export default async function handler(request: Request, _context: Context): Promise<Response> {
   // Handle CORS preflight
   if (request.method === "OPTIONS") {
-    return createCORSResponse();
+    return createCORSResponse(request);
   }
 
   // Only allow POST
   if (!ALLOWED_METHODS.has(request.method)) {
-    return createErrorResponse(405, "Method not allowed");
+    return createErrorResponse(405, "Method not allowed", request);
   }
 
   // Load API key from environment
   const apiKey = process.env.OPENROUTER_API_KEY;
   if (!apiKey) {
-    return createErrorResponse(500, "Chat service is not configured");
+    return createErrorResponse(500, "Chat service is not configured", request);
   }
 
   // Parse and validate request body
@@ -116,11 +127,11 @@ export default async function handler(request: Request, _context: Context): Prom
   try {
     body = await request.json();
   } catch {
-    return createErrorResponse(400, "Invalid JSON in request body");
+    return createErrorResponse(400, "Invalid JSON in request body", request);
   }
 
   if (!validateRequestBody(body)) {
-    return createErrorResponse(400, "Invalid request format");
+    return createErrorResponse(400, "Invalid request format", request);
   }
 
   // ── Rate limiting (per client IP) ──
@@ -138,7 +149,7 @@ export default async function handler(request: Request, _context: Context): Prom
         status: 429,
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": SITE_URL,
+          "Access-Control-Allow-Origin": getAllowedOrigin(request),
           "Retry-After": String(Math.ceil(rateResult.retryAfterMs / 1000)),
         },
       }
@@ -154,7 +165,7 @@ export default async function handler(request: Request, _context: Context): Prom
     if (token) {
       const verification = await verifyTurnstileToken(token, turnstileSecret, clientIp);
       if (!verification.success) {
-        return createErrorResponse(403, "Human verification failed");
+        return createErrorResponse(403, "Human verification failed", request);
       }
     }
   }
@@ -183,13 +194,13 @@ export default async function handler(request: Request, _context: Context): Prom
       const status = openRouterResponse.status;
 
       if (status === 429) {
-        return createErrorResponse(429, "Rate limit exceeded. Please try again shortly.");
+        return createErrorResponse(429, "Rate limit exceeded. Please try again shortly.", request);
       }
       if (status === 401 || status === 403) {
-        return createErrorResponse(500, "Chat service authentication error");
+        return createErrorResponse(500, "Chat service authentication error", request);
       }
 
-      return createErrorResponse(502, "Chat service temporarily unavailable");
+      return createErrorResponse(502, "Chat service temporarily unavailable", request);
     }
 
     const data = await openRouterResponse.json();
@@ -198,10 +209,10 @@ export default async function handler(request: Request, _context: Context): Prom
       status: 200,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": SITE_URL,
+        "Access-Control-Allow-Origin": getAllowedOrigin(request),
       },
     });
   } catch {
-    return createErrorResponse(502, "Failed to connect to chat service");
+    return createErrorResponse(502, "Failed to connect to chat service", request);
   }
 }

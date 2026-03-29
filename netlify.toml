@@ -7,6 +7,23 @@ command = "pnpm run build"
 publish = "dist"
 
 ############################################
+# FUNCTIONS
+############################################
+
+[functions]
+directory = "netlify/functions"
+
+############################################
+# LOCAL DEV (netlify dev)
+############################################
+
+[dev]
+command = "pnpm run dev"
+targetPort = 4321
+port = 8888
+autoLaunch = false
+
+############################################
 # PRODUCTION: Build and deploy
 ############################################
 
