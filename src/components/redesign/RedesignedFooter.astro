@@ -13,6 +13,12 @@ const homeUrl = lang === "en" ? "/" : "/es";
 
 const trustNotes = [t.trustBilingual, t.trustDelivery, t.trustCode, t.trustMarkets];
 
+const addresses = [
+  { label: t.address1Label, address: t.address1 },
+  { label: t.address2Label, address: t.address2 },
+  { label: t.address3Label, address: t.address3 },
+];
+
 const socialLinks = [
   {
     label: "GitHub",
@@ -107,6 +113,45 @@ const socialLinks = [
             ))
           }
         </div>
+      </div>
+    </div>
+
+    <!-- Addresses row -->
+    <div class="mt-10 border-t border-white/5 pt-8 lg:mt-14">
+      <h3 class="text-text-bright mb-6 text-xs font-semibold tracking-wider uppercase text-center">
+        {t.addressesLabel}
+      </h3>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        {
+          addresses.map((loc) => (
+            <div>
+              <div class="mb-1.5 flex items-center gap-2">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="text-accent-cyan shrink-0"
+                  aria-hidden="true"
+                >
+                  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
+                <span class="text-text-bright text-sm font-semibold">
+                  {loc.label}
+                </span>
+              </div>
+              <p class="text-text-muted text-sm leading-relaxed pl-6">
+                {loc.address}
+              </p>
+            </div>
+          ))
+        }
       </div>
     </div>
 

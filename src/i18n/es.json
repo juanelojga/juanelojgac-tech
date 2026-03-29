@@ -190,6 +190,13 @@
       "trustCode": "Enfoque de código limpio",
       "trustMarkets": "Clientes en EE.UU. y LATAM",
       "socialLabel": "Social",
+      "addressesLabel": "Nuestras Oficinas",
+      "address1Label": "Milton, FL",
+      "address1": "6407 Magnolia St, Milton, FL 32570",
+      "address2Label": "Quito, Ecuador",
+      "address2": "Magdalena Davalos E3-14 y Luis Chavez, Quito, Ecuador",
+      "address3Label": "Ciudad de Panamá, Panamá",
+      "address3": "Próximamente",
       "copyright": "© 2026 JuaneloJGAC Tech. Todos los derechos reservados."
     }
   }
