@@ -101,13 +101,17 @@ const trustMetrics = [
 
 <script>
   function initHeroActions() {
-    const btn = document.querySelector<HTMLAnchorElement>('#hero-section a[data-action="services"]');
+    const btn = document.querySelector<HTMLAnchorElement>(
+      '#hero-section a[data-action="services"]'
+    );
     if (!btn) return;
     btn.addEventListener("click", (e) => {
       e.preventDefault();
       const target = document.getElementById("consultant");
       if (target) target.scrollIntoView({ behavior: "smooth" });
-      window.dispatchEvent(new CustomEvent("consultant:action", { detail: { action: "services" } }));
+      window.dispatchEvent(
+        new CustomEvent("consultant:action", { detail: { action: "services" } })
+      );
     });
   }
   initHeroActions();
