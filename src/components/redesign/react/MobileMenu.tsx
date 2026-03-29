@@ -156,7 +156,23 @@ export default function MobileMenu({
               <a
                 key={link.href}
                 href={link.href}
-                onClick={close}
+                onClick={(e) => {
+                  if (link.action) {
+                    e.preventDefault();
+                    close();
+                    setTimeout(() => {
+                      const target = document.getElementById("consultant");
+                      if (target) target.scrollIntoView({ behavior: "smooth" });
+                      window.dispatchEvent(
+                        new CustomEvent("consultant:action", {
+                          detail: { action: link.action },
+                        })
+                      );
+                    }, 100);
+                  } else {
+                    close();
+                  }
+                }}
                 className="text-text-bright font-sora hover:text-accent-cyan text-2xl font-semibold transition-colors duration-200"
               >
                 {link.label}

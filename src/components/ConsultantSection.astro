@@ -95,6 +95,13 @@ const errorBoundaryTranslations = {
 const turnstileSiteKey = import.meta.env.DEV
   ? ""
   : (import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "");
+
+// Action prompts for header/hero navigation triggers
+const actionPrompts = {
+  services: t.actionPrompts.services,
+  about: t.actionPrompts.about,
+  contact: t.actionPrompts.contact,
+};
 ---
 
 <section id="consultant" class="bg-midnight py-16 lg:py-24">
@@ -111,6 +118,7 @@ const turnstileSiteKey = import.meta.env.DEV
       verificationTranslations={verificationTranslations}
       errorBoundaryTranslations={errorBoundaryTranslations}
       errorTranslations={errorTranslations}
+      actionPrompts={actionPrompts}
       turnstileSiteKey={turnstileSiteKey}
       language={lang}
     />

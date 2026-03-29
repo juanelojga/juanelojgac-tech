@@ -76,6 +76,7 @@ export interface SocialIconsProps {
 export interface NavLink {
   label: string;
   href: string;
+  action?: string;
 }
 
 /** Props for the mobile menu React island */

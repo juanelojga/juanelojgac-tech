@@ -75,6 +75,7 @@ const trustMetrics = [
           </a>
           <a
             href="#services"
+            data-action="services"
             class="text-text-bright focus-visible:outline-accent-cyan inline-flex min-h-[48px] items-center justify-center rounded-xl border border-white/20 px-8 py-4 text-base font-semibold transition-colors duration-200 hover:bg-white/5 focus-visible:outline-2 focus-visible:outline-offset-2"
           >
             {t.ctaSecondary}
@@ -97,3 +98,18 @@ const trustMetrics = [
     </div>
   </div>
 </section>
+
+<script>
+  function initHeroActions() {
+    const btn = document.querySelector<HTMLAnchorElement>('#hero-section a[data-action="services"]');
+    if (!btn) return;
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const target = document.getElementById("consultant");
+      if (target) target.scrollIntoView({ behavior: "smooth" });
+      window.dispatchEvent(new CustomEvent("consultant:action", { detail: { action: "services" } }));
+    });
+  }
+  initHeroActions();
+  document.addEventListener("astro:after-swap", initHeroActions);
+</script>

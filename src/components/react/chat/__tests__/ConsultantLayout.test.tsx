@@ -114,6 +114,11 @@ const defaultProps: ConsultantLayoutProps = {
   verificationTranslations: mockVerificationTranslations,
   errorBoundaryTranslations: mockErrorBoundaryTranslations,
   errorTranslations: mockErrorTranslations,
+  actionPrompts: {
+    services: "Tell me about your services",
+    about: "Tell me about your company and experience",
+    contact: "How can I get in touch with you?",
+  },
   turnstileSiteKey: "test-site-key",
   language: "en",
 };

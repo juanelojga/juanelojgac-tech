@@ -131,6 +131,11 @@
       "panelLabel": "Panel de información de servicios",
       "chatLabel": "Chatea con nuestro consultor de IA"
     },
+    "actionPrompts": {
+      "services": "Cuéntame sobre sus servicios",
+      "about": "Cuéntame sobre su empresa y experiencia",
+      "contact": "¿Cómo puedo contactarlos?"
+    },
     "accessibility": {
       "chatRegion": "Chat de consultor de IA",
       "messageList": "Mensajes de la conversación",

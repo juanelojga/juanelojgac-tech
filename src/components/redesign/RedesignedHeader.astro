@@ -14,9 +14,9 @@ const homeUrl = lang === "en" ? "/" : "/es";
 const altLangUrl = lang === "en" ? "/es" : "/";
 
 const navLinks = [
-  { label: t.navServices, href: "#services" },
-  { label: t.navAbout, href: "#about" },
-  { label: t.navContact, href: "#contact" },
+  { label: t.navServices, href: "#services", action: "services" },
+  { label: t.navAbout, href: "#about", action: "about" },
+  { label: t.navContact, href: "#contact", action: "contact" },
 ];
 ---
 
@@ -44,6 +44,7 @@ const navLinks = [
         navLinks.map((link) => (
           <a
             href={link.href}
+            data-action={link.action}
             class="text-text-muted hover:text-text-bright text-sm font-medium transition-colors duration-200"
           >
             {link.label}
@@ -220,6 +221,25 @@ const navLinks = [
   // Run on initial load and on Astro page transitions
   initHeaderScroll();
   document.addEventListener("astro:after-swap", initHeaderScroll);
+
+  // Intercept nav link clicks to scroll to chat and dispatch action event
+  function initNavActions() {
+    const header = document.getElementById("redesigned-header");
+    if (!header) return;
+    header.querySelectorAll<HTMLAnchorElement>("a[data-action]").forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const action = link.dataset.action;
+        const target = document.getElementById("consultant");
+        if (target) target.scrollIntoView({ behavior: "smooth" });
+        if (action) {
+          window.dispatchEvent(new CustomEvent("consultant:action", { detail: { action } }));
+        }
+      });
+    });
+  }
+  initNavActions();
+  document.addEventListener("astro:after-swap", initNavActions);
 </script>
 
 <style>

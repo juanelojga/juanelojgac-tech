@@ -131,6 +131,11 @@
       "panelLabel": "Service information panel",
       "chatLabel": "Chat with our AI consultant"
     },
+    "actionPrompts": {
+      "services": "Tell me about your services",
+      "about": "Tell me about your company and experience",
+      "contact": "How can I get in touch with you?"
+    },
     "accessibility": {
       "chatRegion": "AI consultant chat",
       "messageList": "Conversation messages",

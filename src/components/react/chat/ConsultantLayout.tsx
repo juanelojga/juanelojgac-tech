@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 
 import { ChatAPIClient } from "../../../lib/chat/chat-api-client";
 import { StaticContentProvider } from "../../../lib/chat/content/static-content-provider";
@@ -35,6 +35,12 @@ export interface LayoutTranslations {
   readonly chatLabel: string;
 }
 
+export interface ActionPrompts {
+  readonly services: string;
+  readonly about: string;
+  readonly contact: string;
+}
+
 export interface ConsultantLayoutProps {
   readonly services: readonly ServiceItemData[];
   readonly outcomePrompts: readonly OutcomePrompt[];
@@ -46,6 +52,7 @@ export interface ConsultantLayoutProps {
   readonly verificationTranslations: HumanVerificationTranslations;
   readonly errorBoundaryTranslations: ErrorBoundaryTranslations;
   readonly errorTranslations: ErrorTranslations;
+  readonly actionPrompts: ActionPrompts;
   readonly turnstileSiteKey: string;
   readonly language: "en" | "es";
   readonly contentProvider?: ContentProvider;
@@ -78,6 +85,7 @@ export default function ConsultantLayout({
   verificationTranslations,
   errorBoundaryTranslations,
   errorTranslations,
+  actionPrompts,
   turnstileSiteKey,
   language,
   contentProvider,
@@ -264,6 +272,21 @@ export default function ConsultantLayout({
     },
     [isVerified, handleSendMessage]
   );
+
+  // Listen for consultant:action events dispatched by header/hero nav links
+  useEffect(() => {
+    const handleAction = (e: Event) => {
+      const action = (e as CustomEvent<{ action: string }>).detail?.action;
+      if (!action || !isVerified) return;
+      const prompt = actionPrompts[action as keyof ActionPrompts];
+      if (prompt) {
+        handleSendMessage(prompt);
+      }
+    };
+
+    window.addEventListener("consultant:action", handleAction);
+    return () => window.removeEventListener("consultant:action", handleAction);
+  }, [actionPrompts, isVerified, handleSendMessage]);
 
   return (
     <section
