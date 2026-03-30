@@ -142,6 +142,22 @@
       "newMessage": "New message from assistant",
       "sendButton": "Send message",
       "chipGroup": "Suggested questions"
+    },
+    "contactForm": {
+      "chipLabel": "Contact Now",
+      "modalTitle": "Get in Touch",
+      "modalSubtitle": "Fill in your details and we'll reach out shortly.",
+      "nameLabel": "Name",
+      "namePlaceholder": "Your full name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "companyLabel": "Company",
+      "companyPlaceholder": "Your company name",
+      "summaryLabel": "Conversation Summary",
+      "submitLabel": "Send",
+      "successMessage": "Thanks! We'll be in touch soon.",
+      "errorMessage": "Something went wrong. Please try again.",
+      "closeLabel": "Close"
     }
   },
   "consultant": {

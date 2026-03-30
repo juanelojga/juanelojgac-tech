@@ -53,6 +53,7 @@ const chatTranslations = {
   errorRetry: t.messages.errorRetry,
   chatRegionLabel: t.accessibility.chatRegion,
   messageListLabel: t.accessibility.messageList,
+  contactChipLabel: t.contactForm.chipLabel,
 };
 
 // Error translations (resolved i18n keys for error messages)
@@ -90,6 +91,24 @@ const errorBoundaryTranslations = {
   retry: t.errorBoundary.retry,
 };
 
+// Contact form translations
+const contactFormTranslations = {
+  chipLabel: t.contactForm.chipLabel,
+  modalTitle: t.contactForm.modalTitle,
+  modalSubtitle: t.contactForm.modalSubtitle,
+  nameLabel: t.contactForm.nameLabel,
+  namePlaceholder: t.contactForm.namePlaceholder,
+  emailLabel: t.contactForm.emailLabel,
+  emailPlaceholder: t.contactForm.emailPlaceholder,
+  companyLabel: t.contactForm.companyLabel,
+  companyPlaceholder: t.contactForm.companyPlaceholder,
+  summaryLabel: t.contactForm.summaryLabel,
+  submitLabel: t.contactForm.submitLabel,
+  successMessage: t.contactForm.successMessage,
+  errorMessage: t.contactForm.errorMessage,
+  closeLabel: t.contactForm.closeLabel,
+};
+
 // Turnstile site key from environment (empty string disables verification)
 // In development mode, skip verification entirely so the chat is immediately accessible
 const turnstileSiteKey = import.meta.env.DEV
@@ -118,6 +137,7 @@ const actionPrompts = {
       verificationTranslations={verificationTranslations}
       errorBoundaryTranslations={errorBoundaryTranslations}
       errorTranslations={errorTranslations}
+      contactFormTranslations={contactFormTranslations}
       actionPrompts={actionPrompts}
       turnstileSiteKey={turnstileSiteKey}
       language={lang}

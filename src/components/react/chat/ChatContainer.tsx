@@ -9,6 +9,7 @@ import type {
 import ChatHeader from "./ChatHeader";
 import ChatInput from "./ChatInput";
 import ChatMessage from "./ChatMessage";
+import ContactChip from "./ContactChip";
 import GroupedPromptChips from "./GroupedPromptChips";
 import TypingIndicator from "./TypingIndicator";
 
@@ -27,6 +28,7 @@ export interface ChatContainerTranslations {
   readonly errorRetry: string;
   readonly chatRegionLabel: string;
   readonly messageListLabel: string;
+  readonly contactChipLabel: string;
 }
 
 export interface ChatContainerProps {
@@ -38,6 +40,7 @@ export interface ChatContainerProps {
   readonly error: string | null;
   readonly onSendMessage: (message: string) => void;
   readonly onRetry?: () => void;
+  readonly onContactClick: () => void;
   readonly translations: ChatContainerTranslations;
 }
 
@@ -50,6 +53,7 @@ export default function ChatContainer({
   error,
   onSendMessage,
   onRetry,
+  onContactClick,
   translations,
 }: ChatContainerProps) {
   const messageEndRef = useRef<HTMLDivElement>(null);
@@ -166,6 +170,9 @@ export default function ChatContainer({
         sectionLabel={translations.chipsLabel}
         visible={!hasMessages}
       />
+
+      {/* Contact Now chip — always visible */}
+      <ContactChip label={translations.contactChipLabel} onClick={onContactClick} />
 
       {/* Input Area */}
       <ChatInput

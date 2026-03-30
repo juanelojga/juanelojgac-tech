@@ -21,6 +21,7 @@ const defaultTranslations: ChatContainerTranslations = {
   errorRetry: "Try again",
   chatRegionLabel: "Chat assistant",
   messageListLabel: "Chat messages",
+  contactChipLabel: "Contact Now",
 };
 
 const defaultChips: StarterPrompt[] = [
@@ -58,6 +59,7 @@ describe("ChatContainer", () => {
     isTyping: false,
     error: null,
     onSendMessage: vi.fn(),
+    onContactClick: vi.fn(),
     translations: defaultTranslations,
   };
 

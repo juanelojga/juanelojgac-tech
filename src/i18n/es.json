@@ -142,6 +142,22 @@
       "newMessage": "Nuevo mensaje del asistente",
       "sendButton": "Enviar mensaje",
       "chipGroup": "Preguntas sugeridas"
+    },
+    "contactForm": {
+      "chipLabel": "Contactar Ahora",
+      "modalTitle": "Ponte en Contacto",
+      "modalSubtitle": "Completa tus datos y te contactaremos pronto.",
+      "nameLabel": "Nombre",
+      "namePlaceholder": "Tu nombre completo",
+      "emailLabel": "Correo electrónico",
+      "emailPlaceholder": "tu@empresa.com",
+      "companyLabel": "Empresa",
+      "companyPlaceholder": "Nombre de tu empresa",
+      "summaryLabel": "Resumen de la Conversación",
+      "submitLabel": "Enviar",
+      "successMessage": "¡Gracias! Te contactaremos pronto.",
+      "errorMessage": "Algo salió mal. Inténtalo de nuevo.",
+      "closeLabel": "Cerrar"
     }
   },
   "consultant": {

@@ -36,6 +36,7 @@ Use `.env.example` as the reference. Key variables:
 - `OPENROUTER_API_URL`: OpenRouter chat completions endpoint.
 
 Notes:
+
 - `.env` is ignored by git.
 - `.env.example` is committed as the template.
 

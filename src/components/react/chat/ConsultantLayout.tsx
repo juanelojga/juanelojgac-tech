@@ -21,6 +21,7 @@ import type {
 import TrustPanel, { type ServiceItemData, type TrustPanelTranslations } from "../TrustPanel";
 import ChatContainer, { type ChatContainerTranslations } from "./ChatContainer";
 import ChatErrorBoundary, { type ErrorBoundaryTranslations } from "./ChatErrorBoundary";
+import ContactFormModal, { type ContactFormTranslations } from "./ContactFormModal";
 import HumanVerification, { type HumanVerificationTranslations } from "./HumanVerification";
 
 // ──────────────────────────────────────────────
@@ -52,6 +53,7 @@ export interface ConsultantLayoutProps {
   readonly verificationTranslations: HumanVerificationTranslations;
   readonly errorBoundaryTranslations: ErrorBoundaryTranslations;
   readonly errorTranslations: ErrorTranslations;
+  readonly contactFormTranslations: ContactFormTranslations;
   readonly actionPrompts: ActionPrompts;
   readonly turnstileSiteKey: string;
   readonly language: "en" | "es";
@@ -85,6 +87,7 @@ export default function ConsultantLayout({
   verificationTranslations,
   errorBoundaryTranslations,
   errorTranslations,
+  contactFormTranslations,
   actionPrompts,
   turnstileSiteKey,
   language,
@@ -97,6 +100,7 @@ export default function ConsultantLayout({
   const [phase, setPhase] = useState<ConversationPhase>("greeting");
   const leadAttributes: Partial<LeadAttributes> = {};
   const [followUps, setFollowUps] = useState<readonly GuidedFollowUp[]>([]);
+  const [showContactForm, setShowContactForm] = useState(false);
   const lastFailedMessageRef = useRef<string | null>(null);
   const turnstileTokenRef = useRef<string | null>(null);
 
@@ -288,44 +292,60 @@ export default function ConsultantLayout({
     return () => window.removeEventListener("consultant:action", handleAction);
   }, [actionPrompts, isVerified, handleSendMessage]);
 
-  return (
-    <section
-      aria-label={layoutTranslations.consultantSection}
-      data-testid="consultant-layout"
-      className="border-white-10 bg-midnight-surface flex h-[calc(100dvh-6rem)] w-full flex-col overflow-hidden rounded-3xl border shadow-2xl sm:h-[600px] lg:h-[700px] lg:flex-row"
-    >
-      {/* Left Panel — Trust & Services */}
-      <TrustPanel
-        services={services}
-        outcomePrompts={outcomePrompts}
-        onPromptInject={handlePromptInject}
-        translations={panelTranslations}
-      />
+  /** Build a readable plain-text summary of the conversation for the contact form */
+  const conversationSummary = messages
+    .filter((m) => m.role !== "system")
+    .map((m) => `${m.role === "user" ? "User" : "Assistant"}: ${m.content}`)
+    .join("\n\n");
 
-      {/* Right Panel — Chat or Verification */}
-      <div className="flex min-w-0 flex-1 flex-col">
-        <ChatErrorBoundary translations={errorBoundaryTranslations}>
-          {isVerified ? (
-            <ChatContainer
-              messages={messages}
-              starterPrompts={starterPrompts}
-              promptGroups={promptGroups}
-              followUps={followUps}
-              isTyping={isTyping}
-              error={error}
-              onSendMessage={handleSendMessage}
-              onRetry={handleRetry}
-              translations={chatTranslations}
-            />
-          ) : (
-            <HumanVerification
-              siteKey={turnstileSiteKey}
-              onVerified={handleVerificationSuccess}
-              translations={verificationTranslations}
-            />
-          )}
-        </ChatErrorBoundary>
-      </div>
-    </section>
+  return (
+    <>
+      {showContactForm && (
+        <ContactFormModal
+          translations={contactFormTranslations}
+          conversationSummary={conversationSummary}
+          onClose={() => setShowContactForm(false)}
+        />
+      )}
+      <section
+        aria-label={layoutTranslations.consultantSection}
+        data-testid="consultant-layout"
+        className="border-white-10 bg-midnight-surface flex h-[calc(100dvh-6rem)] w-full flex-col overflow-hidden rounded-3xl border shadow-2xl sm:h-[600px] lg:h-[700px] lg:flex-row"
+      >
+        {/* Left Panel — Trust & Services */}
+        <TrustPanel
+          services={services}
+          outcomePrompts={outcomePrompts}
+          onPromptInject={handlePromptInject}
+          translations={panelTranslations}
+        />
+
+        {/* Right Panel — Chat or Verification */}
+        <div className="flex min-w-0 flex-1 flex-col">
+          <ChatErrorBoundary translations={errorBoundaryTranslations}>
+            {isVerified ? (
+              <ChatContainer
+                messages={messages}
+                starterPrompts={starterPrompts}
+                promptGroups={promptGroups}
+                followUps={followUps}
+                isTyping={isTyping}
+                error={error}
+                onSendMessage={handleSendMessage}
+                onRetry={handleRetry}
+                onContactClick={() => setShowContactForm(true)}
+                translations={chatTranslations}
+              />
+            ) : (
+              <HumanVerification
+                siteKey={turnstileSiteKey}
+                onVerified={handleVerificationSuccess}
+                translations={verificationTranslations}
+              />
+            )}
+          </ChatErrorBoundary>
+        </div>
+      </section>
+    </>
   );
 }

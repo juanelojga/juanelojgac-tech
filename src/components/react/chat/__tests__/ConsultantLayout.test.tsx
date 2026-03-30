@@ -70,6 +70,7 @@ const mockChatTranslations = {
   errorRetry: "Try again",
   chatRegionLabel: "Chat assistant",
   messageListLabel: "Chat messages",
+  contactChipLabel: "Contact Now",
 };
 
 const mockErrorTranslations = {
@@ -114,6 +115,22 @@ const defaultProps: ConsultantLayoutProps = {
   verificationTranslations: mockVerificationTranslations,
   errorBoundaryTranslations: mockErrorBoundaryTranslations,
   errorTranslations: mockErrorTranslations,
+  contactFormTranslations: {
+    chipLabel: "Contact Now",
+    modalTitle: "Get in Touch",
+    modalSubtitle: "Fill in your details.",
+    nameLabel: "Name",
+    namePlaceholder: "Your full name",
+    emailLabel: "Email",
+    emailPlaceholder: "you@company.com",
+    companyLabel: "Company",
+    companyPlaceholder: "Your company name",
+    summaryLabel: "Conversation Summary",
+    submitLabel: "Send",
+    successMessage: "Thanks!",
+    errorMessage: "Something went wrong.",
+    closeLabel: "Close",
+  },
   actionPrompts: {
     services: "Tell me about your services",
     about: "Tell me about your company and experience",
