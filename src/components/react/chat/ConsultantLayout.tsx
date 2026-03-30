@@ -302,7 +302,13 @@ export default function ConsultantLayout({
 
     window.addEventListener("consultant:action", handleAction);
     return () => window.removeEventListener("consultant:action", handleAction);
-  }, [actionPrompts, isVerified, handleSendMessage, messages.length, contactFormTranslations.genericSummary]);
+  }, [
+    actionPrompts,
+    isVerified,
+    handleSendMessage,
+    messages.length,
+    contactFormTranslations.genericSummary,
+  ]);
 
   /** Build a readable plain-text summary of the conversation for the contact form */
   const plainTextSummary = messages
