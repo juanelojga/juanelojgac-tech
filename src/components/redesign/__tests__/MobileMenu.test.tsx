@@ -21,8 +21,8 @@ describe("MobileMenu", () => {
     socialLinkedinLabel: "LinkedIn",
     socialInstagramLabel: "Instagram",
     languageSwitchLabel: "Language",
-    homeUrl: "/",
-    altLangUrl: "/es",
+    enUrl: "/",
+    esUrl: "/es",
     currentLang: "en" as const,
   };
 
@@ -142,8 +142,8 @@ describe("MobileMenu", () => {
       ctaLabel: "Agendar Consulta",
       menuLabel: "Menú",
       closeMenuLabel: "Cerrar menú",
-      homeUrl: "/es",
-      altLangUrl: "/",
+      enUrl: "/",
+      esUrl: "/es",
       currentLang: "es" as const,
     };
 

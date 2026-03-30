@@ -11,8 +11,8 @@ export default function MobileMenu({
   socialLinkedinLabel,
   socialInstagramLabel,
   languageSwitchLabel,
-  homeUrl,
-  altLangUrl,
+  enUrl,
+  esUrl,
   currentLang,
 }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -199,7 +199,7 @@ export default function MobileMenu({
               className="flex items-center rounded-full border border-white/10 bg-white/5 p-0.5"
             >
               <a
-                href={homeUrl}
+                href={enUrl}
                 aria-current={currentLang === "en" ? "page" : undefined}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
                   currentLang === "en"
@@ -210,7 +210,7 @@ export default function MobileMenu({
                 EN
               </a>
               <a
-                href={altLangUrl}
+                href={esUrl}
                 aria-current={currentLang === "es" ? "page" : undefined}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
                   currentLang === "es"

@@ -11,7 +11,8 @@ interface Props {
 const { lang } = Astro.props;
 const t = (lang === "es" ? esTranslations : enTranslations).redesign.header;
 const homeUrl = lang === "en" ? "/" : "/es";
-const altLangUrl = lang === "en" ? "/es" : "/";
+const enUrl = "/";
+const esUrl = "/es";
 
 const navLinks = [
   { label: t.navServices, href: "#services", action: "services" },
@@ -139,7 +140,7 @@ const navLinks = [
         class="flex items-center rounded-full border border-white/10 bg-white/5 p-0.5"
       >
         <a
-          href={homeUrl}
+          href={enUrl}
           aria-current={lang === "en" ? "page" : undefined}
           class:list={[
             "rounded-full px-3 py-1.5 text-xs font-semibold transition-colors duration-200",
@@ -151,7 +152,7 @@ const navLinks = [
           EN
         </a>
         <a
-          href={altLangUrl}
+          href={esUrl}
           aria-current={lang === "es" ? "page" : undefined}
           class:list={[
             "rounded-full px-3 py-1.5 text-xs font-semibold transition-colors duration-200",
@@ -186,8 +187,8 @@ const navLinks = [
         socialLinkedinLabel={t.socialLinkedinLabel}
         socialInstagramLabel={t.socialInstagramLabel}
         languageSwitchLabel={t.languageSwitchLabel}
-        homeUrl={homeUrl}
-        altLangUrl={altLangUrl}
+        enUrl={enUrl}
+        esUrl={esUrl}
         currentLang={lang}
       />
     </div>

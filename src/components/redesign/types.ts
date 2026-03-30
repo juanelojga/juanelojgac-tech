@@ -90,7 +90,7 @@ export interface MobileMenuProps {
   socialLinkedinLabel: string;
   socialInstagramLabel: string;
   languageSwitchLabel: string;
-  homeUrl: string;
-  altLangUrl: string;
+  enUrl: string;
+  esUrl: string;
   currentLang: "en" | "es";
 }

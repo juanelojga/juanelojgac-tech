@@ -147,8 +147,8 @@ describe("Redesign TypeScript interfaces", () => {
         socialLinkedinLabel: "LinkedIn",
         socialInstagramLabel: "Instagram",
         languageSwitchLabel: "Language",
-        homeUrl: "/",
-        altLangUrl: "/es",
+        enUrl: "/",
+        esUrl: "/es",
         currentLang: "en",
       };
       expect(props.navLinks).toHaveLength(1);
@@ -167,8 +167,8 @@ describe("Redesign TypeScript interfaces", () => {
         socialLinkedinLabel: "LinkedIn",
         socialInstagramLabel: "Instagram",
         languageSwitchLabel: "Idioma",
-        homeUrl: "/es",
-        altLangUrl: "/",
+        enUrl: "/",
+        esUrl: "/es",
         currentLang: "es",
       };
       expect(props.lang).toBe("es");
