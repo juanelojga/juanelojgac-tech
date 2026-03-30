@@ -1,25 +1,38 @@
 import type { Context } from "@netlify/functions";
 
+import { StaticContentProvider } from "../../src/lib/chat/content/static-content-provider";
 import { RateLimiter } from "../../src/lib/chat/rate-limiter";
+import { ScopeEnforcerImpl } from "../../src/lib/chat/scope-enforcer";
+import { SystemPromptBuilder } from "../../src/lib/chat/system-prompt-builder";
+import type { ConversationPhase } from "../../src/lib/chat/types";
 import { verifyTurnstileToken } from "../../src/lib/chat/verification";
 
 // ──────────────────────────────────────────────
 // Chat API Proxy — Netlify Function
 // Proxies chat requests to OpenRouter API.
 // API key stays server-side — never reaches client.
+// System prompt is constructed server-side to prevent
+// prompt injection via direct API calls.
 // ──────────────────────────────────────────────
 
 /** Maximum message content length for user/assistant messages */
 const MAX_MESSAGE_LENGTH = 5000;
 
-/** Maximum system prompt length (includes full service catalog + guidelines) */
-const MAX_SYSTEM_MESSAGE_LENGTH = 15000;
-
 /** Maximum number of messages in a request */
 const MAX_MESSAGES = 50;
 
-/** Allowed message roles */
-const VALID_ROLES = new Set(["system", "user", "assistant"]);
+/** Only user and assistant messages are accepted from clients.
+ *  System messages are constructed server-side exclusively. */
+const VALID_ROLES = new Set(["user", "assistant"]);
+
+/** Valid conversation phases */
+const VALID_PHASES = new Set<string>([
+  "greeting",
+  "discovery",
+  "qualification",
+  "summary",
+  "completed",
+]);
 
 /** Allowed HTTP methods */
 const ALLOWED_METHODS = new Set(["POST", "OPTIONS"]);
@@ -31,17 +44,44 @@ const DEFAULT_MODEL = "meta-llama/llama-3.1-8b-instruct";
 const OPENROUTER_API_URL =
   process.env.OPENROUTER_API_URL ?? "https://openrouter.ai/api/v1/chat/completions";
 
-/** Singleton rate limiter — resets on cold start */
+/** Singleton instances — reused across warm invocations */
 const rateLimiter = new RateLimiter();
+const contentProvider = new StaticContentProvider();
+const systemPromptBuilder = new SystemPromptBuilder(contentProvider);
+const scopeEnforcer = new ScopeEnforcerImpl(contentProvider);
 
 /** Site info for OpenRouter tracking */
 const SITE_URL = process.env.SITE_URL ?? "https://juanelojgac-tech.com";
 const SITE_TITLE = process.env.SITE_TITLE ?? "JuaneloJGAC Tech AI Consultant";
 
-/** Derive the CORS origin from the request or fall back to SITE_URL */
+/** Allowed CORS origins — validated against an allowlist */
+const ALLOWED_ORIGINS = buildAllowedOrigins();
+
+function buildAllowedOrigins(): Set<string> {
+  const origins = new Set<string>();
+  // Always allow the production site
+  origins.add(SITE_URL);
+  // Add www variant
+  const url = SITE_URL.replace("://", "://www.");
+  if (url !== SITE_URL) origins.add(url);
+  // Dev origins
+  origins.add("http://localhost:4321");
+  origins.add("http://localhost:8888");
+  // Custom origins from env (comma-separated)
+  const custom = process.env.ALLOWED_ORIGINS;
+  if (custom) {
+    for (const o of custom.split(",")) {
+      const trimmed = o.trim();
+      if (trimmed) origins.add(trimmed);
+    }
+  }
+  return origins;
+}
+
+/** Only return an origin if it's in the allowlist */
 function getAllowedOrigin(request?: Request): string {
   const origin = request?.headers.get("origin");
-  if (origin) return origin;
+  if (origin && ALLOWED_ORIGINS.has(origin)) return origin;
   return SITE_URL;
 }
 
@@ -55,7 +95,21 @@ interface ChatRequestMessage {
 interface ChatRequestBody {
   messages: ChatRequestMessage[];
   language?: string;
+  phase?: string;
   turnstileToken?: string;
+}
+
+// ── Input sanitization ──
+
+/** Strip HTML tags, null bytes, and zero-width characters from user input */
+function sanitizeMessageContent(input: string): string {
+  let s = input;
+  s = s.replace(/\0/g, "");
+  // Strip zero-width characters used for regex bypass
+  s = s.replace(/[\u200B\u200C\u200D\uFEFF\u00AD]/g, "");
+  s = s.replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, "");
+  s = s.replace(/<[^>]*>/g, "");
+  return s.trim();
 }
 
 // ── Validation ──
@@ -72,11 +126,11 @@ function validateRequestBody(body: unknown): body is ChatRequestBody {
     const m = msg as Record<string, unknown>;
     if (typeof m.role !== "string" || !VALID_ROLES.has(m.role)) return false;
     if (typeof m.content !== "string") return false;
-    const maxLen = m.role === "system" ? MAX_SYSTEM_MESSAGE_LENGTH : MAX_MESSAGE_LENGTH;
-    if (m.content.length === 0 || m.content.length > maxLen) return false;
+    if (m.content.length === 0 || m.content.length > MAX_MESSAGE_LENGTH) return false;
   }
 
   if (b.language !== undefined && b.language !== "en" && b.language !== "es") return false;
+  if (b.phase !== undefined && !VALID_PHASES.has(b.phase)) return false;
 
   return true;
 }
@@ -156,19 +210,74 @@ export default async function handler(request: Request, _context: Context): Prom
     );
   }
 
-  // ── Turnstile verification (if secret key is configured) ──
+  // ── Turnstile verification ──
   const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
   if (turnstileSecret) {
     const token = body.turnstileToken;
-    // Empty token = client-side verification was bypassed (timeout / script error).
-    // Still allow the request — rate limiting provides baseline protection.
-    if (token) {
-      const verification = await verifyTurnstileToken(token, turnstileSecret, clientIp);
-      if (!verification.success) {
-        return createErrorResponse(403, "Human verification failed", request);
-      }
+    if (!token) {
+      // Require a valid token when Turnstile is configured
+      return createErrorResponse(403, "Verification token required", request);
+    }
+    const verification = await verifyTurnstileToken(token, turnstileSecret, clientIp);
+    if (!verification.success) {
+      return createErrorResponse(403, "Human verification failed", request);
     }
   }
+
+  // ── Server-side input sanitization ──
+  const sanitizedMessages = body.messages.map((m) => ({
+    role: m.role as "user" | "assistant",
+    content: sanitizeMessageContent(m.content),
+  }));
+
+  const language = (body.language ?? "en") as "en" | "es";
+  const phase = (body.phase ?? "greeting") as ConversationPhase;
+
+  // ── Server-side scope enforcement ──
+  // Check the last user message for out-of-scope or injection attempts
+  const lastUserMsg = [...sanitizedMessages].reverse().find((m) => m.role === "user");
+  if (lastUserMsg) {
+    const scopeResult = scopeEnforcer.evaluateScope(lastUserMsg.content, {
+      messages: [],
+      phase,
+      language,
+      leadAttributes: {},
+      isAssistantTyping: false,
+      error: null,
+    });
+
+    if (!scopeResult.isInScope && scopeResult.redirect) {
+      // Return redirect response without calling OpenRouter — saves cost
+      return new Response(
+        JSON.stringify({
+          choices: [
+            {
+              message: {
+                role: "assistant",
+                content: scopeResult.redirect.message,
+              },
+              finish_reason: "stop",
+            },
+          ],
+          usage: { prompt_tokens: 0, completion_tokens: 0, total_tokens: 0 },
+        }),
+        {
+          status: 200,
+          headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": getAllowedOrigin(request),
+          },
+        }
+      );
+    }
+  }
+
+  // ── Build messages with server-side system prompt ──
+  const systemPrompt = systemPromptBuilder.buildSystemPrompt(language, phase);
+  const apiMessages = [
+    { role: "system" as const, content: systemPrompt },
+    ...sanitizedMessages,
+  ];
 
   const model = process.env.OPENROUTER_MODEL ?? DEFAULT_MODEL;
 
@@ -184,7 +293,7 @@ export default async function handler(request: Request, _context: Context): Prom
       },
       body: JSON.stringify({
         model,
-        messages: body.messages,
+        messages: apiMessages,
         max_tokens: 1024,
         temperature: 0.7,
       }),

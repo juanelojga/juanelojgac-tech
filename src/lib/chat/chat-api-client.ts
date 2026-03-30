@@ -49,13 +49,17 @@ export class ChatAPIClient {
 
   /**
    * Sends a chat completion request through the server-side proxy.
+   * Only user/assistant messages are sent — system prompt is built server-side.
    * Automatically retries on transient failures with exponential backoff.
    */
   async sendMessage(
     messages: readonly OpenRouterMessage[],
-    language: "en" | "es" = "en"
+    language: "en" | "es" = "en",
+    phase: string = "greeting"
   ): Promise<ChatCompletionResult> {
-    return withRetry(() => this.sendMessageOnce(messages, language), this.retryConfig);
+    // Filter out system messages — the server constructs its own system prompt
+    const clientMessages = messages.filter((m) => m.role !== "system");
+    return withRetry(() => this.sendMessageOnce(clientMessages, language, phase), this.retryConfig);
   }
 
   /**
@@ -100,7 +104,8 @@ export class ChatAPIClient {
    */
   private async sendMessageOnce(
     messages: readonly OpenRouterMessage[],
-    language: "en" | "es"
+    language: "en" | "es",
+    phase: string
   ): Promise<ChatCompletionResult> {
     const controller = new AbortController();
     const timeoutId = setTimeout(() => controller.abort(), this.timeoutMs);
@@ -113,6 +118,7 @@ export class ChatAPIClient {
         body: JSON.stringify({
           messages,
           language,
+          phase,
           ...(this.turnstileToken && { turnstileToken: this.turnstileToken }),
         }),
         signal: controller.signal,

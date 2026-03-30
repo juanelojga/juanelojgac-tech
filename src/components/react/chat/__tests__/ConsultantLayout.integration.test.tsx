@@ -264,13 +264,13 @@ describe("ConsultantLayout Integration — Phase 5", () => {
       expect(mockSuggestFollowUps).toHaveBeenCalledOnce();
     });
 
-    it("formats messages through SystemPromptBuilder before API call", async () => {
+    it("sends messages with phase to API client (system prompt built server-side)", async () => {
       render(<ConsultantLayout {...defaultProps} />);
 
       sendChatMessage("What do you offer?");
 
       await waitFor(() => {
-        expect(mockFormatMessagesForAPI).toHaveBeenCalledWith(
+        expect(mockSendMessage).toHaveBeenCalledWith(
           expect.arrayContaining([
             expect.objectContaining({ role: "user", content: "What do you offer?" }),
           ]),
@@ -492,7 +492,7 @@ describe("ConsultantLayout Integration — Phase 5", () => {
       sendChatMessage("Automate customer support");
 
       await waitFor(() => {
-        expect(mockFormatMessagesForAPI).toHaveBeenLastCalledWith(
+        expect(mockSendMessage).toHaveBeenLastCalledWith(
           expect.any(Array),
           "en",
           "discovery"

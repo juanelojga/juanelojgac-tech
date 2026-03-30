@@ -38,10 +38,30 @@ const rateLimiter = new RateLimiter();
 const SITE_URL = process.env.SITE_URL ?? "https://juanelojgac-tech.com";
 const SITE_TITLE = process.env.SITE_TITLE ?? "JuaneloJGAC Tech AI Consultant";
 
-/** Derive the CORS origin from the request or fall back to SITE_URL */
+/** Allowed CORS origins — validated against an allowlist */
+const ALLOWED_ORIGINS = buildAllowedOrigins();
+
+function buildAllowedOrigins(): Set<string> {
+  const origins = new Set<string>();
+  origins.add(SITE_URL);
+  const url = SITE_URL.replace("://", "://www.");
+  if (url !== SITE_URL) origins.add(url);
+  origins.add("http://localhost:4321");
+  origins.add("http://localhost:8888");
+  const custom = process.env.ALLOWED_ORIGINS;
+  if (custom) {
+    for (const o of custom.split(",")) {
+      const trimmed = o.trim();
+      if (trimmed) origins.add(trimmed);
+    }
+  }
+  return origins;
+}
+
+/** Only return an origin if it's in the allowlist */
 function getAllowedOrigin(request?: Request): string {
   const origin = request?.headers.get("origin");
-  if (origin) return origin;
+  if (origin && ALLOWED_ORIGINS.has(origin)) return origin;
   return SITE_URL;
 }
 

@@ -210,15 +210,14 @@ export default function ConsultantLayout({
       lastFailedMessageRef.current = content;
 
       try {
-        // Format messages for API
-        const apiMessages = svc.promptBuilder.formatMessagesForAPI(
-          updatedMessages,
-          language,
-          phase
-        );
+        // Format messages for API — only user/assistant messages
+        // System prompt is now constructed server-side
+        const apiMessages = updatedMessages
+          .filter((m) => m.role !== "system")
+          .map((m) => ({ role: m.role as "user" | "assistant", content: m.content }));
 
-        // Call API
-        const result = await svc.apiClient.sendMessage(apiMessages, language);
+        // Call API with phase for server-side system prompt construction
+        const result = await svc.apiClient.sendMessage(apiMessages, language, phase);
 
         // Create assistant message
         let assistantMessage: ChatMessageType = {

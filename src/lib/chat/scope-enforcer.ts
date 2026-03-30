@@ -146,18 +146,28 @@ const COMPETITOR_PATTERNS: readonly RegExp[] = [
 
 /** Patterns indicating prompt injection attempts */
 const INJECTION_PATTERNS: readonly RegExp[] = [
-  /\b(ignore|ignora)\s+(all\s+)?(previous|previas|earlier|anterior)\s*(instruction|instruccion)/i,
+  // Override / ignore instructions
+  /\b(ignore|ignora|disregard|dismiss|desestima)\s+(all\s+)?(previous|previas|earlier|anterior|prior|preceding)\s*(instruction|instruccion|directive|guideline|rule|regla)/i,
   /\b(you are now|ahora eres)\b/i,
-  /\b(forget|olvida)\s+(everything|todo)\b/i,
-  /\b(print|muestra|reveal|revela)\s+(your|tus|the)?\s*(instruction|instruccion|system prompt|prompt del sistema)/i,
-  /\b(override|anula|sobreescribe)\s+(your|tus)?\s*(rules|reglas)\b/i,
-  /\b(pretend|finge|simula)\s+(you are|eres|ser)\b/i,
-  /\b(new instructions?|nuevas instrucciones)\s*(override|anulan|sobreescriben)/i,
-  /\b(repeat|repite)\s+(everything|todo)\s+(above|arriba|antes)/i,
+  /\b(forget|olvida)\s+(everything|todo|all|todas?\s+las?)\b/i,
+  // Reveal system prompt
+  /\b(print|muestra|reveal|revela|show|display|output|dump)\s+(your|tus|the|el|la)?\s*(instruction|instruccion|system prompt|prompt del sistema|initial prompt|original prompt)/i,
+  /\b(override|anula|sobreescribe|bypass)\s+(your|tus|the)?\s*(rules|reglas|restrictions|restricciones|guidelines)\b/i,
+  /\b(pretend|finge|simula|roleplay|role-play)\s+(you are|eres|ser|to be|que eres)\b/i,
+  /\b(new instructions?|nuevas instrucciones)\s*(override|anulan|sobreescriben|replace|reemplazan)/i,
+  /\b(repeat|repite)\s+(everything|todo)\s+(above|arriba|antes|before)/i,
   /^system\s*:/i,
-  /\b(without restrictions?|sin restricciones)\b/i,
+  /\b(without restrictions?|sin restricciones|no limits?|sin límites)\b/i,
   /\b(act as|actúa como)\s+(a different|otro|una?\s+diferente)\b/i,
-  /\b(what are your|cuáles son tus)\s*(system)?\s*(instruction|instruccion)/i,
+  /\b(what are your|cuáles son tus)\s*(system)?\s*(instruction|instruccion|prompt|directive)/i,
+  // Jailbreak / mode override patterns
+  /\b(jailbreak|jail\s*break)\b/i,
+  /\b(DAN|developer)\s*(mode|modo)\b/i,
+  /\b(enable|activate|habilita|activa)\s+(unrestricted|unfiltered|sin filtro)\b/i,
+  /\b(respond|responde)\s+(without|sin)\s+(constraints?|filter|filtro|restricciones)\b/i,
+  // Identity override
+  /\b(from now on|de ahora en adelante)\s+(you|tú|usted)\s+(are|eres|será)/i,
+  /\b(stop being|deja de ser)\s+(the|el|la|an?)?\s*(assistant|consultant|asistente|consultor)/i,
 ];
 
 export class ScopeEnforcerImpl implements ScopeEnforcer {
@@ -168,7 +178,9 @@ export class ScopeEnforcerImpl implements ScopeEnforcer {
   }
 
   evaluateScope(userMessage: string, conversationState: ConversationState): ScopeEvaluationResult {
-    const normalized = userMessage.trim().toLowerCase();
+    // Normalize input: strip zero-width chars and other obfuscation before pattern matching
+    const cleaned = ScopeEnforcerImpl.normalizeInput(userMessage);
+    const normalized = cleaned.trim().toLowerCase();
 
     // Empty or whitespace-only input
     if (normalized.length === 0) {
@@ -176,20 +188,20 @@ export class ScopeEnforcerImpl implements ScopeEnforcer {
     }
 
     // Check for injection attempts first (highest priority)
-    if (this.matchesPatterns(userMessage, INJECTION_PATTERNS)) {
+    if (this.matchesPatterns(cleaned, INJECTION_PATTERNS)) {
       return this.buildOutOfScopeResult(conversationState.language);
     }
 
     // Check for explicit out-of-scope patterns
-    if (this.matchesPatterns(userMessage, CODING_PATTERNS)) {
+    if (this.matchesPatterns(cleaned, CODING_PATTERNS)) {
       return this.buildOutOfScopeResult(conversationState.language);
     }
 
-    if (this.matchesPatterns(userMessage, COMPETITOR_PATTERNS)) {
+    if (this.matchesPatterns(cleaned, COMPETITOR_PATTERNS)) {
       return this.buildOutOfScopeResult(conversationState.language);
     }
 
-    if (this.matchesPatterns(userMessage, GENERAL_KNOWLEDGE_PATTERNS)) {
+    if (this.matchesPatterns(cleaned, GENERAL_KNOWLEDGE_PATTERNS)) {
       return this.buildOutOfScopeResult(conversationState.language);
     }
 
@@ -197,16 +209,16 @@ export class ScopeEnforcerImpl implements ScopeEnforcer {
     let confidence = 0.5; // Base confidence for any non-blocked message
 
     // Check vague patterns
-    if (this.matchesPatterns(userMessage, VAGUE_PATTERNS)) {
+    if (this.matchesPatterns(cleaned, VAGUE_PATTERNS)) {
       return { isInScope: true, confidence: 0.6 };
     }
 
     // Score in-scope keyword matches
-    const serviceScore = this.countMatches(userMessage, SERVICE_KEYWORDS);
-    const companyScore = this.countMatches(userMessage, COMPANY_KEYWORDS);
-    const pricingScore = this.countMatches(userMessage, PRICING_KEYWORDS);
-    const projectScore = this.countMatches(userMessage, PROJECT_KEYWORDS);
-    const timelineScore = this.countMatches(userMessage, TIMELINE_KEYWORDS);
+    const serviceScore = this.countMatches(cleaned, SERVICE_KEYWORDS);
+    const companyScore = this.countMatches(cleaned, COMPANY_KEYWORDS);
+    const pricingScore = this.countMatches(cleaned, PRICING_KEYWORDS);
+    const projectScore = this.countMatches(cleaned, PROJECT_KEYWORDS);
+    const timelineScore = this.countMatches(cleaned, TIMELINE_KEYWORDS);
 
     const totalScore = serviceScore + companyScore + pricingScore + projectScore + timelineScore;
 
@@ -248,5 +260,27 @@ export class ScopeEnforcerImpl implements ScopeEnforcer {
       confidence: 0.9,
       redirect,
     };
+  }
+
+  /**
+   * Normalize user input before pattern matching.
+   * Strips zero-width characters, soft hyphens, and other Unicode obfuscation
+   * that can be used to bypass regex word-boundary checks.
+   */
+  static normalizeInput(input: string): string {
+    let s = input;
+    // Strip zero-width and invisible formatting characters
+    s = s.replace(/[\u200B\u200C\u200D\uFEFF\u00AD\u2060\u180E]/g, "");
+    // Normalize common homoglyph substitutions (Cyrillic → Latin)
+    s = s.replace(/[\u0430]/g, "a"); // Cyrillic а → a
+    s = s.replace(/[\u0435]/g, "e"); // Cyrillic е → e
+    s = s.replace(/[\u043E]/g, "o"); // Cyrillic о → o
+    s = s.replace(/[\u0440]/g, "p"); // Cyrillic р → p
+    s = s.replace(/[\u0441]/g, "c"); // Cyrillic с → c
+    s = s.replace(/[\u0443]/g, "y"); // Cyrillic у → y
+    s = s.replace(/[\u0445]/g, "x"); // Cyrillic х → x
+    // Collapse multiple spaces
+    s = s.replace(/\s+/g, " ");
+    return s;
   }
 }

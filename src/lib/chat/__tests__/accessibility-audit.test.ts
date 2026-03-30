@@ -82,12 +82,23 @@ describe("Accessibility Audit — WCAG 2.1 AA", () => {
       expect(html).toMatch(/role="region"[^>]*aria-label/);
     });
 
-    it("message list has aria-live for dynamic content", () => {
-      expect(html).toMatch(/aria-live="polite"/);
+    it("message list has aria-live for dynamic content (client-rendered React island)", () => {
+      // aria-live="polite" is in the React ChatContainer component which renders client-side only.
+      // Verify the attribute exists in the source rather than built HTML.
+      const source = fs.readFileSync(
+        path.resolve(process.cwd(), "src/components/react/chat/ChatContainer.tsx"),
+        "utf-8",
+      );
+      expect(source).toContain('aria-live="polite"');
     });
 
-    it("message list has role=log", () => {
-      expect(html).toMatch(/role="log"/);
+    it("message list has role=log (client-rendered React island)", () => {
+      // role="log" is in the React ChatContainer component which renders client-side only.
+      const source = fs.readFileSync(
+        path.resolve(process.cwd(), "src/components/react/chat/ChatContainer.tsx"),
+        "utf-8",
+      );
+      expect(source).toContain('role="log"');
     });
 
     it("expandable panel has aria-expanded", () => {
@@ -136,9 +147,13 @@ describe("Accessibility Audit — WCAG 2.1 AA", () => {
       expect(html).toMatch(/<title>[^<]+<\/title>/);
     });
 
-    it("character count is associated with input via aria-describedby", () => {
-      // The character count span should be linked to the textarea
-      expect(html).toMatch(/aria-describedby/);
+    it("character count is associated with input via aria-describedby (client-rendered React island)", () => {
+      // aria-describedby is in the React ChatInput component which renders client-side only.
+      const source = fs.readFileSync(
+        path.resolve(process.cwd(), "src/components/react/chat/ChatInput.tsx"),
+        "utf-8",
+      );
+      expect(source).toContain("aria-describedby");
     });
   });
 });
