@@ -17,6 +17,7 @@ export interface ContactFormTranslations {
   readonly successMessage: string;
   readonly errorMessage: string;
   readonly closeLabel: string;
+  readonly genericSummary: string;
 }
 
 export interface ContactFormModalProps {

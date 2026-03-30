@@ -194,6 +194,7 @@ const defaultProps: ConsultantLayoutProps = {
     successMessage: "Thanks!",
     errorMessage: "Something went wrong.",
     closeLabel: "Close",
+    genericSummary: "I'd like to learn more about your AI consulting services.",
   },
   actionPrompts: {
     services: "Tell me about your services",

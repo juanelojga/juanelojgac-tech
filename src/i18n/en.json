@@ -159,7 +159,8 @@
       "submitLabel": "Send",
       "successMessage": "Thanks! We'll be in touch soon.",
       "errorMessage": "Something went wrong. Please try again.",
-      "closeLabel": "Close"
+      "closeLabel": "Close",
+      "genericSummary": "I'd like to learn more about your AI consulting services."
     }
   },
   "consultant": {

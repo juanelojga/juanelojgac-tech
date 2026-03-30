@@ -159,7 +159,8 @@
       "submitLabel": "Enviar",
       "successMessage": "¡Gracias! Te contactaremos pronto.",
       "errorMessage": "Algo salió mal. Inténtalo de nuevo.",
-      "closeLabel": "Cerrar"
+      "closeLabel": "Cerrar",
+      "genericSummary": "Me gustaría saber más sobre sus servicios de consultoría en IA."
     }
   },
   "consultant": {

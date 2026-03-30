@@ -283,7 +283,17 @@ export default function ConsultantLayout({
   useEffect(() => {
     const handleAction = (e: Event) => {
       const action = (e as CustomEvent<{ action: string }>).detail?.action;
-      if (!action || !isVerified) return;
+      if (!action) return;
+
+      // "Contact" with no prior chat → open ContactFormModal directly
+      if (action === "contact" && messages.length === 0) {
+        setShowContactForm(true);
+        setAiSummary(contactFormTranslations.genericSummary);
+        setIsLoadingSummary(false);
+        return;
+      }
+
+      if (!isVerified) return;
       const prompt = actionPrompts[action as keyof ActionPrompts];
       if (prompt) {
         handleSendMessage(prompt);
@@ -292,7 +302,7 @@ export default function ConsultantLayout({
 
     window.addEventListener("consultant:action", handleAction);
     return () => window.removeEventListener("consultant:action", handleAction);
-  }, [actionPrompts, isVerified, handleSendMessage]);
+  }, [actionPrompts, isVerified, handleSendMessage, messages.length, contactFormTranslations.genericSummary]);
 
   /** Build a readable plain-text summary of the conversation for the contact form */
   const plainTextSummary = messages
