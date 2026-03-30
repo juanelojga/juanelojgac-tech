@@ -53,7 +53,9 @@ const currentPath = Astro.url.pathname;
               return;
             }
           }
-        } catch { /* localStorage unavailable */ }
+        } catch {
+          /* localStorage unavailable */
+        }
       })();
     </script>
 
