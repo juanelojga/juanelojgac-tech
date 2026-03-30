@@ -171,8 +171,10 @@ export default function ChatContainer({
         visible={!hasMessages}
       />
 
-      {/* Contact Now chip — always visible */}
-      <ContactChip label={translations.contactChipLabel} onClick={onContactClick} />
+      {/* Contact Now chip — visible after user sends a message */}
+      {hasMessages && (
+        <ContactChip label={translations.contactChipLabel} onClick={onContactClick} />
+      )}
 
       {/* Input Area */}
       <ChatInput
