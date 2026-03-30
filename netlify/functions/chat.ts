@@ -274,10 +274,7 @@ export default async function handler(request: Request, _context: Context): Prom
 
   // ── Build messages with server-side system prompt ──
   const systemPrompt = systemPromptBuilder.buildSystemPrompt(language, phase);
-  const apiMessages = [
-    { role: "system" as const, content: systemPrompt },
-    ...sanitizedMessages,
-  ];
+  const apiMessages = [{ role: "system" as const, content: systemPrompt }, ...sanitizedMessages];
 
   const model = process.env.OPENROUTER_MODEL ?? DEFAULT_MODEL;
 

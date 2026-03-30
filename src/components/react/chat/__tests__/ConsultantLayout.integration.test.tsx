@@ -492,11 +492,7 @@ describe("ConsultantLayout Integration — Phase 5", () => {
       sendChatMessage("Automate customer support");
 
       await waitFor(() => {
-        expect(mockSendMessage).toHaveBeenLastCalledWith(
-          expect.any(Array),
-          "en",
-          "discovery"
-        );
+        expect(mockSendMessage).toHaveBeenLastCalledWith(expect.any(Array), "en", "discovery");
       });
     });
   });

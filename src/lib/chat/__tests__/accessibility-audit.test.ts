@@ -87,7 +87,7 @@ describe("Accessibility Audit — WCAG 2.1 AA", () => {
       // Verify the attribute exists in the source rather than built HTML.
       const source = fs.readFileSync(
         path.resolve(process.cwd(), "src/components/react/chat/ChatContainer.tsx"),
-        "utf-8",
+        "utf-8"
       );
       expect(source).toContain('aria-live="polite"');
     });
@@ -96,7 +96,7 @@ describe("Accessibility Audit — WCAG 2.1 AA", () => {
       // role="log" is in the React ChatContainer component which renders client-side only.
       const source = fs.readFileSync(
         path.resolve(process.cwd(), "src/components/react/chat/ChatContainer.tsx"),
-        "utf-8",
+        "utf-8"
       );
       expect(source).toContain('role="log"');
     });
@@ -151,7 +151,7 @@ describe("Accessibility Audit — WCAG 2.1 AA", () => {
       // aria-describedby is in the React ChatInput component which renders client-side only.
       const source = fs.readFileSync(
         path.resolve(process.cwd(), "src/components/react/chat/ChatInput.tsx"),
-        "utf-8",
+        "utf-8"
       );
       expect(source).toContain("aria-describedby");
     });
