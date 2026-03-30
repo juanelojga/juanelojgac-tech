@@ -210,9 +210,9 @@ export default async function handler(request: Request, _context: Context): Prom
     );
   }
 
-  // ── Turnstile verification ──
+  // ── Turnstile verification (skipped in local dev — NETLIFY_DEV is auto-set by netlify dev) ──
   const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
-  if (turnstileSecret) {
+  if (turnstileSecret && process.env.NETLIFY_DEV !== "true") {
     const token = body.turnstileToken;
     if (!token) {
       // Require a valid token when Turnstile is configured
