@@ -11,6 +11,7 @@
 
 import enTranslations from "../i18n/en.json";
 import esTranslations from "../i18n/es.json";
+import { SOCIAL_LINKS } from "../lib/socialLinks";
 
 interface Props {
   title: string;
@@ -120,8 +121,9 @@ const organizationSchema = {
   ],
   sameAs: [
     "https://twitter.com/juanelojgac",
-    "https://linkedin.com/company/juanelojgac-tech",
-    "https://instagram.com/juanelojgac",
+    SOCIAL_LINKS.github,
+    SOCIAL_LINKS.linkedin,
+    SOCIAL_LINKS.instagram,
   ],
   knowsAbout: [
     "Artificial Intelligence",

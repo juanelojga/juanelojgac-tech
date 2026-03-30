@@ -2,6 +2,7 @@
 import enTranslations from "../../i18n/en.json";
 import esTranslations from "../../i18n/es.json";
 import type { Language } from "../../lib/i18n";
+import { SOCIAL_LINKS } from "../../lib/socialLinks";
 import MobileMenu from "./react/MobileMenu";
 
 interface Props {
@@ -59,7 +60,7 @@ const navLinks = [
       <!-- Social icons (desktop only) -->
       <div class="hidden items-center gap-2 lg:flex" aria-label="Social">
         <a
-          href="https://github.com/juanelojga"
+          href={SOCIAL_LINKS.github}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={t.socialGithubLabel}
@@ -84,7 +85,7 @@ const navLinks = [
           </svg>
         </a>
         <a
-          href="https://linkedin.com/in/juanelojga"
+          href={SOCIAL_LINKS.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={t.socialLinkedinLabel}
@@ -109,7 +110,7 @@ const navLinks = [
           </svg>
         </a>
         <a
-          href="https://instagram.com/juanelojgac"
+          href={SOCIAL_LINKS.instagram}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={t.socialInstagramLabel}

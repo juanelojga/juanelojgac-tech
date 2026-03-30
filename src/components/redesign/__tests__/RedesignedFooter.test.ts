@@ -49,8 +49,8 @@ describe("RedesignedFooter", () => {
       expect(result).toContain('target="_blank"');
       expect(result).toContain('rel="noopener noreferrer"');
       expect(result).toContain("github.com/juanelojga");
-      expect(result).toContain("linkedin.com/in/juanelojga");
-      expect(result).toContain("instagram.com/juanelojgac");
+      expect(result).toContain("linkedin.com/company/juanelojgac-tech-llc");
+      expect(result).toContain("instagram.com/juanelojgactech1");
     });
 
     it("renders social links with aria-labels", async () => {

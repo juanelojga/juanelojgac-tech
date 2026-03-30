@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { SOCIAL_LINKS } from "../../../lib/socialLinks";
 import type { MobileMenuProps } from "../types";
 
 export default function MobileMenu({
@@ -225,7 +226,7 @@ export default function MobileMenu({
             {/* Social icons */}
             <div className="flex items-center gap-4">
               <a
-                href="https://github.com/juanelojga"
+                href={SOCIAL_LINKS.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={socialGithubLabel}
@@ -248,7 +249,7 @@ export default function MobileMenu({
                 </svg>
               </a>
               <a
-                href="https://linkedin.com/in/juanelojga"
+                href={SOCIAL_LINKS.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={socialLinkedinLabel}
@@ -272,7 +273,7 @@ export default function MobileMenu({
                 </svg>
               </a>
               <a
-                href="https://instagram.com/juanelojgac"
+                href={SOCIAL_LINKS.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={socialInstagramLabel}

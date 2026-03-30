@@ -57,9 +57,10 @@ describe("RedesignedHeader", () => {
     });
 
     it("links to social profiles", () => {
-      expect(headerSource).toContain("github.com/juanelojga");
-      expect(headerSource).toContain("linkedin.com/in/juanelojga");
-      expect(headerSource).toContain("instagram.com/juanelojgac");
+      expect(headerSource).toContain('import { SOCIAL_LINKS } from "../../lib/socialLinks"');
+      expect(headerSource).toContain("href={SOCIAL_LINKS.github}");
+      expect(headerSource).toContain("href={SOCIAL_LINKS.linkedin}");
+      expect(headerSource).toContain("href={SOCIAL_LINKS.instagram}");
     });
 
     it("uses pill-style language switcher", () => {
