@@ -201,6 +201,7 @@ export default function MobileMenu({
             >
               <a
                 href={enUrl}
+                onClick={() => localStorage.setItem("lang-preference", "en")}
                 aria-current={currentLang === "en" ? "page" : undefined}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
                   currentLang === "en"
@@ -212,6 +213,7 @@ export default function MobileMenu({
               </a>
               <a
                 href={esUrl}
+                onClick={() => localStorage.setItem("lang-preference", "es")}
                 aria-current={currentLang === "es" ? "page" : undefined}
                 className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-200 ${
                   currentLang === "es"
