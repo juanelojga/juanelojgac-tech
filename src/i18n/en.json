@@ -154,6 +154,8 @@
       "companyLabel": "Company",
       "companyPlaceholder": "Your company name",
       "summaryLabel": "Conversation Summary",
+      "summaryLoading": "Generating summary...",
+      "summaryCharCount": "/500",
       "submitLabel": "Send",
       "successMessage": "Thanks! We'll be in touch soon.",
       "errorMessage": "Something went wrong. Please try again.",

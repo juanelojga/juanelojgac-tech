@@ -101,6 +101,8 @@ export default function ConsultantLayout({
   const leadAttributes: Partial<LeadAttributes> = {};
   const [followUps, setFollowUps] = useState<readonly GuidedFollowUp[]>([]);
   const [showContactForm, setShowContactForm] = useState(false);
+  const [isLoadingSummary, setIsLoadingSummary] = useState(false);
+  const [aiSummary, setAiSummary] = useState("");
   const lastFailedMessageRef = useRef<string | null>(null);
   const turnstileTokenRef = useRef<string | null>(null);
 
@@ -293,17 +295,49 @@ export default function ConsultantLayout({
   }, [actionPrompts, isVerified, handleSendMessage]);
 
   /** Build a readable plain-text summary of the conversation for the contact form */
-  const conversationSummary = messages
+  const plainTextSummary = messages
     .filter((m) => m.role !== "system")
     .map((m) => `${m.role === "user" ? "User" : "Assistant"}: ${m.content}`)
-    .join("\n\n");
+    .join("\n\n")
+    .slice(0, 500);
+
+  /** Trigger AI-powered summarization when opening the contact form */
+  const handleContactClick = useCallback(() => {
+    setShowContactForm(true);
+    setAiSummary("");
+    setIsLoadingSummary(true);
+
+    const chatMessages = messages
+      .filter((m) => m.role !== "system")
+      .map((m) => ({ role: m.role, content: m.content }));
+
+    if (chatMessages.length === 0) {
+      setIsLoadingSummary(false);
+      return;
+    }
+
+    const svc = getServices();
+    svc.apiClient
+      .summarizeConversation(chatMessages, language)
+      .then((summary) => {
+        setAiSummary(summary);
+      })
+      .catch(() => {
+        // Fallback to truncated plain-text summary
+        setAiSummary(plainTextSummary);
+      })
+      .finally(() => {
+        setIsLoadingSummary(false);
+      });
+  }, [messages, language, plainTextSummary]);
 
   return (
     <>
       {showContactForm && (
         <ContactFormModal
           translations={contactFormTranslations}
-          conversationSummary={conversationSummary}
+          conversationSummary={aiSummary}
+          isLoadingSummary={isLoadingSummary}
           onClose={() => setShowContactForm(false)}
         />
       )}
@@ -333,7 +367,7 @@ export default function ConsultantLayout({
                 error={error}
                 onSendMessage={handleSendMessage}
                 onRetry={handleRetry}
-                onContactClick={() => setShowContactForm(true)}
+                onContactClick={handleContactClick}
                 translations={chatTranslations}
               />
             ) : (

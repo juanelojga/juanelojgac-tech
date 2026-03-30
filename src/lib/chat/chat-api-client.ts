@@ -21,6 +21,7 @@ export interface ChatAPIClientConfig {
 
 /** Default endpoint for the Netlify Function */
 const DEFAULT_ENDPOINT = "/.netlify/functions/chat";
+const DEFAULT_SUMMARIZE_ENDPOINT = "/.netlify/functions/summarize";
 const DEFAULT_TIMEOUT_MS = 35000;
 
 /**
@@ -55,6 +56,43 @@ export class ChatAPIClient {
     language: "en" | "es" = "en"
   ): Promise<ChatCompletionResult> {
     return withRetry(() => this.sendMessageOnce(messages, language), this.retryConfig);
+  }
+
+  /**
+   * Generates a concise AI summary (≤500 chars) of a conversation
+   * via the server-side summarize function.
+   */
+  async summarizeConversation(
+    messages: readonly { role: string; content: string }[],
+    language: "en" | "es" = "en"
+  ): Promise<string> {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), this.timeoutMs);
+
+    try {
+      const response = await fetch(DEFAULT_SUMMARIZE_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages, language }),
+        signal: controller.signal,
+      });
+
+      if (!response.ok) {
+        throw new OpenRouterError("server_error", `HTTP ${response.status}`, true);
+      }
+
+      const data = (await response.json()) as { summary?: string };
+      return data.summary ?? "";
+    } catch (error: unknown) {
+      if (error instanceof OpenRouterError) throw error;
+      if (error instanceof DOMException && error.name === "AbortError") {
+        throw new OpenRouterError("timeout", "Summarization timed out", true);
+      }
+      const errMsg = error instanceof Error ? error.message : "Summarization failed";
+      throw new OpenRouterError("network_error", errMsg, true);
+    } finally {
+      clearTimeout(timeoutId);
+    }
   }
 
   /**

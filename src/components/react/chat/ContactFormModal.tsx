@@ -11,6 +11,8 @@ export interface ContactFormTranslations {
   readonly companyLabel: string;
   readonly companyPlaceholder: string;
   readonly summaryLabel: string;
+  readonly summaryLoading: string;
+  readonly summaryCharCount: string;
   readonly submitLabel: string;
   readonly successMessage: string;
   readonly errorMessage: string;
@@ -20,6 +22,7 @@ export interface ContactFormTranslations {
 export interface ContactFormModalProps {
   readonly translations: ContactFormTranslations;
   readonly conversationSummary: string;
+  readonly isLoadingSummary?: boolean;
   readonly onClose: () => void;
 }
 
@@ -30,6 +33,7 @@ type FormStatus = "idle" | "submitting" | "success" | "error";
 export default function ContactFormModal({
   translations,
   conversationSummary,
+  isLoadingSummary = false,
   onClose,
 }: ContactFormModalProps) {
   const [name, setName] = useState("");
@@ -45,6 +49,13 @@ export default function ContactFormModal({
   useEffect(() => {
     firstInputRef.current?.focus();
   }, []);
+
+  // Sync summary when AI summary arrives asynchronously
+  useEffect(() => {
+    if (conversationSummary) {
+      setSummary(conversationSummary);
+    }
+  }, [conversationSummary]);
 
   // Close on Escape
   useEffect(() => {
@@ -258,13 +269,51 @@ export default function ContactFormModal({
               <label htmlFor="contact-summary" className={labelClasses}>
                 {translations.summaryLabel}
               </label>
-              <textarea
-                id="contact-summary"
-                rows={4}
-                value={summary}
-                onChange={(e) => setSummary(e.target.value)}
-                className={`${inputClasses} resize-y`}
-              />
+              {isLoadingSummary ? (
+                <div className="border-white-10 bg-midnight-surface flex h-[6.5rem] items-center justify-center rounded-xl border">
+                  <div className="flex items-center gap-2">
+                    <svg
+                      className="text-accent-cyan h-4 w-4 animate-spin"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                      />
+                    </svg>
+                    <span className="text-text-muted text-sm">
+                      {translations.summaryLoading}
+                    </span>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <textarea
+                    id="contact-summary"
+                    rows={4}
+                    maxLength={500}
+                    value={summary}
+                    onChange={(e) => setSummary(e.target.value)}
+                    className={`${inputClasses} resize-y`}
+                  />
+                  <p className="text-text-muted mt-1 text-right text-xs">
+                    {summary.length}
+                    {translations.summaryCharCount}
+                  </p>
+                </>
+              )}
             </div>
 
             {/* Error message */}

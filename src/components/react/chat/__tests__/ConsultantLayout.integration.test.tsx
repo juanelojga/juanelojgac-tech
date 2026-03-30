@@ -188,6 +188,8 @@ const defaultProps: ConsultantLayoutProps = {
     companyLabel: "Company",
     companyPlaceholder: "Your company name",
     summaryLabel: "Conversation Summary",
+    summaryLoading: "Generating summary...",
+    summaryCharCount: "/500",
     submitLabel: "Send",
     successMessage: "Thanks!",
     errorMessage: "Something went wrong.",
