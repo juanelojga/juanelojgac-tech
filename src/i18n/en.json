@@ -4,7 +4,13 @@
     "defaultTitle": "AI Consulting for Startups & SMEs",
     "defaultDescription": "AI consulting agency helping startups and small businesses build smarter products, automations, and web platforms. Bilingual AI solutions from $3,000. Serving the US and Latin America.",
     "keywords": "AI consulting for startups, AI solutions for small business, AI web development agency, AI automation for SMEs, digital transformation consulting, AI marketing for startups, bilingual AI consulting, AI consulting US and Latin America",
-    "keywordsList": ["AI Consulting for Startups", "AI Solutions for Small Business", "AI Web Development Agency", "AI Automation", "Digital Transformation"],
+    "keywordsList": [
+      "AI Consulting for Startups",
+      "AI Solutions for Small Business",
+      "AI Web Development Agency",
+      "AI Automation",
+      "Digital Transformation"
+    ],
     "twitterHandle": "@juanelojgac",
     "organization": {
       "name": "JuaneloJGAC Tech",

@@ -4,7 +4,13 @@
     "defaultTitle": "Consultoría de IA para Startups y PYMEs",
     "defaultDescription": "Agencia de consultoría de IA que ayuda a startups y pequeñas empresas a crear productos, automatizaciones y plataformas web más inteligentes. Soluciones de IA bilingües desde $3,000. Sirviendo a EE.UU. y Latinoamérica.",
     "keywords": "consultoría de IA para startups, soluciones de IA para pequeñas empresas, agencia de desarrollo web con IA, automatización IA para PYMEs, consultoría transformación digital, marketing con IA para startups, consultoría IA bilingüe, consultoría IA EE.UU. y Latinoamérica",
-    "keywordsList": ["Consultoría de IA para Startups", "Soluciones de IA para Pequeñas Empresas", "Agencia de Desarrollo Web con IA", "Automatización IA", "Transformación Digital"],
+    "keywordsList": [
+      "Consultoría de IA para Startups",
+      "Soluciones de IA para Pequeñas Empresas",
+      "Agencia de Desarrollo Web con IA",
+      "Automatización IA",
+      "Transformación Digital"
+    ],
     "twitterHandle": "@juanelojgac",
     "organization": {
       "name": "JuaneloJGAC Tech",
