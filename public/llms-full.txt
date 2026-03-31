@@ -18,7 +18,7 @@ We operate bilingually in English and Spanish, serving clients across the United
 
 ## Services
 
-### 1. AI Automations Platform ($3,000–$10,000 USD)
+### 1. AI Automations Platform ($1,500–$5,000 USD)
 
 Eliminate repetitive workflows with intelligent automation solutions that save time and reduce errors. Custom AI-powered automations designed for startups and SMEs.
 
@@ -32,7 +32,7 @@ Eliminate repetitive workflows with intelligent automation solutions that save t
 
 **Technologies:** OpenAI API, LangChain, custom LLM pipelines, Zapier/Make integrations, Python, Node.js
 
-### 2. AI Marketing Studio ($3,000–$10,000 USD)
+### 2. AI Marketing Studio ($1,500–$5,000 USD)
 
 AI-driven content creation and marketing automation that resonates with your audience. Transform your marketing with intelligent content generation and campaign optimization.
 
@@ -46,7 +46,7 @@ AI-driven content creation and marketing automation that resonates with your aud
 
 **Technologies:** GPT-4, Claude, custom content pipelines, marketing automation platforms
 
-### 3. AI-Powered Web Development ($3,000–$10,000 USD)
+### 3. AI-Powered Web Development ($1,500–$5,000 USD)
 
 Fast, modern web platforms built with AI assistance. Custom e-commerce, dashboards, and web applications designed for growth and scalability.
 
@@ -60,7 +60,7 @@ Fast, modern web platforms built with AI assistance. Custom e-commerce, dashboar
 
 **Technologies:** React, Next.js, Astro, TypeScript, Tailwind CSS, Node.js, PostgreSQL, AI-assisted development
 
-### 4. AI Consultancy & Digital Transformation ($3,000–$10,000 USD)
+### 4. AI Consultancy & Digital Transformation ($1,500–$5,000 USD)
 
 Strategic AI consulting to transform your business processes. Expert guidance on AI implementation, automation strategy, and digital transformation roadmaps.
 
@@ -77,10 +77,10 @@ Strategic AI consulting to transform your business processes. Expert guidance on
 ## Frequently Asked Questions
 
 ### What AI consulting services do you offer for startups?
-We offer four core services: AI Automations (workflow automation), AI Marketing Studio (content and campaign automation), AI-Powered Web Development (modern web platforms), and AI Consultancy & Digital Transformation (strategic guidance). All services are priced between $3,000–$10,000 USD and tailored for startups and SMEs.
+We offer four core services: AI Automations (workflow automation), AI Marketing Studio (content and campaign automation), AI-Powered Web Development (modern web platforms), and AI Consultancy & Digital Transformation (strategic guidance). All services are priced between $1,500–$5,000 USD and tailored for startups and SMEs.
 
 ### How much do AI automation solutions cost?
-Our AI automation solutions range from $3,000 to $10,000 USD depending on complexity. This includes custom AI-powered workflow automations, chatbot development, document processing, and integration with existing business tools.
+Our AI automation solutions range from $1,500 to $5,000 USD depending on complexity. This includes custom AI-powered workflow automations, chatbot development, document processing, and integration with existing business tools.
 
 ### Do you serve clients in Latin America?
 Yes. We are fully bilingual (English and Spanish) and serve clients across the United States and Latin America. We have offices in Milton, Florida (US) and Quito, Ecuador.
@@ -89,7 +89,7 @@ Yes. We are fully bilingual (English and Spanish) and serve clients across the U
 We follow an agile approach: discovery call, requirements gathering, design and architecture, iterative development with AI assistance, testing, and deployment. Most projects are delivered within 4–12 weeks. We use modern technologies like React, Astro, TypeScript, and Tailwind CSS.
 
 ### Can you help my small business with AI integration?
-Absolutely. We specialize in helping small and medium businesses adopt AI practically. Whether you need to automate repetitive tasks, improve your marketing with AI, build a modern web platform, or develop an AI strategy, we can help. Our services start at $3,000 USD.
+Absolutely. We specialize in helping small and medium businesses adopt AI practically. Whether you need to automate repetitive tasks, improve your marketing with AI, build a modern web platform, or develop an AI strategy, we can help. Our services start at $1,500 USD.
 
 ### What makes JuaneloJGAC Tech different from other AI agencies?
 We focus exclusively on startups and SMEs, not large enterprises. We are fully bilingual (English/Spanish), deliver in 4–12 weeks, and take a practical approach to AI — focusing on real business results rather than theoretical possibilities. You work directly with senior consultants, not junior staff.

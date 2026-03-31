@@ -61,17 +61,17 @@ describe("SystemPromptBuilder", () => {
           id: "svc-test",
           title: "Test Service",
           pricingRange: {
-            minUSD: 3000,
-            maxUSD: 15000,
-            description: "$3,000 – $15,000",
+            minUSD: 1500,
+            maxUSD: 8000,
+            description: "$1,500 – $8,000",
           },
         }),
       ]);
 
       const prompt = builder.buildSystemPrompt("en", "greeting");
 
-      expect(prompt).toContain("$3,000");
-      expect(prompt).toContain("$15,000");
+      expect(prompt).toContain("$1,500");
+      expect(prompt).toContain("$8,000");
     });
 
     it("should include company process steps", () => {

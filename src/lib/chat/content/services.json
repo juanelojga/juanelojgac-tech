@@ -6,9 +6,9 @@
       "description": "Custom web platforms, e-commerce stores, dashboards, and web applications built with modern frameworks. We deliver fast, scalable solutions that grow with your business — from first launch to full scale, built to perform and stay maintainable.",
       "shortDescription": "Custom platforms, e-commerce, dashboards, and web apps",
       "pricingRange": {
-        "minUSD": 3000,
-        "maxUSD": 15000,
-        "description": "$3,000 – $15,000"
+        "minUSD": 1500,
+        "maxUSD": 8000,
+        "description": "$1,500 – $8,000"
       },
       "deliveryTimeline": {
         "minWeeks": 4,
@@ -29,9 +29,9 @@
       "description": "Eliminate manual, repetitive tasks with intelligent automation pipelines. We connect your tools, streamline operations, and free your team to focus on high-value work — using no-code platforms, custom integrations, or AI-powered workflows.",
       "shortDescription": "Eliminate manual tasks and reclaim your time",
       "pricingRange": {
-        "minUSD": 2000,
-        "maxUSD": 10000,
-        "description": "$2,000 – $10,000"
+        "minUSD": 1000,
+        "maxUSD": 5000,
+        "description": "$1,000 – $5,000"
       },
       "deliveryTimeline": {
         "minWeeks": 2,
@@ -52,9 +52,9 @@
       "description": "AI-driven content creation and campaign management that resonates with your audience. We build marketing systems that generate, optimize, and distribute content — turning your brand message into measurable growth.",
       "shortDescription": "AI-driven content creation that resonates with audiences",
       "pricingRange": {
-        "minUSD": 3000,
-        "maxUSD": 10000,
-        "description": "$3,000 – $10,000"
+        "minUSD": 1500,
+        "maxUSD": 5000,
+        "description": "$1,500 – $5,000"
       },
       "deliveryTimeline": {
         "minWeeks": 3,
@@ -75,9 +75,9 @@
       "description": "Strategic AI consulting and hands-on implementation to transform your business processes. We help you identify where AI adds real value, select the right tools, and build custom solutions — from chatbots and document processing to recommendation engines.",
       "shortDescription": "Strategic AI consulting and implementation",
       "pricingRange": {
-        "minUSD": 5000,
-        "maxUSD": 25000,
-        "description": "$5,000 – $25,000"
+        "minUSD": 2500,
+        "maxUSD": 12000,
+        "description": "$2,500 – $12,000"
       },
       "deliveryTimeline": {
         "minWeeks": 4,
@@ -98,9 +98,9 @@
       "description": "Reimagine your physical or digital environments with data-driven spatial design. We blend architectural insight with technology to create spaces that work better — from office layouts to digital spatial experiences.",
       "shortDescription": "Reimagine your physical or digital environments",
       "pricingRange": {
-        "minUSD": 3000,
-        "maxUSD": 12000,
-        "description": "$3,000 – $12,000"
+        "minUSD": 1500,
+        "maxUSD": 6000,
+        "description": "$1,500 – $6,000"
       },
       "deliveryTimeline": {
         "minWeeks": 3,
@@ -123,9 +123,9 @@
       "description": "Plataformas web personalizadas, tiendas e-commerce, dashboards y aplicaciones web construidas con frameworks modernos. Entregamos soluciones rápidas y escalables que crecen con tu negocio — desde el primer lanzamiento hasta la escala completa, construidas para rendir y mantenerse.",
       "shortDescription": "Plataformas personalizadas, e-commerce, dashboards y apps web",
       "pricingRange": {
-        "minUSD": 3000,
-        "maxUSD": 15000,
-        "description": "$3,000 – $15,000"
+        "minUSD": 1500,
+        "maxUSD": 8000,
+        "description": "$1,500 – $8,000"
       },
       "deliveryTimeline": {
         "minWeeks": 4,
@@ -146,9 +146,9 @@
       "description": "Elimina tareas manuales y repetitivas con pipelines de automatización inteligente. Conectamos tus herramientas, optimizamos operaciones y liberamos a tu equipo para enfocarse en trabajo de alto valor — usando plataformas no-code, integraciones personalizadas o flujos impulsados por IA.",
       "shortDescription": "Elimina tareas manuales y recupera tu tiempo",
       "pricingRange": {
-        "minUSD": 2000,
-        "maxUSD": 10000,
-        "description": "$2,000 – $10,000"
+        "minUSD": 1000,
+        "maxUSD": 5000,
+        "description": "$1,000 – $5,000"
       },
       "deliveryTimeline": {
         "minWeeks": 2,
@@ -169,9 +169,9 @@
       "description": "Creación de contenido y gestión de campañas impulsada por IA que resuena con tu audiencia. Construimos sistemas de marketing que generan, optimizan y distribuyen contenido — convirtiendo tu mensaje de marca en crecimiento medible.",
       "shortDescription": "Creación de contenido con IA que resuena con audiencias",
       "pricingRange": {
-        "minUSD": 3000,
-        "maxUSD": 10000,
-        "description": "$3,000 – $10,000"
+        "minUSD": 1500,
+        "maxUSD": 5000,
+        "description": "$1,500 – $5,000"
       },
       "deliveryTimeline": {
         "minWeeks": 3,
@@ -192,9 +192,9 @@
       "description": "Consultoría estratégica de IA e implementación práctica para transformar tus procesos de negocio. Te ayudamos a identificar dónde la IA agrega valor real, seleccionar las herramientas correctas y construir soluciones personalizadas — desde chatbots y procesamiento de documentos hasta motores de recomendación.",
       "shortDescription": "Consultoría estratégica de IA e implementación",
       "pricingRange": {
-        "minUSD": 5000,
-        "maxUSD": 25000,
-        "description": "$5,000 – $25,000"
+        "minUSD": 2500,
+        "maxUSD": 12000,
+        "description": "$2,500 – $12,000"
       },
       "deliveryTimeline": {
         "minWeeks": 4,
@@ -215,9 +215,9 @@
       "description": "Reimagina tus entornos físicos o digitales con diseño espacial basado en datos. Combinamos perspectiva arquitectónica con tecnología para crear espacios que funcionan mejor — desde distribución de oficinas hasta experiencias espaciales digitales.",
       "shortDescription": "Reimagina tus entornos físicos o digitales",
       "pricingRange": {
-        "minUSD": 3000,
-        "maxUSD": 12000,
-        "description": "$3,000 – $12,000"
+        "minUSD": 1500,
+        "maxUSD": 6000,
+        "description": "$1,500 – $6,000"
       },
       "deliveryTimeline": {
         "minWeeks": 3,
