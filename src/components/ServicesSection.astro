@@ -1,0 +1,50 @@
+---
+import enTranslations from "../i18n/en.json";
+import esTranslations from "../i18n/es.json";
+import type { Language } from "../lib/i18n";
+
+interface Props {
+  lang: Language;
+}
+
+const { lang } = Astro.props;
+const t = (lang === "es" ? esTranslations : enTranslations).redesign.services;
+---
+
+<section
+  id="services"
+  class="border-t border-white/5 bg-[#060e1a] py-16 lg:py-24"
+  aria-labelledby="services-heading"
+>
+  <div class="mx-auto max-w-7xl px-4 lg:px-8">
+    <div class="mb-12 text-center">
+      <h2
+        id="services-heading"
+        class="font-sora text-text-bright text-2xl font-bold tracking-tight sm:text-3xl lg:text-4xl"
+      >
+        {t.sectionTitle}
+      </h2>
+      <p class="text-text-muted mx-auto mt-4 max-w-2xl text-lg">
+        {t.sectionSubtitle}
+      </p>
+    </div>
+
+    <div class="grid gap-8 sm:grid-cols-2">
+      {
+        t.items.map((service) => (
+          <article class="rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition-colors duration-200 hover:border-white/10 hover:bg-white/[0.04] lg:p-8">
+            <h3 class="font-sora text-text-bright text-lg font-semibold lg:text-xl">
+              {service.title}
+            </h3>
+            <p class="text-text-muted mt-3 text-sm leading-relaxed lg:text-base">
+              {service.description}
+            </p>
+            <p class="text-accent-cyan mt-4 text-sm font-semibold">
+              {t.priceLabel} {service.price} USD
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

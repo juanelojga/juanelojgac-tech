@@ -1,14 +1,14 @@
 {
   "seo": {
     "siteName": "JuaneloJGAC Tech",
-    "defaultTitle": "JuaneloJGAC Tech - AI-Powered Solutions for Startups & SMEs",
-    "defaultDescription": "Empowering startups and SMEs with practical, intelligent AI solutions—delivered with clarity, speed, and human-centered design.",
-    "keywords": "AI Solutions, AI Transformation, Software Development, Automation, Marketing, Web Development, Bilingual Services",
-    "keywordsList": ["AI Transformation", "Automation", "Digital Transformation"],
+    "defaultTitle": "AI Consulting for Startups & SMEs",
+    "defaultDescription": "AI consulting agency helping startups and small businesses build smarter products, automations, and web platforms. Bilingual AI solutions from $3,000. Serving the US and Latin America.",
+    "keywords": "AI consulting for startups, AI solutions for small business, AI web development agency, AI automation for SMEs, digital transformation consulting, AI marketing for startups, bilingual AI consulting, AI consulting US and Latin America",
+    "keywordsList": ["AI Consulting for Startups", "AI Solutions for Small Business", "AI Web Development Agency", "AI Automation", "Digital Transformation"],
     "twitterHandle": "@juanelojgac",
     "organization": {
       "name": "JuaneloJGAC Tech",
-      "description": "Empowering startups and SMEs with practical, intelligent AI solutions. We deliver clarity, speed, and human-centered design for digital transformation.",
+      "description": "AI consulting agency helping startups and SMEs build smarter products, automations, and AI experiences. Practical AI solutions delivered with clarity, speed, and human-centered design.",
       "slogan": "Practical AI solutions delivered with clarity, speed, and human-centered design"
     },
     "services": [
@@ -186,6 +186,7 @@
       "navServices": "Services",
       "navAbout": "About",
       "navContact": "Contact",
+      "navLabel": "Main navigation",
       "ctaLabel": "Book a Consultation",
       "logoAlt": "JuaneloJGAC Tech logo",
       "languageSwitchLabel": "Language",
@@ -196,9 +197,9 @@
       "socialInstagramLabel": "Instagram"
     },
     "hero": {
-      "microLabel": "AI Consulting for Modern Businesses",
-      "headline": "Build Smarter Products, Automations, and AI Experiences",
-      "subheadline": "From AI integration and workflow automation to scalable web platforms and digital experiences, we help businesses turn complex ideas into practical systems.",
+      "microLabel": "AI Consulting & Automation Agency",
+      "headline": "AI Consulting & Solutions for Startups and Growing Businesses",
+      "subheadline": "From AI integration and workflow automation to scalable web platforms, we help startups and small businesses turn complex ideas into practical, revenue-driving systems.",
       "ctaPrimary": "Book a Free Consultation",
       "ctaSecondary": "Explore Services",
       "trustProjects": "Projects Delivered",
@@ -222,6 +223,63 @@
       "address3Label": "Panama City, Panama",
       "address3": "Coming soon",
       "copyright": "© 2026 JuaneloJGAC Tech. All rights reserved."
+    },
+    "services": {
+      "sectionTitle": "Our Services",
+      "sectionSubtitle": "AI-powered solutions tailored for startups and small businesses",
+      "learnMore": "Learn more",
+      "priceLabel": "Starting at",
+      "items": [
+        {
+          "title": "AI Automations Platform",
+          "description": "Eliminate repetitive workflows with intelligent automation solutions that save time and reduce errors. Custom AI-powered automations designed for startups and SMEs.",
+          "price": "$3,000"
+        },
+        {
+          "title": "AI Marketing Studio",
+          "description": "AI-driven content creation and marketing automation that resonates with your audience. Transform your marketing with intelligent content generation and campaign optimization.",
+          "price": "$3,000"
+        },
+        {
+          "title": "AI-Powered Web Development",
+          "description": "Fast, modern web platforms built with AI assistance. Custom e-commerce, dashboards, and web applications designed for growth and scalability.",
+          "price": "$3,000"
+        },
+        {
+          "title": "AI Consultancy & Digital Transformation",
+          "description": "Strategic AI consulting to transform your business processes. Expert guidance on AI implementation, automation strategy, and digital transformation roadmaps.",
+          "price": "$3,000"
+        }
+      ]
+    },
+    "faq": {
+      "sectionTitle": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "What AI consulting services do you offer for startups?",
+          "answer": "We offer four core services: AI Automations (workflow automation and chatbots), AI Marketing Studio (content and campaign automation), AI-Powered Web Development (modern web platforms and apps), and AI Consultancy & Digital Transformation (strategic AI guidance and roadmaps). All services are priced between $3,000–$10,000 USD."
+        },
+        {
+          "question": "How much do AI automation solutions cost?",
+          "answer": "Our AI solutions range from $3,000 to $10,000 USD depending on complexity. This includes custom AI-powered workflow automations, chatbot development, document processing, and integration with your existing business tools."
+        },
+        {
+          "question": "Do you serve clients in Latin America?",
+          "answer": "Yes. We are fully bilingual (English and Spanish) and serve clients across the United States and Latin America. We have offices in Milton, Florida (US) and Quito, Ecuador."
+        },
+        {
+          "question": "What does your AI web development process look like?",
+          "answer": "We follow an agile approach: discovery call, requirements gathering, design and architecture, iterative development with AI assistance, testing, and deployment. Most projects are delivered within 4–12 weeks using modern technologies like React, Astro, TypeScript, and Tailwind CSS."
+        },
+        {
+          "question": "Can you help my small business with AI integration?",
+          "answer": "Absolutely. We specialize in helping small and medium businesses adopt AI practically. Whether you need to automate repetitive tasks, improve marketing with AI, build a modern web platform, or develop an AI strategy, our services start at $3,000 USD."
+        },
+        {
+          "question": "What makes JuaneloJGAC Tech different from other AI agencies?",
+          "answer": "We focus exclusively on startups and SMEs, are fully bilingual (English/Spanish), deliver in 4–12 weeks, and take a practical approach to AI — real business results, not theoretical possibilities. You work directly with senior consultants."
+        }
+      ]
     }
   }
 }

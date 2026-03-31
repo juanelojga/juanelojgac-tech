@@ -1,0 +1,53 @@
+# JuaneloJGAC Tech
+
+> AI consulting agency helping startups and SMEs build smarter products, automations, and AI experiences.
+
+## About
+
+JuaneloJGAC Tech is an AI consulting and development agency founded by Juan Almeida. We specialize in practical, intelligent AI solutions for startups and small-to-medium businesses (SMEs). We serve clients across the United States and Latin America, with offices in Milton, Florida and Quito, Ecuador.
+
+We are fully bilingual (English and Spanish) and deliver projects in 4–12 weeks.
+
+## Services
+
+### AI Automations Platform
+- Eliminate repetitive workflows with intelligent automation solutions
+- Custom AI-powered automations designed for startups and SMEs
+- Price range: $3,000–$10,000 USD
+
+### AI Marketing Studio
+- AI-driven content creation and marketing automation
+- Intelligent content generation and campaign optimization
+- Price range: $3,000–$10,000 USD
+
+### AI-Powered Web Development
+- Fast, modern web platforms built with AI assistance
+- Custom e-commerce, dashboards, and web applications
+- Price range: $3,000–$10,000 USD
+
+### AI Consultancy & Digital Transformation
+- Strategic AI consulting to transform business processes
+- Expert guidance on AI implementation and automation strategy
+- Digital transformation roadmaps
+- Price range: $3,000–$10,000 USD
+
+## Target Audience
+
+- Startups looking to integrate AI into their products and workflows
+- Small and medium businesses (SMEs) seeking digital transformation
+- Companies in the US and Latin America needing bilingual AI consulting
+
+## Locations
+
+- Milton, FL 32570, United States
+- Quito, Ecuador
+
+## Contact
+
+- Website: https://juanelojgac-tech.com
+- Email: juan.almeida@juanelojgac-tech.com
+- Schedule a consultation: https://calendly.com/juanelojga/one-on-one-meeting
+
+## Links
+
+- [Full details](/llms-full.txt)

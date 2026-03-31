@@ -125,7 +125,7 @@ const socialLinks = [
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
         {
           addresses.map((loc) => (
-            <div>
+            <address class="not-italic">
               <div class="mb-1.5 flex items-center gap-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -146,7 +146,7 @@ const socialLinks = [
                 <span class="text-text-bright text-sm font-semibold">{loc.label}</span>
               </div>
               <p class="text-text-muted pl-6 text-sm leading-relaxed">{loc.address}</p>
-            </div>
+            </address>
           ))
         }
       </div>

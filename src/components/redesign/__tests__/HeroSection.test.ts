@@ -106,8 +106,8 @@ describe("HeroSection", () => {
     const t = en.redesign.hero;
 
     it("has all required EN hero translation keys", () => {
-      expect(t.microLabel).toBe("AI Consulting for Modern Businesses");
-      expect(t.headline).toBe("Build Smarter Products, Automations, and AI Experiences");
+      expect(t.microLabel).toBe("AI Consulting & Automation Agency");
+      expect(t.headline).toBe("AI Consulting & Solutions for Startups and Growing Businesses");
       expect(t.subheadline).toBeDefined();
       expect(t.ctaPrimary).toBe("Book a Free Consultation");
       expect(t.ctaSecondary).toBe("Explore Services");
@@ -124,9 +124,9 @@ describe("HeroSection", () => {
     const t = es.redesign.hero;
 
     it("has all required ES hero translation keys", () => {
-      expect(t.microLabel).toBe("Consultoría IA para Empresas Modernas");
+      expect(t.microLabel).toBe("Agencia de Consultoría y Automatización con IA");
       expect(t.headline).toBe(
-        "Construya Productos, Automatizaciones y Experiencias de IA Más Inteligentes"
+        "Consultoría y Soluciones de IA para Startups y Empresas en Crecimiento"
       );
       expect(t.subheadline).toBeDefined();
       expect(t.ctaPrimary).toBe("Agendar Consulta Gratis");

@@ -1,6 +1,7 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "JuaneloJGAC Tech",
+  "short_name": "JuaneloJGAC",
+  "description": "AI consulting agency helping startups and SMEs build smarter products, automations, and AI experiences.",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
@@ -15,7 +16,8 @@
       "purpose": "maskable"
     }
   ],
-  "theme_color": "#ffffff",
-  "background_color": "#ffffff",
+  "start_url": "/",
+  "theme_color": "#0a3f66",
+  "background_color": "#06020a",
   "display": "standalone"
 }

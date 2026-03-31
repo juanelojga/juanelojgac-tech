@@ -4,3 +4,8 @@ Allow: /
 
 # Sitemap location
 Sitemap: https://juanelojgac-tech.com/sitemap-index.xml
+
+# LLM content files
+# See https://llmstxt.org/ for specification
+# llms.txt: https://juanelojgac-tech.com/llms.txt
+# llms-full.txt: https://juanelojgac-tech.com/llms-full.txt
