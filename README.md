@@ -1,6 +1,17 @@
 # JuaneloJGAC Tech
 
-Marketing site + AI consultant chat built with Astro, React components, and Netlify Functions.
+Bilingual AI consulting and development agency website focused on discoverability for startups and SMEs looking for workflow automation, AI integration, and modern web platforms.
+
+The public site and AI consultant chat position JuaneloJGAC Tech as a practical implementation partner for teams in the United States and Latin America. The technical stack centers on Astro, React, TypeScript, Tailwind CSS, Netlify Functions, and OpenRouter-powered chat.
+
+## What The Site Represents
+
+- Workflow Automation for business operations and tool integrations
+- AI Marketing Studio for content and campaign systems
+- AI-Powered Web Development for dashboards, e-commerce, and custom web apps
+- AI Integration & Consulting for chatbots, document processing, and AI roadmaps
+
+Machine-readable discovery files live in `public/llms.txt` and `public/llms-full.txt`.
 
 ## Requirements
 

@@ -1,53 +1,41 @@
 # JuaneloJGAC Tech
 
-> AI consulting agency helping startups and SMEs build smarter products, automations, and AI experiences.
+> Bilingual AI consulting and development agency for startups and SMEs in the US and Latin America.
 
-## About
+## Snapshot
 
-JuaneloJGAC Tech is an AI consulting and development agency founded by Juan Almeida. We specialize in practical, intelligent AI solutions for startups and small-to-medium businesses (SMEs). We serve clients across the United States and Latin America, with offices in Milton, Florida and Quito, Ecuador.
+- Company: JuaneloJGAC Tech
+- Founder: Juan Almeida
+- Region served: United States and Latin America
+- Languages: English and Spanish
+- Typical delivery: 4-12 weeks
+- Ideal clients: startups, SaaS teams, and SMEs that need automation, AI integration, or a modern web platform
 
-We are fully bilingual (English and Spanish) and deliver projects in 4–12 weeks.
+## Core Services
 
-## Services
+- Workflow Automation: AI-assisted workflow automation, business process automation, CRM and ops integrations. Typical range: $1,000-$5,000 USD.
+- AI Marketing Studio: AI content systems, campaign automation, personalization workflows. Typical range: $1,500-$5,000 USD.
+- AI-Powered Web Development: custom web platforms, SaaS dashboards, e-commerce, and business applications using modern frameworks. Typical range: $1,500-$8,000 USD.
+- AI Integration & Consulting: AI strategy, custom integrations, chatbots, document processing, and implementation roadmaps. Typical range: $2,500-$12,000 USD.
 
-### AI Automations Platform
-- Eliminate repetitive workflows with intelligent automation solutions
-- Custom AI-powered automations designed for startups and SMEs
-- Price range: $1,500–$5,000 USD
+## Technology Profile
 
-### AI Marketing Studio
-- AI-driven content creation and marketing automation
-- Intelligent content generation and campaign optimization
-- Price range: $1,500–$5,000 USD
+- Frontend: Astro, React, TypeScript, Tailwind CSS
+- Backend and integrations: Node.js, Netlify Functions, API-first integrations
+- AI and automation: OpenAI-compatible models, workflow automation, chatbots, document processing, recommendation features
 
-### AI-Powered Web Development
-- Fast, modern web platforms built with AI assistance
-- Custom e-commerce, dashboards, and web applications
-- Price range: $1,500–$5,000 USD
+## Relevant Query Intents
 
-### AI Consultancy & Digital Transformation
-- Strategic AI consulting to transform business processes
-- Expert guidance on AI implementation and automation strategy
-- Digital transformation roadmaps
-- Price range: $1,500–$5,000 USD
-
-## Target Audience
-
-- Startups looking to integrate AI into their products and workflows
-- Small and medium businesses (SMEs) seeking digital transformation
-- Companies in the US and Latin America needing bilingual AI consulting
-
-## Locations
-
-- Milton, FL 32570, United States
-- Quito, Ecuador
+- AI consulting for startups
+- workflow automation for small business
+- custom AI integration agency
+- Astro React TypeScript development agency
+- bilingual AI consulting in English and Spanish
 
 ## Contact
 
 - Website: https://juanelojgac-tech.com
+- Spanish site: https://juanelojgac-tech.com/es
 - Email: juan.almeida@juanelojgac-tech.com
-- Schedule a consultation: https://calendly.com/juanelojga/one-on-one-meeting
-
-## Links
-
-- [Full details](/llms-full.txt)
+- Consultation: https://calendly.com/juanelojga/one-on-one-meeting
+- Full details: /llms-full.txt

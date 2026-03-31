@@ -2,8 +2,8 @@
   "en": [
     {
       "id": "svc-web-development",
-      "title": "Web Development",
-      "description": "Custom web platforms, e-commerce stores, dashboards, and web applications built with modern frameworks. We deliver fast, scalable solutions that grow with your business — from first launch to full scale, built to perform and stay maintainable.",
+      "title": "AI-Powered Web Development",
+      "description": "Custom web platforms, e-commerce stores, dashboards, and web applications built with modern frameworks and practical AI integrations. We deliver fast, scalable solutions with Astro, React, TypeScript, Tailwind CSS, Node.js, and API-first architectures that stay maintainable as you grow.",
       "shortDescription": "Custom platforms, e-commerce, dashboards, and web apps",
       "pricingRange": {
         "minUSD": 1500,
@@ -91,36 +91,13 @@
         "AI-powered data analysis pipeline"
       ],
       "relatedPrompt": "I want to integrate AI into my business"
-    },
-    {
-      "id": "svc-spatial-consultancy",
-      "title": "Spatial Consultancy",
-      "description": "Reimagine your physical or digital environments with data-driven spatial design. We blend architectural insight with technology to create spaces that work better — from office layouts to digital spatial experiences.",
-      "shortDescription": "Reimagine your physical or digital environments",
-      "pricingRange": {
-        "minUSD": 1500,
-        "maxUSD": 6000,
-        "description": "$1,500 – $6,000"
-      },
-      "deliveryTimeline": {
-        "minWeeks": 3,
-        "maxWeeks": 10,
-        "description": "3–10 weeks"
-      },
-      "examples": [
-        "Office space optimization",
-        "Retail environment redesign",
-        "Digital twin creation",
-        "Workspace efficiency audit"
-      ],
-      "relatedPrompt": "I need help redesigning my space"
     }
   ],
   "es": [
     {
       "id": "svc-web-development",
-      "title": "Desarrollo Web",
-      "description": "Plataformas web personalizadas, tiendas e-commerce, dashboards y aplicaciones web construidas con frameworks modernos. Entregamos soluciones rápidas y escalables que crecen con tu negocio — desde el primer lanzamiento hasta la escala completa, construidas para rendir y mantenerse.",
+      "title": "Desarrollo Web Potenciado por IA",
+      "description": "Plataformas web personalizadas, tiendas e-commerce, dashboards y aplicaciones web construidas con frameworks modernos e integraciones de IA prácticas. Entregamos soluciones rápidas y escalables con Astro, React, TypeScript, Tailwind CSS, Node.js y arquitecturas orientadas a APIs que siguen siendo mantenibles a medida que creces.",
       "shortDescription": "Plataformas personalizadas, e-commerce, dashboards y apps web",
       "pricingRange": {
         "minUSD": 1500,
@@ -208,29 +185,6 @@
         "Pipeline de análisis de datos con IA"
       ],
       "relatedPrompt": "Quiero integrar IA en mi negocio"
-    },
-    {
-      "id": "svc-spatial-consultancy",
-      "title": "Consultoría Espacial",
-      "description": "Reimagina tus entornos físicos o digitales con diseño espacial basado en datos. Combinamos perspectiva arquitectónica con tecnología para crear espacios que funcionan mejor — desde distribución de oficinas hasta experiencias espaciales digitales.",
-      "shortDescription": "Reimagina tus entornos físicos o digitales",
-      "pricingRange": {
-        "minUSD": 1500,
-        "maxUSD": 6000,
-        "description": "$1,500 – $6,000"
-      },
-      "deliveryTimeline": {
-        "minWeeks": 3,
-        "maxWeeks": 10,
-        "description": "3–10 semanas"
-      },
-      "examples": [
-        "Optimización de espacio de oficina",
-        "Rediseño de entorno comercial",
-        "Creación de gemelo digital",
-        "Auditoría de eficiencia del espacio de trabajo"
-      ],
-      "relatedPrompt": "Necesito ayuda para rediseñar mi espacio"
     }
   ]
 }

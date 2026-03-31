@@ -1,3 +1,6 @@
+import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+
 import { describe, expect, it } from "vitest";
 
 import type { Language } from "../../i18n";
@@ -10,12 +13,20 @@ import { StaticContentProvider } from "../content/static-content-provider";
 describe("Content Validation — EN/ES Parity", () => {
   const provider = new StaticContentProvider();
   const languages: Language[] = ["en", "es"];
+  const llmsPath = resolve(__dirname, "../../../../public/llms.txt");
+  const llmsFullPath = resolve(__dirname, "../../../../public/llms-full.txt");
 
   // ──────────────────────────────────────────────
   // Services parity
   // ──────────────────────────────────────────────
 
   describe("services parity", () => {
+    it("keeps the public catalog focused on AI and web services", () => {
+      const serviceIds = provider.getServices("en").map((service) => service.id);
+      expect(serviceIds).not.toContain("svc-spatial-consultancy");
+      expect(serviceIds.length).toBe(4);
+    });
+
     it("every EN service ID has an ES counterpart", () => {
       const enIds = provider.getServices("en").map((s) => s.id);
       const esIds = provider.getServices("es").map((s) => s.id);
@@ -340,6 +351,38 @@ describe("Content Validation — EN/ES Parity", () => {
         expect(controlRegex.test(facts.description)).toBe(false);
         expect(controlRegex.test(facts.tagline)).toBe(false);
       }
+    });
+  });
+
+  describe("llms discoverability assets", () => {
+    it("llms.txt links to the extended llms file", () => {
+      const llms = readFileSync(llmsPath, "utf-8");
+      expect(llms).toContain("/llms-full.txt");
+    });
+
+    it("llms-full.txt includes every English service title", () => {
+      const llmsFull = readFileSync(llmsFullPath, "utf-8");
+      for (const service of provider.getServices("en")) {
+        expect(llmsFull).toContain(service.title);
+      }
+    });
+
+    it("llms-full.txt includes every English pricing range", () => {
+      const llmsFull = readFileSync(llmsFullPath, "utf-8");
+      const normalizeRangeText = (value: string) => value.replace(/[\s\u2013-]+/g, "");
+      for (const service of provider.getServices("en")) {
+        const normalizedRange = normalizeRangeText(service.pricingRange.description);
+        const normalizedFile = normalizeRangeText(llmsFull);
+        expect(normalizedFile).toContain(normalizedRange);
+      }
+    });
+
+    it("llms assets reflect bilingual service coverage", () => {
+      const llms = readFileSync(llmsPath, "utf-8");
+      const llmsFull = readFileSync(llmsFullPath, "utf-8");
+      expect(llms).toContain("English and Spanish");
+      expect(llmsFull).toContain("English and Spanish");
+      expect(llmsFull).toContain("United States and Latin America");
     });
   });
 

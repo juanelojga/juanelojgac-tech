@@ -234,40 +234,19 @@
       "sectionTitle": "Nuestros Servicios",
       "sectionSubtitle": "Soluciones con IA diseñadas para startups y pequeñas empresas",
       "learnMore": "Saber más",
-      "priceLabel": "Desde",
-      "items": [
-        {
-          "title": "Plataforma de Automatizaciones con IA",
-          "description": "Elimina flujos de trabajo repetitivos con soluciones de automatización inteligente que ahorran tiempo y reducen errores. Automatizaciones personalizadas con IA diseñadas para startups y PYMEs.",
-          "price": "$1,500"
-        },
-        {
-          "title": "Estudio de Marketing con IA",
-          "description": "Creación de contenido y automatización de marketing impulsada por IA que resuena con tu audiencia. Transforma tu marketing con generación inteligente de contenido y optimización de campañas.",
-          "price": "$1,500"
-        },
-        {
-          "title": "Desarrollo Web Potenciado por IA",
-          "description": "Plataformas web modernas y rápidas construidas con asistencia de IA. E-commerce personalizado, dashboards y aplicaciones web diseñadas para crecer y escalar.",
-          "price": "$1,500"
-        },
-        {
-          "title": "Consultoría en IA y Transformación Digital",
-          "description": "Consultoría estratégica en IA para transformar tus procesos empresariales. Guía experta en implementación de IA, estrategia de automatización y hojas de ruta de transformación digital.",
-          "price": "$1,500"
-        }
-      ]
+      "priceLabel": "Inversión",
+      "timelineLabel": "Plazo"
     },
     "faq": {
       "sectionTitle": "Preguntas Frecuentes",
       "items": [
         {
           "question": "¿Qué servicios de consultoría de IA ofrecen para startups?",
-          "answer": "Ofrecemos cuatro servicios principales: Automatizaciones con IA (automatización de flujos de trabajo y chatbots), Estudio de Marketing con IA (automatización de contenido y campañas), Desarrollo Web Potenciado por IA (plataformas web y apps modernas), y Consultoría en IA y Transformación Digital (guía estratégica y hojas de ruta). Todos los servicios tienen precios entre $1,500–$5,000 USD."
+          "answer": "Ofrecemos cuatro servicios principales: Automatización de Flujos de Trabajo, Estudio de Marketing con IA, Desarrollo Web Potenciado por IA e Integración y Consultoría de IA. Trabajamos con startups y PYMEs que necesitan automatización, plataformas personalizadas, integraciones de IA o una hoja de ruta práctica para adoptar IA."
         },
         {
           "question": "¿Cuánto cuestan las soluciones de automatización con IA?",
-          "answer": "Nuestras soluciones de IA van desde $1,500 hasta $10,000 USD dependiendo de la complejidad. Esto incluye automatizaciones de flujos de trabajo con IA, desarrollo de chatbots, procesamiento de documentos e integración con tus herramientas empresariales existentes."
+          "answer": "El precio depende del alcance. Los proyectos de Automatización de Flujos de Trabajo suelen ir de $1,000 a $5,000 USD, Estudio de Marketing con IA de $1,500 a $5,000 USD, Desarrollo Web Potenciado por IA de $1,500 a $8,000 USD e Integración y Consultoría de IA de $2,500 a $12,000 USD."
         },
         {
           "question": "¿Atienden clientes en Latinoamérica?",
@@ -279,7 +258,7 @@
         },
         {
           "question": "¿Pueden ayudar a mi pequeña empresa con integración de IA?",
-          "answer": "Por supuesto. Nos especializamos en ayudar a pequeñas y medianas empresas a adoptar IA de manera práctica. Ya sea que necesites automatizar tareas repetitivas, mejorar tu marketing con IA, construir una plataforma web moderna o desarrollar una estrategia de IA, nuestros servicios comienzan desde $1,500 USD."
+          "answer": "Por supuesto. Nos especializamos en ayudar a pequeñas y medianas empresas a adoptar IA de manera práctica. Ya sea que necesites automatizar procesos, crear sistemas de marketing asistidos por IA, construir una plataforma web moderna o integrar IA en tus operaciones, podemos definir una solución según tus metas y tu stack actual."
         },
         {
           "question": "¿Qué hace diferente a JuaneloJGAC Tech de otras agencias de IA?",

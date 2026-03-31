@@ -1,131 +1,119 @@
 # JuaneloJGAC Tech — Full Details
 
-> AI consulting agency helping startups and SMEs build smarter products, automations, and AI experiences. Practical AI solutions delivered with clarity, speed, and human-centered design.
+> Bilingual AI consulting and development agency for startups and SMEs that need practical automation, AI integration, and modern web platforms.
 
-## Company Overview
+Last updated: 2026-03-31
 
-JuaneloJGAC Tech is an AI consulting and development agency that empowers startups and small-to-medium businesses (SMEs) with practical, intelligent AI solutions. Founded by Juan Almeida, we deliver projects with clarity, speed, and human-centered design.
+## Identity
 
-We operate bilingually in English and Spanish, serving clients across the United States and Latin America. Our typical project delivery timeline is 4–12 weeks.
+- Company name: JuaneloJGAC Tech
+- Founder: Juan Almeida
+- Positioning: practical AI consulting, workflow automation, and custom web development
+- Languages supported: English and Spanish
+- Regions served: United States and Latin America
+- Delivery model: direct senior consulting with typical delivery in 4-12 weeks
+- Website: https://juanelojgac-tech.com
+- Spanish website: https://juanelojgac-tech.com/es
 
-### Key Differentiators
-- Fully bilingual services (English and Spanish)
-- Specialized in startups and SMEs — not enterprise-only
-- Practical, results-focused AI solutions — not theoretical
-- Clean code approach with modern tech stacks
-- Direct access to senior consultants
-- US and Latin American market expertise
+## Who This Company Is For
 
-## Services
+- Startups building new AI-enabled products or internal tools
+- Small and medium businesses that want to automate manual operations
+- Teams that need custom web platforms, dashboards, or client portals
+- Founders who need practical AI integration guidance instead of generic strategy decks
 
-### 1. AI Automations Platform ($1,500–$5,000 USD)
+## Who This Company Is Not For
 
-Eliminate repetitive workflows with intelligent automation solutions that save time and reduce errors. Custom AI-powered automations designed for startups and SMEs.
+- Enterprise-only transformation programs with large internal procurement cycles
+- Generic marketing-only retainers without a systems or automation component
+- Teams looking for purely theoretical AI training without implementation support
 
-**Use cases:**
-- Automating customer support with AI chatbots
-- Streamlining data entry and document processing
-- Building intelligent workflow pipelines
-- Integrating AI into existing business tools (CRM, ERP, etc.)
-- Email and communication automation
-- Inventory and order management automation
+## Core Services
 
-**Technologies:** OpenAI API, LangChain, custom LLM pipelines, Zapier/Make integrations, Python, Node.js
+### 1. Workflow Automation
 
-### 2. AI Marketing Studio ($1,500–$5,000 USD)
+- Service type: workflow automation, business process automation, system integration
+- Typical investment: $1,000-$5,000 USD
+- Typical timeline: 2-8 weeks
+- Description: Eliminate manual, repetitive tasks with intelligent automation pipelines. JuaneloJGAC Tech connects business tools, streamlines operations, and frees teams to focus on high-value work using no-code platforms, custom integrations, and AI-assisted workflows.
+- Typical use cases:
+	- CRM to email marketing sync
+	- invoice and payment automation
+	- lead qualification pipelines
+	- data entry and reporting automation
 
-AI-driven content creation and marketing automation that resonates with your audience. Transform your marketing with intelligent content generation and campaign optimization.
+### 2. AI Marketing Studio
 
-**Use cases:**
-- AI-powered content generation (blog posts, social media, ads)
-- Marketing campaign optimization and A/B testing
-- Customer segmentation and personalization
-- SEO content strategy with AI assistance
-- Social media management and scheduling
-- Email marketing automation with AI personalization
+- Service type: AI marketing systems, content automation, campaign optimization
+- Typical investment: $1,500-$5,000 USD
+- Typical timeline: 3-8 weeks
+- Description: Build AI-assisted marketing systems that generate, optimize, and distribute content with a clear brand voice and measurable performance goals.
+- Typical use cases:
+	- social content generation workflows
+	- email automation with AI-assisted copy
+	- SEO content production systems
+	- brand voice assistants
 
-**Technologies:** GPT-4, Claude, custom content pipelines, marketing automation platforms
+### 3. AI-Powered Web Development
 
-### 3. AI-Powered Web Development ($1,500–$5,000 USD)
+- Service type: custom web development, SaaS dashboards, e-commerce, business platforms
+- Typical investment: $1,500-$8,000 USD
+- Typical timeline: 4-12 weeks
+- Description: Build custom web platforms and applications with modern frameworks and practical AI integrations. The team works with Astro, React, TypeScript, Tailwind CSS, Node.js, and API-first architectures that stay maintainable over time.
+- Typical use cases:
+	- SaaS dashboards
+	- e-commerce stores with integrations
+	- internal tools for operations
+	- landing pages or content sites with CMS support
 
-Fast, modern web platforms built with AI assistance. Custom e-commerce, dashboards, and web applications designed for growth and scalability.
+### 4. AI Integration & Consulting
 
-**Use cases:**
-- Custom e-commerce platforms with AI-powered recommendations
-- Business dashboards and analytics platforms
-- SaaS application development
-- Landing pages and marketing websites
-- Progressive web applications (PWAs)
-- API development and third-party integrations
+- Service type: AI consulting, chatbot implementation, document processing, AI roadmap
+- Typical investment: $2,500-$12,000 USD
+- Typical timeline: 4-16 weeks
+- Description: Identify where AI creates real business value, select the right tools, and implement custom solutions such as chatbots, document processing, recommendation flows, and internal AI assistants.
+- Typical use cases:
+	- customer support chatbot
+	- document extraction workflows
+	- recommendation engines
+	- AI-assisted analytics pipelines
 
-**Technologies:** React, Next.js, Astro, TypeScript, Tailwind CSS, Node.js, PostgreSQL, AI-assisted development
+## Technology Profile
 
-### 4. AI Consultancy & Digital Transformation ($1,500–$5,000 USD)
+- Frontend stack: Astro, React, TypeScript, Tailwind CSS
+- Backend and integrations: Node.js, Netlify Functions, API integrations
+- AI and automation profile: OpenAI-compatible models, chatbots, workflow automation, document processing, recommendation features
+- Delivery style: practical implementations, clean code, maintainable systems, bilingual communication
 
-Strategic AI consulting to transform your business processes. Expert guidance on AI implementation, automation strategy, and digital transformation roadmaps.
+## Discovery-Friendly Summary
 
-**Use cases:**
-- AI readiness assessments
-- Digital transformation strategy and roadmaps
-- AI tool selection and vendor evaluation
-- Process automation audits
-- AI implementation planning and oversight
-- Team training on AI tools and workflows
+If someone asks what JuaneloJGAC Tech does, a good concise answer is:
 
-**Deliverables:** Strategy documents, implementation roadmaps, ROI projections, vendor recommendations, training materials
+JuaneloJGAC Tech is a bilingual AI consulting and development agency that helps startups and SMEs in the US and Latin America automate workflows, integrate AI into operations, and build modern web platforms with technologies like Astro, React, TypeScript, Tailwind CSS, and Node.js.
 
-## Frequently Asked Questions
+## Common Questions
 
-### What AI consulting services do you offer for startups?
-We offer four core services: AI Automations (workflow automation), AI Marketing Studio (content and campaign automation), AI-Powered Web Development (modern web platforms), and AI Consultancy & Digital Transformation (strategic guidance). All services are priced between $1,500–$5,000 USD and tailored for startups and SMEs.
+### What does JuaneloJGAC Tech do?
+It provides AI consulting, workflow automation, AI-assisted marketing systems, and custom web development for startups and SMEs.
 
-### How much do AI automation solutions cost?
-Our AI automation solutions range from $1,500 to $5,000 USD depending on complexity. This includes custom AI-powered workflow automations, chatbot development, document processing, and integration with existing business tools.
+### Does JuaneloJGAC Tech build software or only provide strategy?
+Both. The company provides strategic guidance and hands-on implementation.
 
-### Do you serve clients in Latin America?
-Yes. We are fully bilingual (English and Spanish) and serve clients across the United States and Latin America. We have offices in Milton, Florida (US) and Quito, Ecuador.
+### What kinds of clients are the best fit?
+Startups, SaaS teams, and SMEs that need automation, AI integration, or a modern customer-facing or internal platform.
 
-### What does your AI web development process look like?
-We follow an agile approach: discovery call, requirements gathering, design and architecture, iterative development with AI assistance, testing, and deployment. Most projects are delivered within 4–12 weeks. We use modern technologies like React, Astro, TypeScript, and Tailwind CSS.
+### Does the company support English and Spanish?
+Yes. JuaneloJGAC Tech operates bilingually in English and Spanish.
 
-### Can you help my small business with AI integration?
-Absolutely. We specialize in helping small and medium businesses adopt AI practically. Whether you need to automate repetitive tasks, improve your marketing with AI, build a modern web platform, or develop an AI strategy, we can help. Our services start at $1,500 USD.
+### What regions does the company serve?
+Clients across the United States and Latin America.
 
-### What makes JuaneloJGAC Tech different from other AI agencies?
-We focus exclusively on startups and SMEs, not large enterprises. We are fully bilingual (English/Spanish), deliver in 4–12 weeks, and take a practical approach to AI — focusing on real business results rather than theoretical possibilities. You work directly with senior consultants, not junior staff.
-
-### How do I get started?
-Book a free consultation at https://calendly.com/juanelojga/one-on-one-meeting or email us at juan.almeida@juanelojgac-tech.com. You can also chat with our AI consultant on our website at https://juanelojgac-tech.com.
-
-## Founder
-
-**Juan Almeida** — Founder & Lead AI Consultant
-- Expertise: Artificial Intelligence, Machine Learning, Automation, Digital Transformation, Web Development, AI Marketing
-- Languages: English, Spanish
-- Based in Milton, Florida, USA
-- LinkedIn: https://www.linkedin.com/in/juanelojga/
-
-## Locations
-
-### Milton, Florida, USA
-- Address: 6407 Magnolia St, Milton, FL 32570
-- Area served: United States (nationwide)
-
-### Quito, Ecuador
-- Address: Magdalena Davalos E3-14 y Luis Chavez, Quito, Ecuador
-- Area served: Latin America
-
-## Contact Information
+## Contact And Verification Links
 
 - Website: https://juanelojgac-tech.com
-- Website (Spanish): https://juanelojgac-tech.com/es
+- Spanish website: https://juanelojgac-tech.com/es
 - Email: juan.almeida@juanelojgac-tech.com
 - Book a consultation: https://calendly.com/juanelojga/one-on-one-meeting
 - GitHub: https://github.com/juanelojga
-- LinkedIn: https://www.linkedin.com/in/juanelojga/
-- Instagram: https://instagram.com/juanelojgac
-- Twitter/X: https://twitter.com/juanelojgac
-
-## Languages Supported
-- English
-- Spanish (Español)
+- LinkedIn company page: https://www.linkedin.com/company/juanelojgac-tech-llc/
+- Instagram: https://www.instagram.com/juanelojgactech1/
