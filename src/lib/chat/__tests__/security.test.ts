@@ -257,7 +257,7 @@ describe("Security Hardening", () => {
 
     it("strips zero-width characters", () => {
       const input = "hello\u200Bworld";
-      const sanitized = input.replace(/[\u200B\u200C\u200D\uFEFF\u00AD]/g, "");
+      const sanitized = input.replace(/\u200B|\u200C|\u200D|\uFEFF|\u00AD/g, "");
       expect(sanitized).toBe("helloworld");
     });
 

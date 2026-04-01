@@ -270,7 +270,7 @@ export class ScopeEnforcerImpl implements ScopeEnforcer {
   static normalizeInput(input: string): string {
     let s = input;
     // Strip zero-width and invisible formatting characters
-    s = s.replace(/[\u200B\u200C\u200D\uFEFF\u00AD\u2060\u180E]/g, "");
+    s = s.replace(/\u200B|\u200C|\u200D|\uFEFF|\u00AD|\u2060|\u180E/g, "");
     // Normalize common homoglyph substitutions (Cyrillic → Latin)
     s = s.replace(/[\u0430]/g, "a"); // Cyrillic а → a
     s = s.replace(/[\u0435]/g, "e"); // Cyrillic е → e
