@@ -115,8 +115,8 @@ export default function ContactFormModal({
     return () => clearTimeout(timer);
   }, [status, onClose]);
 
-  const handleSubmit = useCallback(
-    async (e: React.FormEvent) => {
+  const handleSubmit = useCallback<NonNullable<React.ComponentProps<"form">["onSubmit"]>>(
+    async (e) => {
       e.preventDefault();
       setStatus("submitting");
 

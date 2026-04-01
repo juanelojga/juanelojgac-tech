@@ -130,7 +130,10 @@ function validateRequestBody(body: unknown): body is ChatRequestBody {
   }
 
   if (b.language !== undefined && b.language !== "en" && b.language !== "es") return false;
-  if (b.phase !== undefined && !VALID_PHASES.has(b.phase)) return false;
+  if (b.phase !== undefined && (typeof b.phase !== "string" || !VALID_PHASES.has(b.phase))) {
+    return false;
+  }
+  if (b.turnstileToken !== undefined && typeof b.turnstileToken !== "string") return false;
 
   return true;
 }
