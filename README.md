@@ -64,9 +64,9 @@ Notes:
 
 The project has two dev server modes:
 
-| Command | URL | Purpose |
-|---|---|---|
-| `pnpm dev` | `localhost:4321` | Frontend only — no Netlify Functions |
+| Command                | URL              | Purpose                                          |
+| ---------------------- | ---------------- | ------------------------------------------------ |
+| `pnpm dev`             | `localhost:4321` | Frontend only — no Netlify Functions             |
 | `pnpm run dev:netlify` | `localhost:8888` | Full-stack — includes Functions and loads `.env` |
 
 The AI consultant chat requires `pnpm run dev:netlify` because it calls `/.netlify/functions/chat`, which is only served by the Netlify CLI dev server.
@@ -97,4 +97,115 @@ Pre-commit hooks (Husky + lint-staged) auto-format and lint staged files on ever
 
 ## Deployment
 
-Deployed on Netlify (static). Set the server-side environment variables (`OPENROUTER_API_KEY`, `TURNSTILE_SECRET_KEY`, and related settings) in Netlify project environment settings. Requires **Node 24**; see `.nvmrc`. Assets, JS, and CSS are served with immutable 1-year caching headers.
+Production is designed for **Netlify** using the configuration in `netlify.toml`.
+
+### Production Prerequisites
+
+- Netlify site connected to this repository
+- **Node 24** runtime (`.nvmrc` and `netlify.toml` both target Node 24)
+- `pnpm` available in the Netlify build image
+- Production domain ready for `SITE_URL` (for example `https://juanelojgac-tech.com`)
+- Valid OpenRouter and Cloudflare Turnstile credentials
+
+### Netlify Build Configuration
+
+These values should match the repository configuration exactly:
+
+- **Build command**: `pnpm run build`
+- **Publish directory**: `dist`
+- **Functions directory**: `netlify/functions`
+- **Node version**: `24`
+
+The repo already sets the following production environment behavior in `netlify.toml`:
+
+- `NODE_ENV=production`
+- `ASTRO_TELEMETRY_DISABLED=1`
+- Husky disabled during production builds (`HUSKY=0`, `HUSKY_SKIP_INSTALL=1`)
+- Deploy previews and branch deploys skipped by default
+
+### Netlify Production Setup
+
+1. Create a new site in Netlify and connect this GitHub repository.
+2. In **Site configuration → Build & deploy**, confirm these settings:
+   - Build command: `pnpm run build`
+   - Publish directory: `dist`
+   - Functions directory: `netlify/functions`
+3. In **Site configuration → Environment variables**, add the values from your production environment.
+4. Set your production domain and use that exact origin for `SITE_URL`.
+5. Trigger a deploy from the connected branch.
+
+### Required Production Environment Variables
+
+Use `.env.example` as the source of truth.
+
+Public variable:
+
+- `PUBLIC_TURNSTILE_SITE_KEY` — Cloudflare Turnstile site key exposed to the browser
+
+Server-only variables:
+
+- `OPENROUTER_API_KEY` — required by `/.netlify/functions/chat`
+- `OPENROUTER_MODEL` — OpenRouter model ID used for completions
+- `TURNSTILE_SECRET_KEY` — required for Turnstile verification in production
+- `SITE_URL` — canonical production origin used for CORS and OpenRouter headers
+- `SITE_TITLE` — title sent in OpenRouter request headers
+- `OPENROUTER_API_URL` — defaults to the official chat completions endpoint unless overridden
+
+Recommended production values:
+
+- `SITE_URL=https://your-production-domain.com`
+- `SITE_TITLE=JuaneloJGAC Tech AI Consultant`
+- `OPENROUTER_API_URL=https://openrouter.ai/api/v1/chat/completions`
+
+### What Happens In Production
+
+- Astro builds the static site into `dist/`
+- Netlify serves the generated site as static assets
+- Netlify Functions serves `/.netlify/functions/chat` and `/.netlify/functions/summarize`
+- The chat function keeps the OpenRouter API key server-side
+- Turnstile verification is enforced in production when `TURNSTILE_SECRET_KEY` is set
+- CORS for the chat function is validated against `SITE_URL`, its `www` variant, localhost dev origins, and optional `ALLOWED_ORIGINS`
+
+### Post-Deploy Validation Checklist
+
+After the production deploy completes, verify:
+
+1. The Netlify build succeeds with Node 24 and publishes `dist/`.
+2. The live site loads from the correct production domain.
+3. The chat feature can successfully call `/.netlify/functions/chat`.
+4. Browser requests originate from the same domain configured in `SITE_URL`.
+5. Turnstile verification succeeds in production.
+6. SEO output reflects the production site URL and sitemap settings.
+7. Static assets under `/_astro/` and `/assets/` return long-lived cache headers.
+
+### Common Production Issues
+
+- **Chat returns 500 / "Chat service is not configured"**
+  `OPENROUTER_API_KEY` is missing in Netlify environment settings.
+- **Chat returns 403 / verification failed**
+  `PUBLIC_TURNSTILE_SITE_KEY` and `TURNSTILE_SECRET_KEY` do not match the deployed domain, or the token is not being sent.
+- **Chat CORS issues**
+  `SITE_URL` does not match the real production origin, including protocol.
+- **Unexpected origin blocked**
+  Add additional trusted origins with `ALLOWED_ORIGINS` as a comma-separated list.
+- **Build/runtime mismatch**
+  Netlify is not using Node 24.
+
+### Recommended Release Flow
+
+Before promoting a change to production, run:
+
+```bash
+pnpm install
+pnpm run build
+pnpm astro:check
+pnpm lint
+```
+
+If the AI consultant chat is part of the release, also validate it locally with:
+
+```bash
+pnpm run dev:netlify
+```
+
+Assets, JS, and CSS are served with immutable 1-year caching headers, while HTML uses a shorter cache window, as configured in `netlify.toml`.
