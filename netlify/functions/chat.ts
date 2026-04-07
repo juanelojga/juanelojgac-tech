@@ -2,6 +2,7 @@ import type { Context } from "@netlify/functions";
 
 import { StaticContentProvider } from "../../src/lib/chat/content/static-content-provider";
 import { RateLimiter } from "../../src/lib/chat/rate-limiter";
+import { VerifiedSessionCache } from "../../src/lib/chat/session-cache";
 import { ScopeEnforcerImpl } from "../../src/lib/chat/scope-enforcer";
 import { SystemPromptBuilder } from "../../src/lib/chat/system-prompt-builder";
 import type { ConversationPhase } from "../../src/lib/chat/types";
@@ -46,6 +47,7 @@ const OPENROUTER_API_URL =
 
 /** Singleton instances — reused across warm invocations */
 const rateLimiter = new RateLimiter();
+const sessionCache = new VerifiedSessionCache();
 const contentProvider = new StaticContentProvider();
 const systemPromptBuilder = new SystemPromptBuilder(contentProvider);
 const scopeEnforcer = new ScopeEnforcerImpl(contentProvider);
@@ -214,16 +216,22 @@ export default async function handler(request: Request, _context: Context): Prom
   }
 
   // ── Turnstile verification (skipped in local dev — NETLIFY_DEV is auto-set by netlify dev) ──
+  // Tokens are single-use: siteverify consumes the token on first call, so subsequent calls
+  // with the same token return success=false. sessionCache tracks verified IPs so only the
+  // first message per session requires a live token; all subsequent messages skip re-verification.
   const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
   if (turnstileSecret && process.env.NETLIFY_DEV !== "true") {
-    const token = body.turnstileToken;
-    if (!token) {
-      // Require a valid token when Turnstile is configured
-      return createErrorResponse(403, "Verification token required", request);
-    }
-    const verification = await verifyTurnstileToken(token, turnstileSecret, clientIp);
-    if (!verification.success) {
-      return createErrorResponse(403, "Human verification failed", request);
+    if (!sessionCache.isVerified(clientIp)) {
+      const token = body.turnstileToken;
+      if (!token) {
+        // Require a valid token when Turnstile is configured
+        return createErrorResponse(403, "Verification token required", request);
+      }
+      const verification = await verifyTurnstileToken(token, turnstileSecret, clientIp);
+      if (!verification.success) {
+        return createErrorResponse(403, "Human verification failed", request);
+      }
+      sessionCache.markVerified(clientIp);
     }
   }
 
