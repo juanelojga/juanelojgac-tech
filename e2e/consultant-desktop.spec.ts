@@ -37,7 +37,7 @@ test.describe("Consultant Desktop — EN", () => {
     await goToPage(page);
 
     const header = page.locator("header");
-    await expect(header.locator('a[href="#services"]')).toBeVisible();
+    await expect(header.locator('a[href="#consultant"]')).toBeVisible();
     await expect(header.locator('a[href="#process"]')).toBeVisible();
     await expect(header.locator('a[href="#about"]')).toBeVisible();
     await expect(header.locator('a[href="#contact"]')).toBeVisible();
@@ -81,7 +81,7 @@ test.describe("Consultant Desktop — EN", () => {
 
     // Secondary CTA
     await expect(
-      page.locator('a[href="#services"]').filter({ hasText: "Explore Services" })
+      page.locator('a[href="#consultant"]').filter({ hasText: "Explore Services" })
     ).toBeVisible();
   });
 

@@ -46,7 +46,7 @@ describe("RedesignedHeader", () => {
     });
 
     it("contains anchor-based nav links", () => {
-      expect(headerSource).toContain("#services");
+      expect(headerSource).toContain("#consultant");
       expect(headerSource).toContain("#about");
       expect(headerSource).toContain("#contact");
     });
