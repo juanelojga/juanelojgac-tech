@@ -1,219 +1,20 @@
 {
-  "navbar": {
-    "links": {
-      "services": "Services",
-      "benefits": "Benefits",
-      "work": "Work"
-    },
-    "dropdown": {
-      "challenges": "Challenges",
-      "who-we-help": "Who we help"
-    },
-    "button": {
-      "contact": "Contact us"
-    },
-    "logo": {
-      "alt": "JUANELOJGAC Tech Logo"
-    }
-  },
-  "header": {
-    "headline": "Empowering startups and SMEs with practical, intelligent solutions",
-    "description": "We build what matters. From web platforms that move fast to automations that save time, we deliver clarity and speed without the noise.",
-    "primaryButton": "Book consultation",
-    "secondaryButton": "Learn more"
-  },
-  "whoWeHelp": {
-    "sectionLabel": "Who we help",
-    "tagline": "Audience",
-    "exploreButton": "Explore",
-    "features": [
-      {
-        "tag": "Lean builders",
-        "title": "Who we help",
-        "description": "SaaS startups moving fast need platforms that scale without slowing down. We build what you need, nothing more.",
-        "imageAlt": "Team collaborating in a modern workspace"
-      },
-      {
-        "tag": "Growing businesses",
-        "title": "Small businesses ready to go digital",
-        "description": "Small businesses ready to go digital find themselves stuck between outdated systems and expensive overhauls. We bridge that gap.",
-        "imageAlt": "Small business owner working on digital transformation"
-      },
-      {
-        "tag": "Product teams",
-        "title": "Entrepreneurs with a product vision",
-        "description": "Entrepreneurs with a vision but no technical team need partners who understand the journey from idea to market. That's us.",
-        "imageAlt": "Entrepreneurs discussing product vision"
-      },
-      {
-        "tag": "Creative professionals & learners",
-        "title": "People and teams enhancing their skills with AI",
-        "description": "From content automation to spatial design and TOEFL prep, we help you level up with AI.",
-        "imageAlt": "Diverse professionals using AI tools for design, content creation, and learning"
-      }
-    ]
-  },
-  "challenges": {
-    "tabs": [
-      {
-        "heading": "Building tech without breaking the bank",
-        "description": "You're drowning in repetitive workflows that waste time",
-        "imageAlt": "Professional working on laptop in modern office"
-      },
-      {
-        "heading": "Automating the work that slows you down",
-        "description": "Your marketing content creation feels disconnected from results",
-        "imageAlt": "Automation workflow visualization"
-      },
-      {
-        "heading": "AI-powered content that actually converts",
-        "description": "Your physical or digital space needs intelligent redesign",
-        "imageAlt": "AI-powered content creation interface"
-      }
-    ]
-  },
-  "services": {
-    "sectionLabel": "Services",
-    "heading": "What we build",
-    "description": "Fast, modern platforms built for growth and speed",
-    "services": [
-      {
-        "tagline": "Priority",
-        "title": "Web development that moves",
-        "description": "Custom platforms, e-commerce, dashboards, and web apps",
-        "buttonPrimary": "Consult",
-        "buttonSecondary": "Explore",
-        "image": "/assets/images/services/web-development.jpg",
-        "imageAlt": "Team collaborating on web development project"
-      },
-      {
-        "tagline": "Automation",
-        "title": "Workflow automation",
-        "description": "Eliminate manual tasks and reclaim your time",
-        "button": "Explore",
-        "image": "/assets/images/services/workflow-automation.jpg",
-        "imageAlt": "Automated workflow visualization"
-      },
-      {
-        "tagline": "Content",
-        "title": "Marketing studio",
-        "description": "AI-driven content creation that resonates with audiences",
-        "button": "Explore",
-        "image": "/assets/images/services/marketing-studio.jpg",
-        "imageAlt": "Content creation and marketing workflow"
-      },
-      {
-        "tagline": "Design",
-        "title": "Spatial consultancy",
-        "description": "Reimagine your physical or digital environments",
-        "button": "Explore",
-        "image": "/assets/images/services/spatial-consultancy.jpg",
-        "imageAlt": "Spatial design and architecture consultation"
-      },
-      {
-        "tagline": "Learning",
-        "title": "TOEFL assistant",
-        "description": "Intelligent prep tools for English proficiency success",
-        "button": "Explore",
-        "image": "/assets/images/services/toefl-assistant.jpg",
-        "imageAlt": "Student using TOEFL preparation tools"
-      }
-    ]
-  },
-  "benefits": {
-    "tagline": "Advantage",
-    "heading": "We operate from Ecuador and the United States",
-    "benefits": [
-      {
-        "tagline": "Speed",
-        "title": "We move fast without sacrificing quality",
-        "description": "Why choose JuaneloJGAC Tech",
-        "button": "Learn",
-        "image": "/assets/images/benefits/speed.jpg",
-        "imageAlt": "Modern architecture detail showing speed and precision"
-      },
-      {
-        "title": "Every solution starts with your actual needs",
-        "description": "Cross-border teams, local understanding",
-        "button": "Explore",
-        "image": "/assets/images/benefits/needs.jpg",
-        "imageAlt": "Cross-border collaboration workspace"
-      },
-      {
-        "title": "No shortcuts, no technical debt",
-        "description": "Built for startups and SMEs",
-        "button": "Learn",
-        "image": "/assets/images/benefits/quality.jpg",
-        "imageAlt": "Quality craftsmanship in software development"
-      },
-      {
-        "tagline": "Design",
-        "title": "We know both markets deeply",
-        "description": "Ecuador and US expertise combined",
-        "button": "Explore",
-        "image": "/assets/images/benefits/design.jpg",
-        "imageAlt": "Cross-market design expertise"
-      },
-      {
-        "tagline": "Standard",
-        "title": "Delivery without compromise or delays",
-        "description": "From kickoff to launch in weeks",
-        "button": "Learn",
-        "image": "/assets/images/benefits/standard.jpg",
-        "imageAlt": "Fast delivery and execution"
-      },
-      {
-        "title": "Design that puts people first",
-        "description": "Every line of code serves your users",
-        "button": "Explore",
-        "image": "/assets/images/benefits/people.jpg",
-        "imageAlt": "User-centered design approach"
-      }
-    ]
-  },
-  "cta": {
-    "heading": "Ready to transform your business",
-    "description": "Let's talk about what's possible. A free consultation with our team takes thirty minutes and changes everything.",
-    "primaryButton": "Consult",
-    "secondaryButton": "Contact",
-    "backgroundImageAlt": "Team collaboration workspace"
-  },
-  "footer": {
-    "newsletter": {
-      "description": "Get insights on tech trends, product launches, and transformation strategies delivered to your inbox.",
-      "location": "Ecuador and United States based"
-    },
-    "contact": {
-      "label": "Contact",
-      "email": "juan.almeida@juanelojgac-tech.com"
-    },
-    "links": {
-      "company": {
-        "about": "About us",
-        "challenges": "Challenges",
-        "whoWeHelp": "Who we help",
-        "contact": "Contact",
-        "services": "Services"
-      },
-      "label": "Company"
-    },
-    "social": {
-      "instagram": "Follow us on Instagram",
-      "twitter": "Follow us on X",
-      "linkedin": "Follow us on LinkedIn"
-    },
-    "copyright": "JuaneloJGAC Tech. All rights reserved."
-  },
   "seo": {
     "siteName": "JuaneloJGAC Tech",
-    "defaultTitle": "JuaneloJGAC Tech - AI-Powered Solutions for Startups & SMEs",
-    "defaultDescription": "Empowering startups and SMEs with practical, intelligent AI solutions—delivered with clarity, speed, and human-centered design.",
-    "keywords": "AI Solutions, AI Transformation, Software Development, Automation, Marketing, Web Development, Bilingual Services",
-    "keywordsList": ["AI Transformation", "Automation", "Digital Transformation"],
+    "defaultTitle": "AI Consulting for Startups & SMEs",
+    "defaultDescription": "AI consulting agency helping startups and small businesses build smarter products, automations, and web platforms. Bilingual AI solutions from $1,500 USD. Serving the US and Latin America.",
+    "keywords": "AI consulting for startups, AI solutions for small business, AI web development agency, AI automation for SMEs, digital transformation consulting, AI marketing for startups, bilingual AI consulting, AI consulting US and Latin America",
+    "keywordsList": [
+      "AI Consulting for Startups",
+      "AI Solutions for Small Business",
+      "AI Web Development Agency",
+      "AI Automation",
+      "Digital Transformation"
+    ],
     "twitterHandle": "@juanelojgac",
     "organization": {
       "name": "JuaneloJGAC Tech",
-      "description": "Empowering startups and SMEs with practical, intelligent AI solutions. We deliver clarity, speed, and human-centered design for digital transformation.",
+      "description": "AI consulting agency helping startups and SMEs build smarter products, automations, and AI experiences. Practical AI solutions delivered with clarity, speed, and human-centered design.",
       "slogan": "Practical AI solutions delivered with clarity, speed, and human-centered design"
     },
     "services": [
@@ -222,33 +23,248 @@
         "description": "Eliminate repetitive workflows with intelligent automation solutions that save time and reduce errors. Custom AI-powered automations designed for startups and SMEs.",
         "serviceType": "AI Automation",
         "areaServed": ["United States", "Latin America"],
-        "priceRange": "$3,000-$10,000"
+        "priceRange": "$1,500-$5,000"
       },
       {
         "name": "AI Marketing Studio",
         "description": "AI-driven content creation and marketing automation that resonates with your audience. Transform your marketing with intelligent content generation and campaign optimization.",
         "serviceType": "AI Marketing",
         "areaServed": ["United States", "Latin America"],
-        "priceRange": "$3,000-$10,000"
+        "priceRange": "$1,500-$5,000"
       },
       {
         "name": "AI-Powered Web Development",
         "description": "Fast, modern web platforms built with AI assistance. Custom e-commerce, dashboards, and web applications designed for growth and scalability.",
         "serviceType": "Web Development",
         "areaServed": ["United States", "Latin America"],
-        "priceRange": "$3,000-$10,000"
+        "priceRange": "$1,500-$5,000"
       },
       {
         "name": "AI Consultancy & Digital Transformation",
         "description": "Strategic AI consulting to transform your business processes. Expert guidance on AI implementation, automation strategy, and digital transformation roadmaps.",
         "serviceType": "AI Consulting",
         "areaServed": ["United States", "Latin America"],
-        "priceRange": "$3,000-$10,000"
+        "priceRange": "$1,500-$5,000"
       }
     ],
     "defaultImage": {
       "url": "/og-image.jpg",
       "alt": "JuaneloJGAC Tech - Futuristic AI-powered solutions for digital transformation"
+    }
+  },
+  "chat": {
+    "header": {
+      "title": "AI Consultant",
+      "subtitle": "Ask about our services, pricing, process, and more"
+    },
+    "input": {
+      "placeholder": "Type your message...",
+      "send": "Send",
+      "characterLimit": "{{count}} characters remaining",
+      "helperText": "Ask about our services, pricing, timelines, or how AI can help your business.",
+      "scopeDescription": "This assistant specializes in JuaneloJGAC Tech services and AI consulting."
+    },
+    "panel": {
+      "title": "JuaneloJGAC Tech",
+      "servicesLabel": "Our Services",
+      "collapseLabel": "Show details",
+      "expandLabel": "Hide details",
+      "outcomesLabel": "How can we help?",
+      "panelLabel": "Service information panel"
+    },
+    "messages": {
+      "welcome": "Hello! I'm the JuaneloJGAC Tech assistant. I can help you explore our services, understand pricing ranges, and find the right solution for your needs. How can I help you today?",
+      "typing": "Thinking...",
+      "errorGeneric": "Your message could not be processed. Please try again.",
+      "errorNetwork": "Connection lost. Check your internet and try again.",
+      "errorRateLimit": "Too many messages. Please wait a moment before sending another.",
+      "errorTimeout": "The response took too long. Please try again.",
+      "errorUnavailable": "The chat service is temporarily unavailable. Please try again later.",
+      "errorRetry": "Try again",
+      "redirect": "That's an interesting question! While it falls outside my area of expertise, I'd love to help you with what I know best — AI consulting, web development, automation, and marketing solutions. Would any of these be helpful?"
+    },
+    "chips": {
+      "label": "Quick questions to get started",
+      "followUpsLabel": "Suggested follow-ups"
+    },
+    "outcomes": {
+      "sectionLabel": "How can we help?",
+      "items": {
+        "grow-revenue": "Grow revenue with AI",
+        "automate-ops": "Automate operations",
+        "build-platform": "Build a digital platform",
+        "transform-marketing": "Transform your marketing",
+        "get-strategy": "Get an AI strategy"
+      }
+    },
+    "promptGroups": {
+      "explore": "Explore Services",
+      "getStarted": "Get Started"
+    },
+    "summary": {
+      "title": "Project Summary",
+      "solutionLabel": "Recommended Solution",
+      "timelineLabel": "Estimated Timeline",
+      "priceLabel": "Price Range",
+      "nextStepsLabel": "Next Steps"
+    },
+    "cta": {
+      "booking": "Book a Consultation",
+      "contact": "Send Us an Email",
+      "learnMore": "Learn More"
+    },
+    "verification": {
+      "title": "Verify you're human",
+      "description": "Please complete the verification below to start chatting.",
+      "verifying": "Verifying...",
+      "success": "Verified! You can now start chatting.",
+      "error": "Verification failed. Please try again.",
+      "expired": "Verification expired. Please verify again.",
+      "networkError": "Could not reach verification service. Please check your connection.",
+      "ariaLabel": "Human verification challenge"
+    },
+    "rateLimit": {
+      "warning": "You're sending messages too quickly. Please wait a moment.",
+      "blocked": "Too many requests. Please wait {{seconds}} seconds before trying again."
+    },
+    "errorBoundary": {
+      "title": "Something went wrong",
+      "description": "The chat encountered an error. Please try refreshing the page.",
+      "retry": "Try Again"
+    },
+    "layout": {
+      "consultantSection": "AI Consultant",
+      "panelLabel": "Service information panel",
+      "chatLabel": "Chat with our AI consultant"
+    },
+    "actionPrompts": {
+      "services": "Tell me about your services",
+      "about": "Tell me about your company and experience",
+      "contact": "How can I get in touch with you?"
+    },
+    "accessibility": {
+      "chatRegion": "AI consultant chat",
+      "messageList": "Conversation messages",
+      "newMessage": "New message from assistant",
+      "sendButton": "Send message",
+      "chipGroup": "Suggested questions"
+    },
+    "contactForm": {
+      "chipLabel": "Contact Now",
+      "modalTitle": "Get in Touch",
+      "modalSubtitle": "Fill in your details and we'll reach out shortly.",
+      "nameLabel": "Name",
+      "namePlaceholder": "Your full name",
+      "emailLabel": "Email",
+      "emailPlaceholder": "you@company.com",
+      "companyLabel": "Company",
+      "companyPlaceholder": "Your company name",
+      "summaryLabel": "Conversation Summary",
+      "summaryLoading": "Generating summary...",
+      "summaryCharCount": "/500",
+      "submitLabel": "Send",
+      "successMessage": "Thanks! We'll be in touch soon.",
+      "errorMessage": "Something went wrong. Please try again.",
+      "closeLabel": "Close",
+      "genericSummary": "I'd like to learn more about your AI consulting services."
+    }
+  },
+  "consultant": {
+    "header": {
+      "logoAlt": "JuaneloJGAC Tech logo",
+      "languageSwitchLabel": "Language",
+      "currentLanguageLabel": "EN",
+      "targetLanguageLabel": "ES"
+    },
+    "hero": {
+      "headline": "AI-Powered Consulting for Your Business",
+      "subheadline": "Get expert guidance on AI integration, automation, and digital transformation — tailored to your goals.",
+      "ctaLabel": "Start a Conversation"
+    },
+    "footer": {
+      "copyright": "© 2026 JuaneloJGAC Tech. All rights reserved.",
+      "contactLabel": "Contact Us",
+      "privacyLabel": "Privacy Policy"
+    }
+  },
+  "redesign": {
+    "header": {
+      "navServices": "Services",
+      "navAbout": "About",
+      "navContact": "Contact",
+      "navLabel": "Main navigation",
+      "ctaLabel": "Book a Consultation",
+      "logoAlt": "JuaneloJGAC Tech logo",
+      "languageSwitchLabel": "Language",
+      "menuLabel": "Menu",
+      "closeMenuLabel": "Close menu",
+      "socialGithubLabel": "GitHub",
+      "socialLinkedinLabel": "LinkedIn",
+      "socialInstagramLabel": "Instagram"
+    },
+    "hero": {
+      "microLabel": "AI Consulting & Automation Agency",
+      "headline": "AI Consulting & Solutions for Startups and Growing Businesses",
+      "subheadline": "From AI integration and workflow automation to scalable web platforms, we help startups and small businesses turn complex ideas into practical, revenue-driving systems.",
+      "ctaPrimary": "Book a Free Consultation",
+      "ctaSecondary": "Explore Services",
+      "trustProjects": "Projects Delivered",
+      "trustSatisfaction": "Client Satisfaction",
+      "trustMarkets": "US & LATAM Clients Served"
+    },
+    "footer": {
+      "brandStatement": "AI-powered solutions for modern businesses",
+      "brandParagraph": "We help startups and SMEs turn complex ideas into practical systems through AI integration, automation, and modern web development.",
+      "trustLabel": "Why Work With Us",
+      "trustBilingual": "Fully bilingual — EN/ES",
+      "trustDelivery": "Typical delivery — 4–12 weeks",
+      "trustCode": "Clean code approach",
+      "trustMarkets": "US & LATAM clients",
+      "socialLabel": "Social",
+      "addressesLabel": "Our Offices",
+      "address1Label": "Milton, FL",
+      "address1": "6407 Magnolia St, Milton, FL 32570",
+      "address2Label": "Quito, Ecuador",
+      "address2": "Magdalena Davalos E3-14 y Luis Chavez, Quito, Ecuador",
+      "address3Label": "Panama City, Panama",
+      "address3": "Coming soon",
+      "copyright": "© 2026 JuaneloJGAC Tech. All rights reserved."
+    },
+    "services": {
+      "sectionTitle": "Our Services",
+      "sectionSubtitle": "AI-powered solutions tailored for startups and small businesses",
+      "learnMore": "Learn more",
+      "priceLabel": "Investment",
+      "timelineLabel": "Timeline"
+    },
+    "faq": {
+      "sectionTitle": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "What AI consulting services do you offer for startups?",
+          "answer": "We offer four core services: Workflow Automation, AI Marketing Studio, AI-Powered Web Development, and AI Integration & Consulting. We work with startups and SMEs that need automation, custom platforms, AI integrations, or a practical roadmap to adopt AI."
+        },
+        {
+          "question": "How much do AI automation solutions cost?",
+          "answer": "Pricing depends on scope. Workflow Automation projects typically range from $1,000-$5,000 USD, AI Marketing Studio from $1,500-$5,000 USD, AI-Powered Web Development from $1,500-$8,000 USD, and AI Integration & Consulting from $2,500-$12,000 USD."
+        },
+        {
+          "question": "Do you serve clients in Latin America?",
+          "answer": "Yes. We are fully bilingual (English and Spanish) and serve clients across the United States and Latin America. We have offices in Milton, Florida (US) and Quito, Ecuador."
+        },
+        {
+          "question": "What does your AI web development process look like?",
+          "answer": "We follow an agile approach: discovery call, requirements gathering, design and architecture, iterative development with AI assistance, testing, and deployment. Most projects are delivered within 4–12 weeks using modern technologies like React, Astro, TypeScript, and Tailwind CSS."
+        },
+        {
+          "question": "Can you help my small business with AI integration?",
+          "answer": "Absolutely. We specialize in helping small and medium businesses adopt AI practically. Whether you need workflow automation, AI-assisted marketing systems, a modern web platform, or a custom AI integration, we can scope a solution around your goals and current stack."
+        },
+        {
+          "question": "What makes JuaneloJGAC Tech different from other AI agencies?",
+          "answer": "We focus exclusively on startups and SMEs, are fully bilingual (English/Spanish), deliver in 4–12 weeks, and take a practical approach to AI — real business results, not theoretical possibilities. You work directly with senior consultants."
+        }
+      ]
     }
   }
 }

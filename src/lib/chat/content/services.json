@@ -1,0 +1,190 @@
+{
+  "en": [
+    {
+      "id": "svc-web-development",
+      "title": "AI-Powered Web Development",
+      "description": "Custom web platforms, e-commerce stores, dashboards, and web applications built with modern frameworks and practical AI integrations. We deliver fast, scalable solutions with Astro, React, TypeScript, Tailwind CSS, Node.js, and API-first architectures that stay maintainable as you grow.",
+      "shortDescription": "Custom platforms, e-commerce, dashboards, and web apps",
+      "pricingRange": {
+        "minUSD": 1500,
+        "maxUSD": 8000,
+        "description": "$1,500 – $8,000"
+      },
+      "deliveryTimeline": {
+        "minWeeks": 4,
+        "maxWeeks": 12,
+        "description": "4–12 weeks"
+      },
+      "examples": [
+        "SaaS dashboard for analytics",
+        "E-commerce store with payment integration",
+        "Internal tool for team operations",
+        "Portfolio or landing page with CMS"
+      ],
+      "relatedPrompt": "I need a web platform built for my business"
+    },
+    {
+      "id": "svc-workflow-automation",
+      "title": "Workflow Automation",
+      "description": "Eliminate manual, repetitive tasks with intelligent automation pipelines. We connect your tools, streamline operations, and free your team to focus on high-value work — using no-code platforms, custom integrations, or AI-powered workflows.",
+      "shortDescription": "Eliminate manual tasks and reclaim your time",
+      "pricingRange": {
+        "minUSD": 1000,
+        "maxUSD": 5000,
+        "description": "$1,000 – $5,000"
+      },
+      "deliveryTimeline": {
+        "minWeeks": 2,
+        "maxWeeks": 8,
+        "description": "2–8 weeks"
+      },
+      "examples": [
+        "CRM to email marketing sync",
+        "Invoice and payment automation",
+        "Lead qualification pipeline",
+        "Data entry and reporting automation"
+      ],
+      "relatedPrompt": "I want to automate repetitive tasks in my business"
+    },
+    {
+      "id": "svc-marketing-studio",
+      "title": "AI Marketing Studio",
+      "description": "AI-driven content creation and campaign management that resonates with your audience. We build marketing systems that generate, optimize, and distribute content — turning your brand message into measurable growth.",
+      "shortDescription": "AI-driven content creation that resonates with audiences",
+      "pricingRange": {
+        "minUSD": 1500,
+        "maxUSD": 5000,
+        "description": "$1,500 – $5,000"
+      },
+      "deliveryTimeline": {
+        "minWeeks": 3,
+        "maxWeeks": 8,
+        "description": "3–8 weeks"
+      },
+      "examples": [
+        "Content generation pipeline for social media",
+        "Email marketing automation with AI copy",
+        "SEO content strategy implementation",
+        "Brand voice AI assistant"
+      ],
+      "relatedPrompt": "I need help with AI-powered marketing"
+    },
+    {
+      "id": "svc-ai-integration",
+      "title": "AI Integration & Consulting",
+      "description": "Strategic AI consulting and hands-on implementation to transform your business processes. We help you identify where AI adds real value, select the right tools, and build custom solutions — from chatbots and document processing to recommendation engines.",
+      "shortDescription": "Strategic AI consulting and implementation",
+      "pricingRange": {
+        "minUSD": 2500,
+        "maxUSD": 12000,
+        "description": "$2,500 – $12,000"
+      },
+      "deliveryTimeline": {
+        "minWeeks": 4,
+        "maxWeeks": 16,
+        "description": "4–16 weeks"
+      },
+      "examples": [
+        "Customer support chatbot",
+        "Document processing and extraction",
+        "Recommendation engine for e-commerce",
+        "AI-powered data analysis pipeline"
+      ],
+      "relatedPrompt": "I want to integrate AI into my business"
+    }
+  ],
+  "es": [
+    {
+      "id": "svc-web-development",
+      "title": "Desarrollo Web Potenciado por IA",
+      "description": "Plataformas web personalizadas, tiendas e-commerce, dashboards y aplicaciones web construidas con frameworks modernos e integraciones de IA prácticas. Entregamos soluciones rápidas y escalables con Astro, React, TypeScript, Tailwind CSS, Node.js y arquitecturas orientadas a APIs que siguen siendo mantenibles a medida que creces.",
+      "shortDescription": "Plataformas personalizadas, e-commerce, dashboards y apps web",
+      "pricingRange": {
+        "minUSD": 1500,
+        "maxUSD": 8000,
+        "description": "$1,500 – $8,000"
+      },
+      "deliveryTimeline": {
+        "minWeeks": 4,
+        "maxWeeks": 12,
+        "description": "4–12 semanas"
+      },
+      "examples": [
+        "Dashboard SaaS para analítica",
+        "Tienda e-commerce con integración de pagos",
+        "Herramienta interna para operaciones del equipo",
+        "Portafolio o landing page con CMS"
+      ],
+      "relatedPrompt": "Necesito una plataforma web para mi negocio"
+    },
+    {
+      "id": "svc-workflow-automation",
+      "title": "Automatización de Flujos de Trabajo",
+      "description": "Elimina tareas manuales y repetitivas con pipelines de automatización inteligente. Conectamos tus herramientas, optimizamos operaciones y liberamos a tu equipo para enfocarse en trabajo de alto valor — usando plataformas no-code, integraciones personalizadas o flujos impulsados por IA.",
+      "shortDescription": "Elimina tareas manuales y recupera tu tiempo",
+      "pricingRange": {
+        "minUSD": 1000,
+        "maxUSD": 5000,
+        "description": "$1,000 – $5,000"
+      },
+      "deliveryTimeline": {
+        "minWeeks": 2,
+        "maxWeeks": 8,
+        "description": "2–8 semanas"
+      },
+      "examples": [
+        "Sincronización de CRM a email marketing",
+        "Automatización de facturas y pagos",
+        "Pipeline de calificación de leads",
+        "Automatización de ingreso de datos y reportes"
+      ],
+      "relatedPrompt": "Quiero automatizar tareas repetitivas en mi negocio"
+    },
+    {
+      "id": "svc-marketing-studio",
+      "title": "Estudio de Marketing con IA",
+      "description": "Creación de contenido y gestión de campañas impulsada por IA que resuena con tu audiencia. Construimos sistemas de marketing que generan, optimizan y distribuyen contenido — convirtiendo tu mensaje de marca en crecimiento medible.",
+      "shortDescription": "Creación de contenido con IA que resuena con audiencias",
+      "pricingRange": {
+        "minUSD": 1500,
+        "maxUSD": 5000,
+        "description": "$1,500 – $5,000"
+      },
+      "deliveryTimeline": {
+        "minWeeks": 3,
+        "maxWeeks": 8,
+        "description": "3–8 semanas"
+      },
+      "examples": [
+        "Pipeline de generación de contenido para redes sociales",
+        "Automatización de email marketing con copy de IA",
+        "Implementación de estrategia de contenido SEO",
+        "Asistente de IA para voz de marca"
+      ],
+      "relatedPrompt": "Necesito ayuda con marketing impulsado por IA"
+    },
+    {
+      "id": "svc-ai-integration",
+      "title": "Integración y Consultoría de IA",
+      "description": "Consultoría estratégica de IA e implementación práctica para transformar tus procesos de negocio. Te ayudamos a identificar dónde la IA agrega valor real, seleccionar las herramientas correctas y construir soluciones personalizadas — desde chatbots y procesamiento de documentos hasta motores de recomendación.",
+      "shortDescription": "Consultoría estratégica de IA e implementación",
+      "pricingRange": {
+        "minUSD": 2500,
+        "maxUSD": 12000,
+        "description": "$2,500 – $12,000"
+      },
+      "deliveryTimeline": {
+        "minWeeks": 4,
+        "maxWeeks": 16,
+        "description": "4–16 semanas"
+      },
+      "examples": [
+        "Chatbot de atención al cliente",
+        "Procesamiento y extracción de documentos",
+        "Motor de recomendación para e-commerce",
+        "Pipeline de análisis de datos con IA"
+      ],
+      "relatedPrompt": "Quiero integrar IA en mi negocio"
+    }
+  ]
+}

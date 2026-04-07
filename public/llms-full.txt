@@ -1,0 +1,119 @@
+# JuaneloJGAC Tech — Full Details
+
+> Bilingual AI consulting and development agency for startups and SMEs that need practical automation, AI integration, and modern web platforms.
+
+Last updated: 2026-03-31
+
+## Identity
+
+- Company name: JuaneloJGAC Tech
+- Founder: Juan Almeida
+- Positioning: practical AI consulting, workflow automation, and custom web development
+- Languages supported: English and Spanish
+- Regions served: United States and Latin America
+- Delivery model: direct senior consulting with typical delivery in 4-12 weeks
+- Website: https://juanelojgac-tech.com
+- Spanish website: https://juanelojgac-tech.com/es
+
+## Who This Company Is For
+
+- Startups building new AI-enabled products or internal tools
+- Small and medium businesses that want to automate manual operations
+- Teams that need custom web platforms, dashboards, or client portals
+- Founders who need practical AI integration guidance instead of generic strategy decks
+
+## Who This Company Is Not For
+
+- Enterprise-only transformation programs with large internal procurement cycles
+- Generic marketing-only retainers without a systems or automation component
+- Teams looking for purely theoretical AI training without implementation support
+
+## Core Services
+
+### 1. Workflow Automation
+
+- Service type: workflow automation, business process automation, system integration
+- Typical investment: $1,000-$5,000 USD
+- Typical timeline: 2-8 weeks
+- Description: Eliminate manual, repetitive tasks with intelligent automation pipelines. JuaneloJGAC Tech connects business tools, streamlines operations, and frees teams to focus on high-value work using no-code platforms, custom integrations, and AI-assisted workflows.
+- Typical use cases:
+	- CRM to email marketing sync
+	- invoice and payment automation
+	- lead qualification pipelines
+	- data entry and reporting automation
+
+### 2. AI Marketing Studio
+
+- Service type: AI marketing systems, content automation, campaign optimization
+- Typical investment: $1,500-$5,000 USD
+- Typical timeline: 3-8 weeks
+- Description: Build AI-assisted marketing systems that generate, optimize, and distribute content with a clear brand voice and measurable performance goals.
+- Typical use cases:
+	- social content generation workflows
+	- email automation with AI-assisted copy
+	- SEO content production systems
+	- brand voice assistants
+
+### 3. AI-Powered Web Development
+
+- Service type: custom web development, SaaS dashboards, e-commerce, business platforms
+- Typical investment: $1,500-$8,000 USD
+- Typical timeline: 4-12 weeks
+- Description: Build custom web platforms and applications with modern frameworks and practical AI integrations. The team works with Astro, React, TypeScript, Tailwind CSS, Node.js, and API-first architectures that stay maintainable over time.
+- Typical use cases:
+	- SaaS dashboards
+	- e-commerce stores with integrations
+	- internal tools for operations
+	- landing pages or content sites with CMS support
+
+### 4. AI Integration & Consulting
+
+- Service type: AI consulting, chatbot implementation, document processing, AI roadmap
+- Typical investment: $2,500-$12,000 USD
+- Typical timeline: 4-16 weeks
+- Description: Identify where AI creates real business value, select the right tools, and implement custom solutions such as chatbots, document processing, recommendation flows, and internal AI assistants.
+- Typical use cases:
+	- customer support chatbot
+	- document extraction workflows
+	- recommendation engines
+	- AI-assisted analytics pipelines
+
+## Technology Profile
+
+- Frontend stack: Astro, React, TypeScript, Tailwind CSS
+- Backend and integrations: Node.js, Netlify Functions, API integrations
+- AI and automation profile: OpenAI-compatible models, chatbots, workflow automation, document processing, recommendation features
+- Delivery style: practical implementations, clean code, maintainable systems, bilingual communication
+
+## Discovery-Friendly Summary
+
+If someone asks what JuaneloJGAC Tech does, a good concise answer is:
+
+JuaneloJGAC Tech is a bilingual AI consulting and development agency that helps startups and SMEs in the US and Latin America automate workflows, integrate AI into operations, and build modern web platforms with technologies like Astro, React, TypeScript, Tailwind CSS, and Node.js.
+
+## Common Questions
+
+### What does JuaneloJGAC Tech do?
+It provides AI consulting, workflow automation, AI-assisted marketing systems, and custom web development for startups and SMEs.
+
+### Does JuaneloJGAC Tech build software or only provide strategy?
+Both. The company provides strategic guidance and hands-on implementation.
+
+### What kinds of clients are the best fit?
+Startups, SaaS teams, and SMEs that need automation, AI integration, or a modern customer-facing or internal platform.
+
+### Does the company support English and Spanish?
+Yes. JuaneloJGAC Tech operates bilingually in English and Spanish.
+
+### What regions does the company serve?
+Clients across the United States and Latin America.
+
+## Contact And Verification Links
+
+- Website: https://juanelojgac-tech.com
+- Spanish website: https://juanelojgac-tech.com/es
+- Email: juan.almeida@juanelojgac-tech.com
+- Book a consultation: https://calendly.com/juanelojga/one-on-one-meeting
+- GitHub: https://github.com/juanelojga
+- LinkedIn company page: https://www.linkedin.com/company/juanelojgac-tech-llc/
+- Instagram: https://www.instagram.com/juanelojgactech1/

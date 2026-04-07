@@ -1,0 +1,190 @@
+import React, { useCallback, useEffect, useRef } from "react";
+
+import type {
+  ChatMessage as ChatMessageType,
+  GuidedFollowUp,
+  PromptGroup,
+  StarterPrompt,
+} from "../../../lib/chat/types";
+import ChatHeader from "./ChatHeader";
+import ChatInput from "./ChatInput";
+import ChatMessage from "./ChatMessage";
+import ContactChip from "./ContactChip";
+import GroupedPromptChips from "./GroupedPromptChips";
+import TypingIndicator from "./TypingIndicator";
+
+export interface ChatContainerTranslations {
+  readonly headerTitle: string;
+  readonly headerSubtitle: string;
+  readonly headerScopeDescription: string;
+  readonly inputPlaceholder: string;
+  readonly inputSend: string;
+  readonly inputCharacterLimit: string;
+  readonly inputHelperText: string;
+  readonly welcomeMessage: string;
+  readonly typingText: string;
+  readonly chipsLabel: string;
+  readonly followUpsLabel: string;
+  readonly errorRetry: string;
+  readonly chatRegionLabel: string;
+  readonly messageListLabel: string;
+  readonly contactChipLabel: string;
+}
+
+export interface ChatContainerProps {
+  readonly messages: readonly ChatMessageType[];
+  readonly starterPrompts: readonly StarterPrompt[];
+  readonly promptGroups: readonly PromptGroup[];
+  readonly followUps: readonly GuidedFollowUp[];
+  readonly isTyping: boolean;
+  readonly error: string | null;
+  readonly onSendMessage: (message: string) => void;
+  readonly onRetry?: () => void;
+  readonly onContactClick: () => void;
+  readonly translations: ChatContainerTranslations;
+}
+
+export default function ChatContainer({
+  messages,
+  starterPrompts,
+  promptGroups,
+  followUps,
+  isTyping,
+  error,
+  onSendMessage,
+  onRetry,
+  onContactClick,
+  translations,
+}: ChatContainerProps) {
+  const messageEndRef = useRef<HTMLDivElement>(null);
+  const hasMessages = messages.length > 0;
+
+  // Scroll to bottom when new messages arrive or typing starts
+  useEffect(() => {
+    if (typeof messageEndRef.current?.scrollIntoView === "function") {
+      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages.length, isTyping]);
+
+  const handleChipClick = useCallback(
+    (prompt: string) => {
+      onSendMessage(prompt);
+    },
+    [onSendMessage]
+  );
+
+  return (
+    <section
+      role="region"
+      aria-label={translations.chatRegionLabel}
+      data-testid="chat-container"
+      className="bg-chat-panel-bg flex h-full flex-col"
+    >
+      <ChatHeader
+        title={translations.headerTitle}
+        subtitle={translations.headerSubtitle}
+        scopeDescription={translations.headerScopeDescription}
+      />
+
+      {/* Message Area */}
+      <div
+        role="log"
+        aria-label={translations.messageListLabel}
+        aria-live="polite"
+        data-testid="chat-message-list"
+        className="flex-1 overflow-y-auto px-3 py-3 sm:px-4 sm:py-4"
+      >
+        {/* Conversation messages */}
+        <div className="mx-auto max-w-[var(--spacing-chat-message-max-width)] space-y-3">
+          {/* Welcome message when no conversation messages */}
+          {!hasMessages && (
+            <div className="flex justify-start">
+              <div className="bg-chat-bubble-assistant text-chat-bubble-assistant-text max-w-[80%] rounded-2xl rounded-bl-sm px-4 py-3">
+                <p className="text-sm leading-relaxed">{translations.welcomeMessage}</p>
+              </div>
+            </div>
+          )}
+
+          {messages.map((msg) => (
+            <ChatMessage key={msg.id} message={msg} />
+          ))}
+
+          {/* Typing indicator */}
+          {isTyping && (
+            <div className="flex justify-start">
+              <TypingIndicator typingText={translations.typingText} />
+            </div>
+          )}
+        </div>
+
+        {/* Scroll anchor */}
+        <div ref={messageEndRef} />
+      </div>
+
+      {/* Error Alert */}
+      {error && (
+        <div
+          role="alert"
+          className="bg-coral/10 text-coral flex items-center gap-2 px-4 py-2.5 text-sm"
+        >
+          <span className="flex-1">{error}</span>
+          {onRetry && (
+            <button
+              type="button"
+              onClick={onRetry}
+              data-testid="chat-retry-button"
+              className="text-coral hover:text-coral-light bg-coral/10 hover:bg-coral/20 min-h-[44px] rounded px-3.5 py-2 text-xs font-semibold transition-colors"
+            >
+              {translations.errorRetry}
+            </button>
+          )}
+        </div>
+      )}
+
+      {/* Follow-up suggestions — visible after assistant responses */}
+      {hasMessages && followUps.length > 0 && !isTyping && (
+        <div data-testid="chat-follow-ups" className="border-white-10 border-t px-3 py-2 sm:px-4">
+          <p className="text-text-muted mb-1.5 text-xs font-medium">
+            {translations.followUpsLabel}
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {followUps.map((followUp) => (
+              <button
+                key={followUp.id}
+                type="button"
+                onClick={() => handleChipClick(followUp.prompt)}
+                className="bg-white-5 text-text-bright border-white-10 hover:bg-white-10 hover:border-accent-cyan/30 min-h-[44px] rounded-full border px-3.5 py-2 text-xs font-medium transition-colors"
+              >
+                {followUp.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Grouped Prompt Chips — visible only when no messages */}
+      <GroupedPromptChips
+        promptGroups={promptGroups}
+        starterPrompts={starterPrompts}
+        onChipClick={handleChipClick}
+        sectionLabel={translations.chipsLabel}
+        visible={!hasMessages}
+      />
+
+      {/* Contact Now chip — visible after user sends a message */}
+      {hasMessages && (
+        <ContactChip label={translations.contactChipLabel} onClick={onContactClick} />
+      )}
+
+      {/* Input Area */}
+      <ChatInput
+        placeholder={translations.inputPlaceholder}
+        sendLabel={translations.inputSend}
+        characterLimitLabel={translations.inputCharacterLimit}
+        onSubmit={onSendMessage}
+        disabled={isTyping}
+        helperText={translations.inputHelperText}
+      />
+    </section>
+  );
+}

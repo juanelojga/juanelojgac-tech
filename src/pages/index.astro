@@ -1,27 +1,18 @@
 ---
-import Benefits from "../components/Benefits.astro";
-import Challenges from "../components/Challenges.astro";
-import ContactCTA from "../components/ContactCTA.astro";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import NavbarEnhanced from "../components/NavbarEnhanced.astro";
-import Services from "../components/Services.astro";
-import WhoWeHelp from "../components/WhoWeHelp.astro";
+import ConsultantSection from "../components/ConsultantSection.astro";
+import FaqSection from "../components/FaqSection.astro";
+import HeroSection from "../components/redesign/HeroSection.astro";
+import RedesignedFooter from "../components/redesign/RedesignedFooter.astro";
+import RedesignedHeader from "../components/redesign/RedesignedHeader.astro";
+import ServicesSection from "../components/ServicesSection.astro";
 import Layout from "../layouts/Layout.astro";
-import { detectLanguageFromHeader } from "../lib/i18n";
-
-// Detect language from Accept-Language header
-const acceptLanguageHeader = Astro.request.headers.get("accept-language");
-const lang = detectLanguageFromHeader(acceptLanguageHeader);
 ---
 
-<Layout lang={lang}>
-  <NavbarEnhanced lang={lang} />
-  <Header lang={lang} />
-  <WhoWeHelp lang={lang} />
-  <Challenges lang={lang} />
-  <Services lang={lang} />
-  <Benefits lang={lang} />
-  <ContactCTA lang={lang} />
-  <Footer lang={lang} />
+<Layout lang="en">
+  <RedesignedHeader lang="en" />
+  <HeroSection lang="en" />
+  <ServicesSection lang="en" />
+  <ConsultantSection lang="en" />
+  <FaqSection lang="en" />
+  <RedesignedFooter lang="en" />
 </Layout>

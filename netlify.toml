@@ -7,6 +7,23 @@ command = "pnpm run build"
 publish = "dist"
 
 ############################################
+# FUNCTIONS
+############################################
+
+[functions]
+directory = "netlify/functions"
+
+############################################
+# LOCAL DEV (netlify dev)
+############################################
+
+[dev]
+command = "pnpm run dev"
+targetPort = 4321
+port = 8888
+autoLaunch = false
+
+############################################
 # PRODUCTION: Build and deploy
 ############################################
 
@@ -36,6 +53,11 @@ ignore = "exit 0"
 ############################################
 
 [[headers]]
+for = "/_astro/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
 for = "/assets/*"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
@@ -54,6 +76,19 @@ Cache-Control = "public, max-age=31536000, immutable"
 for = "/*.html"
 [headers.values]
 Cache-Control = "public, max-age=600"
+
+############################################
+# SECURITY HEADERS
+############################################
+
+[[headers]]
+for = "/*"
+[headers.values]
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "DENY"
+Referrer-Policy = "strict-origin-when-cross-origin"
+Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+X-Robots-Tag = "all"
 
 ############################################
 # Disable processing (performance)

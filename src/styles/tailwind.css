@@ -2,7 +2,9 @@
 
 @theme {
   /* Fonts */
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-sans:
+    "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
   --font-sora: "Sora", ui-sans-serif, system-ui, sans-serif;
 
   /* Colors - Brand */
@@ -119,4 +121,161 @@
 
   --text-lg: 18px;
   --text-lg--line-height: 1.5;
+
+  /* ─── Chat UI Tokens ─── */
+
+  /* Message Bubbles */
+  --color-chat-bubble-user: #38bdf8;
+  --color-chat-bubble-user-text: #07111f;
+  --color-chat-bubble-assistant: #ffffff0d;
+  --color-chat-bubble-assistant-text: #f8fafc;
+
+  /* Panel Backgrounds */
+  --color-chat-panel-bg: #11243a;
+  --color-chat-panel-sidebar-bg: #0d1b2a;
+  --color-chat-panel-header-bg: #11243a;
+  --color-chat-panel-header-text: #f8fafc;
+  --color-chat-panel-input-bg: #07111f;
+
+  /* Prompt Chip Styles */
+  --color-chat-chip-bg: #ffffff0d;
+  --color-chat-chip-text: #f8fafc;
+  --color-chat-chip-border: #ffffff1a;
+  --color-chat-chip-hover-bg: #ffffff1a;
+  --color-chat-chip-hover-border: #38bdf84d;
+
+  /* Input Focus States */
+  --color-chat-input-border: #ffffff1a;
+  --color-chat-input-focus-border: #38bdf8;
+  --color-chat-input-focus-ring: #38bdf833;
+  --color-chat-input-placeholder: #a7b4c6;
+
+  /* CTA Tokens */
+  --color-chat-cta-primary: #38bdf8;
+  --color-chat-cta-primary-hover: #0ea5e9;
+  --color-chat-cta-primary-text: #07111f;
+  --color-chat-cta-secondary: #8b5cf6;
+  --color-chat-cta-secondary-hover: #7c3aed;
+  --color-chat-cta-secondary-text: #f8fafc;
+
+  /* Typing Indicator */
+  --color-chat-typing-dot: #a7b4c6;
+
+  /* ─── Chat Layout Breakpoints ─── */
+  /* Two-panel layout strategy:
+     - Mobile (<768px): Full-screen chat, panel collapses to overlay drawer
+     - Tablet (768-1023px): Slide-in panel, chat fills remaining space
+     - Desktop (≥1024px): Persistent left panel (360px) + chat panel
+     - Wide (≥1280px): Persistent left panel (400px) + chat panel */
+
+  --spacing-chat-panel-width-desktop: 360px;
+  --spacing-chat-panel-width-wide: 400px;
+  --spacing-chat-message-max-width: 640px;
+  --spacing-chat-input-max-width: 720px;
+
+  /* ─── Redesign – Dark Premium Palette ─── */
+  --color-midnight: #07111f;
+  --color-midnight-light: #0d1b2a;
+  --color-midnight-surface: #11243a;
+  --color-text-bright: #f8fafc;
+  --color-text-muted: #a7b4c6;
+  --color-accent-cyan: #38bdf8;
+  --color-accent-teal: #2dd4bf;
+  --color-accent-violet: #8b5cf6;
+  --color-accent-pink: #ec4899;
+}
+
+/* ─── Redesign – Animation Keyframes ─── */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes glow-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes orb-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(30px, -20px);
+  }
+  50% {
+    transform: translate(-20px, 15px);
+  }
+  75% {
+    transform: translate(15px, 25px);
+  }
+}
+
+/* ─── Redesign – Background Orbs ─── */
+.orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.2;
+  will-change: transform;
+}
+
+.orb-cyan {
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #38bdf8, transparent);
+  top: 10%;
+  right: 20%;
+  animation: orb-drift 20s ease-in-out infinite;
+}
+
+.orb-teal {
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #2dd4bf, transparent);
+  bottom: 20%;
+  left: 10%;
+  animation: orb-drift 25s ease-in-out infinite reverse;
+}
+
+.orb-violet {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #8b5cf6, transparent);
+  top: 40%;
+  left: 50%;
+  animation: orb-drift 22s ease-in-out infinite 5s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

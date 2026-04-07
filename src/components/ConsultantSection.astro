@@ -1,0 +1,149 @@
+---
+import { StaticContentProvider } from "../lib/chat/content/static-content-provider";
+import ConsultantLayout from "./react/chat/ConsultantLayout";
+
+interface Props {
+  lang: "en" | "es";
+}
+
+const { lang } = Astro.props;
+
+// Import translations — use static imports to avoid Vite chunking warnings
+import enTranslations from "../i18n/en.json";
+import esTranslations from "../i18n/es.json";
+const t = (lang === "es" ? esTranslations : enTranslations).chat;
+
+// Get content from the content provider
+const contentProvider = new StaticContentProvider();
+const services = contentProvider.getServices(lang);
+const starterPrompts = contentProvider.getStarterPrompts(lang);
+const outcomePrompts = contentProvider.getOutcomePrompts(lang);
+const promptGroups = contentProvider.getPromptGroups(lang);
+
+// Shape service items for the panel
+const serviceItems = services.map((svc) => ({
+  id: svc.id,
+  title: svc.title,
+  shortDescription: svc.shortDescription,
+  relatedPrompt: svc.relatedPrompt,
+}));
+
+// Panel translations
+const panelTranslations = {
+  servicesLabel: t.panel.servicesLabel,
+  collapseLabel: t.panel.collapseLabel,
+  expandLabel: t.panel.expandLabel,
+  outcomesLabel: t.panel.outcomesLabel,
+  panelLabel: t.panel.panelLabel,
+};
+
+// Chat translations
+const chatTranslations = {
+  headerTitle: t.header.title,
+  headerSubtitle: t.header.subtitle,
+  headerScopeDescription: t.input.scopeDescription,
+  inputPlaceholder: t.input.placeholder,
+  inputSend: t.input.send,
+  inputCharacterLimit: t.input.characterLimit,
+  inputHelperText: t.input.helperText,
+  welcomeMessage: t.messages.welcome,
+  typingText: t.messages.typing,
+  chipsLabel: t.chips.label,
+  followUpsLabel: t.chips.followUpsLabel,
+  errorRetry: t.messages.errorRetry,
+  chatRegionLabel: t.accessibility.chatRegion,
+  messageListLabel: t.accessibility.messageList,
+  contactChipLabel: t.contactForm.chipLabel,
+};
+
+// Error translations (resolved i18n keys for error messages)
+const errorTranslations = {
+  errorGeneric: t.messages.errorGeneric,
+  errorNetwork: t.messages.errorNetwork,
+  errorRateLimit: t.messages.errorRateLimit,
+  errorTimeout: t.messages.errorTimeout,
+  errorUnavailable: t.messages.errorUnavailable,
+};
+
+// Layout translations
+const layoutTranslations = {
+  consultantSection: t.layout.consultantSection,
+  panelLabel: t.layout.panelLabel,
+  chatLabel: t.layout.chatLabel,
+};
+
+// Verification translations
+const verificationTranslations = {
+  title: t.verification.title,
+  description: t.verification.description,
+  verifying: t.verification.verifying,
+  success: t.verification.success,
+  error: t.verification.error,
+  expired: t.verification.expired,
+  networkError: t.verification.networkError,
+  ariaLabel: t.verification.ariaLabel,
+};
+
+// Error boundary translations
+const errorBoundaryTranslations = {
+  title: t.errorBoundary.title,
+  description: t.errorBoundary.description,
+  retry: t.errorBoundary.retry,
+};
+
+// Contact form translations
+const contactFormTranslations = {
+  chipLabel: t.contactForm.chipLabel,
+  modalTitle: t.contactForm.modalTitle,
+  modalSubtitle: t.contactForm.modalSubtitle,
+  nameLabel: t.contactForm.nameLabel,
+  namePlaceholder: t.contactForm.namePlaceholder,
+  emailLabel: t.contactForm.emailLabel,
+  emailPlaceholder: t.contactForm.emailPlaceholder,
+  companyLabel: t.contactForm.companyLabel,
+  companyPlaceholder: t.contactForm.companyPlaceholder,
+  summaryLabel: t.contactForm.summaryLabel,
+  summaryLoading: t.contactForm.summaryLoading,
+  summaryCharCount: t.contactForm.summaryCharCount,
+  submitLabel: t.contactForm.submitLabel,
+  successMessage: t.contactForm.successMessage,
+  errorMessage: t.contactForm.errorMessage,
+  closeLabel: t.contactForm.closeLabel,
+  genericSummary: t.contactForm.genericSummary,
+};
+
+// Turnstile site key from environment (empty string disables verification)
+// In development mode, skip verification entirely so the chat is immediately accessible
+const turnstileSiteKey = import.meta.env.DEV
+  ? ""
+  : (import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? "");
+
+// Action prompts for header/hero navigation triggers
+const actionPrompts = {
+  services: t.actionPrompts.services,
+  about: t.actionPrompts.about,
+  contact: t.actionPrompts.contact,
+};
+---
+
+<section id="consultant" class="bg-midnight py-16 lg:py-24">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <ConsultantLayout
+      client:load
+      services={serviceItems}
+      outcomePrompts={outcomePrompts}
+      starterPrompts={starterPrompts}
+      promptGroups={promptGroups}
+      panelTranslations={panelTranslations}
+      chatTranslations={chatTranslations}
+      layoutTranslations={layoutTranslations}
+      verificationTranslations={verificationTranslations}
+      errorBoundaryTranslations={errorBoundaryTranslations}
+      errorTranslations={errorTranslations}
+      contactFormTranslations={contactFormTranslations}
+      actionPrompts={actionPrompts}
+      turnstileSiteKey={turnstileSiteKey}
+      language={lang}
+    />
+  </div>
+</section>

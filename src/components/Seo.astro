@@ -11,6 +11,8 @@
 
 import enTranslations from "../i18n/en.json";
 import esTranslations from "../i18n/es.json";
+import { StaticContentProvider } from "../lib/chat/content/static-content-provider";
+import { SOCIAL_LINKS } from "../lib/socialLinks";
 
 interface Props {
   title: string;
@@ -25,6 +27,41 @@ const { title, description: customDescription, lang, image } = Astro.props;
 // Get translations based on language
 const translations = lang === "en" ? enTranslations : esTranslations;
 const seo = translations.seo;
+const contentProvider = new StaticContentProvider();
+const services = contentProvider.getServices(lang);
+const companyFacts = contentProvider.getCompanyFacts(lang);
+
+const supportedLanguages = ["English", "Spanish"];
+const servicePriceMinimum = Math.min(...services.map((service) => service.pricingRange.minUSD));
+const servicePriceMaximum = Math.max(...services.map((service) => service.pricingRange.maxUSD));
+const overallPriceRange = `$${servicePriceMinimum.toLocaleString()}-$${servicePriceMaximum.toLocaleString()}`;
+const serviceNames = services.map((service) => service.title);
+
+function getServiceType(serviceId: string, language: "en" | "es"): string {
+  const labels = {
+    "svc-web-development": {
+      en: "AI Web Development",
+      es: "Desarrollo Web con IA",
+    },
+    "svc-workflow-automation": {
+      en: "Workflow Automation",
+      es: "Automatización de Flujos de Trabajo",
+    },
+    "svc-marketing-studio": {
+      en: "AI Marketing",
+      es: "Marketing con IA",
+    },
+    "svc-ai-integration": {
+      en: "AI Integration Consulting",
+      es: "Consultoría de Integración de IA",
+    },
+  } as const;
+
+  return (
+    labels[serviceId as keyof typeof labels]?.[language] ??
+    (language === "en" ? "AI Service" : "Servicio de IA")
+  );
+}
 
 /**
  * Generate keyword-rich meta description
@@ -89,8 +126,8 @@ const organizationSchema = {
     width: "64",
     height: "64",
   },
-  description: seo.organization.description,
-  slogan: seo.organization.slogan,
+  description: companyFacts.description,
+  slogan: companyFacts.tagline,
   foundingDate: "2024",
   founders: [
     {
@@ -102,7 +139,7 @@ const organizationSchema = {
     "@type": "ContactPoint",
     email: "juan.almeida@juanelojgac-tech.com",
     contactType: "Customer Service",
-    availableLanguage: ["English", "Spanish"],
+    availableLanguage: supportedLanguages,
   },
   areaServed: [
     {
@@ -118,11 +155,7 @@ const organizationSchema = {
       name: "Latin America",
     },
   ],
-  sameAs: [
-    "https://twitter.com/juanelojgac",
-    "https://linkedin.com/company/juanelojgac-tech",
-    "https://instagram.com/juanelojgac",
-  ],
+  sameAs: [SOCIAL_LINKS.github, SOCIAL_LINKS.linkedin, SOCIAL_LINKS.instagram],
   knowsAbout: [
     "Artificial Intelligence",
     "Machine Learning",
@@ -130,30 +163,47 @@ const organizationSchema = {
     "Digital Transformation",
     "Web Development",
     "AI Marketing",
+    "React",
+    "Astro",
+    "TypeScript",
+    "API Integrations",
   ],
+  availableLanguage: supportedLanguages,
 };
 
 /**
  * Service Schemas - AI-focused service offerings
  * Includes detailed structured data for each core service
  */
-const serviceSchemas = seo.services.map((service, index) => ({
+const serviceSchemas = services.map((service) => ({
   "@context": "https://schema.org",
   "@type": "Service",
-  "@id": `${baseUrl}/#service-${index + 1}`,
-  serviceType: service.serviceType,
-  name: service.name,
+  "@id": `${baseUrl}/#${service.id}`,
+  serviceType: getServiceType(service.id, lang),
+  name: service.title,
   description: service.description,
   provider: {
     "@id": `${baseUrl}/#organization`,
   },
-  areaServed: service.areaServed.map((area) => ({
-    "@type": area === "United States" || area === "Estados Unidos" ? "Country" : "Place",
-    name: area,
-  })),
+  url: `${lang === "en" ? baseUrl : `${baseUrl}/es`}#services`,
+  areaServed: [
+    {
+      "@type": "Country",
+      name: lang === "en" ? "United States" : "Estados Unidos",
+    },
+    {
+      "@type": "Place",
+      name: lang === "en" ? "Latin America" : "Latinoamérica",
+    },
+  ],
   offers: {
     "@type": "Offer",
-    priceRange: service.priceRange,
+    priceSpecification: {
+      "@type": "PriceSpecification",
+      minPrice: service.pricingRange.minUSD,
+      maxPrice: service.pricingRange.maxUSD,
+      priceCurrency: "USD",
+    },
     priceCurrency: "USD",
     availability: "https://schema.org/InStock",
   },
@@ -162,6 +212,7 @@ const serviceSchemas = seo.services.map((service, index) => ({
     "@type": "Audience",
     audienceType: "Startups and SMEs",
   },
+  availableLanguage: supportedLanguages,
 }));
 
 /**
@@ -173,19 +224,11 @@ const websiteSchema = {
   "@id": `${baseUrl}/#website`,
   url: baseUrl,
   name: seo.siteName,
-  description: seo.organization.description,
+  description: companyFacts.description,
   publisher: {
     "@id": `${baseUrl}/#organization`,
   },
-  inLanguage: [lang === "en" ? "en-US" : "es-ES"],
-  potentialAction: {
-    "@type": "SearchAction",
-    target: {
-      "@type": "EntryPoint",
-      urlTemplate: `${baseUrl}/search?q={search_term_string}`,
-    },
-    "query-input": "required name=search_term_string",
-  },
+  inLanguage: ["en-US", "es-EC"],
 };
 
 /**
@@ -203,6 +246,153 @@ const breadcrumbSchema = {
     },
   ],
 };
+
+/**
+ * FAQ Schema for rich snippets
+ * Uses FAQ content from i18n translations
+ */
+const faqTranslations = translations.redesign?.faq;
+const faqSchema = faqTranslations
+  ? {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqTranslations.items.map((item: { question: string; answer: string }) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    }
+  : null;
+
+/**
+ * LocalBusiness schemas for office locations
+ */
+const localBusinessSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${baseUrl}/#location-milton`,
+    name: "JuaneloJGAC Tech - Milton, FL",
+    description: seo.organization.description,
+    url: baseUrl,
+    parentOrganization: { "@id": `${baseUrl}/#organization` },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "6407 Magnolia St",
+      addressLocality: "Milton",
+      addressRegion: "FL",
+      postalCode: "32570",
+      addressCountry: "US",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 30.6324,
+      longitude: -87.0397,
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "United States",
+    },
+    priceRange: "$1,500-$5,000",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${baseUrl}/#location-quito`,
+    name: "JuaneloJGAC Tech - Quito, Ecuador",
+    description: seo.organization.description,
+    url: baseUrl,
+    parentOrganization: { "@id": `${baseUrl}/#organization` },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Magdalena Davalos E3-14 y Luis Chavez",
+      addressLocality: "Quito",
+      addressCountry: "EC",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: -0.2299,
+      longitude: -78.5249,
+    },
+    areaServed: {
+      "@type": "Place",
+      name: "Latin America",
+    },
+    priceRange: "$1,500-$5,000",
+  },
+];
+
+/**
+ * Person Schema for founder - E-E-A-T authority signal
+ */
+const founderSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${baseUrl}/#founder`,
+  name: "Juan Almeida",
+  jobTitle: "Founder & Lead AI Consultant",
+  worksFor: { "@id": `${baseUrl}/#organization` },
+  url: baseUrl,
+  knowsAbout: [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Automation",
+    "Digital Transformation",
+    "Web Development",
+    "AI Consulting",
+    "AI Marketing",
+  ],
+  sameAs: [SOCIAL_LINKS.linkedin, SOCIAL_LINKS.github, SOCIAL_LINKS.instagram],
+  knowsLanguage: supportedLanguages,
+};
+
+/**
+ * ProfessionalService Schema - more specific than Organization for consulting
+ */
+const professionalServiceSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "@id": `${baseUrl}/#professional-service`,
+  name: seo.organization.name,
+  url: baseUrl,
+  description: companyFacts.description,
+  priceRange: overallPriceRange,
+  areaServed: [
+    { "@type": "Country", name: "United States" },
+    { "@type": "Country", name: "Ecuador" },
+    { "@type": "Place", name: "Latin America" },
+  ],
+  availableLanguage: supportedLanguages,
+  audience: {
+    "@type": "Audience",
+    audienceType: lang === "en" ? "Startups and SMEs" : "Startups y PYMEs",
+  },
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: lang === "en" ? "AI Consulting Services" : "Servicios de Consultoría de IA",
+    itemListElement: services.map((service) => ({
+      "@type": "OfferCatalog",
+      name: service.title,
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: { "@id": `${baseUrl}/#${service.id}` },
+        },
+      ],
+    })),
+  },
+  knowsAbout: [
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Automation",
+    "Digital Transformation",
+    "Web Development",
+    "AI Marketing",
+  ],
+};
 ---
 
 <!-- Core Meta Tags -->
@@ -216,6 +406,8 @@ const breadcrumbSchema = {
 <meta name="description" content={description} />
 <meta name="keywords" content={seo.keywords} />
 <meta name="author" content={seo.siteName} />
+<meta name="subject" content={serviceNames.join(", ")} />
+<meta name="category" content="AI Consulting, Workflow Automation, Web Development, AI Marketing" />
 
 <!-- Favicon and App Icons -->
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -266,19 +458,40 @@ const breadcrumbSchema = {
 <meta name="coverage" content="Worldwide" />
 <meta name="distribution" content="Global" />
 <meta name="rating" content="General" />
+<meta name="services" content={serviceNames.join(", ")} />
+
+<!-- LLM Discoverability -->
+<link rel="help" href="/llms.txt" type="text/plain" title="LLM content file" />
+<link rel="help" href="/llms-full.txt" type="text/plain" title="LLM extended content file" />
 
 <!-- Structured Data (JSON-LD) - Organization -->
-<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
 
 <!-- Structured Data (JSON-LD) - WebSite -->
-<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 
 <!-- Structured Data (JSON-LD) - Services -->
 {
   serviceSchemas.map((schema) => (
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
   ))
 }
 
 <!-- Structured Data (JSON-LD) - Breadcrumb -->
-<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+<script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+<!-- Structured Data (JSON-LD) - FAQ -->
+{faqSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
+
+<!-- Structured Data (JSON-LD) - Local Business Locations -->
+{
+  localBusinessSchemas.map((schema) => (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+  ))
+}
+
+<!-- Structured Data (JSON-LD) - Founder -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(founderSchema)} />
+
+<!-- Structured Data (JSON-LD) - Professional Service -->
+<script is:inline type="application/ld+json" set:html={JSON.stringify(professionalServiceSchema)} />

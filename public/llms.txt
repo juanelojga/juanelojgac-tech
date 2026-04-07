@@ -1,0 +1,41 @@
+# JuaneloJGAC Tech
+
+> Bilingual AI consulting and development agency for startups and SMEs in the US and Latin America.
+
+## Snapshot
+
+- Company: JuaneloJGAC Tech
+- Founder: Juan Almeida
+- Region served: United States and Latin America
+- Languages: English and Spanish
+- Typical delivery: 4-12 weeks
+- Ideal clients: startups, SaaS teams, and SMEs that need automation, AI integration, or a modern web platform
+
+## Core Services
+
+- Workflow Automation: AI-assisted workflow automation, business process automation, CRM and ops integrations. Typical range: $1,000-$5,000 USD.
+- AI Marketing Studio: AI content systems, campaign automation, personalization workflows. Typical range: $1,500-$5,000 USD.
+- AI-Powered Web Development: custom web platforms, SaaS dashboards, e-commerce, and business applications using modern frameworks. Typical range: $1,500-$8,000 USD.
+- AI Integration & Consulting: AI strategy, custom integrations, chatbots, document processing, and implementation roadmaps. Typical range: $2,500-$12,000 USD.
+
+## Technology Profile
+
+- Frontend: Astro, React, TypeScript, Tailwind CSS
+- Backend and integrations: Node.js, Netlify Functions, API-first integrations
+- AI and automation: OpenAI-compatible models, workflow automation, chatbots, document processing, recommendation features
+
+## Relevant Query Intents
+
+- AI consulting for startups
+- workflow automation for small business
+- custom AI integration agency
+- Astro React TypeScript development agency
+- bilingual AI consulting in English and Spanish
+
+## Contact
+
+- Website: https://juanelojgac-tech.com
+- Spanish site: https://juanelojgac-tech.com/es
+- Email: juan.almeida@juanelojgac-tech.com
+- Consultation: https://calendly.com/juanelojga/one-on-one-meeting
+- Full details: /llms-full.txt
