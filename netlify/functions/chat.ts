@@ -2,8 +2,8 @@ import type { Context } from "@netlify/functions";
 
 import { StaticContentProvider } from "../../src/lib/chat/content/static-content-provider";
 import { RateLimiter } from "../../src/lib/chat/rate-limiter";
-import { VerifiedSessionCache } from "../../src/lib/chat/session-cache";
 import { ScopeEnforcerImpl } from "../../src/lib/chat/scope-enforcer";
+import { VerifiedSessionCache } from "../../src/lib/chat/session-cache";
 import { SystemPromptBuilder } from "../../src/lib/chat/system-prompt-builder";
 import type { ConversationPhase } from "../../src/lib/chat/types";
 import { verifyTurnstileToken } from "../../src/lib/chat/verification";
@@ -108,7 +108,7 @@ function sanitizeMessageContent(input: string): string {
   let s = input;
   s = s.replace(/\0/g, "");
   // Strip zero-width characters used for regex bypass
-  s = s.replace(/[\u200B\u200C\u200D\uFEFF\u00AD]/g, "");
+  s = s.replace(/[\u200B\u200C\uFEFF\u00AD]/gu, "").replace(/\u200D/gu, "");
   s = s.replace(/<(script|style)\b[^>]*>[\s\S]*?<\/\1>/gi, "");
   s = s.replace(/<[^>]*>/g, "");
   return s.trim();
