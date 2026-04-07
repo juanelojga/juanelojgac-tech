@@ -117,7 +117,6 @@ export default function ChatContainer({
             </div>
           )}
         </div>
-
       </div>
 
       {/* Error Alert */}
