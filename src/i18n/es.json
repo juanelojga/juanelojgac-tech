@@ -229,42 +229,6 @@
       "address3Label": "Ciudad de Panamá, Panamá",
       "address3": "Próximamente",
       "copyright": "© 2026 JuaneloJGAC Tech. Todos los derechos reservados."
-    },
-    "services": {
-      "sectionTitle": "Nuestros Servicios",
-      "sectionSubtitle": "Soluciones con IA diseñadas para startups y pequeñas empresas",
-      "learnMore": "Saber más",
-      "priceLabel": "Inversión",
-      "timelineLabel": "Plazo"
-    },
-    "faq": {
-      "sectionTitle": "Preguntas Frecuentes",
-      "items": [
-        {
-          "question": "¿Qué servicios de consultoría de IA ofrecen para startups?",
-          "answer": "Ofrecemos cuatro servicios principales: Automatización de Flujos de Trabajo, Estudio de Marketing con IA, Desarrollo Web Potenciado por IA e Integración y Consultoría de IA. Trabajamos con startups y PYMEs que necesitan automatización, plataformas personalizadas, integraciones de IA o una hoja de ruta práctica para adoptar IA."
-        },
-        {
-          "question": "¿Cuánto cuestan las soluciones de automatización con IA?",
-          "answer": "El precio depende del alcance. Los proyectos de Automatización de Flujos de Trabajo suelen ir de $1,000 a $5,000 USD, Estudio de Marketing con IA de $1,500 a $5,000 USD, Desarrollo Web Potenciado por IA de $1,500 a $8,000 USD e Integración y Consultoría de IA de $2,500 a $12,000 USD."
-        },
-        {
-          "question": "¿Atienden clientes en Latinoamérica?",
-          "answer": "Sí. Somos completamente bilingües (inglés y español) y atendemos clientes en Estados Unidos y Latinoamérica. Tenemos oficinas en Milton, Florida (EE.UU.) y Quito, Ecuador."
-        },
-        {
-          "question": "¿Cómo es su proceso de desarrollo web con IA?",
-          "answer": "Seguimos un enfoque ágil: llamada de descubrimiento, recopilación de requisitos, diseño y arquitectura, desarrollo iterativo con asistencia de IA, pruebas y despliegue. La mayoría de los proyectos se entregan en 4–12 semanas usando tecnologías modernas como React, Astro, TypeScript y Tailwind CSS."
-        },
-        {
-          "question": "¿Pueden ayudar a mi pequeña empresa con integración de IA?",
-          "answer": "Por supuesto. Nos especializamos en ayudar a pequeñas y medianas empresas a adoptar IA de manera práctica. Ya sea que necesites automatizar procesos, crear sistemas de marketing asistidos por IA, construir una plataforma web moderna o integrar IA en tus operaciones, podemos definir una solución según tus metas y tu stack actual."
-        },
-        {
-          "question": "¿Qué hace diferente a JuaneloJGAC Tech de otras agencias de IA?",
-          "answer": "Nos enfocamos exclusivamente en startups y PYMEs, somos completamente bilingües (inglés/español), entregamos en 4–12 semanas y tomamos un enfoque práctico hacia la IA — resultados reales de negocio, no posibilidades teóricas. Trabajas directamente con consultores senior."
-        }
-      ]
     }
   }
 }

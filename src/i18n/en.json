@@ -229,42 +229,6 @@
       "address3Label": "Panama City, Panama",
       "address3": "Coming soon",
       "copyright": "© 2026 JuaneloJGAC Tech. All rights reserved."
-    },
-    "services": {
-      "sectionTitle": "Our Services",
-      "sectionSubtitle": "AI-powered solutions tailored for startups and small businesses",
-      "learnMore": "Learn more",
-      "priceLabel": "Investment",
-      "timelineLabel": "Timeline"
-    },
-    "faq": {
-      "sectionTitle": "Frequently Asked Questions",
-      "items": [
-        {
-          "question": "What AI consulting services do you offer for startups?",
-          "answer": "We offer four core services: Workflow Automation, AI Marketing Studio, AI-Powered Web Development, and AI Integration & Consulting. We work with startups and SMEs that need automation, custom platforms, AI integrations, or a practical roadmap to adopt AI."
-        },
-        {
-          "question": "How much do AI automation solutions cost?",
-          "answer": "Pricing depends on scope. Workflow Automation projects typically range from $1,000-$5,000 USD, AI Marketing Studio from $1,500-$5,000 USD, AI-Powered Web Development from $1,500-$8,000 USD, and AI Integration & Consulting from $2,500-$12,000 USD."
-        },
-        {
-          "question": "Do you serve clients in Latin America?",
-          "answer": "Yes. We are fully bilingual (English and Spanish) and serve clients across the United States and Latin America. We have offices in Milton, Florida (US) and Quito, Ecuador."
-        },
-        {
-          "question": "What does your AI web development process look like?",
-          "answer": "We follow an agile approach: discovery call, requirements gathering, design and architecture, iterative development with AI assistance, testing, and deployment. Most projects are delivered within 4–12 weeks using modern technologies like React, Astro, TypeScript, and Tailwind CSS."
-        },
-        {
-          "question": "Can you help my small business with AI integration?",
-          "answer": "Absolutely. We specialize in helping small and medium businesses adopt AI practically. Whether you need workflow automation, AI-assisted marketing systems, a modern web platform, or a custom AI integration, we can scope a solution around your goals and current stack."
-        },
-        {
-          "question": "What makes JuaneloJGAC Tech different from other AI agencies?",
-          "answer": "We focus exclusively on startups and SMEs, are fully bilingual (English/Spanish), deliver in 4–12 weeks, and take a practical approach to AI — real business results, not theoretical possibilities. You work directly with senior consultants."
-        }
-      ]
     }
   }
 }

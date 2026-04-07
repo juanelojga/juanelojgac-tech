@@ -185,7 +185,7 @@ const serviceSchemas = services.map((service) => ({
   provider: {
     "@id": `${baseUrl}/#organization`,
   },
-  url: `${lang === "en" ? baseUrl : `${baseUrl}/es`}#services`,
+  url: `${lang === "en" ? baseUrl : `${baseUrl}/es`}#consultant`,
   areaServed: [
     {
       "@type": "Country",
@@ -246,26 +246,6 @@ const breadcrumbSchema = {
     },
   ],
 };
-
-/**
- * FAQ Schema for rich snippets
- * Uses FAQ content from i18n translations
- */
-const faqTranslations = translations.redesign?.faq;
-const faqSchema = faqTranslations
-  ? {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: faqTranslations.items.map((item: { question: string; answer: string }) => ({
-        "@type": "Question",
-        name: item.question,
-        acceptedAnswer: {
-          "@type": "Answer",
-          text: item.answer,
-        },
-      })),
-    }
-  : null;
 
 /**
  * LocalBusiness schemas for office locations
@@ -479,9 +459,6 @@ const professionalServiceSchema = {
 
 <!-- Structured Data (JSON-LD) - Breadcrumb -->
 <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
-
-<!-- Structured Data (JSON-LD) - FAQ -->
-{faqSchema && <script is:inline type="application/ld+json" set:html={JSON.stringify(faqSchema)} />}
 
 <!-- Structured Data (JSON-LD) - Local Business Locations -->
 {

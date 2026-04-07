@@ -56,13 +56,13 @@ export default function ChatContainer({
   onContactClick,
   translations,
 }: ChatContainerProps) {
-  const messageEndRef = useRef<HTMLDivElement>(null);
+  const messageListRef = useRef<HTMLDivElement>(null);
   const hasMessages = messages.length > 0;
 
   // Scroll to bottom when new messages arrive or typing starts
   useEffect(() => {
-    if (typeof messageEndRef.current?.scrollIntoView === "function") {
-      messageEndRef.current.scrollIntoView({ behavior: "smooth" });
+    if (messageListRef.current) {
+      messageListRef.current.scrollTop = messageListRef.current.scrollHeight;
     }
   }, [messages.length, isTyping]);
 
@@ -88,6 +88,7 @@ export default function ChatContainer({
 
       {/* Message Area */}
       <div
+        ref={messageListRef}
         role="log"
         aria-label={translations.messageListLabel}
         aria-live="polite"
@@ -116,9 +117,6 @@ export default function ChatContainer({
             </div>
           )}
         </div>
-
-        {/* Scroll anchor */}
-        <div ref={messageEndRef} />
       </div>
 
       {/* Error Alert */}
