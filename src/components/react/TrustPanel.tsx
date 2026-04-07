@@ -36,6 +36,15 @@ export default function TrustPanel({
   const [isExpanded, setIsExpanded] = useState(false);
   const handlePromptInject = useMemo(() => onPromptInject ?? (() => {}), [onPromptInject]);
 
+  // Collapse panel on mobile after injecting a prompt so the chat view is visible
+  const handlePromptInjectAndCollapse = useCallback(
+    (prompt: string) => {
+      handlePromptInject(prompt);
+      setIsExpanded(false);
+    },
+    [handlePromptInject]
+  );
+
   const togglePanel = useCallback(() => {
     setIsExpanded((prev) => !prev);
   }, []);
@@ -77,7 +86,7 @@ export default function TrustPanel({
             <OutcomePrompts
               outcomes={outcomePrompts}
               label={translations.outcomesLabel}
-              onPromptInject={handlePromptInject}
+              onPromptInject={handlePromptInjectAndCollapse}
             />
           </div>
         )}
@@ -95,7 +104,7 @@ export default function TrustPanel({
                 title={service.title}
                 shortDescription={service.shortDescription}
                 relatedPrompt={service.relatedPrompt}
-                onPromptInject={handlePromptInject}
+                onPromptInject={handlePromptInjectAndCollapse}
               />
             ))}
           </div>
