@@ -70,7 +70,7 @@ export default function ChatInput({
   }, []);
 
   return (
-    <div className="shrink-0 border-chat-input-border bg-chat-panel-input-bg border-t px-4 py-3">
+    <div className="border-chat-input-border bg-chat-panel-input-bg shrink-0 border-t px-4 py-3">
       <div className="mx-auto flex max-w-[var(--spacing-chat-input-max-width)] items-center gap-2">
         <div className="relative flex-1">
           <textarea

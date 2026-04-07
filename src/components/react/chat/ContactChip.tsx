@@ -7,7 +7,7 @@ export interface ContactChipProps {
 
 export default function ContactChip({ label, onClick }: ContactChipProps) {
   return (
-    <div className="shrink-0 border-white-10 border-t px-3 py-2 sm:px-4">
+    <div className="border-white-10 shrink-0 border-t px-3 py-2 sm:px-4">
       <button
         type="button"
         onClick={onClick}
