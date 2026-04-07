@@ -69,7 +69,7 @@ export default function TrustPanel({
 
       {/* Collapsible Content */}
       <div
-        className={`flex-1 overflow-y-auto transition-all duration-200 ease-in-out ${isExpanded ? "opacity-100" : "pointer-events-none h-0 overflow-hidden opacity-0 lg:pointer-events-auto lg:h-auto lg:overflow-y-auto lg:opacity-100"}`}
+        className={`overflow-y-auto transition-all duration-200 ease-in-out ${isExpanded ? "flex-1 opacity-100" : "pointer-events-none h-0 overflow-hidden opacity-0 lg:pointer-events-auto lg:h-auto lg:flex-1 lg:overflow-y-auto lg:opacity-100"}`}
       >
         {/* Outcome Prompts Section — Primary focus */}
         {outcomePrompts.length > 0 && (

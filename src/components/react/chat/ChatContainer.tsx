@@ -78,7 +78,7 @@ export default function ChatContainer({
       role="region"
       aria-label={translations.chatRegionLabel}
       data-testid="chat-container"
-      className="bg-chat-panel-bg flex h-full flex-col"
+      className="bg-chat-panel-bg flex min-h-0 flex-1 flex-col"
     >
       <ChatHeader
         title={translations.headerTitle}
@@ -93,7 +93,7 @@ export default function ChatContainer({
         aria-label={translations.messageListLabel}
         aria-live="polite"
         data-testid="chat-message-list"
-        className="flex-1 overflow-y-auto px-3 py-3 sm:px-4 sm:py-4"
+        className="min-h-0 flex-1 overflow-y-auto px-3 py-3 sm:px-4 sm:py-4"
       >
         {/* Conversation messages */}
         <div className="mx-auto max-w-[var(--spacing-chat-message-max-width)] space-y-3">
@@ -141,7 +141,7 @@ export default function ChatContainer({
 
       {/* Follow-up suggestions — visible after assistant responses */}
       {hasMessages && followUps.length > 0 && !isTyping && (
-        <div data-testid="chat-follow-ups" className="border-white-10 border-t px-3 py-2 sm:px-4">
+        <div data-testid="chat-follow-ups" className="shrink-0 border-white-10 border-t px-3 py-2 sm:px-4">
           <p className="text-text-muted mb-1.5 text-xs font-medium">
             {translations.followUpsLabel}
           </p>

@@ -359,7 +359,7 @@ export default function ConsultantLayout({
       <section
         aria-label={layoutTranslations.consultantSection}
         data-testid="consultant-layout"
-        className="border-white-10 bg-midnight-surface flex h-[calc(100dvh-6rem)] w-full flex-col overflow-hidden rounded-3xl border shadow-2xl sm:h-[600px] lg:h-[700px] lg:flex-row"
+        className="border-white-10 bg-midnight-surface flex h-[calc(100dvh-5.5rem)] w-full flex-col overflow-hidden rounded-3xl border shadow-2xl sm:h-[600px] lg:h-[700px] lg:flex-row"
       >
         {/* Left Panel — Trust & Services */}
         <TrustPanel
@@ -370,7 +370,7 @@ export default function ConsultantLayout({
         />
 
         {/* Right Panel — Chat or Verification */}
-        <div className="flex min-w-0 flex-1 flex-col">
+        <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-hidden">
           <ChatErrorBoundary translations={errorBoundaryTranslations}>
             {isVerified ? (
               <ChatContainer
