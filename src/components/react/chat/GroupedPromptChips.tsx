@@ -40,7 +40,11 @@ export default function GroupedPromptChips({
   if (!visible || resolvedGroups.length === 0) return null;
 
   return (
-    <div data-testid="grouped-prompt-chips" aria-label={sectionLabel} className="px-3 py-3 sm:px-4">
+    <div
+      data-testid="grouped-prompt-chips"
+      aria-label={sectionLabel}
+      className="max-h-[40%] shrink-0 overflow-y-auto px-3 py-3 sm:max-h-[280px] sm:px-4"
+    >
       <p className="text-text-muted mb-3 text-xs font-medium">{sectionLabel}</p>
 
       <div className="space-y-3">

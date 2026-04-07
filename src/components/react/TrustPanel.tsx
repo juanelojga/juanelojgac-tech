@@ -36,6 +36,15 @@ export default function TrustPanel({
   const [isExpanded, setIsExpanded] = useState(false);
   const handlePromptInject = useMemo(() => onPromptInject ?? (() => {}), [onPromptInject]);
 
+  // Collapse panel on mobile after injecting a prompt so the chat view is visible
+  const handlePromptInjectAndCollapse = useCallback(
+    (prompt: string) => {
+      handlePromptInject(prompt);
+      setIsExpanded(false);
+    },
+    [handlePromptInject]
+  );
+
   const togglePanel = useCallback(() => {
     setIsExpanded((prev) => !prev);
   }, []);
@@ -69,7 +78,7 @@ export default function TrustPanel({
 
       {/* Collapsible Content */}
       <div
-        className={`flex-1 overflow-y-auto transition-all duration-200 ease-in-out ${isExpanded ? "opacity-100" : "pointer-events-none h-0 overflow-hidden opacity-0 lg:pointer-events-auto lg:h-auto lg:overflow-y-auto lg:opacity-100"}`}
+        className={`overflow-y-auto transition-all duration-200 ease-in-out ${isExpanded ? "flex-1 opacity-100" : "pointer-events-none h-0 overflow-hidden opacity-0 lg:pointer-events-auto lg:h-auto lg:flex-1 lg:overflow-y-auto lg:opacity-100"}`}
       >
         {/* Outcome Prompts Section — Primary focus */}
         {outcomePrompts.length > 0 && (
@@ -77,7 +86,7 @@ export default function TrustPanel({
             <OutcomePrompts
               outcomes={outcomePrompts}
               label={translations.outcomesLabel}
-              onPromptInject={handlePromptInject}
+              onPromptInject={handlePromptInjectAndCollapse}
             />
           </div>
         )}
@@ -95,7 +104,7 @@ export default function TrustPanel({
                 title={service.title}
                 shortDescription={service.shortDescription}
                 relatedPrompt={service.relatedPrompt}
-                onPromptInject={handlePromptInject}
+                onPromptInject={handlePromptInjectAndCollapse}
               />
             ))}
           </div>
